@@ -39,12 +39,12 @@ namespace RSI_X_Desktop
         public static bool IsConnected { get => client.Connected; }
         public static Dictionary<uint, string> GetAllNames { get => TranslNames; }
 
-#if DEBUG
+#if DEBUG_DB_LOGGER
         public static forms.HelpingClass.DBTest dBTest;
 #endif
         private static void DebugLog(string msg, bool time, bool separate=true)
         {
-#if DEBUG
+#if DEBUG_DB_LOGGER
             dBTest.AddLine(msg, time, separate);
 #endif
         }

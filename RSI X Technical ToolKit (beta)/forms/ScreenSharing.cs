@@ -162,7 +162,7 @@ namespace RSI_X_Desktop
 
         private void ScreenSharing_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Broadcaster_old broadcaster = new();
+            Broadcaster broadcaster = new();
             broadcaster.Show();
             this.Hide();
         }

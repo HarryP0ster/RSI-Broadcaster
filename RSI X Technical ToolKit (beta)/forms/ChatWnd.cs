@@ -41,8 +41,6 @@ namespace RSI_X_Desktop.forms
                 messages_list[i] = new();
                 scroll_offset[i] = 0;
             }
-            DefPanelWidth = panel1.Width;
-            panel1.Resize += Chat_SizeChanged;
             panel2.Resize += Chat_SizeChanged;
             panel3.Resize += Chat_SizeChanged;
 
@@ -56,16 +54,6 @@ namespace RSI_X_Desktop.forms
         private void ChatWnd_FormClosed(object sender, FormClosedEventArgs e)
         {
             Dispose();
-        }
-
-        private void chatButtonRight1_Click(object sender, EventArgs e)
-        {
-            if (bigTextBox1.Text != "")
-            {
-                AgoraObject.SendMessageToTransl(bigTextBox1.Text);
-                AddOwnMessageLocal(bigTextBox1.Text);
-                bigTextBox1.Text = "";
-            }
         }
 
         private void Scrolled(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -83,13 +71,9 @@ namespace RSI_X_Desktop.forms
             switch (materialShowTabControl1.SelectedIndex)
             {
                 case (0):
-                    Chat_SizeChanged(panel1, new EventArgs());
-                    break;
-                case (1):
                     Chat_SizeChanged(panel2, new EventArgs());
                     break;
-
-                case (2):
+                case (1):
                     Chat_SizeChanged(panel3, new EventArgs());
                     break;
             }
@@ -100,26 +84,6 @@ namespace RSI_X_Desktop.forms
             switch (materialShowTabControl1.SelectedIndex)
             {
                 case (0):
-                    if (bigTextBox1.Text != "" && e.KeyCode == Keys.Enter)
-                    {
-                        AgoraObject.SendMessageToTransl(bigTextBox1.Text);
-                        AddOwnMessageLocal(bigTextBox1.Text);
-                        bigTextBox1.Text = "";
-                    }
-                    else if (e.KeyCode == Keys.Up)
-                    {
-                        if (scroll_offset[0] + 1 <= messages_list[0].Count)
-                            scroll_offset[0]++;
-                        Chat_SizeChanged(panel1, new EventArgs());
-                    }
-                    else if (e.KeyCode == Keys.Down)
-                    {
-                        if (scroll_offset[0] - 1 >= 0)
-                            scroll_offset[0]--;
-                        Chat_SizeChanged(panel1, new EventArgs());
-                    }
-                    break;
-                case (1):
                     if (bigTextBox2.Text != "" && e.KeyCode == Keys.Enter)
                     {
                         AgoraObject.SendMessageToHost(bigTextBox2.Text);
@@ -139,7 +103,7 @@ namespace RSI_X_Desktop.forms
                         Chat_SizeChanged(panel2, new EventArgs());
                     }
                     break;
-                case (2):
+                case (1):
                     if (bigTextBox3.Text != "" && e.KeyCode == Keys.Enter)
                     {
                         FireBase.SendMessage(bigTextBox3.Text);
@@ -193,9 +157,6 @@ namespace RSI_X_Desktop.forms
         {
             switch (channel)
             {
-                case CHANNEL_TYPE.CHANNEL_TRANSL:
-                    RelocateBubbles(new HelpingClass.MessagePanelL(message, nickname, panel1), panel1, 0);
-                    break;
                 case CHANNEL_TYPE.CHANNEL_HOST:
                     RelocateBubbles(new HelpingClass.MessagePanelL(message, nickname, panel2), panel2, 1);
                     break;
@@ -221,11 +182,6 @@ namespace RSI_X_Desktop.forms
                 else
                     RelocateBubbles(new HelpingClass.MessagePanelL(arg.Msg.msg, arg.Msg.username, panel3), panel3, 2);
             }
-        }
-
-        private void AddOwnMessageLocal(string msg)
-        {
-            RelocateBubbles(new HelpingClass.MessagePanelL(msg, HelpingClass.MessagePanelL.MyOwn, panel1), panel1, 0);
         }
         private void AddOwnMessageGeneral(string msg)
         {
@@ -254,9 +210,7 @@ namespace RSI_X_Desktop.forms
             ((Control)sender).Controls.Clear();
 
             int ind;
-            if (((Control)sender) == panel1)
-                ind = 0;
-            else if (((Control)sender) == panel2)
+            if (((Control)sender) == panel2)
                 ind = 1;
             else if (((Control)sender) == panel3)
                 ind = 2;
@@ -278,8 +232,6 @@ namespace RSI_X_Desktop.forms
 
         internal void ButtonsVisibility(bool state)
         {
-            bigTextBox1.Visible = state;
-            chatButtonRight1.Visible = state;
             bigTextBox2.Visible = state;
             chatButtonRight2.Visible = state;
             bigTextBox3.Visible = state;

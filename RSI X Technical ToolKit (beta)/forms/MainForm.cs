@@ -15,9 +15,6 @@ namespace RSI_X_Desktop.forms
 {
     public partial class MainForm : Form
     {
-#if DEBUG
-        private HelpingClass.DBTest DBTest = new();
-#endif
         static private string userName = "";
         
         AppDomain currentDomain = AppDomain.CurrentDomain;
@@ -33,9 +30,6 @@ namespace RSI_X_Desktop.forms
             DBReader.Connect();
 
 #if DEBUG
-            DBTest.Show();
-            DBReader.dBTest = DBTest;
-
             //|ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ|
             //TODO: Delete this
             //|ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ|
@@ -75,7 +69,7 @@ namespace RSI_X_Desktop.forms
             if (AgoraObject.JoinRoom(code))
             {
                 Hide();
-                Broadcaster_old broadcaster= new();
+                Broadcaster broadcaster= new();
                 AgoraObject.CurrentForm = CurForm.FormBroadcaster;
                 broadcaster.Show(this);
             }
