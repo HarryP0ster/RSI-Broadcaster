@@ -57,6 +57,7 @@ namespace RSI_X_Desktop.forms
 
             AgoraObject.Rtc.StartPreview();
             VideoCanvas vc = new((ulong)pictureBoxLocalVideoTest.Handle, 0);
+            vc.renderMode = ((int)RENDER_MODE_TYPE.RENDER_MODE_FIT);
             AgoraObject.Rtc.EnableVideo();
             AgoraObject.Rtc.SetupLocalVideo(vc);
         }
@@ -212,7 +213,7 @@ namespace RSI_X_Desktop.forms
             string name, id;
 
             videoDeviceManager.GetDeviceInfoByIndex(ind, out name, out id);
-            //videoDeviceManager.SetCurrentDevice(id);
+            videoDeviceManager.SetCurrentDevice(id);
         }
 
 

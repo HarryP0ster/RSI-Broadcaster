@@ -39,8 +39,11 @@ namespace RSI_X_Desktop
         }
         public void SetLocalVideoPreview()
         {
+            AgoraObject.Rtc.EnableLocalVideo(true);
+            pictureBoxRemoteVideo.Refresh();
             LocalWinId = pictureBoxRemoteVideo.Handle;
             var ret = new VideoCanvas((ulong)LocalWinId, 0);
+            ret.renderMode = ((int)RENDER_MODE_TYPE.RENDER_MODE_FIT);
             AgoraObject.Rtc.SetupLocalVideo(ret);
 
             AgoraObject.Rtc.StartPreview();
@@ -119,6 +122,7 @@ namespace RSI_X_Desktop
         }
         public void DevicesClosed(Form wnd) 
         { 
+            
             wnd.Close();
         }
     }
