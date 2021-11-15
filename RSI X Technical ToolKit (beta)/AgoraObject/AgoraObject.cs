@@ -10,7 +10,7 @@ namespace RSI_X_Desktop
 {
     enum CurForm 
     {
-        FormTransLater,
+        workFormater,
         FormBroadcaster,
         FormAudience,
         FormEngineer,
@@ -62,8 +62,9 @@ namespace RSI_X_Desktop
         internal static AGChannelEventHandler translHandler;
         internal static AGChannelEventHandler hostHandler;
         internal static AGChannelEventHandler targetHandler;
-        private static IFormHostHolder formTransl;
+        private static IFormHostHolder workForm;
 
+        public static IFormHostHolder GetWorkForm { get => workForm; }
         public static bool m_channelSrcJoin     { get; private set; } = false;
         public static bool m_channelTranslJoin  { get; private set; } = false;
         public static bool m_channelHostJoin    { get; private set; } = false;
@@ -176,7 +177,7 @@ namespace RSI_X_Desktop
             translHandler = new AGChannelEventHandler(form, CHANNEL_TYPE.CHANNEL_TRANSL);
             hostHandler = new AGChannelEventHandler(form, CHANNEL_TYPE.CHANNEL_HOST);
             targetHandler = new AGChannelEventHandler(form, CHANNEL_TYPE.CHANNEL_DEST);
-            formTransl = form;
+            workForm = form;
         }
 
         #region Screen/Window capture
@@ -408,7 +409,7 @@ namespace RSI_X_Desktop
             ERROR_CODE ret;
 
             var channel = Rtc.CreateChannel(lpChannelName);
-            channel.InitChannelEventHandler(new AGChannelEventHandler(formTransl, CHANNEL_TYPE.CHANNEL_DEST));
+            channel.InitChannelEventHandler(new AGChannelEventHandler(workForm, CHANNEL_TYPE.CHANNEL_DEST));
             channel.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_AUDIENCE);
 
             ChannelMediaOptions options = new();
@@ -427,7 +428,7 @@ namespace RSI_X_Desktop
             ERROR_CODE ret;
 
             var channel = Rtc.CreateChannel(lpChannelName);
-            channel.InitChannelEventHandler(new AGChannelEventHandler(formTransl, CHANNEL_TYPE.CHANNEL_DEST));
+            channel.InitChannelEventHandler(new AGChannelEventHandler(workForm, CHANNEL_TYPE.CHANNEL_DEST));
             channel.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
 
             ChannelMediaOptions options = new();
@@ -533,18 +534,6 @@ namespace RSI_X_Desktop
             RoomTarg = langFull;
         }
 
-        public static void CallUnPublish()
-        {
-            if (formTransl != null && CurrentForm == CurForm.FormTransLater)
-                ((TransLater)formTransl).UnPublish();
-        }
-
-        public static void CallNameUpdate(Queue<string> name)
-        {
-            if (formTransl != null && CurrentForm == CurForm.FormTransLater)
-                ((TransLater)formTransl).SetPublishName(name);
-        }
-
         public static void SendMessageToTransl(string msg) 
         {
             m_channelTransl.SendStreamMessage(_translStreamID, utf8enc.GetBytes(msg));
@@ -552,10 +541,6 @@ namespace RSI_X_Desktop
         public static void SendMessageToHost(string msg)
         {
             m_channelHost.SendStreamMessage(_hostStreamID, utf8enc.GetBytes(msg));
-        }
-        public static TransLater GetTranslatorForm()
-        {
-            return (TransLater)formTransl;
         }
     }
 }

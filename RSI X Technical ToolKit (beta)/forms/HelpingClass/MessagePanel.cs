@@ -109,8 +109,6 @@ namespace RSI_X_Desktop.forms.HelpingClass
                 Location = new Point(5, Owner.Height - Height);
             else
                 Location = new Point(Owner.Width - ActualWidth, Owner.Height - Height);
-
-            AgoraObject.GetTranslatorForm().RebuildChatPanel(Owner);
         }
     }
 }

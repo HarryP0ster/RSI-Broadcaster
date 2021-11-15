@@ -18,35 +18,12 @@ namespace RSI_X_Desktop.forms
         static private string userName = "";
         
         AppDomain currentDomain = AppDomain.CurrentDomain;
-        private bool bMouseDown = false;
-        Point MouseOffset = new Point(0, 0);
 
         public MainForm()
         {
-            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(MyHandler);
-
             StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
-            DBReader.Connect();
-
-#if DEBUG
-            //|ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ|
-            //TODO: Delete this
-            //|ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ|
-            //DBReader.ConnectClear("1");
-            //|ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ|
-            //|ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ|
-#endif
         }
-
-        private void MyHandler(object sender, UnhandledExceptionEventArgs e)
-        {
-            // Send 'exit' when exception
-            if (DBReader.IsConnected)
-                DBReader.LeaveRoom();
-        }
-
-
 
         private void formTheme1_Click(object sender, EventArgs e)
         {
@@ -74,37 +51,6 @@ namespace RSI_X_Desktop.forms
                 broadcaster.Show(this);
             }
         }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            ToolTip t = new ToolTip();
-            AddMouseEvents(this);
-            //AddMouseEvents(pictureBox1);
-            AddMouseEvents(dungeonHeaderLabel1);
-            AddMouseEvents(LocalTimeLabel);
-            AddMouseEvents(TimeLabel);
-        }
-        private void ChangeMouseState(object sender, MouseEventArgs e)
-        {
-            bMouseDown = !bMouseDown;
-            MouseOffset = e.Location;
-        }
-        private void WindowMove(object sender, MouseEventArgs e)
-        {
-            if (bMouseDown)
-            {
-                Point p = PointToScreen(e.Location);
-                this.Location = new Point(p.X - MouseOffset.X, p.Y - MouseOffset.Y);
-            }
-        }
-
-        private void AddMouseEvents(Control Obj)
-        {
-            Obj.MouseUp += ChangeMouseState;
-            Obj.MouseDown += ChangeMouseState;
-            Obj.MouseMove += WindowMove;
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             TimeLabel.Text = DateTime.Now.ToString("HH:mm");
@@ -133,16 +79,6 @@ namespace RSI_X_Desktop.forms
             NewTextBox.Clear();
             GC.Collect();
         }
-
-        private void bigTextBox1_VisibleChanged(object sender, EventArgs e)
-        {
-            //if (this.Visible)
-            //{
-            //    NewTextBox.Invalidate();
-            //    AgoraObject.CurrentForm = CurForm.None;
-            //}
-        }
-
         private void HideButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
@@ -170,11 +106,6 @@ namespace RSI_X_Desktop.forms
         private void NewTextBox_Click(object sender, EventArgs e)
         {
             NewTextBox.SelectionStart = 0;
-        }
-
-        private void TimeLabel_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

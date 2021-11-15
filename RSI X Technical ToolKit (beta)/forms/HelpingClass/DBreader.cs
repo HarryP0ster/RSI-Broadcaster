@@ -193,8 +193,8 @@ namespace RSI_X_Desktop
 
             DebugLog(name + "Has Stopped Stream", true);
 
-            if (str.ToString() != "" && !AgoraObject.IsPublish())
-                AgoraObject.CallNameUpdate(new(StartedStreams));
+            //if (str.ToString() != "" && !AgoraObject.IsPublish())
+            //    AgoraObject.CallNameUpdate(new(StartedStreams));
 
             EventArgs args = new();
             OnStreamHasStopped?.Invoke(client, args);
@@ -209,8 +209,8 @@ namespace RSI_X_Desktop
                 GetRoomLang(str.ToString()) != AgoraObject.RoomLang)
                 return;
 
-            if (AgoraObject.IsPublish() == true)
-                AgoraObject.CallUnPublish();
+            //if (AgoraObject.IsPublish() == true)
+            //    AgoraObject.CallUnPublish();
 
             if (StoppedStreams.Contains(name))
                 StoppedStreams.Remove(name);
@@ -218,7 +218,7 @@ namespace RSI_X_Desktop
             DebugLog(name + " Has Started Stream", true);
             StartedStreams.Add(name);
 
-            AgoraObject.CallNameUpdate(new(StartedStreams));
+            //AgoraObject.CallNameUpdate(new(StartedStreams));
             EventArgs args = new();
             OnStreamHasStarted?.Invoke(client, args);
 
@@ -286,7 +286,7 @@ namespace RSI_X_Desktop
                         if (name != AgoraObject.NickName)
                             StartedStreams.Add(name);
 
-                        AgoraObject.CallNameUpdate(new(StartedStreams));
+                        //AgoraObject.CallNameUpdate(new(StartedStreams));
                     }
                 }
             }

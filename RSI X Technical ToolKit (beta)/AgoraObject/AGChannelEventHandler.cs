@@ -43,7 +43,7 @@ namespace RSI_X_Desktop
                     AgoraObject.UpdateClientID(uid.ToString());
                     AgoraObject.UpdateRoomName(channelId);
                     //System.Threading.Thread.Sleep(1000);
-                    DBReader.JoinRoom();
+                    //DBReader.JoinRoom();
                     
                     break;
                 case CHANNEL_TYPE.CHANNEL_HOST:
@@ -61,8 +61,8 @@ namespace RSI_X_Desktop
                 case CHANNEL_TYPE.CHANNEL_TRANSL:
                     AgoraObject.UpdateClientID(uid.ToString());
                     AgoraObject.UpdateRoomName(channelId);
-                    DBReader.LeaveRoom();
-                    DBReader.JoinRoom();
+                    //DBReader.LeaveRoom();
+                    //DBReader.JoinRoom();
 
                     ////System.Threading.Thread.Sleep(1000);
                     //DBReader.JoinRoom();
@@ -82,9 +82,6 @@ namespace RSI_X_Desktop
             switch (chType)
             {
                 case CHANNEL_TYPE.CHANNEL_TRANSL:
-                    ((TransLater)form).ClearWnd();
-                    DBReader.LeaveRoom();
-                    break;
                 case CHANNEL_TYPE.CHANNEL_HOST:
                 case CHANNEL_TYPE.CHANNEL_DEST:
                 case CHANNEL_TYPE.CHANNEL_SRC:
@@ -103,26 +100,11 @@ namespace RSI_X_Desktop
             switch (chType) 
             {
                 case CHANNEL_TYPE.CHANNEL_TRANSL:
-                    Console.WriteLine("OnUserJoined");
-
-                    if (form.RemoteWnd == IntPtr.Zero) return;
-                    UserInfo info;
-                    AgoraObject.Rtc.GetUserInfoByUid(uid, out info);
-
-                    ((TransLater)form).InitNewWnd(channelId, uid);
-                    ((TransLater)form).RebindVideoWndInvoke();
-                    break;
                 case CHANNEL_TYPE.CHANNEL_DEST:
-                    break;
                 case CHANNEL_TYPE.CHANNEL_HOST:
                 case CHANNEL_TYPE.CHANNEL_SRC:
                 default:
                     break;
-            }
-
-            if (chType is CHANNEL_TYPE.CHANNEL_TRANSL)
-            {
-                //form.ShowRemoteWnd();
             }
         }
 
@@ -131,29 +113,7 @@ namespace RSI_X_Desktop
             switch (chType)
             {
                 case CHANNEL_TYPE.CHANNEL_HOST:
-
-                    hostBroacsters.Remove(uid);
-                    Console.WriteLine("UserOffLine");
-
-                    if (hostBroacsters.Count > 0)
-                    {
-                        if (form.RemoteWnd == IntPtr.Zero) return;
-                        VideoCanvas canv = new ((ulong)form.RemoteWnd, hostBroacsters.Last());
-                        canv.renderMode = ((int)RENDER_MODE_TYPE.RENDER_MODE_HIDDEN);
-                        canv.channelId = channelId;
-
-
-                        AgoraObject.Rtc.SetupRemoteVideo(canv);
-                    }
-                    else
-                        form.UpdateRemoteWnd();
-                    break;
                 case CHANNEL_TYPE.CHANNEL_TRANSL:
-                    if (form is IFormInterpreterHolder == false) return;
-
-                    ((TransLater)form).RemoveWnd(uid);
-                    ((TransLater)form).RebindVideoWndInvoke();
-                    break;
                 case CHANNEL_TYPE.CHANNEL_DEST:
                 case CHANNEL_TYPE.CHANNEL_SRC:
                 default:
@@ -236,7 +196,6 @@ namespace RSI_X_Desktop
         public override void OnChannelRemoteVideoStateChanged(string channelId, uint uid, REMOTE_VIDEO_STATE state,
             REMOTE_VIDEO_STATE_REASON reason, int elapsed)
         {
-            var formInterpr = (form as TransLater);
             
             //TODO: добавить очистку окон коллег через state == REMOTE_VIDEO_STATE_STOPPED
             switch (state) {
@@ -248,11 +207,6 @@ namespace RSI_X_Desktop
                     break;
                 case REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_FROZEN:
                 case REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_FAILED:
-                    if (channelId.Contains("HOST"))
-                    {
-                        formInterpr.LiveIconShowInvoke(show:false);
-                    }
-                    break;
                 case REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_STARTING:
                     break;
                 default:
@@ -269,15 +223,10 @@ namespace RSI_X_Desktop
             UserInfo user;
             AgoraObject.Rtc.GetUserInfoByUid(uid, out user);
 
-            var formInterpr = (form as TransLater);
             switch (chType)
             {
                 case CHANNEL_TYPE.CHANNEL_HOST:
-                    if (user.userAccount == "") formInterpr.LiveIconShowInvoke(show: false);
-                    break;
                 case CHANNEL_TYPE.CHANNEL_DEST:
-                    formInterpr.TranslStreamLeaveInvoke(channelId.Split('_')[0]);
-                    break;
                 case CHANNEL_TYPE.CHANNEL_TRANSL:
                 case CHANNEL_TYPE.CHANNEL_SRC:
                 default:
@@ -291,36 +240,12 @@ namespace RSI_X_Desktop
             AgoraObject.Rtc.GetUserInfoByUid(uid, out user);
 
             VideoCanvas canv;
-            var formInterpr = (form as TransLater);
 
             switch (chType)
             {
                 case CHANNEL_TYPE.CHANNEL_HOST:
-                    if (form.RemoteWnd == IntPtr.Zero) return;
-
-                    hostBroacsters.Add(uid);
-                    canv = new((ulong)form.RemoteWnd, uid);
-                    canv.renderMode = (int)RENDER_MODE_TYPE.RENDER_MODE_FIT;
-                    canv.channelId = channelId;
-
-                    AgoraObject.Rtc.SetupRemoteVideo(canv);
-                    formInterpr.LiveIconShowInvoke(show: true);
-                    break;
                 case CHANNEL_TYPE.CHANNEL_TRANSL:
-                    if (form is IFormInterpreterHolder == false) return;
-                    formInterpr.RebindVideoWndInvoke();
-                    break;
                 case CHANNEL_TYPE.CHANNEL_DEST:
-                    if (reason != REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_INTERNAL ) return;
-
-                    var handler = formInterpr.NewTranslStreamInvoke(user.userAccount, channelId.Split('_')[0]);
-
-                    canv = new((ulong)handler, uid);
-                    canv.renderMode = (int)RENDER_MODE_TYPE.RENDER_MODE_FIT;
-                    canv.channelId = channelId;
-
-                    AgoraObject.Rtc.SetupRemoteVideo(canv);
-                    break;
                 case CHANNEL_TYPE.CHANNEL_SRC:
                 default:
                     break;
@@ -339,7 +264,7 @@ namespace RSI_X_Desktop
 
             AgoraObject.Rtc.GetUserInfoByUid(uid, out name);
             string UserName = name.userAccount;
-            var formInterpr = (form as TransLater);
+            var formInterpr = (form as Broadcaster);
             formInterpr.GetMessage(Message, UserName, chType);
         }
 

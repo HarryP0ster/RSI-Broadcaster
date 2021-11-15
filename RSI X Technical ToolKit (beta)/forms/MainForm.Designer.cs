@@ -414,7 +414,7 @@ namespace RSI_X_Desktop.forms
             this.Name = "MainForm";
             this.Text = "RSI EXCHANGE INTERPRETER";
             this.TransparencyKey = System.Drawing.Color.Fuchsia;
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            //this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.formTheme1.ResumeLayout(false);
             this.tableLayoutPanelMain.ResumeLayout(false);

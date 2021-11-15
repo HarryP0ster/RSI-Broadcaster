@@ -7,31 +7,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Environment;
+using ReaLTaiizor;
 using agorartc;
+using RSI_X_Desktop.forms;
+using static System.Environment;
 
-namespace RSI_X_Desktop
+namespace RSI_X_Desktop.forms
 {
-    public enum TYPE_SETTINGS
-    {
-        AUDIENCE,
-        BROADCASTER,
-        ITERPRETER
-    }
-
-    public partial class DevicesForm : Form
+    public partial class Devices : Form
     {
         AgoraAudioRecordingDeviceManager audioInDeviceManager;
         AgoraAudioPlaybackDeviceManager audioOutDeviceManager;
         AgoraVideoDeviceManager videoDeviceManager;
 
-        public DevicesForm()
+        public Devices()
         {
             InitializeComponent();
         }
 
-        private void Devices_Load(object sender, EventArgs e)
+        private void formTheme1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void NewDevices_Load(object sender, EventArgs e)
+        {
+            button1.Location = new Point(button1.Location.X, General.Height - button1.Height - 15);
+            button2.Location = new Point(button2.Location.X, Sound.Height - button2.Height - 15);
+            button3.Location = new Point(button3.Location.X, Sound.Height - button3.Height - 15);
+            button4.Location = new Point(button4.Location.X, Video.Height - button4.Height - 15);
+            button5.Location = new Point(button5.Location.X, Video.Height - button5.Height - 15);
+
             audioInDeviceManager = AgoraObject.Rtc.CreateAudioRecordingDeviceManager();
             audioOutDeviceManager = AgoraObject.Rtc.CreateAudioPlaybackDeviceManager();
             videoDeviceManager = AgoraObject.Rtc.CreateVideoDeviceManager();
@@ -57,18 +63,18 @@ namespace RSI_X_Desktop
 
         private void getComputerDescription()
         {
-            label5.Text = "Версия ОС - " + OSVersion.VersionString;
+            dungeonLabel1.Text = "Версия ОС - " + OSVersion.VersionString;
 
             if (Is64BitOperatingSystem == true)
             {
-                label6.Text = "64 Bit операционная система";
+                dungeonLabel2.Text = "64 Bit операционная система";
             }
             else
             {
-                label6.Text = "32 Bit операционная система";
+                dungeonLabel2.Text = "32 Bit операционная система";
             }
 
-            label7.Text = "Пользователь - " + UserName;
+            dungeonLabel3.Text = "Пользователь - " + UserName;
 
         }
 
@@ -81,12 +87,12 @@ namespace RSI_X_Desktop
             for (int i = 0; i < audioInDeviceManager.GetDeviceCount(); i++)
             {
                 var ret = audioInDeviceManager.GetDeviceInfoByIndex(i, out string name, out string deviceid);
-                if(idAcvite == deviceid)
+                if (idAcvite == deviceid)
                 {
                     id = i;
                     break;
                 }
-                
+
             }
             return id;
         }
@@ -113,7 +119,7 @@ namespace RSI_X_Desktop
         private int getActiveVideoDevice()
         {
             int id = -1;
-            
+
             string idActive = videoDeviceManager.GetCurrentDevice();
 
             for (int i = 0; i < videoDeviceManager.GetDeviceCount(); i++)
@@ -130,7 +136,7 @@ namespace RSI_X_Desktop
         }
 
         #region getDevicesList
-        private List<string> getListAudioInputDevices() 
+        private List<string> getListAudioInputDevices()
         {
             List<string> devicesOut = new();
 
@@ -145,7 +151,7 @@ namespace RSI_X_Desktop
             }
             return devicesOut;
         }
-       
+
         private List<string> getListAudioOutDevices()
         {
             List<string> devicesOut = new();
@@ -209,30 +215,38 @@ namespace RSI_X_Desktop
             //videoDeviceManager.SetCurrentDevice(id);
         }
 
+
         #endregion
 
-        private void trackBarSoundIn_Scroll(object sender, EventArgs e)
+        private void NewDevices_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            AgoraObject.Rtc.EnableLocalVideo(false);
+            IFormHostHolder wnd = AgoraObject.GetWorkForm;
+            if (wnd != null)
+                wnd.SetLocalVideoPreview();
+            Dispose();
+        }
+
+        private void trackBarSoundIn_ValueChanged(object sender, EventArgs e)
         {
             audioInDeviceManager.SetDeviceVolume(
                 ((TrackBar)sender).Value
                 );
         }
 
-        private void trackBarSoundOut_Scroll(object sender, EventArgs e)
+        private void trackBarSoundOut_ValueChanged(object sender, EventArgs e)
         {
             audioOutDeviceManager.SetDeviceVolume(
                 ((TrackBar)sender).Value
                 );
         }
 
-        public void SetAudienceSettings() 
-        {}
-        private void button1_Click(object sender, EventArgs e)
+        public void SetAudienceSettings()
         {
-            Close();
+            materialShowTabControl1.SelectTab(1);
         }
 
-        private void buttonAccept_Click(object sender, EventArgs e)
+        private void AcceptButton_Click(object sender, EventArgs e)
         {
             int indIN = comboBoxAudioInput.SelectedIndex;
             string nameIN, idIN;
@@ -252,21 +266,38 @@ namespace RSI_X_Desktop
             videoDeviceManager.GetDeviceInfoByIndex(indVID, out nameVID, out idVID);
             videoDeviceManager.SetCurrentDevice(idVID);
 
-            Close();
+            CloseButton_Click(sender, e);
         }
 
-        private void DevicesForm_FormClosed(object sender, FormClosedEventArgs e)
+        internal void CloseButton_Click(object sender, EventArgs e)
         {
-            AgoraObject.Rtc.EnableLocalVideo(false);
-            if (Owner is TransLater)
-                ((TransLater)Owner).SetLocalVideoPreview();
-            Owner.Show();
-            Owner.Refresh();
+            Broadcaster TransForm = AgoraObject.GetWorkForm as Broadcaster;
+            if (TransForm != null)
+            {
+                Close();
+                TransForm.DevicesClosed(this);
+            }
+            else
+            {
+                Close();
+            }
         }
 
-        private void tabPage4_Click(object sender, EventArgs e)
+        private void trackBarSoundIn_ValueChanged()
         {
 
+        }
+
+        private void trackBarSoundOut_ValueChanged()
+        {
+            //audioOutDeviceManager.SetDeviceVolume(trackBarSoundIn.Value);
+        }
+        public void typeOfAlligment(bool sign)
+        {
+            if (sign == true)
+                materialShowTabControl1.Alignment = TabAlignment.Left;
+            else
+                materialShowTabControl1.Alignment = TabAlignment.Right;
         }
     }
 }

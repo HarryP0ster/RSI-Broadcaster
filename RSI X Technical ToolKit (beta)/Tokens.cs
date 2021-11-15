@@ -30,7 +30,7 @@ namespace RSI_X_Desktop
 
     class Tokens
     {
-        private string Token = "";
+        private string Token    = "";
         private string HostName = "";
         private Dictionary<string, string> Languages = new Dictionary<string, string>();
         private string roomName = "";
@@ -38,15 +38,12 @@ namespace RSI_X_Desktop
         List<langHolder> langCollectionTarget = new();
         List<langHolder> langCollectionTransl = new();
 
-        //public langHolder GetLangHolder
-        //{
-        //    get => langCollection;
-        //}
-
         public string GetToken
         { get => Token; }
         public string GetHostName
         { get => HostName; }
+        public langHolder HostToken 
+        { get => langCollectionTarget.ElementAt(0); }
         
         public Dictionary<string, string> GetLanguages
         { get => Languages; }
