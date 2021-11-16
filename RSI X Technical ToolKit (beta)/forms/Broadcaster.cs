@@ -125,5 +125,10 @@ namespace RSI_X_Desktop
             
             wnd.Close();
         }
+
+        private void SettingButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

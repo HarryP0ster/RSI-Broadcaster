@@ -42,9 +42,6 @@ namespace RSI_X_Desktop
                 case CHANNEL_TYPE.CHANNEL_TRANSL:
                     AgoraObject.UpdateClientID(uid.ToString());
                     AgoraObject.UpdateRoomName(channelId);
-                    //System.Threading.Thread.Sleep(1000);
-                    //DBReader.JoinRoom();
-                    
                     break;
                 case CHANNEL_TYPE.CHANNEL_HOST:
                 case CHANNEL_TYPE.CHANNEL_DEST:
@@ -61,12 +58,6 @@ namespace RSI_X_Desktop
                 case CHANNEL_TYPE.CHANNEL_TRANSL:
                     AgoraObject.UpdateClientID(uid.ToString());
                     AgoraObject.UpdateRoomName(channelId);
-                    //DBReader.LeaveRoom();
-                    //DBReader.JoinRoom();
-
-                    ////System.Threading.Thread.Sleep(1000);
-                    //DBReader.JoinRoom();
-
                     break;
                 case CHANNEL_TYPE.CHANNEL_HOST:
                 case CHANNEL_TYPE.CHANNEL_DEST:

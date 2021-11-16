@@ -44,11 +44,6 @@ namespace RSI_X_Desktop
         public override void OnUserJoined(uint uid, int elapsed)
         {
             Console.WriteLine("OnUserJoined");
-
-            if (form.RemoteWnd == IntPtr.Zero) return;
-            var ret = new VideoCanvas((ulong)form.RemoteWnd, uid);
-
-            AgoraObject.Rtc.SetupRemoteVideo(ret);
         }
 
         public override void OnUserOffline(uint uid, USER_OFFLINE_REASON_TYPE reason)
