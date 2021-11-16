@@ -83,7 +83,7 @@ namespace RSI_X_Desktop
             Rtc = AgoraRtcEngine.CreateRtcEngine();
             Rtc.Initialize(new RtcEngineContext(AppID));
 
-            Rtc.SetVideoProfile(VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_180P_3, false);
+            Rtc.SetVideoProfile(VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_1080P_3, false);
         }
 
         private static void SetPublishAudioProfile()

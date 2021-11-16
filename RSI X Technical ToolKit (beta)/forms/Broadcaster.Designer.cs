@@ -134,7 +134,7 @@ namespace RSI_X_Desktop
             this.PanelBot.ForeColor = System.Drawing.Color.White;
             this.PanelBot.Location = new System.Drawing.Point(3, 593);
             this.PanelBot.Name = "PanelBot";
-            this.PanelBot.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PanelBot.Padding = new System.Windows.Forms.Padding(4);
             this.PanelBot.ShowText = true;
             this.PanelBot.Size = new System.Drawing.Size(1085, 61);
             this.PanelBot.TabIndex = 2;
@@ -151,7 +151,7 @@ namespace RSI_X_Desktop
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 329F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 330F));
             this.tableLayoutPanel2.Controls.Add(this.trackBar1, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelChat, 9, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelSettings, 0, 0);
@@ -191,7 +191,6 @@ namespace RSI_X_Desktop
             this.trackBar1.Value = 100;
             this.trackBar1.ValueDivison = ReaLTaiizor.Controls.DungeonTrackBar.ValueDivisor.By1;
             this.trackBar1.ValueToSet = 100F;
-            this.trackBar1.Visible = false;
             // 
             // labelChat
             // 
@@ -257,6 +256,7 @@ namespace RSI_X_Desktop
             this.labelVolume.TabIndex = 19;
             this.labelVolume.Text = "VOLUME";
             this.labelVolume.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelVolume.Click += new System.EventHandler(this.labelVolume_Click);
             // 
             // publishPB
             // 
@@ -280,7 +280,7 @@ namespace RSI_X_Desktop
             this.PanelTop.ForeColor = System.Drawing.Color.White;
             this.PanelTop.Location = new System.Drawing.Point(3, 3);
             this.PanelTop.Name = "PanelTop";
-            this.PanelTop.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PanelTop.Padding = new System.Windows.Forms.Padding(4);
             this.PanelTop.ShowText = true;
             this.PanelTop.Size = new System.Drawing.Size(1085, 59);
             this.PanelTop.TabIndex = 1;
@@ -295,7 +295,7 @@ namespace RSI_X_Desktop
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 73F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tableLayoutPanel3.Controls.Add(this.CloseButton, 7, 0);
@@ -323,11 +323,11 @@ namespace RSI_X_Desktop
             this.CloseButton.Image = global::RSI_X_Desktop.Properties.Resources.RSI_HR_EXIT1;
             this.CloseButton.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CloseButton.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.CloseButton.Location = new System.Drawing.Point(1015, 12);
+            this.CloseButton.Location = new System.Drawing.Point(1013, 12);
             this.CloseButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.PressedColor = System.Drawing.Color.Firebrick;
-            this.CloseButton.Size = new System.Drawing.Size(66, 35);
+            this.CloseButton.Size = new System.Drawing.Size(68, 35);
             this.CloseButton.TabIndex = 7;
             this.CloseButton.TextAlignment = System.Drawing.StringAlignment.Center;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
@@ -343,7 +343,7 @@ namespace RSI_X_Desktop
             this.SettingButton.Image = global::RSI_X_Desktop.Properties.Resources.RSI_HR_SETTINGS3;
             this.SettingButton.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SettingButton.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.SettingButton.Location = new System.Drawing.Point(958, 12);
+            this.SettingButton.Location = new System.Drawing.Point(956, 12);
             this.SettingButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.SettingButton.Name = "SettingButton";
             this.SettingButton.PressedColor = System.Drawing.Color.Firebrick;
@@ -363,7 +363,7 @@ namespace RSI_X_Desktop
             this.ResetButton.Image = global::RSI_X_Desktop.Properties.Resources.RSI_HR_HOME1;
             this.ResetButton.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ResetButton.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.ResetButton.Location = new System.Drawing.Point(901, 12);
+            this.ResetButton.Location = new System.Drawing.Point(899, 12);
             this.ResetButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ResetButton.Name = "ResetButton";
             this.ResetButton.PressedColor = System.Drawing.Color.Firebrick;
@@ -385,7 +385,7 @@ namespace RSI_X_Desktop
             this.parrotPictureBox2.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
             this.parrotPictureBox2.IsElipse = false;
             this.parrotPictureBox2.IsParallax = false;
-            this.parrotPictureBox2.Location = new System.Drawing.Point(373, 3);
+            this.parrotPictureBox2.Location = new System.Drawing.Point(372, 3);
             this.parrotPictureBox2.Name = "parrotPictureBox2";
             this.parrotPictureBox2.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             this.parrotPictureBox2.Size = new System.Drawing.Size(96, 53);
@@ -400,7 +400,7 @@ namespace RSI_X_Desktop
             this.RoomNameLabel.Dock = System.Windows.Forms.DockStyle.Left;
             this.RoomNameLabel.Font = new System.Drawing.Font("Bahnschrift Condensed", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.RoomNameLabel.ForeColor = System.Drawing.Color.White;
-            this.RoomNameLabel.Location = new System.Drawing.Point(475, 0);
+            this.RoomNameLabel.Location = new System.Drawing.Point(474, 0);
             this.RoomNameLabel.Name = "RoomNameLabel";
             this.RoomNameLabel.Size = new System.Drawing.Size(237, 59);
             this.RoomNameLabel.TabIndex = 3;

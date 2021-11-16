@@ -11,9 +11,9 @@ namespace RSI_X_Desktop
     {
         internal static IntPtr LocalWinId;
         public IntPtr RemoteWnd { get => LocalWinId; }
-        private Devices         devices;
-        private ScreenSharing   sharingDig;
-        private ChatWnd         chat = new ChatWnd();
+        private Devices devices;
+        private ScreenSharing sharingDig;
+        private ChatWnd chat = new ChatWnd();
 
         private bool IsSharingScreen = false;
 
@@ -21,6 +21,7 @@ namespace RSI_X_Desktop
         {
             InitializeComponent();
             AgoraObject.SetWndEventHandler(this);
+            LocalWinId = pictureBoxRemoteVideo.Handle;
         }
 
         private void Conference_Load(object sender, EventArgs e)
@@ -29,10 +30,12 @@ namespace RSI_X_Desktop
             AgoraObject.Rtc.SetChannelProfile(CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING);
             AgoraObject.Rtc.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
             AgoraObject.Rtc.EnableLocalVideo(true);
+
             this.DoubleBuffered = true;
             var ret = AgoraObject.JoinChannel(
                 AgoraObject.GetComplexToken().GetHostName,
                 AgoraObject.GetComplexToken().GetToken);
+
             AgoraObject.MuteLocalAudioStream(false);
             AgoraObject.MuteLocalVideoStream(false);
             SetLocalVideoPreview();
@@ -41,12 +44,16 @@ namespace RSI_X_Desktop
         {
             AgoraObject.Rtc.EnableLocalVideo(true);
             pictureBoxRemoteVideo.Refresh();
-            LocalWinId = pictureBoxRemoteVideo.Handle;
-            var ret = new VideoCanvas((ulong)LocalWinId, 0);
-            ret.renderMode = ((int)RENDER_MODE_TYPE.RENDER_MODE_FIT);
-            AgoraObject.Rtc.SetupLocalVideo(ret);
 
+            var canv = new VideoCanvas((ulong)LocalWinId, 0);
+            canv.renderMode = ((int)RENDER_MODE_TYPE.RENDER_MODE_FIT);
+
+            AgoraObject.Rtc.SetupLocalVideo(canv);
             AgoraObject.Rtc.StartPreview();
+        }
+        public void UpdateLocalWnd()
+        {
+            pictureBoxRemoteVideo.Refresh();
         }
         private void Broadcaster_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -90,12 +97,12 @@ namespace RSI_X_Desktop
             if (chat.Visible == true)
             {
                 ChatClosed(chat);
-                //Thread.Sleep(100);
             }
 
             if (devices == null || devices.IsDisposed)
             {
                 devices = new Devices();
+                devices.Location = new Point(150, 0);
                 CallSidePanel(devices);
                 devices.typeOfAlligment(true);
                 //devices.SetAudienceSettings();
@@ -106,6 +113,11 @@ namespace RSI_X_Desktop
                 DevicesClosed(devices);
                 labelSettings.ForeColor = Color.White;
             }
+        }
+
+        private void SettingButton_Click(object sender, EventArgs e)
+        {
+            labelSettings_Click(SettingButton, e);
         }
         private void CallSidePanel(Form wnd) 
         {
@@ -122,13 +134,22 @@ namespace RSI_X_Desktop
         }
         public void DevicesClosed(Form wnd) 
         { 
-            
             wnd.Close();
         }
-
-        private void SettingButton_Click(object sender, EventArgs e)
+        //private void trackBar1_ValueChanged()
+        //{
+        //    Devices.SetVolume(trackBar1.Value);
+        //    if (devices != null && devices.IsDisposed == false)
+        //        devices.UpdateSoundTrackBar();
+        //}
+        public void SetTrackBarVolume(int volume)
         {
+            trackBar1.Value = volume;
+        }
 
+        private void labelVolume_Click(object sender, EventArgs e)
+        {
+            trackBar1.Show();
         }
     }
 }

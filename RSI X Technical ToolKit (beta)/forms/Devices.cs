@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 using ReaLTaiizor;
 using agorartc;
 using RSI_X_Desktop.forms;
@@ -16,34 +17,30 @@ namespace RSI_X_Desktop.forms
 {
     public partial class Devices : Form
     {
-        AgoraAudioRecordingDeviceManager audioInDeviceManager;
-        AgoraAudioPlaybackDeviceManager audioOutDeviceManager;
-        AgoraVideoDeviceManager videoDeviceManager;
+        //[DllImport("winmm.dll")]
+        //public static extern int waveOutSetVolume(IntPtr hwo, uint dwVolume); //Контроль громкости
+        //private static int volume = 100;
+        //public int Volume { get => volume; }
+
+        private IFormHostHolder workForm = AgoraObject.GetWorkForm;
+        private AgoraAudioRecordingDeviceManager audioInDeviceManager;
+        private AgoraAudioPlaybackDeviceManager audioOutDeviceManager;
+        private AgoraVideoDeviceManager videoDeviceManager;
 
         public Devices()
         {
             InitializeComponent();
         }
 
-        private void formTheme1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void NewDevices_Load(object sender, EventArgs e)
         {
-            button1.Location = new Point(button1.Location.X, General.Height - button1.Height - 15);
-            button2.Location = new Point(button2.Location.X, Sound.Height - button2.Height - 15);
-            button3.Location = new Point(button3.Location.X, Sound.Height - button3.Height - 15);
-            button4.Location = new Point(button4.Location.X, Video.Height - button4.Height - 15);
-            button5.Location = new Point(button5.Location.X, Video.Height - button5.Height - 15);
 
-            audioInDeviceManager = AgoraObject.Rtc.CreateAudioRecordingDeviceManager();
-            audioOutDeviceManager = AgoraObject.Rtc.CreateAudioPlaybackDeviceManager();
-            videoDeviceManager = AgoraObject.Rtc.CreateVideoDeviceManager();
+            audioInDeviceManager    = AgoraObject.Rtc.CreateAudioRecordingDeviceManager();
+            audioOutDeviceManager   = AgoraObject.Rtc.CreateAudioPlaybackDeviceManager();
+            videoDeviceManager      = AgoraObject.Rtc.CreateVideoDeviceManager();
 
             trackBarSoundIn.Value = audioInDeviceManager.GetDeviceVolume();
-            trackBarSoundOut.Value = audioOutDeviceManager.GetDeviceVolume();
+            //trackBarSoundOut.Value = audioOutDeviceManager.GetDeviceVolume();
 
             comboBoxAudioInput.DataSource = getListAudioInputDevices();
             comboBoxAudioOutput.DataSource = getListAudioOutDevices();
@@ -54,12 +51,6 @@ namespace RSI_X_Desktop.forms
             comboBoxVideo.SelectedIndex = getActiveVideoDevice();
 
             getComputerDescription();
-
-            AgoraObject.Rtc.StartPreview();
-            VideoCanvas vc = new((ulong)pictureBoxLocalVideoTest.Handle, 0);
-            vc.renderMode = ((int)RENDER_MODE_TYPE.RENDER_MODE_FIT);
-            AgoraObject.Rtc.EnableVideo();
-            AgoraObject.Rtc.SetupLocalVideo(vc);
         }
 
         private void getComputerDescription()
@@ -222,25 +213,21 @@ namespace RSI_X_Desktop.forms
         private void NewDevices_FormClosed(object sender, FormClosedEventArgs e)
         {
             AgoraObject.Rtc.EnableLocalVideo(false);
-            IFormHostHolder wnd = AgoraObject.GetWorkForm;
-            if (wnd != null)
-                wnd.SetLocalVideoPreview();
+            workForm?.SetLocalVideoPreview();
             Dispose();
         }
 
-        private void trackBarSoundIn_ValueChanged(object sender, EventArgs e)
+        private void trackBarSoundIn_ValueChanged()
         {
-            audioInDeviceManager.SetDeviceVolume(
-                ((TrackBar)sender).Value
-                );
+            var ret = audioInDeviceManager.SetDeviceVolume(
+                trackBarSoundIn.Value);
         }
 
-        private void trackBarSoundOut_ValueChanged(object sender, EventArgs e)
-        {
-            audioOutDeviceManager.SetDeviceVolume(
-                ((TrackBar)sender).Value
-                );
-        }
+        //private void trackBarSoundOut_ValueChanged(object sender, EventArgs e)
+        //{
+        //    SetVolume(trackBarSoundOut.Value);
+        //    workForm?.SetTrackBarVolume(trackBarSoundOut.Value);
+        //}
 
         public void SetAudienceSettings()
         {
@@ -284,21 +271,50 @@ namespace RSI_X_Desktop.forms
             }
         }
 
-        private void trackBarSoundIn_ValueChanged()
-        {
+        //private void trackBarSoundOut_ValueChanged()
+        //{
+        //    SetVolume(trackBarSoundOut.Value);
+        //    if (workForm != null)
+        //        workForm.SetTrackBarVolume(trackBarSoundOut.Value);
+        //}
+        //public static void SetVolume(int value)
+        //{
+        //    volume = value;
+        //    int NewVolume = ((ushort.MaxValue / 100) * value);
+        //    uint NewVolumeAllChannels = (((uint)NewVolume & 0x0000ffff) | ((uint)NewVolume << 16));
 
-        }
-
-        private void trackBarSoundOut_ValueChanged()
-        {
-            //audioOutDeviceManager.SetDeviceVolume(trackBarSoundIn.Value);
-        }
+        //    waveOutSetVolume(IntPtr.Zero, NewVolumeAllChannels);
+        //}
+        //public void UpdateSoundTrackBar()
+        //{
+        //    trackBarSoundOut.Value = volume;
+        //}
         public void typeOfAlligment(bool sign)
         {
             if (sign == true)
                 materialShowTabControl1.Alignment = TabAlignment.Left;
             else
                 materialShowTabControl1.Alignment = TabAlignment.Right;
+        }
+
+        private void materialShowTabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (e.TabPage == Video)
+            {
+                workForm?.UpdateLocalWnd();
+                VideoCanvas vc = new((ulong)pictureBoxLocalVideoTest.Handle, 0);
+                vc.renderMode = ((int)RENDER_MODE_TYPE.RENDER_MODE_FIT);
+                AgoraObject.Rtc.StartPreview();
+                AgoraObject.Rtc.SetupLocalVideo(vc);
+            }
+        }
+
+        private void materialShowTabControl1_Deselecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (e.TabPage == Video)
+            {
+                workForm?.SetLocalVideoPreview();
+            }
         }
     }
 }

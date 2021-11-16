@@ -72,6 +72,8 @@ namespace RSI_X_Desktop.forms
             this.materialShowTabControl1.SelectedIndex = 0;
             this.materialShowTabControl1.Size = new System.Drawing.Size(321, 541);
             this.materialShowTabControl1.TabIndex = 2;
+            this.materialShowTabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.materialShowTabControl1_Selecting);
+            this.materialShowTabControl1.Deselecting += new System.Windows.Forms.TabControlCancelEventHandler(this.materialShowTabControl1_Deselecting);
             // 
             // General
             // 
@@ -234,6 +236,7 @@ namespace RSI_X_Desktop.forms
             this.Dynamic.Size = new System.Drawing.Size(49, 18);
             this.Dynamic.TabIndex = 5;
             this.Dynamic.Text = "Speaker";
+            this.Dynamic.Visible = false;
             // 
             // Microphone
             // 
@@ -257,7 +260,7 @@ namespace RSI_X_Desktop.forms
             this.trackBarSoundOut.EmptyBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
             this.trackBarSoundOut.FillBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
             this.trackBarSoundOut.JumpToMouse = false;
-            this.trackBarSoundOut.Location = new System.Drawing.Point(4, 177);
+            this.trackBarSoundOut.Location = new System.Drawing.Point(0, 179);
             this.trackBarSoundOut.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.trackBarSoundOut.Maximum = 100;
             this.trackBarSoundOut.Minimum = 0;
@@ -271,10 +274,12 @@ namespace RSI_X_Desktop.forms
             this.trackBarSoundOut.Value = 100;
             this.trackBarSoundOut.ValueDivison = ReaLTaiizor.Controls.DungeonTrackBar.ValueDivisor.By100;
             this.trackBarSoundOut.ValueToSet = 1F;
+            this.trackBarSoundOut.Visible = false;
             this.trackBarSoundOut.ValueChanged += new ReaLTaiizor.Controls.DungeonTrackBar.ValueChangedEventHandler(this.trackBarSoundOut_ValueChanged);
             // 
             // trackBarSoundIn
             // 
+            this.trackBarSoundIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.trackBarSoundIn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.trackBarSoundIn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.trackBarSoundIn.DrawValueString = false;
@@ -299,6 +304,7 @@ namespace RSI_X_Desktop.forms
             // 
             // comboBoxAudioInput
             // 
+            this.comboBoxAudioInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxAudioInput.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBoxAudioInput.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.comboBoxAudioInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -325,6 +331,7 @@ namespace RSI_X_Desktop.forms
             this.comboBoxAudioOutput.Name = "comboBoxAudioOutput";
             this.comboBoxAudioOutput.Size = new System.Drawing.Size(302, 26);
             this.comboBoxAudioOutput.TabIndex = 0;
+            this.comboBoxAudioOutput.Visible = false;
             this.comboBoxAudioOutput.SelectedIndexChanged += new System.EventHandler(this.comboBoxAudioOutput_SelectedIndexChanged);
             // 
             // Video
