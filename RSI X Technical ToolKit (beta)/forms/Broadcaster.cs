@@ -85,7 +85,7 @@ namespace RSI_X_Desktop
             else
             {
                 AgoraObject.Rtc.StopScreenCapture();
-                ((PictureBox)sender).BackgroundImage = Properties.Resources.screen_share;
+                //((PictureBox)sender).BackgroundImage = Properties.Resources.screen_share;
             }
         }
         private void CloseAppButton_Click(object sender, EventArgs e)
