@@ -145,7 +145,7 @@ namespace RSI_X_Desktop
             }
         }
 
-        public void Animator(Panel panel, int offset_x, int offset_y, int itterations, int delay)
+        public void Animator(System.Windows.Forms.Panel panel, int offset_x, int offset_y, int itterations, int delay)
         {
             //pictureBoxRemoteVideo.Refresh();
             Thread.Sleep(delay);

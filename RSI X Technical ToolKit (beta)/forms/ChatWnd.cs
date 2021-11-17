@@ -13,6 +13,11 @@ using System.Threading;
 
 namespace RSI_X_Desktop.forms
 {
+    enum PANEL
+    {
+        GENERAL = 0,
+        SUPPORT
+    }
     public partial class ChatWnd : Form
     {
         const int leters_limit = 35;
@@ -42,8 +47,8 @@ namespace RSI_X_Desktop.forms
                 messages_list[i] = new();
                 scroll_offset[i] = 0;
             }
-            panel2.Resize += Chat_SizeChanged;
-            panel3.Resize += Chat_SizeChanged;
+            PGeneral.Resize += Chat_SizeChanged;
+            PSupport.Resize += Chat_SizeChanged;
 
             //foreach (Control ctr in tabPage2.Controls)
             //{
@@ -71,11 +76,11 @@ namespace RSI_X_Desktop.forms
             }
             switch (materialShowTabControl1.SelectedIndex)
             {
-                case (0):
-                    Chat_SizeChanged(panel2, new EventArgs());
+                case (int)PANEL.GENERAL:
+                    Chat_SizeChanged(PGeneral, new EventArgs());
                     break;
-                case (1):
-                    Chat_SizeChanged(panel3, new EventArgs());
+                case (int)PANEL.SUPPORT:
+                    Chat_SizeChanged(PSupport, new EventArgs());
                     break;
             }
         }
@@ -84,7 +89,7 @@ namespace RSI_X_Desktop.forms
         {
             switch (materialShowTabControl1.SelectedIndex)
             {
-                case (0):
+                case (int)PANEL.GENERAL:
                     if (bigTextBox2.Text != "" && e.KeyCode == Keys.Enter)
                     {
                         AgoraObject.SendMessageToHost(bigTextBox2.Text);
@@ -93,18 +98,18 @@ namespace RSI_X_Desktop.forms
                     }
                     else if (e.KeyCode == Keys.Up)
                     {
-                        if (scroll_offset[1] + 1 <= messages_list[1].Count)
-                            scroll_offset[1]++;
-                        Chat_SizeChanged(panel2, new EventArgs());
+                        if (scroll_offset[(int)PANEL.GENERAL] + 1 <= messages_list[(int)PANEL.GENERAL].Count)
+                            scroll_offset[(int)PANEL.GENERAL]++;
+                        Chat_SizeChanged(PGeneral, new EventArgs());
                     }
                     else if (e.KeyCode == Keys.Down)
                     {
-                        if (scroll_offset[1] - 1 >= 0)
-                            scroll_offset[1]--;
-                        Chat_SizeChanged(panel2, new EventArgs());
+                        if (scroll_offset[(int)PANEL.GENERAL] - 1 >= 0)
+                            scroll_offset[(int)PANEL.GENERAL]--;
+                        Chat_SizeChanged(PGeneral, new EventArgs());
                     }
                     break;
-                case (1):
+                case (int)PANEL.SUPPORT:
                     if (bigTextBox3.Text != "" && e.KeyCode == Keys.Enter)
                     {
                         FireBase.SendMessage(bigTextBox3.Text);
@@ -112,15 +117,15 @@ namespace RSI_X_Desktop.forms
                     }
                     else if (e.KeyCode == Keys.Up)
                     {
-                        if (scroll_offset[2] + 1 <= messages_list[2].Count)
-                            scroll_offset[2]++;
-                        Chat_SizeChanged(panel3, new EventArgs());
+                        if (scroll_offset[(int)PANEL.SUPPORT] + 1 <= messages_list[(int)PANEL.SUPPORT].Count)
+                            scroll_offset[(int)PANEL.SUPPORT]++;
+                        Chat_SizeChanged(PSupport, new EventArgs());
                     }
                     else if (e.KeyCode == Keys.Down)
                     {
-                        if (scroll_offset[2] - 1 >= 0)
-                            scroll_offset[2]--;
-                        Chat_SizeChanged(panel3, new EventArgs());
+                        if (scroll_offset[(int)PANEL.SUPPORT] - 1 >= 0)
+                            scroll_offset[(int)PANEL.SUPPORT]--;
+                        Chat_SizeChanged(PSupport, new EventArgs());
                     }
                     break;
             }
@@ -159,7 +164,7 @@ namespace RSI_X_Desktop.forms
             switch (channel)
             {
                 case CHANNEL_TYPE.HOST:
-                    RelocateBubbles(new HelpingClass.MessagePanelL(message, nickname, panel2), panel2, 0);
+                    RelocateBubbles(new HelpingClass.MessagePanelL(message, nickname, PGeneral), PGeneral, (int)PANEL.GENERAL);
                     break;
             }
         }
@@ -179,14 +184,14 @@ namespace RSI_X_Desktop.forms
             {
                 if (InvokeRequired)
                     Invoke((MethodInvoker)delegate
-                    {  RelocateBubbles(new HelpingClass.MessagePanelL(arg.Msg.msg, arg.Msg.username, panel3), panel3, 1); });
+                    {  RelocateBubbles(new HelpingClass.MessagePanelL(arg.Msg.msg, arg.Msg.username, PSupport), PSupport, (int)PANEL.SUPPORT); });
                 else
-                    RelocateBubbles(new HelpingClass.MessagePanelL(arg.Msg.msg, arg.Msg.username, panel3), panel3, 1);
+                    RelocateBubbles(new HelpingClass.MessagePanelL(arg.Msg.msg, arg.Msg.username, PSupport), PSupport, (int)PANEL.SUPPORT);
             }
         }
         private void AddOwnMessageGeneral(string msg)
         {
-            RelocateBubbles(new HelpingClass.MessagePanelL(msg, HelpingClass.MessagePanelL.MyOwn, panel2), panel2, 0);
+            RelocateBubbles(new HelpingClass.MessagePanelL(msg, HelpingClass.MessagePanelL.MyOwn, PGeneral), PGeneral, (int)PANEL.GENERAL);
         }
         private void ChatWnd_Load(object sender, EventArgs e)
         {
@@ -211,10 +216,10 @@ namespace RSI_X_Desktop.forms
             ((Control)sender).Controls.Clear();
 
             int ind;
-            if (((Control)sender) == panel2)
-                ind = 0;
-            else if (((Control)sender) == panel3)
-                ind = 1;
+            if (((Control)sender) == PGeneral)
+                ind = (int)PANEL.GENERAL;
+            else if (((Control)sender) == PSupport)
+                ind = (int)PANEL.SUPPORT;
             else
                 return;
 
