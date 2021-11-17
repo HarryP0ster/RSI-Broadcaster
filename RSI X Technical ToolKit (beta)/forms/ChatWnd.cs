@@ -23,7 +23,7 @@ namespace RSI_X_Desktop.forms
         const int leters_limit = 35;
         int DefPanelWidth = 100;
         const int TAB_COUNT = 2;
-        int[] scroll_offset = new int[3];
+        int[] scroll_offset = new int[TAB_COUNT];
         List<Control>[] messages_list = new List<Control>[TAB_COUNT];
 
         HelpingClass.FireBaseReader FireBase;
@@ -44,7 +44,7 @@ namespace RSI_X_Desktop.forms
             }
             for (int i = 0; i < TAB_COUNT; i++)
             {
-                messages_list[i] = new();
+                messages_list[i] = new List<Control>();
                 scroll_offset[i] = 0;
             }
             PGeneral.Resize += Chat_SizeChanged;
@@ -171,7 +171,6 @@ namespace RSI_X_Desktop.forms
 
         public void chat_NewMessageSupInvoke(object sender, HelpingClass.FireBaseUpdateEventArgs arg) 
         {
-
             if (InvokeRequired)
                 Invoke((MethodInvoker)delegate
                 { chat_NewMessageSup(sender, arg); });
@@ -182,11 +181,7 @@ namespace RSI_X_Desktop.forms
         {
             if (IsHandleCreated)
             {
-                if (InvokeRequired)
-                    Invoke((MethodInvoker)delegate
-                    {  RelocateBubbles(new HelpingClass.MessagePanelL(arg.Msg.msg, arg.Msg.username, PSupport), PSupport, (int)PANEL.SUPPORT); });
-                else
-                    RelocateBubbles(new HelpingClass.MessagePanelL(arg.Msg.msg, arg.Msg.username, PSupport), PSupport, (int)PANEL.SUPPORT);
+                RelocateBubbles(new HelpingClass.MessagePanelL(arg.Msg.msg, arg.Msg.username, PSupport), PSupport, (int)PANEL.SUPPORT);
             }
         }
         private void AddOwnMessageGeneral(string msg)

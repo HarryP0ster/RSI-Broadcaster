@@ -85,10 +85,10 @@ namespace RSI_X_Desktop.forms
             this.General.Controls.Add(this.dungeonLabel1);
             this.General.Controls.Add(this.bigLabel1);
             this.General.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.General.Location = new System.Drawing.Point(4, 39);
+            this.General.Location = new System.Drawing.Point(4, 33);
             this.General.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.General.Name = "General";
-            this.General.Size = new System.Drawing.Size(313, 498);
+            this.General.Size = new System.Drawing.Size(313, 504);
             this.General.TabIndex = 4;
             this.General.Text = "General";
             // 
@@ -102,7 +102,7 @@ namespace RSI_X_Desktop.forms
             this.BCloseGeneral.Image = null;
             this.BCloseGeneral.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BCloseGeneral.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.BCloseGeneral.Location = new System.Drawing.Point(225, 466);
+            this.BCloseGeneral.Location = new System.Drawing.Point(225, 469);
             this.BCloseGeneral.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.BCloseGeneral.Name = "BCloseGeneral";
             this.BCloseGeneral.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
@@ -121,7 +121,7 @@ namespace RSI_X_Desktop.forms
             this.dungeonLabel3.Location = new System.Drawing.Point(16, 118);
             this.dungeonLabel3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dungeonLabel3.Name = "dungeonLabel3";
-            this.dungeonLabel3.Size = new System.Drawing.Size(110, 24);
+            this.dungeonLabel3.Size = new System.Drawing.Size(89, 19);
             this.dungeonLabel3.TabIndex = 3;
             this.dungeonLabel3.Text = "dungeonLabel3";
             // 
@@ -134,7 +134,7 @@ namespace RSI_X_Desktop.forms
             this.dungeonLabel2.Location = new System.Drawing.Point(16, 87);
             this.dungeonLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dungeonLabel2.Name = "dungeonLabel2";
-            this.dungeonLabel2.Size = new System.Drawing.Size(110, 24);
+            this.dungeonLabel2.Size = new System.Drawing.Size(89, 19);
             this.dungeonLabel2.TabIndex = 2;
             this.dungeonLabel2.Text = "dungeonLabel2";
             // 
@@ -147,7 +147,7 @@ namespace RSI_X_Desktop.forms
             this.dungeonLabel1.Location = new System.Drawing.Point(16, 55);
             this.dungeonLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dungeonLabel1.Name = "dungeonLabel1";
-            this.dungeonLabel1.Size = new System.Drawing.Size(107, 24);
+            this.dungeonLabel1.Size = new System.Drawing.Size(87, 19);
             this.dungeonLabel1.TabIndex = 1;
             this.dungeonLabel1.Text = "dungeonLabel1";
             // 
@@ -160,7 +160,7 @@ namespace RSI_X_Desktop.forms
             this.bigLabel1.Location = new System.Drawing.Point(16, 10);
             this.bigLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.bigLabel1.Name = "bigLabel1";
-            this.bigLabel1.Size = new System.Drawing.Size(135, 36);
+            this.bigLabel1.Size = new System.Drawing.Size(109, 29);
             this.bigLabel1.TabIndex = 0;
             this.bigLabel1.Text = "Your system";
             // 
@@ -176,11 +176,11 @@ namespace RSI_X_Desktop.forms
             this.Sound.Controls.Add(this.comboBoxAudioInput);
             this.Sound.Controls.Add(this.comboBoxAudioOutput);
             this.Sound.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Sound.Location = new System.Drawing.Point(4, 39);
+            this.Sound.Location = new System.Drawing.Point(4, 33);
             this.Sound.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Sound.Name = "Sound";
             this.Sound.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Sound.Size = new System.Drawing.Size(313, 498);
+            this.Sound.Size = new System.Drawing.Size(313, 504);
             this.Sound.TabIndex = 7;
             this.Sound.Text = "Sound";
             // 
@@ -194,7 +194,7 @@ namespace RSI_X_Desktop.forms
             this.BAcceptSound.Image = null;
             this.BAcceptSound.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BAcceptSound.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.BAcceptSound.Location = new System.Drawing.Point(139, 466);
+            this.BAcceptSound.Location = new System.Drawing.Point(139, 469);
             this.BAcceptSound.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.BAcceptSound.Name = "BAcceptSound";
             this.BAcceptSound.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
@@ -214,7 +214,7 @@ namespace RSI_X_Desktop.forms
             this.BCloseSound.Image = null;
             this.BCloseSound.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BCloseSound.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.BCloseSound.Location = new System.Drawing.Point(225, 466);
+            this.BCloseSound.Location = new System.Drawing.Point(225, 469);
             this.BCloseSound.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.BCloseSound.Name = "BCloseSound";
             this.BCloseSound.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
@@ -233,7 +233,7 @@ namespace RSI_X_Desktop.forms
             this.Dynamic.Location = new System.Drawing.Point(8, 126);
             this.Dynamic.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Dynamic.Name = "Dynamic";
-            this.Dynamic.Size = new System.Drawing.Size(62, 23);
+            this.Dynamic.Size = new System.Drawing.Size(49, 18);
             this.Dynamic.TabIndex = 5;
             this.Dynamic.Text = "Speaker";
             this.Dynamic.Visible = false;
@@ -247,7 +247,7 @@ namespace RSI_X_Desktop.forms
             this.Microphone.Location = new System.Drawing.Point(8, 22);
             this.Microphone.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Microphone.Name = "Microphone";
-            this.Microphone.Size = new System.Drawing.Size(83, 23);
+            this.Microphone.Size = new System.Drawing.Size(66, 18);
             this.Microphone.TabIndex = 4;
             this.Microphone.Text = "Microphone";
             // 
@@ -285,9 +285,9 @@ namespace RSI_X_Desktop.forms
             this.trackBarSoundIn.EmptyBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
             this.trackBarSoundIn.FillBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
             this.trackBarSoundIn.JumpToMouse = false;
-            this.trackBarSoundIn.Location = new System.Drawing.Point(4, 71);
+            this.trackBarSoundIn.Location = new System.Drawing.Point(4, 74);
             this.trackBarSoundIn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.trackBarSoundIn.Maximum = 10;
+            this.trackBarSoundIn.Maximum = 255;
             this.trackBarSoundIn.Minimum = 0;
             this.trackBarSoundIn.MinimumSize = new System.Drawing.Size(34, 21);
             this.trackBarSoundIn.Name = "trackBarSoundIn";
@@ -310,7 +310,7 @@ namespace RSI_X_Desktop.forms
             this.comboBoxAudioInput.EnabledCalc = true;
             this.comboBoxAudioInput.FormattingEnabled = true;
             this.comboBoxAudioInput.ItemHeight = 20;
-            this.comboBoxAudioInput.Location = new System.Drawing.Point(4, 41);
+            this.comboBoxAudioInput.Location = new System.Drawing.Point(4, 44);
             this.comboBoxAudioInput.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.comboBoxAudioInput.Name = "comboBoxAudioInput";
             this.comboBoxAudioInput.Size = new System.Drawing.Size(302, 26);
@@ -341,11 +341,11 @@ namespace RSI_X_Desktop.forms
             this.Video.Controls.Add(this.pictureBoxLocalVideoTest);
             this.Video.Controls.Add(this.comboBoxVideo);
             this.Video.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Video.Location = new System.Drawing.Point(4, 39);
+            this.Video.Location = new System.Drawing.Point(4, 33);
             this.Video.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Video.Name = "Video";
             this.Video.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Video.Size = new System.Drawing.Size(313, 498);
+            this.Video.Size = new System.Drawing.Size(313, 504);
             this.Video.TabIndex = 6;
             this.Video.Text = "Video";
             // 
@@ -359,7 +359,7 @@ namespace RSI_X_Desktop.forms
             this.BAcceptVideo.Image = null;
             this.BAcceptVideo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BAcceptVideo.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.BAcceptVideo.Location = new System.Drawing.Point(139, 466);
+            this.BAcceptVideo.Location = new System.Drawing.Point(139, 469);
             this.BAcceptVideo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.BAcceptVideo.Name = "BAcceptVideo";
             this.BAcceptVideo.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
@@ -379,7 +379,7 @@ namespace RSI_X_Desktop.forms
             this.BCloseVideo.Image = null;
             this.BCloseVideo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BCloseVideo.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.BCloseVideo.Location = new System.Drawing.Point(225, 466);
+            this.BCloseVideo.Location = new System.Drawing.Point(225, 469);
             this.BCloseVideo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.BCloseVideo.Name = "BCloseVideo";
             this.BCloseVideo.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
