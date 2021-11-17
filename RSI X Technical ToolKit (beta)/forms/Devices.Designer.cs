@@ -275,7 +275,6 @@ namespace RSI_X_Desktop.forms
             this.trackBarSoundOut.ValueDivison = ReaLTaiizor.Controls.DungeonTrackBar.ValueDivisor.By100;
             this.trackBarSoundOut.ValueToSet = 1F;
             this.trackBarSoundOut.Visible = false;
-            this.trackBarSoundOut.ValueChanged += new ReaLTaiizor.Controls.DungeonTrackBar.ValueChangedEventHandler(this.trackBarSoundOut_ValueChanged);
             // 
             // trackBarSoundIn
             // 
@@ -420,8 +419,8 @@ namespace RSI_X_Desktop.forms
             // 
             // Devices
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(321, 541);
             this.Controls.Add(this.materialShowTabControl1);
             this.DoubleBuffered = true;

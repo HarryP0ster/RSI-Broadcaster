@@ -38,7 +38,12 @@ namespace RSI_X_Desktop
 
             AgoraObject.MuteLocalAudioStream(false);
             AgoraObject.MuteLocalVideoStream(false);
+            labelMicrophone.ForeColor = Color.Red;
+            labelVideo.ForeColor = Color.Red;
             SetLocalVideoPreview();
+            StreamLayout.ColumnStyles[1].SizeType = SizeType.Absolute;
+            StreamLayout.ColumnStyles[0].Width = 100;
+            StreamLayout.ColumnStyles[1].Width = 0;
         }
         public void SetLocalVideoPreview()
         {
@@ -119,22 +124,57 @@ namespace RSI_X_Desktop
         {
             labelSettings_Click(SettingButton, e);
         }
-        private void CallSidePanel(Form wnd) 
+        private void CallSidePanel(Form Wnd) 
         {
-            wnd.Show();
+            panel1.SuspendLayout();
+            Wnd.Size = panel1.Size;
+            Wnd.Location = panel1.Location;
+            Wnd.TopLevel = false;
+            Wnd.Dock = DockStyle.Fill;
+            panel1.Controls.Add(Wnd);
+            panel1.BringToFront();
+            if (panel1.Visible == false || Wnd.Visible == false)
+            {
+                panel1.ResumeLayout();
+                panel1.Location = new Point(Size.Width, panel1.Location.Y);
+                panel1.Show();
+                Animator(panel1, -9, 0, 50, 1);
+                Wnd.Show();
+            }
+        }
+
+        public void Animator(Panel panel, int offset_x, int offset_y, int itterations, int delay)
+        {
+            pictureBoxRemoteVideo.Refresh();
+            Thread.Sleep(delay);
+            pictureBoxRemoteVideo.SuspendLayout();
+            for (int ind = 0; ind < itterations; ind++)
+            {
+                StreamLayout.ColumnStyles[1].Width = StreamLayout.ColumnStyles[1].Width - offset_x;
+                pictureBoxRemoteVideo.Size = new Size(pictureBoxRemoteVideo.Size.Width - offset_x, pictureBoxRemoteVideo.Size.Height);
+                //Thread.Sleep(1);
+            }
+            pictureBoxRemoteVideo.ResumeLayout();
         }
         public void GetMessage(string message, string nickname, CHANNEL_TYPE channel)
         {
             if (chat != null && chat.IsHandleCreated)
                 chat.chat_NewMessageInvoke(message, nickname, channel);
         }
-        private void ChatClosed(Form wnd) 
+        private void ChatClosed(Form Wnd) 
         {
-            wnd.Close();
+            Wnd.Hide();
+            Animator(panel1, 9, 0, 50, 1);
+            panel1.Hide();
+            GC.Collect();
         }
-        public void DevicesClosed(Form wnd) 
-        { 
-            wnd.Close();
+        public void DevicesClosed(Form Wnd) 
+        {
+            Wnd.Close();
+            Animator(panel1, 9, 0, 50, 1);
+            panel1.Hide();
+            labelSettings.ForeColor = Color.White;
+            GC.Collect();
         }
         //private void trackBar1_ValueChanged()
         //{
@@ -149,7 +189,79 @@ namespace RSI_X_Desktop
 
         private void labelVolume_Click(object sender, EventArgs e)
         {
-            trackBar1.Show();
+            trackBar1.Visible = !trackBar1.Visible;
+            labelVolume.ForeColor = !trackBar1.Visible ?
+                Color.White :
+                Color.Red;
+        }
+
+        private void labelMicrophone_Click(object sender, EventArgs e)
+        {
+            AgoraObject.MuteLocalAudioStream(!AgoraObject.IsLocalAudioMute);
+            labelMicrophone.ForeColor = AgoraObject.IsLocalAudioMute ?
+                Color.White :
+                Color.Red;
+        }
+
+        private void labelVideo_Click(object sender, EventArgs e)
+        {
+            AgoraObject.MuteLocalVideoStream(!AgoraObject.IsLocalVideoMute);
+            pictureBoxRemoteVideo.Visible = !AgoraObject.IsLocalVideoMute;
+
+            labelVideo.ForeColor = AgoraObject.IsLocalVideoMute ?
+                Color.White :
+                Color.Red;
+        }
+
+        private void labelChat_Click(object sender, EventArgs e)
+        {
+            labelSettings.ForeColor = Color.White;
+            if (devices != null && !(devices.IsDisposed))
+            {
+                DevicesClosed(devices);
+                //Thread.Sleep(100);
+            }
+            if (chat.Visible == false)
+            {
+                CallSidePanel(chat);
+                chat.ButtonsVisibility(true);
+                labelChat.ForeColor = Color.Red;
+            }
+            else
+            {
+                chat.ButtonsVisibility(false);
+                ChatClosed(chat);
+                labelChat.ForeColor = Color.White;
+            }
+        }
+
+        private void nightControlBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            Point ptn = e.Location;
+            if (!(ptn.X > 46 && ptn.X < 94)) return;
+            this.BringToFront();
+            if (this.Size.Width == 1280)
+            {
+                ResizeForm(Screen.PrimaryScreen.WorkingArea.Size, this);
+                ResizeForm(Screen.PrimaryScreen.WorkingArea.Size, formTheme1);
+            }
+            else
+            {
+                ResizeForm(new Size(1280, 800), this);
+                ResizeForm(new Size(1280, 800), formTheme1);
+            }
+        }
+        private void ResizeForm(Size size, Form target)
+        {
+            target.MaximumSize = size;
+            target.MinimumSize = size;
+            target.Size = size;
+        }
+        private void ResizeForm(Size size, ReaLTaiizor.Forms.FormTheme target)
+        {
+            target.MaximumSize = size;
+            target.MinimumSize = size;
+            target.Size = size;
         }
     }
 }
