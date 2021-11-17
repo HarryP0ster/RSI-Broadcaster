@@ -157,7 +157,7 @@ namespace RSI_X_Desktop.forms
         {
             switch (channel)
             {
-                case CHANNEL_TYPE.CHANNEL_HOST:
+                case CHANNEL_TYPE.HOST:
                     RelocateBubbles(new HelpingClass.MessagePanelL(message, nickname, panel2), panel2, 1);
                     break;
             }

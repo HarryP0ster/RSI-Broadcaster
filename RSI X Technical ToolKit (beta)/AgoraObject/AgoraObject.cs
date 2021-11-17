@@ -173,10 +173,10 @@ namespace RSI_X_Desktop
         static public void SetWndEventHandler(IFormHostHolder form)
         {
             Rtc.InitEventHandler(new AGEngineEventHandler(form));
-            srcHandler = new AGChannelEventHandler(form, CHANNEL_TYPE.CHANNEL_SRC);
-            translHandler = new AGChannelEventHandler(form, CHANNEL_TYPE.CHANNEL_TRANSL);
-            hostHandler = new AGChannelEventHandler(form, CHANNEL_TYPE.CHANNEL_HOST);
-            targetHandler = new AGChannelEventHandler(form, CHANNEL_TYPE.CHANNEL_DEST);
+            srcHandler = new AGChannelEventHandler(form, CHANNEL_TYPE.SRC);
+            translHandler = new AGChannelEventHandler(form, CHANNEL_TYPE.TRANSL);
+            hostHandler = new AGChannelEventHandler(form, CHANNEL_TYPE.HOST);
+            targetHandler = new AGChannelEventHandler(form, CHANNEL_TYPE.DEST);
             workForm = form;
         }
 
@@ -410,7 +410,7 @@ namespace RSI_X_Desktop
             ERROR_CODE ret;
 
             var channel = Rtc.CreateChannel(lpChannelName);
-            channel.InitChannelEventHandler(new AGChannelEventHandler(workForm, CHANNEL_TYPE.CHANNEL_DEST));
+            channel.InitChannelEventHandler(new AGChannelEventHandler(workForm, CHANNEL_TYPE.DEST));
             channel.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_AUDIENCE);
 
             ChannelMediaOptions options = new();
@@ -429,7 +429,7 @@ namespace RSI_X_Desktop
             ERROR_CODE ret;
 
             var channel = Rtc.CreateChannel(lpChannelName);
-            channel.InitChannelEventHandler(new AGChannelEventHandler(workForm, CHANNEL_TYPE.CHANNEL_DEST));
+            channel.InitChannelEventHandler(new AGChannelEventHandler(workForm, CHANNEL_TYPE.DEST));
             channel.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
 
             ChannelMediaOptions options = new();
@@ -497,16 +497,16 @@ namespace RSI_X_Desktop
 
             switch (channel) 
             {
-                case CHANNEL_TYPE.CHANNEL_SRC:
-                case CHANNEL_TYPE.CHANNEL_HOST:
+                case CHANNEL_TYPE.SRC:
+                case CHANNEL_TYPE.HOST:
                     break;
-                case CHANNEL_TYPE.CHANNEL_TRANSL:
+                case CHANNEL_TYPE.TRANSL:
                     if (m_channelTransl != null && m_channelTranslJoin) 
                         ret = m_channelTransl.Publish();
 
                     m_channelTranslPublish = (0 == ret);
                     break;
-                case CHANNEL_TYPE.CHANNEL_DEST:
+                case CHANNEL_TYPE.DEST:
                     if (m_channelTarget != null) 
                         ret = m_channelTarget.Publish();
 

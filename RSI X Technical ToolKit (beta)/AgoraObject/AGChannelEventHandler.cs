@@ -11,10 +11,10 @@ namespace RSI_X_Desktop
 {
     public enum CHANNEL_TYPE
     {
-        CHANNEL_SRC = 255,
-        CHANNEL_TRANSL,
-        CHANNEL_DEST,
-        CHANNEL_HOST,
+        SRC,
+        TRANSL,
+        DEST,
+        HOST,
     };
     public class AGChannelEventHandler : IRtcChannelEventHandlerBase
     {
@@ -39,13 +39,13 @@ namespace RSI_X_Desktop
         {
             switch (chType)
             {
-                case CHANNEL_TYPE.CHANNEL_TRANSL:
+                case CHANNEL_TYPE.TRANSL:
                     AgoraObject.UpdateClientID(uid.ToString());
                     AgoraObject.UpdateRoomName(channelId);
                     break;
-                case CHANNEL_TYPE.CHANNEL_HOST:
-                case CHANNEL_TYPE.CHANNEL_DEST:
-                case CHANNEL_TYPE.CHANNEL_SRC:
+                case CHANNEL_TYPE.HOST:
+                case CHANNEL_TYPE.DEST:
+                case CHANNEL_TYPE.SRC:
                 default:
                     break;
             }
@@ -55,13 +55,13 @@ namespace RSI_X_Desktop
         {
             switch (chType)
             {
-                case CHANNEL_TYPE.CHANNEL_TRANSL:
+                case CHANNEL_TYPE.TRANSL:
                     AgoraObject.UpdateClientID(uid.ToString());
                     AgoraObject.UpdateRoomName(channelId);
                     break;
-                case CHANNEL_TYPE.CHANNEL_HOST:
-                case CHANNEL_TYPE.CHANNEL_DEST:
-                case CHANNEL_TYPE.CHANNEL_SRC:
+                case CHANNEL_TYPE.HOST:
+                case CHANNEL_TYPE.DEST:
+                case CHANNEL_TYPE.SRC:
                 default:
                     break;
             }
@@ -72,10 +72,10 @@ namespace RSI_X_Desktop
         {
             switch (chType)
             {
-                case CHANNEL_TYPE.CHANNEL_TRANSL:
-                case CHANNEL_TYPE.CHANNEL_HOST:
-                case CHANNEL_TYPE.CHANNEL_DEST:
-                case CHANNEL_TYPE.CHANNEL_SRC:
+                case CHANNEL_TYPE.TRANSL:
+                case CHANNEL_TYPE.HOST:
+                case CHANNEL_TYPE.DEST:
+                case CHANNEL_TYPE.SRC:
                 default:
                     break;
             }
@@ -90,10 +90,10 @@ namespace RSI_X_Desktop
         {
             switch (chType) 
             {
-                case CHANNEL_TYPE.CHANNEL_TRANSL:
-                case CHANNEL_TYPE.CHANNEL_DEST:
-                case CHANNEL_TYPE.CHANNEL_HOST:
-                case CHANNEL_TYPE.CHANNEL_SRC:
+                case CHANNEL_TYPE.TRANSL:
+                case CHANNEL_TYPE.DEST:
+                case CHANNEL_TYPE.HOST:
+                case CHANNEL_TYPE.SRC:
                 default:
                     break;
             }
@@ -103,10 +103,10 @@ namespace RSI_X_Desktop
         {
             switch (chType)
             {
-                case CHANNEL_TYPE.CHANNEL_HOST:
-                case CHANNEL_TYPE.CHANNEL_TRANSL:
-                case CHANNEL_TYPE.CHANNEL_DEST:
-                case CHANNEL_TYPE.CHANNEL_SRC:
+                case CHANNEL_TYPE.HOST:
+                case CHANNEL_TYPE.TRANSL:
+                case CHANNEL_TYPE.DEST:
+                case CHANNEL_TYPE.SRC:
                 default:
                     break;
             }
@@ -216,10 +216,10 @@ namespace RSI_X_Desktop
 
             switch (chType)
             {
-                case CHANNEL_TYPE.CHANNEL_HOST:
-                case CHANNEL_TYPE.CHANNEL_DEST:
-                case CHANNEL_TYPE.CHANNEL_TRANSL:
-                case CHANNEL_TYPE.CHANNEL_SRC:
+                case CHANNEL_TYPE.HOST:
+                case CHANNEL_TYPE.DEST:
+                case CHANNEL_TYPE.TRANSL:
+                case CHANNEL_TYPE.SRC:
                 default:
                     break;
             }
@@ -234,10 +234,10 @@ namespace RSI_X_Desktop
 
             switch (chType)
             {
-                case CHANNEL_TYPE.CHANNEL_HOST:
-                case CHANNEL_TYPE.CHANNEL_TRANSL:
-                case CHANNEL_TYPE.CHANNEL_DEST:
-                case CHANNEL_TYPE.CHANNEL_SRC:
+                case CHANNEL_TYPE.HOST:
+                case CHANNEL_TYPE.TRANSL:
+                case CHANNEL_TYPE.DEST:
+                case CHANNEL_TYPE.SRC:
                 default:
                     break;
             }

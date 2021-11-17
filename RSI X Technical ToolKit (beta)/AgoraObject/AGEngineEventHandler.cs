@@ -158,11 +158,17 @@ namespace RSI_X_Desktop
 
         public override void OnStreamMessageError(uint uid, int streamId, int code, int missed, int cached)
         {
-            Console.WriteLine("OnStreamMessageError");
         }
 
         public override void OnStreamMessage(uint uid, int streamId, byte[] data, uint length)
         {
+            UserInfo name;
+            string Message = AgoraObject.utf8enc.GetString(data);
+
+            AgoraObject.Rtc.GetUserInfoByUid(uid, out name);
+            string UserName = name.userAccount;
+            var formInterpr = (form as Broadcaster);
+            formInterpr.GetMessage(Message, UserName, CHANNEL_TYPE.HOST);
             Console.WriteLine("OnStreamMessage");
         }
 
