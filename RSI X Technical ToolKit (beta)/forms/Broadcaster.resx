@@ -72,6 +72,21 @@
   <metadata name="labelVolume.Locked" type="System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
     <value>True</value>
   </metadata>
+  <metadata name="trackBar1.Locked" type="System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelChat.Locked" type="System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelMicrophone.Locked" type="System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelVideo.Locked" type="System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelVolume.Locked" type="System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
   <data name="CloseButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -150,7 +165,7 @@
   <data name="pictureBox1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAFsAAABKCAYAAADUvCinAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAC9NJREFUeF7tnAuQHEUZx+8u98zlLuFxmGgIAcPDiJVIJIKKAiqiUkZKSkpUjKDB
+        DAAACwwBP0AiyAAAC9NJREFUeF7tnAuQHEUZx+8u98zlLuFxmGgIAcPDiJVIJIKKAiqiUkZKSkpUjKDB
         sgSsUhEtxFMUQUNud48DkoKKEUsxKoKFgoKAAcVHkABR8QUqIogPHkqIkLv2/+v5ZjL7mpvd2z1Td/Or
         +tfdfN09vfNtT0/31z3bkpGRkZGRkZGRkdFknHO90mukc6SvSrdJv5X+KP3edI90gBXJqAU5DgefIv1Q
         +q9UyrPS0xJpT0l/lxZb8Yw0yGEzpXdLtNoxCR6T7pA+I71VOkTaR5ov7S09T9rDTpGRBjnsldJPpdDJ

@@ -40,7 +40,7 @@ namespace RSI_X_Desktop
             this.labelMicrophone = new System.Windows.Forms.Label();
             this.labelVideo = new System.Windows.Forms.Label();
             this.labelVolume = new System.Windows.Forms.Label();
-            this.publishPB = new System.Windows.Forms.PictureBox();
+            this.labelScreenShare = new System.Windows.Forms.Label();
             this.PanelTop = new ReaLTaiizor.Controls.LostPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.CloseButton = new ReaLTaiizor.Controls.Button();
@@ -57,7 +57,6 @@ namespace RSI_X_Desktop
             this.MainLayout.SuspendLayout();
             this.PanelBot.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.publishPB)).BeginInit();
             this.PanelTop.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -131,14 +130,14 @@ namespace RSI_X_Desktop
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 387F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tableLayoutPanel2.Controls.Add(this.trackBar1, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelChat, 9, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelSettings, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelMicrophone, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelVideo, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelVolume, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.publishPB, 6, 0);
+            this.tableLayoutPanel2.Controls.Add(this.labelScreenShare, 8, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
@@ -249,17 +248,19 @@ namespace RSI_X_Desktop
             this.labelVolume.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.labelVolume.Click += new System.EventHandler(this.labelVolume_Click);
             // 
-            // publishPB
+            // labelScreenShare
             // 
-            this.publishPB.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.publishPB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.publishPB.Location = new System.Drawing.Point(621, 2);
-            this.publishPB.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.publishPB.Name = "publishPB";
-            this.publishPB.Size = new System.Drawing.Size(74, 67);
-            this.publishPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.publishPB.TabIndex = 20;
-            this.publishPB.TabStop = false;
+            this.labelScreenShare.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.labelScreenShare.AutoSize = true;
+            this.labelScreenShare.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelScreenShare.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelScreenShare.Location = new System.Drawing.Point(1046, 21);
+            this.labelScreenShare.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelScreenShare.Name = "labelScreenShare";
+            this.labelScreenShare.Size = new System.Drawing.Size(129, 29);
+            this.labelScreenShare.TabIndex = 20;
+            this.labelScreenShare.Text = "SCREEN SHARE";
+            this.labelScreenShare.Click += new System.EventHandler(this.btnScreenShare_Click);
             // 
             // PanelTop
             // 
@@ -488,7 +489,6 @@ namespace RSI_X_Desktop
             this.PanelBot.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.publishPB)).EndInit();
             this.PanelTop.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
@@ -523,8 +523,8 @@ namespace RSI_X_Desktop
         private System.Windows.Forms.Label labelMicrophone;
         private System.Windows.Forms.Label labelVideo;
         private System.Windows.Forms.Label labelVolume;
-        private System.Windows.Forms.PictureBox publishPB;
         private System.Windows.Forms.PictureBox pictureBox1;
         private ReaLTaiizor.Controls.NightControlBox nightControlBox1;
+        private System.Windows.Forms.Label labelScreenShare;
     }
 }

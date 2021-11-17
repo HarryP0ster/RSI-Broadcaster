@@ -63,7 +63,7 @@ namespace RSI_X_Desktop
         private void Broadcaster_FormClosed(object sender, FormClosedEventArgs e)
         {
             AgoraObject.LeaveChannel();
-            Owner.Show();
+            //Owner.Show();
         }
         private void btnScreenShare_Click(object sender, EventArgs e)
         {
@@ -71,21 +71,13 @@ namespace RSI_X_Desktop
 
             if (IsSharingScreen)
             {
-                if (sharingDig != null && !sharingDig.IsDisposed && sharingDig.Visible)
-                    sharingDig.Close();
-
-                sharingDig = new()
-                {
-                    StartPosition = FormStartPosition.CenterParent,
-                    Visible = true,
-                    //FormBorderStyle = FormBorderStyle.FixedSingle
-                };
-                //AgoraObject.EnableScreenCapture();
+                AgoraObject.EnableScreenCapture();
+                labelScreenShare.ForeColor = Color.Red;
             }
             else
             {
                 AgoraObject.Rtc.StopScreenCapture();
-                //((PictureBox)sender).BackgroundImage = Properties.Resources.screen_share;
+                labelScreenShare.ForeColor = Color.White;
             }
         }
         private void CloseAppButton_Click(object sender, EventArgs e)
@@ -266,6 +258,7 @@ namespace RSI_X_Desktop
 
         private void ResetButton_Click(object sender, EventArgs e)
         {
+            Owner.Show();
             Close();
         }
     }
