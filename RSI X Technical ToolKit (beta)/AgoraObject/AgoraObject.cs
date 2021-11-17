@@ -216,7 +216,7 @@ namespace RSI_X_Desktop
         #region Engine channel
         static public ERROR_CODE JoinChannel(string chName, string token)
         {
-            ERROR_CODE res = Rtc.JoinChannel(token, chName, "", 0);
+            ERROR_CODE res = Rtc.JoinChannelWithUserAccount(token, chName, "Host");
 
             if (res == ERROR_CODE.ERR_OK)
                 IsJoin = true;
