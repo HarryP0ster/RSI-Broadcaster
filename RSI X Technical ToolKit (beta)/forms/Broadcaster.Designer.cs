@@ -78,7 +78,7 @@ namespace RSI_X_Desktop
             this.formTheme1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.formTheme1.Name = "formTheme1";
             this.formTheme1.Padding = new System.Windows.Forms.Padding(4, 21, 4, 21);
-            this.formTheme1.Sizable = true;
+            this.formTheme1.Sizable = false;
             this.formTheme1.Size = new System.Drawing.Size(1280, 800);
             this.formTheme1.SmartBounds = false;
             this.formTheme1.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
