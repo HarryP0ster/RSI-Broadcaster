@@ -17,8 +17,9 @@ namespace RSI_X_Desktop.forms
     {
         const int leters_limit = 35;
         int DefPanelWidth = 100;
+        const int TAB_COUNT = 2;
         int[] scroll_offset = new int[3];
-        List<Control>[] messages_list = new List<Control>[3];
+        List<Control>[] messages_list = new List<Control>[TAB_COUNT];
 
         HelpingClass.FireBaseReader FireBase;
         public ChatWnd()
@@ -36,7 +37,7 @@ namespace RSI_X_Desktop.forms
 
                 }
             }
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < TAB_COUNT; i++)
             {
                 messages_list[i] = new();
                 scroll_offset[i] = 0;
@@ -158,7 +159,7 @@ namespace RSI_X_Desktop.forms
             switch (channel)
             {
                 case CHANNEL_TYPE.HOST:
-                    RelocateBubbles(new HelpingClass.MessagePanelL(message, nickname, panel2), panel2, 1);
+                    RelocateBubbles(new HelpingClass.MessagePanelL(message, nickname, panel2), panel2, 0);
                     break;
             }
         }
@@ -178,14 +179,14 @@ namespace RSI_X_Desktop.forms
             {
                 if (InvokeRequired)
                     Invoke((MethodInvoker)delegate
-                    {  RelocateBubbles(new HelpingClass.MessagePanelL(arg.Msg.msg, arg.Msg.username, panel3), panel3, 2); });
+                    {  RelocateBubbles(new HelpingClass.MessagePanelL(arg.Msg.msg, arg.Msg.username, panel3), panel3, 1); });
                 else
-                    RelocateBubbles(new HelpingClass.MessagePanelL(arg.Msg.msg, arg.Msg.username, panel3), panel3, 2);
+                    RelocateBubbles(new HelpingClass.MessagePanelL(arg.Msg.msg, arg.Msg.username, panel3), panel3, 1);
             }
         }
         private void AddOwnMessageGeneral(string msg)
         {
-            RelocateBubbles(new HelpingClass.MessagePanelL(msg, HelpingClass.MessagePanelL.MyOwn, panel2), panel2, 1);
+            RelocateBubbles(new HelpingClass.MessagePanelL(msg, HelpingClass.MessagePanelL.MyOwn, panel2), panel2, 0);
         }
         private void ChatWnd_Load(object sender, EventArgs e)
         {
@@ -211,9 +212,9 @@ namespace RSI_X_Desktop.forms
 
             int ind;
             if (((Control)sender) == panel2)
-                ind = 1;
+                ind = 0;
             else if (((Control)sender) == panel3)
-                ind = 2;
+                ind = 1;
             else
                 return;
 
