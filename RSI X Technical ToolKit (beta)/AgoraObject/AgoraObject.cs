@@ -221,7 +221,7 @@ namespace RSI_X_Desktop
             if (res == ERROR_CODE.ERR_OK)
                 IsJoin = true;
 
-            var code = m_channelHost.CreateDataStream(out _hostStreamID, true, true);
+            var code = Rtc.CreateDataStream(out _hostStreamID, true, true);
 
             return res;
         }
@@ -541,7 +541,7 @@ namespace RSI_X_Desktop
         }
         public static void SendMessageToHost(string msg)
         {
-            m_channelHost.SendStreamMessage(_hostStreamID, utf8enc.GetBytes(msg));
+            Rtc.SendStreamMessage(_hostStreamID, utf8enc.GetBytes(msg));
         }
     }
 }
