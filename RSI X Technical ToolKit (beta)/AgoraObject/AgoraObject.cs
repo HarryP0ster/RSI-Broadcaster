@@ -220,7 +220,8 @@ namespace RSI_X_Desktop
 
             if (res == ERROR_CODE.ERR_OK)
                 IsJoin = true;
-            Rtc.StartPreview();
+
+            var code = m_channelHost.CreateDataStream(out _hostStreamID, true, true);
 
             return res;
         }

@@ -31,14 +31,14 @@ namespace RSI_X_Desktop.forms
         {
             this.materialShowTabControl1 = new ReaLTaiizor.Controls.MaterialShowTabControl();
             this.General = new System.Windows.Forms.TabPage();
-            this.button1 = new ReaLTaiizor.Controls.Button();
+            this.BCloseGeneral = new ReaLTaiizor.Controls.Button();
             this.dungeonLabel3 = new ReaLTaiizor.Controls.DungeonLabel();
             this.dungeonLabel2 = new ReaLTaiizor.Controls.DungeonLabel();
             this.dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
             this.bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             this.Sound = new System.Windows.Forms.TabPage();
-            this.button5 = new ReaLTaiizor.Controls.Button();
-            this.button4 = new ReaLTaiizor.Controls.Button();
+            this.BAcceptSound = new ReaLTaiizor.Controls.Button();
+            this.BCloseSound = new ReaLTaiizor.Controls.Button();
             this.Dynamic = new ReaLTaiizor.Controls.DungeonLabel();
             this.Microphone = new ReaLTaiizor.Controls.DungeonLabel();
             this.trackBarSoundOut = new ReaLTaiizor.Controls.DungeonTrackBar();
@@ -46,8 +46,8 @@ namespace RSI_X_Desktop.forms
             this.comboBoxAudioInput = new ReaLTaiizor.Controls.AloneComboBox();
             this.comboBoxAudioOutput = new ReaLTaiizor.Controls.AloneComboBox();
             this.Video = new System.Windows.Forms.TabPage();
-            this.button3 = new ReaLTaiizor.Controls.Button();
-            this.button2 = new ReaLTaiizor.Controls.Button();
+            this.BAcceptVideo = new ReaLTaiizor.Controls.Button();
+            this.BCloseVideo = new ReaLTaiizor.Controls.Button();
             this.pictureBoxLocalVideoTest = new ReaLTaiizor.Controls.HopePictureBox();
             this.comboBoxVideo = new ReaLTaiizor.Controls.AloneComboBox();
             this.materialShowTabControl1.SuspendLayout();
@@ -79,38 +79,38 @@ namespace RSI_X_Desktop.forms
             // 
             this.General.BackColor = System.Drawing.Color.White;
             this.General.CausesValidation = false;
-            this.General.Controls.Add(this.button1);
+            this.General.Controls.Add(this.BCloseGeneral);
             this.General.Controls.Add(this.dungeonLabel3);
             this.General.Controls.Add(this.dungeonLabel2);
             this.General.Controls.Add(this.dungeonLabel1);
             this.General.Controls.Add(this.bigLabel1);
             this.General.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.General.Location = new System.Drawing.Point(4, 33);
+            this.General.Location = new System.Drawing.Point(4, 39);
             this.General.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.General.Name = "General";
-            this.General.Size = new System.Drawing.Size(313, 504);
+            this.General.Size = new System.Drawing.Size(313, 498);
             this.General.TabIndex = 4;
             this.General.Text = "General";
             // 
-            // button1
+            // BCloseGeneral
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.button1.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Image = null;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.button1.Location = new System.Drawing.Point(225, 466);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.button1.Name = "button1";
-            this.button1.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.button1.Size = new System.Drawing.Size(80, 28);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Close";
-            this.button1.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.button1.Click += new System.EventHandler(this.CloseButton_Click);
+            this.BCloseGeneral.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.BCloseGeneral.BackColor = System.Drawing.Color.Transparent;
+            this.BCloseGeneral.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BCloseGeneral.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.BCloseGeneral.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BCloseGeneral.Image = null;
+            this.BCloseGeneral.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BCloseGeneral.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.BCloseGeneral.Location = new System.Drawing.Point(225, 466);
+            this.BCloseGeneral.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.BCloseGeneral.Name = "BCloseGeneral";
+            this.BCloseGeneral.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            this.BCloseGeneral.Size = new System.Drawing.Size(80, 28);
+            this.BCloseGeneral.TabIndex = 4;
+            this.BCloseGeneral.Text = "Close";
+            this.BCloseGeneral.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.BCloseGeneral.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // dungeonLabel3
             // 
@@ -121,7 +121,7 @@ namespace RSI_X_Desktop.forms
             this.dungeonLabel3.Location = new System.Drawing.Point(16, 118);
             this.dungeonLabel3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dungeonLabel3.Name = "dungeonLabel3";
-            this.dungeonLabel3.Size = new System.Drawing.Size(89, 19);
+            this.dungeonLabel3.Size = new System.Drawing.Size(110, 24);
             this.dungeonLabel3.TabIndex = 3;
             this.dungeonLabel3.Text = "dungeonLabel3";
             // 
@@ -134,7 +134,7 @@ namespace RSI_X_Desktop.forms
             this.dungeonLabel2.Location = new System.Drawing.Point(16, 87);
             this.dungeonLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dungeonLabel2.Name = "dungeonLabel2";
-            this.dungeonLabel2.Size = new System.Drawing.Size(89, 19);
+            this.dungeonLabel2.Size = new System.Drawing.Size(110, 24);
             this.dungeonLabel2.TabIndex = 2;
             this.dungeonLabel2.Text = "dungeonLabel2";
             // 
@@ -147,7 +147,7 @@ namespace RSI_X_Desktop.forms
             this.dungeonLabel1.Location = new System.Drawing.Point(16, 55);
             this.dungeonLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dungeonLabel1.Name = "dungeonLabel1";
-            this.dungeonLabel1.Size = new System.Drawing.Size(87, 19);
+            this.dungeonLabel1.Size = new System.Drawing.Size(107, 24);
             this.dungeonLabel1.TabIndex = 1;
             this.dungeonLabel1.Text = "dungeonLabel1";
             // 
@@ -160,15 +160,15 @@ namespace RSI_X_Desktop.forms
             this.bigLabel1.Location = new System.Drawing.Point(16, 10);
             this.bigLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.bigLabel1.Name = "bigLabel1";
-            this.bigLabel1.Size = new System.Drawing.Size(109, 29);
+            this.bigLabel1.Size = new System.Drawing.Size(135, 36);
             this.bigLabel1.TabIndex = 0;
             this.bigLabel1.Text = "Your system";
             // 
             // Sound
             // 
             this.Sound.BackColor = System.Drawing.Color.White;
-            this.Sound.Controls.Add(this.button5);
-            this.Sound.Controls.Add(this.button4);
+            this.Sound.Controls.Add(this.BAcceptSound);
+            this.Sound.Controls.Add(this.BCloseSound);
             this.Sound.Controls.Add(this.Dynamic);
             this.Sound.Controls.Add(this.Microphone);
             this.Sound.Controls.Add(this.trackBarSoundOut);
@@ -176,53 +176,53 @@ namespace RSI_X_Desktop.forms
             this.Sound.Controls.Add(this.comboBoxAudioInput);
             this.Sound.Controls.Add(this.comboBoxAudioOutput);
             this.Sound.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Sound.Location = new System.Drawing.Point(4, 33);
+            this.Sound.Location = new System.Drawing.Point(4, 39);
             this.Sound.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Sound.Name = "Sound";
             this.Sound.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Sound.Size = new System.Drawing.Size(313, 504);
+            this.Sound.Size = new System.Drawing.Size(313, 498);
             this.Sound.TabIndex = 7;
             this.Sound.Text = "Sound";
             // 
-            // button5
+            // BAcceptSound
             // 
-            this.button5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button5.BackColor = System.Drawing.Color.Transparent;
-            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button5.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.button5.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button5.Image = null;
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.button5.Location = new System.Drawing.Point(140, 467);
-            this.button5.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.button5.Name = "button5";
-            this.button5.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.button5.Size = new System.Drawing.Size(80, 28);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "Accept";
-            this.button5.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.button5.Click += new System.EventHandler(this.AcceptButton_Click);
+            this.BAcceptSound.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.BAcceptSound.BackColor = System.Drawing.Color.Transparent;
+            this.BAcceptSound.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BAcceptSound.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.BAcceptSound.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BAcceptSound.Image = null;
+            this.BAcceptSound.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BAcceptSound.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.BAcceptSound.Location = new System.Drawing.Point(139, 466);
+            this.BAcceptSound.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.BAcceptSound.Name = "BAcceptSound";
+            this.BAcceptSound.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            this.BAcceptSound.Size = new System.Drawing.Size(80, 28);
+            this.BAcceptSound.TabIndex = 7;
+            this.BAcceptSound.Text = "Accept";
+            this.BAcceptSound.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.BAcceptSound.Click += new System.EventHandler(this.AcceptButton_Click);
             // 
-            // button4
+            // BCloseSound
             // 
-            this.button4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.button4.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button4.Image = null;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.button4.Location = new System.Drawing.Point(226, 467);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.button4.Name = "button4";
-            this.button4.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.button4.Size = new System.Drawing.Size(80, 28);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Close";
-            this.button4.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.button4.Click += new System.EventHandler(this.CloseButton_Click);
+            this.BCloseSound.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.BCloseSound.BackColor = System.Drawing.Color.Transparent;
+            this.BCloseSound.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BCloseSound.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.BCloseSound.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BCloseSound.Image = null;
+            this.BCloseSound.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BCloseSound.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.BCloseSound.Location = new System.Drawing.Point(225, 466);
+            this.BCloseSound.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.BCloseSound.Name = "BCloseSound";
+            this.BCloseSound.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            this.BCloseSound.Size = new System.Drawing.Size(80, 28);
+            this.BCloseSound.TabIndex = 6;
+            this.BCloseSound.Text = "Close";
+            this.BCloseSound.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.BCloseSound.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // Dynamic
             // 
@@ -233,7 +233,7 @@ namespace RSI_X_Desktop.forms
             this.Dynamic.Location = new System.Drawing.Point(8, 126);
             this.Dynamic.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Dynamic.Name = "Dynamic";
-            this.Dynamic.Size = new System.Drawing.Size(49, 18);
+            this.Dynamic.Size = new System.Drawing.Size(62, 23);
             this.Dynamic.TabIndex = 5;
             this.Dynamic.Text = "Speaker";
             this.Dynamic.Visible = false;
@@ -247,7 +247,7 @@ namespace RSI_X_Desktop.forms
             this.Microphone.Location = new System.Drawing.Point(8, 22);
             this.Microphone.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Microphone.Name = "Microphone";
-            this.Microphone.Size = new System.Drawing.Size(66, 18);
+            this.Microphone.Size = new System.Drawing.Size(83, 23);
             this.Microphone.TabIndex = 4;
             this.Microphone.Text = "Microphone";
             // 
@@ -285,7 +285,7 @@ namespace RSI_X_Desktop.forms
             this.trackBarSoundIn.EmptyBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
             this.trackBarSoundIn.FillBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
             this.trackBarSoundIn.JumpToMouse = false;
-            this.trackBarSoundIn.Location = new System.Drawing.Point(4, 74);
+            this.trackBarSoundIn.Location = new System.Drawing.Point(4, 71);
             this.trackBarSoundIn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.trackBarSoundIn.Maximum = 10;
             this.trackBarSoundIn.Minimum = 0;
@@ -310,7 +310,7 @@ namespace RSI_X_Desktop.forms
             this.comboBoxAudioInput.EnabledCalc = true;
             this.comboBoxAudioInput.FormattingEnabled = true;
             this.comboBoxAudioInput.ItemHeight = 20;
-            this.comboBoxAudioInput.Location = new System.Drawing.Point(4, 44);
+            this.comboBoxAudioInput.Location = new System.Drawing.Point(4, 41);
             this.comboBoxAudioInput.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.comboBoxAudioInput.Name = "comboBoxAudioInput";
             this.comboBoxAudioInput.Size = new System.Drawing.Size(302, 26);
@@ -336,58 +336,58 @@ namespace RSI_X_Desktop.forms
             // Video
             // 
             this.Video.BackColor = System.Drawing.Color.White;
-            this.Video.Controls.Add(this.button3);
-            this.Video.Controls.Add(this.button2);
+            this.Video.Controls.Add(this.BAcceptVideo);
+            this.Video.Controls.Add(this.BCloseVideo);
             this.Video.Controls.Add(this.pictureBoxLocalVideoTest);
             this.Video.Controls.Add(this.comboBoxVideo);
             this.Video.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Video.Location = new System.Drawing.Point(4, 33);
+            this.Video.Location = new System.Drawing.Point(4, 39);
             this.Video.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Video.Name = "Video";
             this.Video.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Video.Size = new System.Drawing.Size(313, 504);
+            this.Video.Size = new System.Drawing.Size(313, 498);
             this.Video.TabIndex = 6;
             this.Video.Text = "Video";
             // 
-            // button3
+            // BAcceptVideo
             // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.button3.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button3.Image = null;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.button3.Location = new System.Drawing.Point(138, 468);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.button3.Name = "button3";
-            this.button3.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.button3.Size = new System.Drawing.Size(80, 28);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Accept";
-            this.button3.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.button3.Click += new System.EventHandler(this.AcceptButton_Click);
+            this.BAcceptVideo.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.BAcceptVideo.BackColor = System.Drawing.Color.Transparent;
+            this.BAcceptVideo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BAcceptVideo.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.BAcceptVideo.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BAcceptVideo.Image = null;
+            this.BAcceptVideo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BAcceptVideo.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.BAcceptVideo.Location = new System.Drawing.Point(139, 466);
+            this.BAcceptVideo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.BAcceptVideo.Name = "BAcceptVideo";
+            this.BAcceptVideo.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            this.BAcceptVideo.Size = new System.Drawing.Size(80, 28);
+            this.BAcceptVideo.TabIndex = 3;
+            this.BAcceptVideo.Text = "Accept";
+            this.BAcceptVideo.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.BAcceptVideo.Click += new System.EventHandler(this.AcceptButton_Click);
             // 
-            // button2
+            // BCloseVideo
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.button2.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button2.Image = null;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.button2.Location = new System.Drawing.Point(224, 468);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.button2.Name = "button2";
-            this.button2.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.button2.Size = new System.Drawing.Size(80, 28);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Close";
-            this.button2.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.button2.Click += new System.EventHandler(this.CloseButton_Click);
+            this.BCloseVideo.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.BCloseVideo.BackColor = System.Drawing.Color.Transparent;
+            this.BCloseVideo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BCloseVideo.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.BCloseVideo.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BCloseVideo.Image = null;
+            this.BCloseVideo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BCloseVideo.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.BCloseVideo.Location = new System.Drawing.Point(225, 466);
+            this.BCloseVideo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.BCloseVideo.Name = "BCloseVideo";
+            this.BCloseVideo.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            this.BCloseVideo.Size = new System.Drawing.Size(80, 28);
+            this.BCloseVideo.TabIndex = 2;
+            this.BCloseVideo.Text = "Close";
+            this.BCloseVideo.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.BCloseVideo.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // pictureBoxLocalVideoTest
             // 
@@ -449,14 +449,14 @@ namespace RSI_X_Desktop.forms
 
         private ReaLTaiizor.Controls.MaterialShowTabControl materialShowTabControl1;
         private System.Windows.Forms.TabPage General;
-        private ReaLTaiizor.Controls.Button button1;
+        private ReaLTaiizor.Controls.Button BCloseGeneral;
         private ReaLTaiizor.Controls.DungeonLabel dungeonLabel3;
         private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
         private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;
         private ReaLTaiizor.Controls.BigLabel bigLabel1;
         private System.Windows.Forms.TabPage Sound;
-        private ReaLTaiizor.Controls.Button button5;
-        private ReaLTaiizor.Controls.Button button4;
+        private ReaLTaiizor.Controls.Button BAcceptSound;
+        private ReaLTaiizor.Controls.Button BCloseSound;
         private ReaLTaiizor.Controls.DungeonLabel Dynamic;
         private ReaLTaiizor.Controls.DungeonLabel Microphone;
         private ReaLTaiizor.Controls.DungeonTrackBar trackBarSoundOut;
@@ -464,8 +464,8 @@ namespace RSI_X_Desktop.forms
         private ReaLTaiizor.Controls.AloneComboBox comboBoxAudioInput;
         private ReaLTaiizor.Controls.AloneComboBox comboBoxAudioOutput;
         private System.Windows.Forms.TabPage Video;
-        private ReaLTaiizor.Controls.Button button3;
-        private ReaLTaiizor.Controls.Button button2;
+        private ReaLTaiizor.Controls.Button BAcceptVideo;
+        private ReaLTaiizor.Controls.Button BCloseVideo;
         private ReaLTaiizor.Controls.HopePictureBox pictureBoxLocalVideoTest;
         private ReaLTaiizor.Controls.AloneComboBox comboBoxVideo;
     }

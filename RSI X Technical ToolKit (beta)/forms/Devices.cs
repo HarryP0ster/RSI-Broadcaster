@@ -205,6 +205,8 @@ namespace RSI_X_Desktop.forms
 
             videoDeviceManager.GetDeviceInfoByIndex(ind, out name, out id);
             videoDeviceManager.SetCurrentDevice(id);
+
+            workForm.RefreshLocalWnd();
         }
 
 
@@ -213,7 +215,7 @@ namespace RSI_X_Desktop.forms
         private void NewDevices_FormClosed(object sender, FormClosedEventArgs e)
         {
             //AgoraObject.Rtc.EnableLocalVideo(false);
-            //workForm?.SetLocalVideoPreview();
+            workForm?.SetLocalVideoPreview();
             Dispose();
         }
 
@@ -301,7 +303,7 @@ namespace RSI_X_Desktop.forms
         {
             if (e.TabPage == Video)
             {
-                workForm?.UpdateLocalWnd();
+                workForm?.RefreshLocalWnd();
                 VideoCanvas vc = new((ulong)pictureBoxLocalVideoTest.Handle, 0);
                 vc.renderMode = ((int)RENDER_MODE_TYPE.RENDER_MODE_FIT);
                 AgoraObject.Rtc.StartPreview();

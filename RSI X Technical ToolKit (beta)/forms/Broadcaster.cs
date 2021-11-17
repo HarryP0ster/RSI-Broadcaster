@@ -9,6 +9,7 @@ namespace RSI_X_Desktop
 {
     public partial class Broadcaster : Form, IFormHostHolder
     {
+        private forms.HelpingClass.FireBaseReader GetFireBase = new();
         internal static IntPtr LocalWinId;
         public IntPtr RemoteWnd { get => LocalWinId; }
         private Devices devices;
@@ -30,6 +31,7 @@ namespace RSI_X_Desktop
             AgoraObject.Rtc.SetChannelProfile(CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING);
             AgoraObject.Rtc.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
             AgoraObject.Rtc.EnableLocalVideo(true);
+            AgoraObject.UpdateNickName("Host");
 
             this.DoubleBuffered = true;
             var ret = AgoraObject.JoinChannel(
@@ -44,6 +46,14 @@ namespace RSI_X_Desktop
             StreamLayout.ColumnStyles[1].SizeType = SizeType.Absolute;
             StreamLayout.ColumnStyles[0].Width = 100;
             StreamLayout.ColumnStyles[1].Width = 0;
+
+            GetFireBase.SetChannelName(
+                AgoraObject.GetComplexToken().GetHostName);
+            chat.HandleCreated += (s, e) => {
+                chat.UpdateFireBase(GetFireBase);
+                GetFireBase.Connect();
+            };
+
         }
         public void SetLocalVideoPreview()
         {
@@ -56,7 +66,7 @@ namespace RSI_X_Desktop
             AgoraObject.Rtc.SetupLocalVideo(canv);
             AgoraObject.Rtc.StartPreview();
         }
-        public void UpdateLocalWnd()
+        public void RefreshLocalWnd()
         {
             pictureBoxRemoteVideo.Refresh();
         }

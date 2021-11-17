@@ -34,6 +34,8 @@ namespace RSI_X_Desktop.forms.HelpingClass
             Width = 10;
             Sender = new Label(); 
             Date = new Label();
+
+            //if (text == null) return;
             if (sender == MyOwn)
             {
                 labelR = new ChatBubbleRight();

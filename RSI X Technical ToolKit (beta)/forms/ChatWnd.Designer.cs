@@ -29,40 +29,40 @@ namespace RSI_X_Desktop.forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPageSupport = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.chatButtonRight3 = new ReaLTaiizor.Controls.ChatButtonRight();
             this.bigTextBox3 = new ReaLTaiizor.Controls.BigTextBox();
             this.panel3 = new ReaLTaiizor.Controls.Panel();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPageGeneral = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.chatButtonRight2 = new ReaLTaiizor.Controls.ChatButtonRight();
             this.bigTextBox2 = new ReaLTaiizor.Controls.BigTextBox();
             this.panel2 = new ReaLTaiizor.Controls.Panel();
             this.materialShowTabControl1 = new ReaLTaiizor.Controls.MaterialShowTabControl();
-            this.tabPage3.SuspendLayout();
+            this.tabPageSupport.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabPageGeneral.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.materialShowTabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabPage3
+            // tabPageSupport
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.White;
-            this.tabPage3.Controls.Add(this.tableLayoutPanel5);
-            this.tabPage3.ForeColor = System.Drawing.Color.Black;
-            this.tabPage3.Location = new System.Drawing.Point(41, 4);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPage3.Size = new System.Drawing.Size(451, 713);
-            this.tabPage3.TabIndex = 3;
-            this.tabPage3.Text = "Tech Support";
+            this.tabPageSupport.BackColor = System.Drawing.Color.White;
+            this.tabPageSupport.Controls.Add(this.tableLayoutPanel5);
+            this.tabPageSupport.ForeColor = System.Drawing.Color.Black;
+            this.tabPageSupport.Location = new System.Drawing.Point(41, 4);
+            this.tabPageSupport.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.tabPageSupport.Name = "tabPageSupport";
+            this.tabPageSupport.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.tabPageSupport.Size = new System.Drawing.Size(451, 713);
+            this.tabPageSupport.TabIndex = 3;
+            this.tabPageSupport.Text = "Tech Support";
             // 
             // tableLayoutPanel5
             // 
@@ -153,18 +153,18 @@ namespace RSI_X_Desktop.forms
             this.panel3.TabIndex = 3;
             this.panel3.Text = "panel3";
             // 
-            // tabPage2
+            // tabPageGeneral
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.White;
-            this.tabPage2.Controls.Add(this.tableLayoutPanel3);
-            this.tabPage2.ForeColor = System.Drawing.Color.Black;
-            this.tabPage2.Location = new System.Drawing.Point(41, 4);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPage2.Size = new System.Drawing.Size(451, 713);
-            this.tabPage2.TabIndex = 2;
-            this.tabPage2.Text = "Group chat";
+            this.tabPageGeneral.BackColor = System.Drawing.Color.White;
+            this.tabPageGeneral.Controls.Add(this.tableLayoutPanel3);
+            this.tabPageGeneral.ForeColor = System.Drawing.Color.Black;
+            this.tabPageGeneral.Location = new System.Drawing.Point(41, 4);
+            this.tabPageGeneral.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.tabPageGeneral.Name = "tabPageGeneral";
+            this.tabPageGeneral.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.tabPageGeneral.Size = new System.Drawing.Size(451, 713);
+            this.tabPageGeneral.TabIndex = 2;
+            this.tabPageGeneral.Text = "Group chat";
             // 
             // tableLayoutPanel3
             // 
@@ -258,8 +258,8 @@ namespace RSI_X_Desktop.forms
             // materialShowTabControl1
             // 
             this.materialShowTabControl1.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.materialShowTabControl1.Controls.Add(this.tabPage2);
-            this.materialShowTabControl1.Controls.Add(this.tabPage3);
+            this.materialShowTabControl1.Controls.Add(this.tabPageGeneral);
+            this.materialShowTabControl1.Controls.Add(this.tabPageSupport);
             this.materialShowTabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.materialShowTabControl1.Depth = 0;
             this.materialShowTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -289,10 +289,10 @@ namespace RSI_X_Desktop.forms
             this.Text = "*";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ChatWnd_FormClosed);
             this.Load += new System.EventHandler(this.ChatWnd_Load);
-            this.tabPage3.ResumeLayout(false);
+            this.tabPageSupport.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this.tabPageGeneral.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.materialShowTabControl1.ResumeLayout(false);
@@ -302,13 +302,13 @@ namespace RSI_X_Desktop.forms
 
         #endregion
 
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPageSupport;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private ReaLTaiizor.Controls.ChatButtonRight chatButtonRight3;
         private ReaLTaiizor.Controls.BigTextBox bigTextBox3;
         private ReaLTaiizor.Controls.Panel panel3;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPageGeneral;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private ReaLTaiizor.Controls.ChatButtonRight chatButtonRight2;
