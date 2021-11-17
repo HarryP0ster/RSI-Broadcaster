@@ -212,8 +212,8 @@ namespace RSI_X_Desktop.forms
 
         private void NewDevices_FormClosed(object sender, FormClosedEventArgs e)
         {
-            AgoraObject.Rtc.EnableLocalVideo(false);
-            workForm?.SetLocalVideoPreview();
+            //AgoraObject.Rtc.EnableLocalVideo(false);
+            //workForm?.SetLocalVideoPreview();
             Dispose();
         }
 

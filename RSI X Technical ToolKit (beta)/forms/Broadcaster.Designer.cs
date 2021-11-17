@@ -29,9 +29,7 @@ namespace RSI_X_Desktop
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Broadcaster));
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.formTheme1 = new ReaLTaiizor.Forms.FormTheme();
             this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.PanelBot = new ReaLTaiizor.Controls.LostPanel();
@@ -312,7 +310,7 @@ namespace RSI_X_Desktop
             this.CloseButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CloseButton.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CloseButton.Image = null;
+            this.CloseButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseButton.Image")));
             this.CloseButton.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CloseButton.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
             this.CloseButton.Location = new System.Drawing.Point(1203, 14);
@@ -333,7 +331,7 @@ namespace RSI_X_Desktop
             this.SettingButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SettingButton.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.SettingButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.SettingButton.Image = null;
+            this.SettingButton.Image = ((System.Drawing.Image)(resources.GetObject("SettingButton.Image")));
             this.SettingButton.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SettingButton.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
             this.SettingButton.Location = new System.Drawing.Point(1137, 14);
@@ -354,7 +352,7 @@ namespace RSI_X_Desktop
             this.ResetButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ResetButton.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.ResetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ResetButton.Image = null;
+            this.ResetButton.Image = ((System.Drawing.Image)(resources.GetObject("ResetButton.Image")));
             this.ResetButton.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ResetButton.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
             this.ResetButton.Location = new System.Drawing.Point(1071, 14);
@@ -364,6 +362,7 @@ namespace RSI_X_Desktop
             this.ResetButton.Size = new System.Drawing.Size(56, 40);
             this.ResetButton.TabIndex = 8;
             this.ResetButton.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
             // pictureBox1
             // 
@@ -472,8 +471,7 @@ namespace RSI_X_Desktop
             // 
             // Broadcaster
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1280, 800);
             this.Controls.Add(this.formTheme1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -505,7 +503,6 @@ namespace RSI_X_Desktop
         }
 
         #endregion
-        private System.Windows.Forms.Timer timer1;
         private ReaLTaiizor.Forms.FormTheme formTheme1;
         private System.Windows.Forms.TableLayoutPanel MainLayout;
         private ReaLTaiizor.Controls.LostPanel PanelBot;

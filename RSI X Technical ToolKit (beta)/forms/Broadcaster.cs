@@ -94,7 +94,7 @@ namespace RSI_X_Desktop
         }
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            Close();
+            Owner.Close();
         }
 
         private void labelSettings_Click(object sender, EventArgs e)
@@ -145,7 +145,7 @@ namespace RSI_X_Desktop
 
         public void Animator(Panel panel, int offset_x, int offset_y, int itterations, int delay)
         {
-            pictureBoxRemoteVideo.Refresh();
+            //pictureBoxRemoteVideo.Refresh();
             Thread.Sleep(delay);
             pictureBoxRemoteVideo.SuspendLayout();
             for (int ind = 0; ind < itterations; ind++)
@@ -262,6 +262,11 @@ namespace RSI_X_Desktop
             target.MaximumSize = size;
             target.MinimumSize = size;
             target.Size = size;
+        }
+
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
