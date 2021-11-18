@@ -1,14 +1,14 @@
 ﻿using System;
-using agorartc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using agorartc;
 using HWND = System.IntPtr;
 
 namespace RSI_X_Desktop
 {
-    enum CurForm 
+    enum CurForm
     {
         workFormater,
         FormBroadcaster,
@@ -19,11 +19,10 @@ namespace RSI_X_Desktop
     }
     static class AgoraObject
     {
-        
+
         public const string AppID = "31f0e571a89542b09049087e3283417f";
 
         public static bool IsJoin { get; private set; }
-
         public static bool IsLocalAudioMute { get; private set; }
         public static bool IsLocalVideoMute { get; private set; }
 
@@ -65,31 +64,31 @@ namespace RSI_X_Desktop
         private static IFormHostHolder workForm;
 
         public static IFormHostHolder GetWorkForm { get => workForm; }
-        public static bool m_channelSrcJoin     { get; private set; } = false;
-        public static bool m_channelTranslJoin  { get; private set; } = false;
-        public static bool m_channelHostJoin    { get; private set; } = false;
-        public static bool m_channelTargetJoin  { get; private set; } = false;
+        public static bool m_channelSrcJoin { get; private set; } = false;
+        public static bool m_channelTranslJoin { get; private set; } = false;
+        public static bool m_channelHostJoin { get; private set; } = false;
+        public static bool m_channelTargetJoin { get; private set; } = false;
 
         private static bool m_channelTranslPublish = false;
-        private static string  m_channelTargetPublish = String.Empty;
-        private static string  m_currentChannelSrc = String.Empty;
+        private static string m_channelTargetPublish = String.Empty;
+        private static string m_currentChannelSrc = String.Empty;
         public readonly static System.Text.UTF8Encoding utf8enc = new();
 
         [DllImport("USER32.DLL")]
         static extern bool GetWindowRect(IntPtr hWnd, out System.Drawing.Rectangle lpRect);
 
-        static AgoraObject() 
+        static AgoraObject()
         {
             Rtc = AgoraRtcEngine.CreateRtcEngine();
             Rtc.Initialize(new RtcEngineContext(AppID));
 
-            Rtc.SetVideoProfile(VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_1080P_3, false);
-            SetPublishAudioProfile();
+            SetPublishProfile();
         }
 
-        private static void SetPublishAudioProfile()
+        private static void SetPublishProfile()
         {
             Rtc.SetAudioProfile(AUDIO_PROFILE_TYPE.AUDIO_PROFILE_MUSIC_HIGH_QUALITY, AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_CHATROOM_GAMING);
+            Rtc.SetVideoProfile(VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_1080P_3, false);
         }
         private static void SetDefaultAudioProfile()
         {
@@ -110,10 +109,10 @@ namespace RSI_X_Desktop
             return room.TakeToken(code);
         }
 
-        public static Tokens GetComplexToken()          => room;
-        public static string GetHostToken()             => room.GetToken;
-        public static string GetHostName()              => room.GetHostName;
-        public static List<string> GetLangCollection()  => room.GetLanguages.Keys.ToList();
+        public static Tokens GetComplexToken() => room;
+        public static string GetHostToken() => room.GetToken;
+        public static string GetHostName() => room.GetHostName;
+        public static List<string> GetLangCollection() => room.GetLanguages.Keys.ToList();
         #endregion
 
         #region Mute local audio/video
@@ -141,7 +140,7 @@ namespace RSI_X_Desktop
             return res;
         }
         #endregion
-        
+
         #region  mute remote video\audio
         static public void MuteAllRemoteAudioStream(bool mute)
         {
@@ -153,7 +152,7 @@ namespace RSI_X_Desktop
             IsAllRemoteAudioMute = mute;
         }
 
-        static public void MuteAllRemoteVideoStream(bool mute) 
+        static public void MuteAllRemoteVideoStream(bool mute)
         {
             Rtc.MuteAllRemoteVideoStreams(mute);
             m_channelHost?.MuteAllRemoteVideoStreams(mute);
@@ -162,7 +161,7 @@ namespace RSI_X_Desktop
             IsAllRemoteVideoMute = mute;
         }
 
-        static public void MuteAllTransLatersAudioStream(bool mute) 
+        static public void MuteAllTransLatersAudioStream(bool mute)
         {
             m_channelTransl?.MuteAllRemoteAudioStreams(mute);
 
@@ -213,7 +212,7 @@ namespace RSI_X_Desktop
             return true;
         }
         #endregion
-        
+
         #region Engine channel
         static public ERROR_CODE JoinChannel(string chName, string token)
         {
@@ -236,7 +235,7 @@ namespace RSI_X_Desktop
             return res;
         }
         #endregion
-        
+
         #region Channel src
         public static bool JoinChannelSrc(langHolder lh_holder)
         {
@@ -259,7 +258,7 @@ namespace RSI_X_Desktop
             m_channelSrc.InitChannelEventHandler(srcHandler);
             m_channelSrc.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_AUDIENCE);
 
-            ChannelMediaOptions options = new ();
+            ChannelMediaOptions options = new();
             options.autoSubscribeAudio = true;
             options.autoSubscribeVideo = false;
 
@@ -277,7 +276,7 @@ namespace RSI_X_Desktop
 
         }
         #endregion
-        
+
         #region Channel host
         public static bool JoinChannelHost(langHolder lh_holder)
         {
@@ -290,9 +289,9 @@ namespace RSI_X_Desktop
 
             m_channelHost = Rtc.CreateChannel(lpChannelName);
             m_channelHost.InitChannelEventHandler(hostHandler);
-            m_channelHost.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER); 
+            m_channelHost.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
             m_channelHost.SetDefaultMuteAllRemoteVideoStreams(false);
-           
+
             ChannelMediaOptions options = new();
             options.autoSubscribeAudio = true;
             options.autoSubscribeVideo = true;
@@ -312,7 +311,7 @@ namespace RSI_X_Desktop
             m_channelHostJoin = false;
         }
         #endregion
-        
+
         #region Channel Transl
         public static bool JoinChannelTransl(langHolder lh_holder)
         {
@@ -351,9 +350,9 @@ namespace RSI_X_Desktop
             m_channelTranslPublish = false;
             m_channelTranslJoin = false;
         }
-        
+
         #endregion
-        
+
         #region Channel target
         public static bool JoinChannelTarget(langHolder lh_holder)
         {
@@ -372,7 +371,7 @@ namespace RSI_X_Desktop
             options.autoSubscribeAudio = false;
             options.autoSubscribeVideo = false;
 
-            SetPublishAudioProfile();
+            SetPublishProfile();
             ERROR_CODE ret = m_channelTarget.JoinChannel(token, info, nUID, options);
 
             m_channelTargetJoin = (0 == ret);
@@ -392,9 +391,9 @@ namespace RSI_X_Desktop
         #region ChannelInterpreters
         public static void UpdateChannelRelayDict()
         {
-            foreach (var lg in room.GetTargetLangs) 
+            foreach (var lg in room.GetTargetLangs)
             {
-                if (lg.langFull == room.GetHostName) 
+                if (lg.langFull == room.GetHostName)
                 {
                     m_listChannels.Add(room.GetHostName, m_channelHost);
                     continue;
@@ -425,7 +424,7 @@ namespace RSI_X_Desktop
 
             return channel;
         }
-            public static AgoraRtcChannel JoinToDestChannelAsBroadcaster(string lpChannelName, string token, uint nUID, string info)
+        public static AgoraRtcChannel JoinToDestChannelAsBroadcaster(string lpChannelName, string token, uint nUID, string info)
         {
             ERROR_CODE ret;
 
@@ -445,7 +444,7 @@ namespace RSI_X_Desktop
         }
         public static void LeaveChannelsRelay()
         {
-            foreach(var channel in m_listChannels.Values)
+            foreach (var channel in m_listChannels.Values)
             {
                 channel?.Unpublish();
                 channel?.LeaveChannel();
@@ -471,7 +470,8 @@ namespace RSI_X_Desktop
 
             foreach (var lg in room.GetTargetLangs)
             {
-                if (langDest.Equals(lg)) {
+                if (langDest.Equals(lg))
+                {
                     m_listChannels[langDest.langFull].LeaveChannel();
                     m_listChannels[langDest.langFull].Dispose();
                     m_listChannels[langDest.langFull] = null;
@@ -484,31 +484,31 @@ namespace RSI_X_Desktop
                 m_channelTargetPublish = string.Empty;
             }
 
-            if (m_channelTranslPublish) 
+            if (m_channelTranslPublish)
             {
                 m_channelTransl.Unpublish();
                 m_channelTranslPublish = false;
             }
 
-            if (langDest.Equals(langHolder.Empty) == false) 
+            if (langDest.Equals(langHolder.Empty) == false)
             {
                 m_channelTargetPublish = langDest.langFull;
                 m_channelTarget = m_listChannels[langDest.langFull];
             }
 
-            switch (channel) 
+            switch (channel)
             {
                 case CHANNEL_TYPE.SRC:
                 case CHANNEL_TYPE.HOST:
                     break;
                 case CHANNEL_TYPE.TRANSL:
-                    if (m_channelTransl != null && m_channelTranslJoin) 
+                    if (m_channelTransl != null && m_channelTranslJoin)
                         ret = m_channelTransl.Publish();
 
                     m_channelTranslPublish = (0 == ret);
                     break;
                 case CHANNEL_TYPE.DEST:
-                    if (m_channelTarget != null) 
+                    if (m_channelTarget != null)
                         ret = m_channelTarget.Publish();
 
                     m_channelTargetPublish = langDest.langFull;
@@ -531,12 +531,12 @@ namespace RSI_X_Desktop
         internal static void UpdateTargRoom(string langFull)
         {
             if (langFull != string.Empty)
-                langFull = langFull.Remove(3,2);
+                langFull = langFull.Remove(3, 2);
 
             RoomTarg = langFull;
         }
 
-        public static void SendMessageToTransl(string msg) 
+        public static void SendMessageToTransl(string msg)
         {
             m_channelTransl.SendStreamMessage(_translStreamID, utf8enc.GetBytes(msg));
         }

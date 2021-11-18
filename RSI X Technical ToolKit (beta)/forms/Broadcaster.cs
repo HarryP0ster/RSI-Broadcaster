@@ -70,16 +70,14 @@ namespace RSI_X_Desktop
         {
             pictureBoxRemoteVideo.Refresh();
         }
-        private void Broadcaster_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            AgoraObject.LeaveChannel();
-            //Owner.Show();
-        }
         private void btnScreenShare_Click(object sender, EventArgs e)
         {
-            IsSharingScreen = !IsSharingScreen;
-
-            if (IsSharingScreen)
+            if (AgoraObject.IsLocalVideoMute) return;
+            enableScreenShare(!IsSharingScreen);
+        }
+        public void enableScreenShare(bool enable)
+        {
+            if (enable)
             {
                 AgoraObject.EnableScreenCapture();
                 labelScreenShare.ForeColor = Color.Red;
@@ -89,14 +87,7 @@ namespace RSI_X_Desktop
                 AgoraObject.Rtc.StopScreenCapture();
                 labelScreenShare.ForeColor = Color.White;
             }
-        }
-        private void CloseAppButton_Click(object sender, EventArgs e)
-        {
-            Owner.Close();
-        }
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            Owner.Close();
+            IsSharingScreen = !IsSharingScreen;
         }
 
         private void labelSettings_Click(object sender, EventArgs e)
@@ -211,6 +202,9 @@ namespace RSI_X_Desktop
             labelVideo.ForeColor = AgoraObject.IsLocalVideoMute ?
                 Color.White :
                 Color.Red;
+
+            if (AgoraObject.IsLocalVideoMute)
+                enableScreenShare(false);
         }
 
         private void labelChat_Click(object sender, EventArgs e)
@@ -263,11 +257,21 @@ namespace RSI_X_Desktop
             target.MinimumSize = size;
             target.Size = size;
         }
-
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Owner.Close();
+        }
         private void ResetButton_Click(object sender, EventArgs e)
         {
             Owner.Show();
             Close();
+        }
+        private void Broadcaster_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            enableScreenShare(false);
+            AgoraObject.Rtc.EnableLocalVideo(false);
+            AgoraObject.LeaveChannel();
+            GC.Collect();
         }
     }
 }
