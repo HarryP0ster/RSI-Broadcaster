@@ -33,6 +33,7 @@ namespace RSI_X_Desktop
             AgoraObject.Rtc.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
             AgoraObject.Rtc.EnableLocalVideo(true);
             AgoraObject.UpdateNickName("Host");
+            RoomNameLabel.Text = AgoraObject.GetComplexToken().GetRoomName;
 
             this.DoubleBuffered = true;
             var ret = AgoraObject.JoinChannel(
