@@ -28,6 +28,7 @@ namespace RSI_X_Desktop
         private void Conference_Load(object sender, EventArgs e)
         {
             AgoraObject.Rtc.EnableVideo();
+            AgoraObject.Rtc.EnableAudio();
             AgoraObject.Rtc.SetChannelProfile(CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING);
             AgoraObject.Rtc.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
             AgoraObject.Rtc.EnableLocalVideo(true);
@@ -269,8 +270,10 @@ namespace RSI_X_Desktop
         private void Broadcaster_FormClosed(object sender, FormClosedEventArgs e)
         {
             enableScreenShare(false);
-            AgoraObject.Rtc.EnableLocalVideo(false);
             AgoraObject.LeaveChannel();
+            AgoraObject.Rtc.EnableLocalVideo(false);
+            AgoraObject.Rtc.DisableVideo();
+            AgoraObject.Rtc.DisableAudio();
             GC.Collect();
         }
     }
