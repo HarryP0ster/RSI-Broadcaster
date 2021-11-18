@@ -170,6 +170,10 @@ namespace RSI_X_Desktop
             panel1.Hide();
             GC.Collect();
         }
+        public void RebuildChatPanel(Control panel)
+        {
+            chat.Chat_SizeChanged(panel, new EventArgs());
+        }
         public void DevicesClosed(Form Wnd) 
         {
             Wnd.Close();
@@ -178,12 +182,6 @@ namespace RSI_X_Desktop
             labelSettings.ForeColor = Color.White;
             GC.Collect();
         }
-        //private void trackBar1_ValueChanged()
-        //{
-        //    Devices.SetVolume(trackBar1.Value);
-        //    if (devices != null && devices.IsDisposed == false)
-        //        devices.UpdateSoundTrackBar();
-        //}
         public void SetTrackBarVolume(int volume)
         {
             trackBar1.Value = volume;
