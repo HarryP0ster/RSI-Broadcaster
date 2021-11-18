@@ -35,8 +35,8 @@ namespace RSI_X_Desktop.forms.HelpingClass
             Sender = new Label();
 
             Sender.Text = sender;
-            Sender.Dock = DockStyle.Top;
             Sender.AutoSize = true;
+            Sender.TextAlign = ContentAlignment.BottomLeft;
 
             Date = new Label();
 
@@ -54,15 +54,12 @@ namespace RSI_X_Desktop.forms.HelpingClass
 
                 for (int i = maxSymbol-1; i < text.Length; i += maxSymbol)
                 {
-                    labelR.Text = labelR.Text.Insert(i, "\n");
+                    labelR.Text = labelR.Text.Insert(i, " \n");
                 }
 
-                labelR.Location = new Point(0, Height - labelR.Height);
-                Sender.Location = new Point(0, labelR.Location.Y - Sender.Height);
-                Sender.TextAlign = ContentAlignment.BottomLeft;
                 labelR.Show();
-                Controls.Add(labelR);
                 Name = "Right";
+                Controls.Add(labelR, 0, 1);
             }
             else
             {
@@ -74,19 +71,15 @@ namespace RSI_X_Desktop.forms.HelpingClass
 
                 if (text.Length > 0) labelL.Text += text[0];
 
-                labelL.Text = text;
+                labelL.Text = text + " ";
 
                 for (int i = maxSymbol-1; i < text.Length; i += maxSymbol)
                 {
                     labelL.Text = labelL.Text.Insert(i, " \n");
                 }
-
-                labelL.Location = new Point(0, 0);
-                Sender.Location = new Point(0, 0);
-                Sender.TextAlign = ContentAlignment.BottomLeft;
                 labelL.Show();
-                Controls.Add(labelL, 0, 1);
                 Name = "Left";
+                Controls.Add(labelL, 0, 1);
             }
             Controls.Add(Sender, 0, 0);
         }

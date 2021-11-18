@@ -56,11 +56,11 @@ namespace RSI_X_Desktop.forms
             this.tabPageSupport.BackColor = System.Drawing.Color.White;
             this.tabPageSupport.Controls.Add(this.tableLayoutPanel5);
             this.tabPageSupport.ForeColor = System.Drawing.Color.Black;
-            this.tabPageSupport.Location = new System.Drawing.Point(35, 4);
+            this.tabPageSupport.Location = new System.Drawing.Point(47, 4);
             this.tabPageSupport.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.tabPageSupport.Name = "tabPageSupport";
             this.tabPageSupport.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.tabPageSupport.Size = new System.Drawing.Size(581, 893);
+            this.tabPageSupport.Size = new System.Drawing.Size(569, 856);
             this.tabPageSupport.TabIndex = 3;
             this.tabPageSupport.Text = "Tech Support";
             // 
@@ -77,7 +77,7 @@ namespace RSI_X_Desktop.forms
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(569, 883);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(557, 846);
             this.tableLayoutPanel5.TabIndex = 6;
             // 
             // tableLayoutPanel6
@@ -88,12 +88,12 @@ namespace RSI_X_Desktop.forms
             this.tableLayoutPanel6.Controls.Add(this.chatButtonRight3, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.bigTextBox3, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(6, 799);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(6, 766);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(557, 79);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(545, 75);
             this.tableLayoutPanel6.TabIndex = 4;
             // 
             // chatButtonRight3
@@ -108,14 +108,14 @@ namespace RSI_X_Desktop.forms
             this.chatButtonRight3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.chatButtonRight3.InactiveColorA = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(231)))));
             this.chatButtonRight3.InactiveColorB = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(224)))));
-            this.chatButtonRight3.Location = new System.Drawing.Point(453, 21);
+            this.chatButtonRight3.Location = new System.Drawing.Point(444, 21);
             this.chatButtonRight3.Margin = new System.Windows.Forms.Padding(8, 21, 8, 5);
             this.chatButtonRight3.Name = "chatButtonRight3";
             this.chatButtonRight3.PressedColorA = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(176)))));
             this.chatButtonRight3.PressedColorB = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(149)))), ((int)(((byte)(222)))));
             this.chatButtonRight3.PressedContourColorA = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(176)))));
             this.chatButtonRight3.PressedContourColorB = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(176)))));
-            this.chatButtonRight3.Size = new System.Drawing.Size(96, 46);
+            this.chatButtonRight3.Size = new System.Drawing.Size(93, 46);
             this.chatButtonRight3.TabIndex = 2;
             this.chatButtonRight3.Text = "Send";
             this.chatButtonRight3.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -134,7 +134,7 @@ namespace RSI_X_Desktop.forms
             this.bigTextBox3.Multiline = false;
             this.bigTextBox3.Name = "bigTextBox3";
             this.bigTextBox3.ReadOnly = false;
-            this.bigTextBox3.Size = new System.Drawing.Size(433, 41);
+            this.bigTextBox3.Size = new System.Drawing.Size(424, 50);
             this.bigTextBox3.TabIndex = 0;
             this.bigTextBox3.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
             this.bigTextBox3.UseSystemPasswordChar = false;
@@ -149,7 +149,7 @@ namespace RSI_X_Desktop.forms
             this.PSupport.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.PSupport.Name = "PSupport";
             this.PSupport.Padding = new System.Windows.Forms.Padding(8, 9, 8, 9);
-            this.PSupport.Size = new System.Drawing.Size(557, 784);
+            this.PSupport.Size = new System.Drawing.Size(545, 751);
             this.PSupport.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.PSupport.TabIndex = 3;
             this.PSupport.Text = "panel3";
@@ -159,11 +159,11 @@ namespace RSI_X_Desktop.forms
             this.tabPageGeneral.BackColor = System.Drawing.Color.White;
             this.tabPageGeneral.Controls.Add(this.tableLayoutPanel3);
             this.tabPageGeneral.ForeColor = System.Drawing.Color.Black;
-            this.tabPageGeneral.Location = new System.Drawing.Point(35, 4);
+            this.tabPageGeneral.Location = new System.Drawing.Point(47, 4);
             this.tabPageGeneral.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.tabPageGeneral.Name = "tabPageGeneral";
             this.tabPageGeneral.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.tabPageGeneral.Size = new System.Drawing.Size(581, 893);
+            this.tabPageGeneral.Size = new System.Drawing.Size(569, 856);
             this.tabPageGeneral.TabIndex = 2;
             this.tabPageGeneral.Text = "Group chat";
             // 
@@ -180,7 +180,7 @@ namespace RSI_X_Desktop.forms
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(569, 883);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(557, 846);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
             // tableLayoutPanel4
@@ -191,12 +191,12 @@ namespace RSI_X_Desktop.forms
             this.tableLayoutPanel4.Controls.Add(this.chatButtonRight2, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.bigTextBox2, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(6, 799);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(6, 766);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(557, 79);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(545, 75);
             this.tableLayoutPanel4.TabIndex = 4;
             // 
             // chatButtonRight2
@@ -211,14 +211,14 @@ namespace RSI_X_Desktop.forms
             this.chatButtonRight2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.chatButtonRight2.InactiveColorA = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(231)))));
             this.chatButtonRight2.InactiveColorB = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(224)))));
-            this.chatButtonRight2.Location = new System.Drawing.Point(453, 21);
+            this.chatButtonRight2.Location = new System.Drawing.Point(444, 21);
             this.chatButtonRight2.Margin = new System.Windows.Forms.Padding(8, 21, 8, 5);
             this.chatButtonRight2.Name = "chatButtonRight2";
             this.chatButtonRight2.PressedColorA = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(176)))));
             this.chatButtonRight2.PressedColorB = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(149)))), ((int)(((byte)(222)))));
             this.chatButtonRight2.PressedContourColorA = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(176)))));
             this.chatButtonRight2.PressedContourColorB = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(176)))));
-            this.chatButtonRight2.Size = new System.Drawing.Size(96, 46);
+            this.chatButtonRight2.Size = new System.Drawing.Size(93, 46);
             this.chatButtonRight2.TabIndex = 2;
             this.chatButtonRight2.Text = "Send";
             this.chatButtonRight2.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -237,7 +237,7 @@ namespace RSI_X_Desktop.forms
             this.bigTextBox2.Multiline = false;
             this.bigTextBox2.Name = "bigTextBox2";
             this.bigTextBox2.ReadOnly = false;
-            this.bigTextBox2.Size = new System.Drawing.Size(433, 41);
+            this.bigTextBox2.Size = new System.Drawing.Size(424, 50);
             this.bigTextBox2.TabIndex = 0;
             this.bigTextBox2.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
             this.bigTextBox2.UseSystemPasswordChar = false;
@@ -252,7 +252,7 @@ namespace RSI_X_Desktop.forms
             this.PGeneral.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.PGeneral.Name = "PGeneral";
             this.PGeneral.Padding = new System.Windows.Forms.Padding(8, 9, 8, 9);
-            this.PGeneral.Size = new System.Drawing.Size(557, 784);
+            this.PGeneral.Size = new System.Drawing.Size(545, 751);
             this.PGeneral.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.PGeneral.TabIndex = 3;
             this.PGeneral.Text = "panel2";
@@ -272,13 +272,13 @@ namespace RSI_X_Desktop.forms
             this.materialShowTabControl1.Multiline = true;
             this.materialShowTabControl1.Name = "materialShowTabControl1";
             this.materialShowTabControl1.SelectedIndex = 0;
-            this.materialShowTabControl1.Size = new System.Drawing.Size(620, 901);
+            this.materialShowTabControl1.Size = new System.Drawing.Size(620, 864);
             this.materialShowTabControl1.TabIndex = 5;
             // 
             // ChatWnd
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(620, 901);
+            this.ClientSize = new System.Drawing.Size(620, 864);
             this.Controls.Add(this.materialShowTabControl1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
