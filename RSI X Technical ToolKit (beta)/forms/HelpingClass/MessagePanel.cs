@@ -11,7 +11,7 @@ using ReaLTaiizor.Controls;
 
 namespace RSI_X_Desktop.forms.HelpingClass
 {
-    public partial class MessagePanelL : System.Windows.Forms.Panel
+    public partial class MessagePanelL : System.Windows.Forms.TableLayoutPanel
     {
         public const string MyOwn = "Me";
         const int maxSymbol = 25;
@@ -30,12 +30,16 @@ namespace RSI_X_Desktop.forms.HelpingClass
         {
             Owner = owner;
             this.AutoSize = true;
-            Height = 65;
             Width = 10;
-            Sender = new Label(); 
+            Height = 65;
+            Sender = new Label();
+
+            Sender.Text = sender;
+            Sender.Dock = DockStyle.Top;
+            Sender.AutoSize = true;
+
             Date = new Label();
 
-            //if (text == null) return;
             if (sender == MyOwn)
             {
                 labelR = new ChatBubbleRight();
@@ -74,18 +78,17 @@ namespace RSI_X_Desktop.forms.HelpingClass
 
                 for (int i = maxSymbol-1; i < text.Length; i += maxSymbol)
                 {
-                        labelL.Text = labelL.Text.Insert(i, "\n");
+                    labelL.Text = labelL.Text.Insert(i, " \n");
                 }
 
-                labelL.Location = new Point(0, Height - labelL.Height);
-                Sender.Location = new Point(0, labelL.Location.Y- Sender.Height);
+                labelL.Location = new Point(0, 0);
+                Sender.Location = new Point(0, 0);
                 Sender.TextAlign = ContentAlignment.BottomLeft;
                 labelL.Show();
-                Controls.Add(labelL);
+                Controls.Add(labelL, 0, 1);
                 Name = "Left";
             }
-            Sender.Text = sender;
-            Controls.Add(Sender);
+            Controls.Add(Sender, 0, 0);
         }
 
         public void Bubble_SizeChanged(object sender, EventArgs e)
