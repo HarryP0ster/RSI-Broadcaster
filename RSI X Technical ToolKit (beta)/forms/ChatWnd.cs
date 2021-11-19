@@ -68,11 +68,15 @@ namespace RSI_X_Desktop.forms
             {
                 if (scroll_offset[materialShowTabControl1.SelectedIndex] + 1 < messages_list[materialShowTabControl1.SelectedIndex].Count)
                     scroll_offset[materialShowTabControl1.SelectedIndex]++;
+                else
+                    return;
             }
             else
             {
                 if (scroll_offset[materialShowTabControl1.SelectedIndex] - 1 >= 0)
                     scroll_offset[materialShowTabControl1.SelectedIndex]--;
+                else
+                    return;
             }
             switch (materialShowTabControl1.SelectedIndex)
             {
@@ -208,6 +212,7 @@ namespace RSI_X_Desktop.forms
         internal void Chat_SizeChanged(object sender, EventArgs e) //Actually Updates chat wnd
         {
             Control prev_ctr = null;
+            
             ((Control)sender).Controls.Clear();
 
             int ind;
@@ -219,7 +224,7 @@ namespace RSI_X_Desktop.forms
                 return;
 
             var controls = messages_list[ind].ToArray();
-
+            
             for (int i = messages_list[ind].Count - 1 - scroll_offset[ind]; i >= 0; i--)
             {
                 if (prev_ctr != null)
@@ -228,6 +233,12 @@ namespace RSI_X_Desktop.forms
                     controls[i].Location = new Point(controls[i].Location.X, ((Control)sender).Height - controls[i].Height);
                 prev_ctr = controls[i];
                 ((Control)sender).Controls.Add(controls[i]);
+                Region reg = new Region(new System.Drawing.Rectangle(0,controls[i].Location.Y, controls[i].Width, controls[i].Height));
+                if (reg != null)
+                {
+                    Invalidate(reg);
+                    (((Control)sender)).Update();
+                }
             }
         }
 
@@ -237,6 +248,42 @@ namespace RSI_X_Desktop.forms
             chatButtonRight2.Visible = state;
             bigTextBox3.Visible = state;
             chatButtonRight3.Visible = state;
+        }
+
+        private void toTheESP_Click(object sender, EventArgs e)
+        {
+            if (scroll_offset[1] != 0)
+            {
+                scroll_offset[1] = 0;
+                Chat_SizeChanged(PSupport, new EventArgs());
+            }
+        }
+
+        private void toTheBSP_Click(object sender, EventArgs e)
+        {
+            if (scroll_offset[1] != messages_list[1].Count - 1)
+            {
+                scroll_offset[1] = messages_list[1].Count - 1;
+                Chat_SizeChanged(PSupport, new EventArgs());
+            }
+        }
+
+        private void skyButton1_Click(object sender, EventArgs e)
+        {
+            if (scroll_offset[0] != messages_list[0].Count - 1)
+            {
+                scroll_offset[0] = messages_list[0].Count - 1;
+                Chat_SizeChanged(PGeneral, new EventArgs());
+            }
+        }
+
+        private void skyButton2_Click(object sender, EventArgs e)
+        {
+            if (scroll_offset[0] != 0)
+            {
+                scroll_offset[0] = 0;
+                Chat_SizeChanged(PGeneral, new EventArgs());
+            }
         }
     }
 }
