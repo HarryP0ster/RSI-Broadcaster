@@ -63,7 +63,16 @@ namespace RSI_X_Desktop
         internal static AGChannelEventHandler targetHandler;
         private static IFormHostHolder workForm;
 
-        public static IFormHostHolder GetWorkForm { get => workForm; }
+        public static IFormHostHolder GetWorkForm
+        {
+            get
+            {
+                return (workForm == null || (workForm as Form).IsDisposed) ?
+                    null :
+                    workForm;
+            }
+        }
+
         public static bool m_channelSrcJoin { get; private set; } = false;
         public static bool m_channelTranslJoin { get; private set; } = false;
         public static bool m_channelHostJoin { get; private set; } = false;
