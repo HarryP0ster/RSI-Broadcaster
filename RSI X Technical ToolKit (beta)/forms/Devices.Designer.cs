@@ -52,8 +52,8 @@ namespace RSI_X_Desktop.forms
             this.Video = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.BAcceptVideo = new ReaLTaiizor.Controls.Button();
             this.BCloseVideo = new ReaLTaiizor.Controls.Button();
+            this.BAcceptVideo = new ReaLTaiizor.Controls.Button();
             this.pictureBoxLocalVideoTest = new ReaLTaiizor.Controls.HopePictureBox();
             this.comboBoxVideo = new ReaLTaiizor.Controls.AloneComboBox();
             this.button6 = new ReaLTaiizor.Controls.Button();
@@ -336,6 +336,7 @@ namespace RSI_X_Desktop.forms
             this.trackBarSoundOut.Value = 100;
             this.trackBarSoundOut.ValueDivison = ReaLTaiizor.Controls.DungeonTrackBar.ValueDivisor.By100;
             this.trackBarSoundOut.ValueToSet = 1F;
+            this.trackBarSoundOut.Visible = false;
             // 
             // Dynamic
             // 
@@ -349,6 +350,7 @@ namespace RSI_X_Desktop.forms
             this.Dynamic.Size = new System.Drawing.Size(62, 20);
             this.Dynamic.TabIndex = 5;
             this.Dynamic.Text = "Speaker";
+            this.Dynamic.Visible = false;
             // 
             // comboBoxAudioOutput
             // 
@@ -364,6 +366,7 @@ namespace RSI_X_Desktop.forms
             this.comboBoxAudioOutput.Name = "comboBoxAudioOutput";
             this.comboBoxAudioOutput.Size = new System.Drawing.Size(344, 26);
             this.comboBoxAudioOutput.TabIndex = 0;
+            this.comboBoxAudioOutput.Visible = false;
             this.comboBoxAudioOutput.SelectedIndexChanged += new System.EventHandler(this.comboBoxAudioOutput_SelectedIndexChanged);
             // 
             // tableLayoutPanel2
@@ -467,26 +470,6 @@ namespace RSI_X_Desktop.forms
             this.tableLayoutPanel4.Size = new System.Drawing.Size(200, 54);
             this.tableLayoutPanel4.TabIndex = 8;
             // 
-            // BAcceptVideo
-            // 
-            this.BAcceptVideo.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.BAcceptVideo.BackColor = System.Drawing.Color.Transparent;
-            this.BAcceptVideo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BAcceptVideo.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.BAcceptVideo.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BAcceptVideo.Image = null;
-            this.BAcceptVideo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BAcceptVideo.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.BAcceptVideo.Location = new System.Drawing.Point(17, 9);
-            this.BAcceptVideo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.BAcceptVideo.Name = "BAcceptVideo";
-            this.BAcceptVideo.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.BAcceptVideo.Size = new System.Drawing.Size(80, 28);
-            this.BAcceptVideo.TabIndex = 3;
-            this.BAcceptVideo.Text = "Accept";
-            this.BAcceptVideo.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.BAcceptVideo.Click += new System.EventHandler(this.AcceptButton_Click);
-            // 
             // BCloseVideo
             // 
             this.BCloseVideo.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -506,6 +489,26 @@ namespace RSI_X_Desktop.forms
             this.BCloseVideo.Text = "Close";
             this.BCloseVideo.TextAlignment = System.Drawing.StringAlignment.Center;
             this.BCloseVideo.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
+            // BAcceptVideo
+            // 
+            this.BAcceptVideo.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.BAcceptVideo.BackColor = System.Drawing.Color.Transparent;
+            this.BAcceptVideo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BAcceptVideo.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.BAcceptVideo.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BAcceptVideo.Image = null;
+            this.BAcceptVideo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BAcceptVideo.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.BAcceptVideo.Location = new System.Drawing.Point(17, 9);
+            this.BAcceptVideo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.BAcceptVideo.Name = "BAcceptVideo";
+            this.BAcceptVideo.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            this.BAcceptVideo.Size = new System.Drawing.Size(80, 28);
+            this.BAcceptVideo.TabIndex = 3;
+            this.BAcceptVideo.Text = "Accept";
+            this.BAcceptVideo.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.BAcceptVideo.Click += new System.EventHandler(this.AcceptButton_Click);
             // 
             // pictureBoxLocalVideoTest
             // 
