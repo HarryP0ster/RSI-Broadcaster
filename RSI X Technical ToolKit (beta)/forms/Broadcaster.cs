@@ -275,6 +275,7 @@ namespace RSI_X_Desktop
             AgoraObject.Rtc.EnableLocalVideo(false);
             AgoraObject.Rtc.DisableVideo();
             AgoraObject.Rtc.DisableAudio();
+            if (!Owner.Visible) Application.Exit();
             GC.Collect();
         }
     }
