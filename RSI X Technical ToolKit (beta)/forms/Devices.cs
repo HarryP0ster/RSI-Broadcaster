@@ -23,9 +23,9 @@ namespace RSI_X_Desktop.forms
         //public int Volume { get => volume; }
 
         private IFormHostHolder workForm = AgoraObject.GetWorkForm;
-        private AgoraAudioRecordingDeviceManager RecordersManager;
-        private AgoraAudioPlaybackDeviceManager audioOutDeviceManager;
-        private AgoraVideoDeviceManager videoDeviceManager;
+        static private AgoraAudioRecordingDeviceManager RecordersManager;
+        static private AgoraAudioPlaybackDeviceManager SpeakersManager;
+        static private AgoraVideoDeviceManager videoDeviceManager;
         static List<string> Recorders;
         static List<string> VideoOut;
 
@@ -42,7 +42,7 @@ namespace RSI_X_Desktop.forms
         {
 
             RecordersManager    = AgoraObject.Rtc.CreateAudioRecordingDeviceManager();
-            audioOutDeviceManager   = AgoraObject.Rtc.CreateAudioPlaybackDeviceManager();
+            SpeakersManager   = AgoraObject.Rtc.CreateAudioPlaybackDeviceManager();
             videoDeviceManager      = AgoraObject.Rtc.CreateVideoDeviceManager();
 
             oldVolumeIn = RecordersManager.GetDeviceVolume();
@@ -58,11 +58,21 @@ namespace RSI_X_Desktop.forms
         }
         private void UpdateComboBoxRecorder()
         {
+            Recorders = getListAudioInputDevices();
             bool hasOldRecorder = Recorders.Any((s) => s == oldRecorder);
 
-            int index = (oldRecorder != null) ?
+            int index = (oldRecorder != null && hasOldRecorder) ?
                 Recorders.FindLastIndex((s) => s == oldRecorder) :
-                index = getActiveAudioInputDevice();
+                getActiveAudioInputDevice();
+
+            if (index == -1)
+                index = Recorders.Count > 0 ? 0 : -1;
+
+            if (index == -1 || Recorders.Count == 0)
+            {
+                comboBoxAudioInput.DataSource = new List<string> { "Record Devices Error" };
+                return;
+            }
 
             oldRecorder = Recorders[index];
 
@@ -71,11 +81,22 @@ namespace RSI_X_Desktop.forms
         }
         private void UpdateComboBoxVideoOut()
         {
+            VideoOut = getListVideoDevices();
             bool hasoldVideoOut = VideoOut.Any((s) => s == oldVideoOut);
 
             int index = (oldVideoOut != null) ?
                 VideoOut.FindLastIndex((s) => s == oldVideoOut) :
-                index = getActiveVideoDevice();
+                getActiveVideoDevice();
+
+            if (index == -1)
+                index = VideoOut.Count > 0 ? 0 : -1;
+
+            if (index == -1 || VideoOut.Count == 0)
+            {
+                comboBoxVideo.DataSource = new List<string> { "Video Devices Error" };
+                return;
+            }
+
 
             oldVideoOut = VideoOut[index];
             comboBoxVideo.DataSource = VideoOut;
@@ -122,11 +143,11 @@ namespace RSI_X_Desktop.forms
         {
             int id = -1;
 
-            audioOutDeviceManager.GetCurrentDeviceInfo(out string idAcvite, out string nameAcitve);
+            SpeakersManager.GetCurrentDeviceInfo(out string idAcvite, out string nameAcitve);
 
-            for (int i = 0; i < audioOutDeviceManager.GetDeviceCount(); i++)
+            for (int i = 0; i < SpeakersManager.GetDeviceCount(); i++)
             {
-                var ret = audioOutDeviceManager.GetDeviceInfoByIndex(i, out string name, out string deviceid);
+                var ret = SpeakersManager.GetDeviceInfoByIndex(i, out string name, out string deviceid);
                 if (idAcvite == deviceid)
                 {
                     id = i;
@@ -177,11 +198,11 @@ namespace RSI_X_Desktop.forms
         {
             List<string> devicesOut = new();
 
-            for (int i = 0; i < audioOutDeviceManager.GetDeviceCount(); i++)
+            for (int i = 0; i < SpeakersManager.GetDeviceCount(); i++)
             {
                 string device, id;
 
-                var ret = audioOutDeviceManager.GetDeviceInfoByIndex(i, out device, out id);
+                var ret = SpeakersManager.GetDeviceInfoByIndex(i, out device, out id);
 
                 if (ret == ERROR_CODE.ERR_OK)
                     devicesOut.Add(device);
@@ -215,7 +236,7 @@ namespace RSI_X_Desktop.forms
             string name, id;
 
             RecordersManager.GetDeviceInfoByIndex(ind, out name, out id);
-            //audioInDeviceManager.SetCurrentDevice(id);
+            RecordersManager.SetCurrentDevice(id);
         }
 
         private void comboBoxAudioOutput_SelectedIndexChanged(object sender, EventArgs e)
@@ -223,8 +244,8 @@ namespace RSI_X_Desktop.forms
             int ind = ((ComboBox)sender).SelectedIndex;
             string name, id;
 
-            audioOutDeviceManager.GetDeviceInfoByIndex(ind, out name, out id);
-            //audioOutDeviceManager.SetCurrentDevice(id);
+            SpeakersManager.GetDeviceInfoByIndex(ind, out name, out id);
+            SpeakersManager.SetCurrentDevice(id);
         }
 
         private void comboBoxVideo_SelectedIndexChanged(object sender, EventArgs e)
@@ -279,11 +300,26 @@ namespace RSI_X_Desktop.forms
             trackBarSoundIn.Value = oldVolumeIn;
             trackBarSoundIn_ValueChanged();
 
-            RecordersManager.SetCurrentDevice(oldRecorder);
-            videoDeviceManager.SetCurrentDevice(oldVideoOut);
+            AcceptNewVideoRecDevice();
+            AcceptNewRecordDevice();
 
             AgoraObject.GetWorkForm?.DevicesClosed(this);
             Close();
+        }
+        private static void AcceptNewVideoRecDevice()
+        {
+            videoDeviceManager.GetDeviceInfoByIndex(
+                VideoOut.FindLastIndex((s) => s == oldVideoOut),
+                out string _, out string videoID);
+            videoDeviceManager.SetCurrentDevice(videoID);
+        }
+
+        private static void AcceptNewRecordDevice()
+        {
+            RecordersManager.GetDeviceInfoByIndex(
+                                Recorders.FindLastIndex((s) => s == oldRecorder),
+                                out string _, out string recID);
+            RecordersManager.SetCurrentDevice(recID);
         }
         public void typeOfAlligment(bool sign)
         {
