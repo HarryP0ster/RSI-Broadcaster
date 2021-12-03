@@ -107,5 +107,11 @@ namespace RSI_X_Desktop.forms
         {
             NewTextBox.SelectionStart = 0;
         }
+
+        private void NewTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                JoinButton_Click(JoinButton, new());
+        }
     }
 }
