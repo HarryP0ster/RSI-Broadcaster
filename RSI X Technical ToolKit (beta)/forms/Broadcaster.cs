@@ -59,7 +59,6 @@ namespace RSI_X_Desktop
         }
         public void SetLocalVideoPreview()
         {
-            AgoraObject.Rtc.EnableLocalVideo(true);
             pictureBoxRemoteVideo.Refresh();
 
             var canv = new VideoCanvas((ulong)LocalWinId, 0);
