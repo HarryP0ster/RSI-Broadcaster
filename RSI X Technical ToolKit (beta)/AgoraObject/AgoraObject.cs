@@ -25,7 +25,7 @@ namespace RSI_X_Desktop
         public static bool IsJoin { get; private set; }
         public static bool IsLocalAudioMute { get; private set; }
         public static bool IsLocalVideoMute { get; private set; }
-
+        public static bool IsScreenCapture { get; private set; } = false;
         public static bool IsAllRemoteAudioMute { get; private set; }
         public static bool IsAllRemoteVideoMute { get; private set; }
 
@@ -90,6 +90,7 @@ namespace RSI_X_Desktop
         {
             Rtc = AgoraRtcEngine.CreateRtcEngine();
             Rtc.Initialize(new RtcEngineContext(AppID));
+            forms.Devices.InitManager();
 
             SetPublishProfile();
         }
@@ -190,19 +191,6 @@ namespace RSI_X_Desktop
         }
 
         #region Screen/Window capture
-        public static bool EnableScreenCapture()
-        {
-            int wdth = Screen.PrimaryScreen.Bounds.Width;
-            int hgt = Screen.PrimaryScreen.Bounds.Height;
-            ScreenCaptureParameters capParam = new ScreenCaptureParameters(wdth, hgt);
-            Rectangle region = new Rectangle();
-            region.width = wdth;
-            region.height = hgt;
-            capParam.bitrate = 1200;
-            capParam.frameRate = 30;
-            Rtc.StartScreenCaptureByScreenRect(region, region, capParam);
-            return true;
-        }
         public static bool EnableWindowCapture(HWND index)
         {
             Rectangle region = new Rectangle();
@@ -220,12 +208,36 @@ namespace RSI_X_Desktop
             Rtc.StartScreenCaptureByWindowId((ulong)index, region, capParam);
             return true;
         }
+        public static bool EnableScreenCapture(ScreenCaptureParameters capParam = new())
+        {
+            StopScreenCapture();
+            if (capParam.bitrate == 0)
+                capParam = forms.Devices.resolutionsSize[
+                    forms.Devices.oldResolution];
+            Rectangle region = new Rectangle();
+
+            region.width = Screen.PrimaryScreen.Bounds.Width;
+            region.height = Screen.PrimaryScreen.Bounds.Height;
+            capParam.bitrate = 1200;
+            capParam.frameRate = 15;
+
+            IsScreenCapture =
+                ERROR_CODE.ERR_OK == Rtc.StartScreenCaptureByScreenRect(region, region, capParam);
+
+            System.Diagnostics.Debug.WriteLine($"{DateTime.Now.ToString("HH:mm:ss")}: screen sharing enable ({IsScreenCapture})");
+            return IsScreenCapture;
+        }
+        public static void StopScreenCapture()
+        {
+            Rtc.StopScreenCapture();
+            IsScreenCapture = false;
+        }
         #endregion
 
         #region Engine channel
         static public ERROR_CODE JoinChannel(string chName, string token)
         {
-            ERROR_CODE res = Rtc.JoinChannelWithUserAccount(token, chName, "Host");
+            ERROR_CODE res = Rtc.JoinChannelWithUserAccount(token, chName, NickCenter.ToHostNick(""));
 
             if (res == ERROR_CODE.ERR_OK)
                 IsJoin = true;

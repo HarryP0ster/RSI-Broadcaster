@@ -17,10 +17,26 @@ namespace RSI_X_Desktop.forms
 {
     public partial class Devices : Form
     {
-        //[DllImport("winmm.dll")]
-        //public static extern int waveOutSetVolume(IntPtr hwo, uint dwVolume); //Контроль громкости
-        //private static int volume = 100;
-        //public int Volume { get => volume; }
+        public static readonly Dictionary<string, VIDEO_PROFILE_TYPE> resolutions = new()
+        {
+            [" 160 * 120 "] = VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_120P,
+            [" 320 * 180 "] = VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_180P,
+            [" 320 * 240 "] = VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_240P,
+            [" 640 * 360 "] = VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_360P,
+            [" 640 * 480 "] = VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_480P,
+            ["1280 * 720 "] = VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_720P,
+            ["1920 * 1080"] = VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_1080P,
+        };
+        public static readonly Dictionary<string, ScreenCaptureParameters> resolutionsSize = new()
+        {
+            [" 160 * 120 "] = new(120, 160) { bitrate = 65, frameRate = 15 },
+            [" 320 * 180 "] = new(180, 320) { bitrate = 140, frameRate = 15 },
+            [" 320 * 240 "] = new(240, 240) { bitrate = 200, frameRate = 15 },
+            [" 640 * 360 "] = new(360, 360) { bitrate = 400, frameRate = 15 },
+            [" 640 * 480 "] = new(480, 480) { bitrate = 500, frameRate = 15 },
+            ["1280 * 720 "] = new(960, 720) { bitrate = 1130, frameRate = 15 },
+            ["1920 * 1080"] = new(1920, 1080) { bitrate = 2080, frameRate = 15 },
+        };
 
         private IFormHostHolder workForm = AgoraObject.GetWorkForm;
         static private AgoraAudioRecordingDeviceManager RecordersManager;
@@ -32,18 +48,35 @@ namespace RSI_X_Desktop.forms
         private static int oldVolumeIn;
         private static string oldRecorder;
         private static string oldVideoOut;
+        public static string oldResolution { get; private set; }
+        private static int oldIndexResolution = 6; //1080p
 
         public Devices()
         {
             InitializeComponent();
         }
+        public static void InitManager()
+        {
+            RecordersManager = AgoraObject.Rtc.CreateAudioRecordingDeviceManager();
+            SpeakersManager = AgoraObject.Rtc.CreateAudioPlaybackDeviceManager();
+            videoDeviceManager = AgoraObject.Rtc.CreateVideoDeviceManager();
 
+            Recorders = getListAudioInputDevices();
+            VideoOut = getListVideoDevices();
+
+            bool hasOldRecorder = Recorders.Any((s) => s == oldRecorder);
+
+            int index = (oldRecorder != null) ?
+                Recorders.FindLastIndex((s) => s == oldRecorder) :
+                index = getActiveAudioInputDevice();
+
+            oldRecorder = Recorders[index];
+
+            oldResolution = resolutions.Keys.ToArray()[oldIndexResolution];
+            UpdateResolution(oldResolution);
+        }
         private void NewDevices_Load(object sender, EventArgs e)
         {
-
-            RecordersManager    = AgoraObject.Rtc.CreateAudioRecordingDeviceManager();
-            SpeakersManager   = AgoraObject.Rtc.CreateAudioPlaybackDeviceManager();
-            videoDeviceManager      = AgoraObject.Rtc.CreateVideoDeviceManager();
 
             oldVolumeIn = RecordersManager.GetDeviceVolume();
             trackBarSoundIn.Value = oldVolumeIn;
@@ -55,6 +88,9 @@ namespace RSI_X_Desktop.forms
             UpdateComboBoxVideoOut();
             
             getComputerDescription();
+
+            ComboBoxRes.DataSource = new List<string>(resolutions.Keys);
+            ComboBoxRes.SelectedIndex = oldIndexResolution;
         }
         private void UpdateComboBoxRecorder()
         {
@@ -120,7 +156,7 @@ namespace RSI_X_Desktop.forms
 
         }
 
-        private int getActiveAudioInputDevice()
+        private static int getActiveAudioInputDevice()
         {
             int id = -1;
 
@@ -178,7 +214,7 @@ namespace RSI_X_Desktop.forms
         }
 
         #region getDevicesList
-        private List<string> getListAudioInputDevices()
+        private static List<string> getListAudioInputDevices()
         {
             List<string> devicesOut = new();
 
@@ -194,7 +230,7 @@ namespace RSI_X_Desktop.forms
             return devicesOut;
         }
 
-        private List<string> getListAudioOutDevices()
+        private static List<string> getListAudioOutDevices()
         {
             List<string> devicesOut = new();
 
@@ -211,7 +247,7 @@ namespace RSI_X_Desktop.forms
             return devicesOut;
         }
 
-        private List<string> getListVideoDevices()
+        private static List<string> getListVideoDevices()
         {
             List<string> devicesOut = new();
 
@@ -258,10 +294,24 @@ namespace RSI_X_Desktop.forms
 
             workForm.RefreshLocalWnd();
         }
+        private void ComboBoxRes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var res = ComboBoxRes.SelectedValue;
+            UpdateResolution(res.ToString());
 
-
+            pictureBoxLocalVideoTest.Refresh();
+        }
         #endregion
 
+        private static void UpdateResolution(string res)
+        {
+            AgoraObject.Rtc.SetVideoProfile(resolutions[res], false);
+            System.Diagnostics.Debug.WriteLine($"{DateTime.Now.ToString("HH:mm:ss")}: select resolution: {res}");
+
+            if (AgoraObject.IsScreenCapture)
+                AgoraObject.EnableScreenCapture(resolutionsSize[res]);
+
+        }
         private void NewDevices_FormClosed(object sender, FormClosedEventArgs e)
         {
             //AgoraObject.Rtc.EnableLocalVideo(false);
@@ -291,6 +341,8 @@ namespace RSI_X_Desktop.forms
             oldRecorder = Recorders[comboBoxAudioInput.SelectedIndex];
             oldVideoOut = VideoOut[comboBoxVideo.SelectedIndex];
             oldVolumeIn = trackBarSoundIn.Value;
+            oldResolution = ComboBoxRes.SelectedValue.ToString();
+            oldIndexResolution = ComboBoxRes.SelectedIndex;
 
             CloseButton_Click(sender, e);
         }
@@ -300,11 +352,28 @@ namespace RSI_X_Desktop.forms
             trackBarSoundIn.Value = oldVolumeIn;
             trackBarSoundIn_ValueChanged();
 
-            AcceptNewVideoRecDevice();
-            AcceptNewRecordDevice();
+            AcceptAllOldDevices();
 
             AgoraObject.GetWorkForm?.DevicesClosed(this);
             Close();
+        }
+        public static void AcceptAllOldDevices()
+        {
+            try
+            {
+                AcceptNewRecordDevice();
+                AcceptNewVideoRecDevice();
+                AcceptNewResolution();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private static void AcceptNewResolution()
+        {
+            UpdateResolution(oldResolution);
         }
         private static void AcceptNewVideoRecDevice()
         {
@@ -340,13 +409,18 @@ namespace RSI_X_Desktop.forms
                 AgoraObject.Rtc.SetupLocalVideo(vc);
             }
         }
-
         private void materialShowTabControl1_Deselecting(object sender, TabControlCancelEventArgs e)
         {
             if (e.TabPage == Video)
-            {
                 workForm?.SetLocalVideoPreview();
-            }
+        }
+        public static void Clear()
+        {
+            oldVolumeIn = 100;
+            oldRecorder = null;
+            oldVideoOut = null;
+            oldResolution = null;
+            oldIndexResolution = 3; //360p        
         }
     }
 }

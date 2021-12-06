@@ -86,7 +86,7 @@ namespace RSI_X_Desktop
             }
             else
             {
-                AgoraObject.Rtc.StopScreenCapture();
+                AgoraObject.StopScreenCapture();
                 labelScreenShare.ForeColor = Color.White;
             }
             IsSharingScreen = !IsSharingScreen;
@@ -276,6 +276,8 @@ namespace RSI_X_Desktop
             AgoraObject.Rtc.DisableVideo();
             AgoraObject.Rtc.DisableAudio();
             if (!Owner.Visible) Application.Exit();
+
+            Devices.Clear();
             GC.Collect();
         }
     }
