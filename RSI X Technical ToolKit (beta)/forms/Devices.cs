@@ -378,7 +378,8 @@ namespace RSI_X_Desktop.forms
 
         private void trackBarSoundOut_ValueChanged()
         {
-            SetVolume(trackBarSoundOut.Value);
+            //SetVolume(trackBarSoundOut.Value);
+            Bass.BASS_ChannelSetAttribute(output, BASSAttribute.BASS_ATTRIB_VOL, (float)trackBarSoundOut.Value/100);
             //workForm?.SetTrackBarVolume(trackBarSoundOut.Value);
         }
 
@@ -403,6 +404,7 @@ namespace RSI_X_Desktop.forms
             oldVolumeOut = trackBarSoundOut.Value;
             oldResolution = resComboBox.SelectedValue.ToString();
             oldIndexResolution = resComboBox.SelectedIndex;
+            SetVolume(trackBarSoundOut.Value);
 
             CloseButton_Click(sender, e);
         }
