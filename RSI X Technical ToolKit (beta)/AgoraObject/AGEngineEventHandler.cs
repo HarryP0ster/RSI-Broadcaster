@@ -234,7 +234,8 @@ namespace RSI_X_Desktop
 
         public override void OnLocalVideoStats(LocalVideoStats stats)
         {
-            Console.WriteLine("OnLocalVideoStats");
+            //System.Diagnostics.Debug.WriteLine($"({stats.encodedFrameHeight}:{stats.encodedFrameWidth}) " +
+            //    $"{stats.encodedBitrate} -> {stats.sentBitrate}");
         }
 
         public override void OnRemoteVideoStats(RemoteVideoStats stats)

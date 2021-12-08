@@ -118,6 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="FBciFT_VQAES9zi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\fbcift_vqaes9zi.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FEynDA_VcAE7Uq3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\feynda_vcae7uq3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="islands-retina-middle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\islands-retina-middle.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="logotype" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logotype.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
