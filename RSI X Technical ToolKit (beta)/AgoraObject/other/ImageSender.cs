@@ -57,11 +57,14 @@ namespace RSI_X_Desktop
             //timer.Interval = 1000 / fps;
             //timer.Enabled = true;
         }
+        private static bool isJoin = false;
+        private static bool Callback = false;
         public static void EnableImageSender(bool enable) 
         {
-            var isJoin = AgoraObject.IsJoin;
+            Callback = true;
+            isJoin = AgoraObject.IsJoin;
+
             AgoraObject.LeaveChannel();
-            AgoraObject.Rtc.SetExternalVideoSource(enable, true);
             isEnable = enable;
             
             if (enable)
@@ -71,8 +74,15 @@ namespace RSI_X_Desktop
                 DebugWriter.WriteTime("Image sender has stop");
                 GC.Collect();
             }
+        }
+        public static void Rejoin() 
+        {
+            if (!Callback) return;
 
+            AgoraObject.Rtc.SetExternalVideoSource(isEnable, true);
             if (isJoin) AgoraObject.JoinChannel();
+
+            Callback = true;
         }
         public static void SendOneFrame()
         {

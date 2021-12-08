@@ -33,7 +33,7 @@ namespace RSI_X_Desktop
 
         public override void OnLeaveChannel(RtcStats stats)
         {
-            Console.WriteLine("OnLeaveChannel");
+            ImageSender.Rejoin();
         }
 
         public override void OnRequestToken()

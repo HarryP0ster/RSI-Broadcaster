@@ -283,11 +283,14 @@ namespace RSI_X_Desktop
             {
                 ImageSender.configImageToSend(null);
                 ImageSender.EnableImageSender(false);
+
+                AgoraObject.EnableScreenCapture();
+                AgoraObject.StopScreenCapture();
                 Devices.ResetVideoDevice();
             }
             else
             {
-                ImageSender.configImageToSend(Properties.Resources.RSI_HR_EXIT1);
+                ImageSender.configImageToSend(Properties.Resources.logotype);
                 ImageSender.EnableImageSender(true);
             }
         }
