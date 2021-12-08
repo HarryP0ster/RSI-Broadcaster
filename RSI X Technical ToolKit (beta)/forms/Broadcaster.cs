@@ -35,9 +35,7 @@ namespace RSI_X_Desktop
             RoomNameLabel.Text = AgoraObject.GetComplexToken().GetRoomName;
 
             this.DoubleBuffered = true;
-            var ret = AgoraObject.JoinChannel(
-                AgoraObject.GetComplexToken().GetHostName,
-                AgoraObject.GetComplexToken().GetToken);
+            AgoraObject.JoinChannel();
 
             AgoraObject.MuteLocalAudioStream(false);
             AgoraObject.MuteLocalVideoStream(false);
@@ -54,7 +52,6 @@ namespace RSI_X_Desktop
                 chat.UpdateFireBase(GetFireBase);
                 GetFireBase.Connect();
             };
-
         }
         public void SetLocalVideoPreview()
         {
@@ -184,6 +181,7 @@ namespace RSI_X_Desktop
             labelVolume.ForeColor = !trackBar1.Visible ?
                 Color.White :
                 Color.Red;
+            
         }
 
         private void labelMicrophone_Click(object sender, EventArgs e)
@@ -277,6 +275,21 @@ namespace RSI_X_Desktop
 
             Devices.Clear();
             GC.Collect();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (ImageSender.IsEnable)
+            {
+                ImageSender.configImageToSend(null);
+                ImageSender.EnableImageSender(false);
+                Devices.ResetVideoDevice();
+            }
+            else
+            {
+                ImageSender.configImageToSend(Properties.Resources.RSI_HR_EXIT1);
+                ImageSender.EnableImageSender(true);
+            }
         }
     }
 }

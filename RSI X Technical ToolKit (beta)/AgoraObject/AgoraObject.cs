@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+
 using agorartc;
 using HWND = System.IntPtr;
 
@@ -70,9 +71,6 @@ namespace RSI_X_Desktop
         public static bool m_channelHostJoin { get; private set; } = false;
         public static bool m_channelTargetJoin { get; private set; } = false;
 
-        private static bool m_channelTranslPublish = false;
-        private static string m_channelTargetPublish = String.Empty;
-        private static string m_currentChannelSrc = String.Empty;
         public readonly static System.Text.UTF8Encoding utf8enc = new();
 
         [DllImport("USER32.DLL")]
@@ -82,8 +80,6 @@ namespace RSI_X_Desktop
         {
             Rtc = AgoraRtcEngine.CreateRtcEngine();
             Rtc.Initialize(new RtcEngineContext(AppID));
-            Rtc.SetExternalVideoSource(true, true);
-
             forms.Devices.InitManager();
 
             SetPublishProfile();
@@ -115,7 +111,7 @@ namespace RSI_X_Desktop
         }
 
         public static Tokens GetComplexToken() => room;
-        public static string GetHostToken() => room.GetToken;
+        public static string GetHostToken() => room.GetHostToken;
         public static string GetHostName() => room.GetHostName;
         public static List<string> GetLangCollection() => room.GetLanguages.Keys.ToList();
         #endregion
@@ -216,6 +212,10 @@ namespace RSI_X_Desktop
         #endregion
 
         #region Engine channel
+        static public void JoinChannel() 
+        {
+            JoinChannel(room.GetHostName, room.GetHostToken);
+        }
         static public ERROR_CODE JoinChannel(string chName, string token)
         {
             var rnd = new Random();
@@ -226,41 +226,7 @@ namespace RSI_X_Desktop
                 IsJoin = true;
 
             Rtc.CreateDataStream(out _hostStreamID, true, true);
-
-            ExternalVideoFrame t = new ExternalVideoFrame();
-            var img = Properties.Resources.FBciFT_VQAES9zi;
-
-            t.height = img.Height;
-            t.stride = img.Width;
-            t.type = VIDEO_BUFFER_TYPE.VIDEO_BUFFER_RAW_DATA;
-            t.format = VIDEO_PIXEL_FORMAT.VIDEO_PIXEL_ARGB;
-
-            int index = 0;
-            t.buffer = new byte[img.Height * img.Width * 4];
-
-            for (int i = 0; i < img.Height; i++)
-                for (int j = 0; j < img.Width; j++)
-                {
-                    var pixel = img.GetPixel(j, i);
-
-                    t.buffer[index]     = pixel.A;
-                    t.buffer[index + 1] = pixel.R;
-                    t.buffer[index + 2] = pixel.G;
-                    t.buffer[index + 3] = pixel.B;
-                    index += 4;
-                }
-            int tes = 0;
-
-            while (true)
-            {
-                t.timestamp += 1;
-                Rtc.PushVideoFrame(t);
-
-                t.format = VIDEO_PIXEL_FORMAT.VIDEO_PIXEL_ARGB;
-                System.Threading.Thread.Sleep(100);
-                tes++;
-            }
-
+            Rtc.StartPreview();
             return res;
         }
         static public ERROR_CODE LeaveChannel()

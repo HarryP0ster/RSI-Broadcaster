@@ -61,8 +61,8 @@ namespace RSI_X_Desktop.forms
             SpeakersManager = AgoraObject.Rtc.CreateAudioPlaybackDeviceManager();
             videoDeviceManager = AgoraObject.Rtc.CreateVideoDeviceManager();
 
-            Recorders = getListAudioInputDevices();
             VideoOut = getListVideoDevices();
+            Recorders = getListAudioInputDevices();
 
             bool hasOldRecorder = Recorders.Any((s) => s == oldRecorder);
 
@@ -71,6 +71,9 @@ namespace RSI_X_Desktop.forms
                 index = getActiveAudioInputDevice();
 
             oldRecorder = Recorders[index];
+            
+            if (VideoOut.Count > 0)
+                oldVideoOut = VideoOut[0];
 
             oldResolution = resolutions.Keys.ToArray()[oldIndexResolution];
             UpdateResolution(oldResolution);
@@ -142,20 +145,30 @@ namespace RSI_X_Desktop.forms
         private void getComputerDescription()
         {
             dungeonLabel1.Text = "Версия ОС - " + OSVersion.VersionString;
-
-            if (Is64BitOperatingSystem == true)
-            {
-                dungeonLabel2.Text = "64 Bit операционная система";
-            }
-            else
-            {
-                dungeonLabel2.Text = "32 Bit операционная система";
-            }
-
+            dungeonLabel2.Text = Is64BitOperatingSystem ?
+                "64 Bit операционная система" : 
+                "32 Bit операционная система";
             dungeonLabel3.Text = "Пользователь - " + UserName;
-
         }
+        public static void ResetVideoDevice() 
+        {
+            try 
+            {
+                VideoOut = getListVideoDevices();
+                int index = VideoOut.FindLastIndex((s) => s == oldVideoOut);
+                index = index == -1 ? 0 : index;
 
+                videoDeviceManager.GetDeviceInfoByIndex(
+                    index,
+                    out string devName, out string videoID);
+                DebugWriter.WriteTime("update video device");
+                videoDeviceManager.SetCurrentDevice(videoID);
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private static int getActiveAudioInputDevice()
         {
             int id = -1;
@@ -174,26 +187,6 @@ namespace RSI_X_Desktop.forms
             }
             return id;
         }
-
-        private int getActiveAudioOutputDevice()
-        {
-            int id = -1;
-
-            SpeakersManager.GetCurrentDeviceInfo(out string idAcvite, out string nameAcitve);
-
-            for (int i = 0; i < SpeakersManager.GetDeviceCount(); i++)
-            {
-                var ret = SpeakersManager.GetDeviceInfoByIndex(i, out string name, out string deviceid);
-                if (idAcvite == deviceid)
-                {
-                    id = i;
-                    break;
-                }
-
-            }
-            return id;
-        }
-
         private int getActiveVideoDevice()
         {
             int id = -1;
@@ -257,8 +250,10 @@ namespace RSI_X_Desktop.forms
 
                 var ret = videoDeviceManager.GetDeviceInfoByIndex(i, out device, out id);
 
-                if (ret == ERROR_CODE.ERR_OK)
+                if (ret == ERROR_CODE.ERR_OK) 
+                {
                     devicesOut.Add(device);
+                }
             }
 
             return devicesOut;
@@ -324,12 +319,6 @@ namespace RSI_X_Desktop.forms
             var ret = RecordersManager.SetDeviceVolume(
                 trackBarSoundIn.Value);
         }
-
-        //private void trackBarSoundOut_ValueChanged(object sender, EventArgs e)
-        //{
-        //    SetVolume(trackBarSoundOut.Value);
-        //    workForm?.SetTrackBarVolume(trackBarSoundOut.Value);
-        //}
 
         public void SetAudienceSettings()
         {

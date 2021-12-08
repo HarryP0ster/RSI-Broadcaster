@@ -53,6 +53,7 @@ namespace RSI_X_Desktop
             this.PanelNothing = new System.Windows.Forms.Panel();
             this.pictureBoxRemoteVideo = new System.Windows.Forms.PictureBox();
             this.nightControlBox1 = new ReaLTaiizor.Controls.NightControlBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.formTheme1.SuspendLayout();
             this.MainLayout.SuspendLayout();
             this.PanelBot.SuspendLayout();
@@ -131,6 +132,7 @@ namespace RSI_X_Desktop
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.button1, 7, 0);
             this.tableLayoutPanel2.Controls.Add(this.trackBar1, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelChat, 9, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelSettings, 0, 0);
@@ -471,6 +473,16 @@ namespace RSI_X_Desktop
             this.nightControlBox1.TabIndex = 94;
             this.nightControlBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.nightControlBox1_MouseClick);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(849, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 29);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Broadcaster
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -528,5 +540,6 @@ namespace RSI_X_Desktop
         private System.Windows.Forms.PictureBox pictureBox1;
         private ReaLTaiizor.Controls.NightControlBox nightControlBox1;
         private System.Windows.Forms.Label labelScreenShare;
+        private System.Windows.Forms.Button button1;
     }
 }
