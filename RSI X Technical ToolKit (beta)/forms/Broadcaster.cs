@@ -32,13 +32,10 @@ namespace RSI_X_Desktop
             AgoraObject.Rtc.SetChannelProfile(CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING);
             AgoraObject.Rtc.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
             AgoraObject.Rtc.EnableLocalVideo(true);
-            AgoraObject.UpdateNickName("Host");
             RoomNameLabel.Text = AgoraObject.GetComplexToken().GetRoomName;
 
             this.DoubleBuffered = true;
-            var ret = AgoraObject.JoinChannel(
-                AgoraObject.GetComplexToken().GetHostName,
-                AgoraObject.GetComplexToken().GetToken);
+            AgoraObject.JoinChannel();
 
             AgoraObject.MuteLocalAudioStream(false);
             AgoraObject.MuteLocalVideoStream(false);
@@ -55,7 +52,6 @@ namespace RSI_X_Desktop
                 chat.UpdateFireBase(GetFireBase);
                 GetFireBase.Connect();
             };
-
         }
         public void SetLocalVideoPreview()
         {
@@ -63,10 +59,31 @@ namespace RSI_X_Desktop
 
             var canv = new VideoCanvas((ulong)LocalWinId, 0);
             canv.renderMode = ((int)RENDER_MODE_TYPE.RENDER_MODE_FIT);
+            ImageSender.SetLocalCanvas(this);
 
             AgoraObject.Rtc.SetupLocalVideo(canv);
             AgoraObject.Rtc.StartPreview();
         }
+        public void InvokeSetLocalFrame(Bitmap bmp) 
+        {
+            if (InvokeRequired)
+                Invoke((MethodInvoker)delegate
+                {
+                    SetLocalFrame(bmp);
+                });
+            else { SetLocalFrame(bmp); }
+            
+        }
+
+        private void SetLocalFrame(Bitmap bmp)
+        {
+            pictureBoxRemoteVideo.BackColor = bmp != null ?
+                Color.Black : Color.Silver;
+
+            //pictureBoxRemoteVideo.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxRemoteVideo.Image = bmp;
+        }
+
         public void RefreshLocalWnd()
         {
             pictureBoxRemoteVideo.Refresh();
@@ -185,6 +202,7 @@ namespace RSI_X_Desktop
             labelVolume.ForeColor = !trackBar1.Visible ?
                 Color.White :
                 Color.Red;
+            
         }
 
         private void labelMicrophone_Click(object sender, EventArgs e)
@@ -270,6 +288,13 @@ namespace RSI_X_Desktop
         private void Broadcaster_FormClosed(object sender, FormClosedEventArgs e)
         {
             enableScreenShare(false);
+
+            if (ImageSender.IsEnable)
+            {
+                ImageSender.configImageToSend(null);
+                ImageSender.EnableImageSender(false);
+            }
+
             AgoraObject.LeaveChannel();
             AgoraObject.Rtc.EnableLocalVideo(false);
             AgoraObject.Rtc.DisableVideo();
@@ -278,6 +303,10 @@ namespace RSI_X_Desktop
 
             Devices.Clear();
             GC.Collect();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
         }
     }
 }
