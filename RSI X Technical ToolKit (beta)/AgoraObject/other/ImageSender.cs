@@ -11,18 +11,26 @@ namespace RSI_X_Desktop
     internal class ImageSender
     {
         private static Timer timer;
-        private static ExternalVideoFrame t = new();
+        private static ExternalVideoFrame VideoFrame = new();
         private static bool isEnable = false;
+        private static int fps = 15;
+        private static Bitmap frame = null;
+        private static Broadcaster WorkForm;
         public static bool IsEnable { get { return isEnable; } }
+        public static Bitmap GetFrame { get { return frame; } }
         static ImageSender() 
         {
-            timer = new(Timer_Elapsed, null, dueTime:1000/15, period: 1000 / 15);
+            timer = new(Timer_Elapsed, null, dueTime:1000/ fps, period: 1000 / fps);
         }
-        public static void configImageToSend(Bitmap img, int fps=15) 
+        public static void SetLocalCanvas(Broadcaster form) 
         {
-            if (img == null) 
+            WorkForm = form;
+        }
+        public static void configImageToSend(Bitmap img_, int fps_=15) 
+        {
+            if (img_ == null) 
             {
-                t = new()
+                VideoFrame = new()
                 {
                     buffer = null,
                     height = 0,
@@ -32,30 +40,54 @@ namespace RSI_X_Desktop
                 GC.Collect();
                 return;
             }
-            t = new();
-            t.height = img.Height;
-            t.stride = img.Width;
-            t.type   = VIDEO_BUFFER_TYPE.VIDEO_BUFFER_RAW_DATA;
-            t.format = VIDEO_PIXEL_FORMAT.VIDEO_PIXEL_ARGB;
-            t.timestamp = 0;
+            fps = fps_;
+
+            var size = forms.Devices.resolutionsSize[
+                    forms.Devices.oldResolution].dimensions;
+            var s =  Math.Min(
+                (double)size.height / img_.Height, 
+                (double)size.width / img_.Width);
+
+            frame = new Bitmap(img_, 
+                Convert.ToInt32(img_.Width * s),
+                Convert.ToInt32(img_.Height * s));
+
+            VideoFrame = new();
+            VideoFrame.height = size.height;
+            VideoFrame.stride = size.width;
+            VideoFrame.type   = VIDEO_BUFFER_TYPE.VIDEO_BUFFER_RAW_DATA;
+            VideoFrame.format = VIDEO_PIXEL_FORMAT.VIDEO_PIXEL_ARGB;
+            VideoFrame.timestamp = 0;
 
             int index = -1;
-            t.buffer = new byte[img.Height * img.Width * 4];
 
-            for (int i = 0; i < img.Height; i++)
-                for (int j = 0; j < img.Width; j++)
+            int offsetW = (size.width - frame.Width) / 2;
+            int offsetH = (size.height - frame.Height) / 2;
+            VideoFrame.buffer = new byte[size.height * size.width * 4];
+
+            for (int h = 0; h < size.height; h++) 
+            {
+                var pixel = Color.Black;
+                for (int w = 0; w < size.width; w++)
                 {
-                    var pixel = img.GetPixel(j, i);
+                    pixel = Color.Black;
+                    if (h < offsetH + frame.Height && h >= offsetH &&
+                        w < offsetW + frame.Width && w >= offsetW)
+                        pixel = frame.GetPixel(
+                                    (w - offsetW),
+                                    (h - offsetH));
+                    //DebugWriter.Write($"{h}:{w} {pixel}");
 
-                    t.buffer[index + 1] = pixel.A;
-                    t.buffer[index + 2] = pixel.R;
-                    t.buffer[index + 3] = pixel.G;
-                    t.buffer[index + 4] = pixel.B;
+                    VideoFrame.buffer[index + 1] = pixel.A;
+                    VideoFrame.buffer[index + 2] = pixel.R;
+                    VideoFrame.buffer[index + 3] = pixel.G;
+                    VideoFrame.buffer[index + 4] = pixel.B;
                     index += 4;
                 }
+                //DebugWriter.Write($"{h}");
+            }
+            
             DebugWriter.WriteTime("load complete");
-            //timer.Interval = 1000 / fps;
-            //timer.Enabled = true;
         }
         private static bool isJoin = false;
         private static bool Callback = false;
@@ -66,12 +98,18 @@ namespace RSI_X_Desktop
 
             AgoraObject.LeaveChannel();
             isEnable = enable;
-            
+
             if (enable)
+            {
                 DebugWriter.WriteTime("Image sender has start");
+                timer = new(Timer_Elapsed, null, 
+                    dueTime: 1000 / fps, 
+                    period: 1000 / fps);
+            }
             else 
             {
                 DebugWriter.WriteTime("Image sender has stop");
+                timer.Dispose();
                 GC.Collect();
             }
         }
@@ -86,14 +124,19 @@ namespace RSI_X_Desktop
         }
         public static void SendOneFrame()
         {
-            t.timestamp += 1;
-            AgoraObject.Rtc.PushVideoFrame(t);
+            VideoFrame.timestamp += 1;
+            AgoraObject.Rtc.PushVideoFrame(VideoFrame);
         }
         private static void Timer_Elapsed(object state)
         {
             if (isEnable)
                 SendOneFrame();
             //DebugLogger.Write(e.SignalTime.ToString("ss:ff"));
+        }
+
+        internal static void SetLocalFrame()
+        {
+            WorkForm.InvokeSetLocalFrame(frame);
         }
     }
 }

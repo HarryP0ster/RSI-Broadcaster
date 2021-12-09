@@ -59,9 +59,21 @@ namespace RSI_X_Desktop
 
             var canv = new VideoCanvas((ulong)LocalWinId, 0);
             canv.renderMode = ((int)RENDER_MODE_TYPE.RENDER_MODE_FIT);
+            ImageSender.SetLocalCanvas(this);
 
             AgoraObject.Rtc.SetupLocalVideo(canv);
             AgoraObject.Rtc.StartPreview();
+        }
+        public void InvokeSetLocalFrame(Bitmap bmp) 
+        {
+            if (InvokeRequired)
+                Invoke((MethodInvoker)delegate
+                {
+                    pictureBoxRemoteVideo.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBoxRemoteVideo.Image = bmp;
+                });
+            else { pictureBoxRemoteVideo.Image = bmp; }
+            
         }
         public void RefreshLocalWnd()
         {
@@ -267,6 +279,13 @@ namespace RSI_X_Desktop
         private void Broadcaster_FormClosed(object sender, FormClosedEventArgs e)
         {
             enableScreenShare(false);
+
+            if (ImageSender.IsEnable)
+            {
+                ImageSender.configImageToSend(null);
+                ImageSender.EnableImageSender(false);
+            }
+
             AgoraObject.LeaveChannel();
             AgoraObject.Rtc.EnableLocalVideo(false);
             AgoraObject.Rtc.DisableVideo();
@@ -284,13 +303,16 @@ namespace RSI_X_Desktop
                 ImageSender.configImageToSend(null);
                 ImageSender.EnableImageSender(false);
 
-                AgoraObject.EnableScreenCapture();
+                // wtf?
                 AgoraObject.StopScreenCapture();
                 Devices.ResetVideoDevice();
             }
             else
             {
-                ImageSender.configImageToSend(Properties.Resources.logotype);
+                var fd = new OpenFileDialog();
+                fd.ShowDialog();
+
+                ImageSender.configImageToSend(new Bitmap(fd.FileName), 5);
                 ImageSender.EnableImageSender(true);
             }
         }

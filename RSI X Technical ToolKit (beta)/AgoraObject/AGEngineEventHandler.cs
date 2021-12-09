@@ -395,6 +395,23 @@ namespace RSI_X_Desktop
             LOCAL_VIDEO_STREAM_ERROR error)
         {
             Console.WriteLine("OnLocalVideoStateChanged");
+
+            switch (localVideoState)
+            {
+                case LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_CAPTURING:
+                case LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_ENCODING:
+                    if (ImageSender.IsEnable)
+                    {
+                        ImageSender.SetLocalFrame();
+                        DebugWriter.WriteTime($"{localVideoState}, {error}");
+                    }
+
+                    break;
+                case LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_FAILED:
+                case LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_STOPPED:
+                default:
+                    break;
+            }
         }
 
         public override void OnNetworkTypeChanged(NETWORK_TYPE networkType)
