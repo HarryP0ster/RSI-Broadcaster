@@ -454,7 +454,7 @@ namespace RSI_X_Desktop
             this.pictureBoxRemoteVideo.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.pictureBoxRemoteVideo.Name = "pictureBoxRemoteVideo";
             this.pictureBoxRemoteVideo.Size = new System.Drawing.Size(1052, 592);
-            this.pictureBoxRemoteVideo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxRemoteVideo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxRemoteVideo.TabIndex = 3;
             this.pictureBoxRemoteVideo.TabStop = false;
             // 
@@ -510,7 +510,6 @@ namespace RSI_X_Desktop
             this.StreamLayout.ResumeLayout(false);
             this.StreamLayout.PerformLayout();
             this.PanelNothing.ResumeLayout(false);
-            this.PanelNothing.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRemoteVideo)).EndInit();
             this.ResumeLayout(false);
 

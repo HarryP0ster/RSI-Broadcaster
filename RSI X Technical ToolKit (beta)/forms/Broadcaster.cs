@@ -69,12 +69,21 @@ namespace RSI_X_Desktop
             if (InvokeRequired)
                 Invoke((MethodInvoker)delegate
                 {
-                    pictureBoxRemoteVideo.SizeMode = PictureBoxSizeMode.Zoom;
-                    pictureBoxRemoteVideo.Image = bmp;
+                    SetLocalFrame(bmp);
                 });
-            else { pictureBoxRemoteVideo.Image = bmp; }
+            else { SetLocalFrame(bmp); }
             
         }
+
+        private void SetLocalFrame(Bitmap bmp)
+        {
+            pictureBoxRemoteVideo.BackColor = bmp != null ?
+                Color.Black : Color.Silver;
+
+            //pictureBoxRemoteVideo.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxRemoteVideo.Image = bmp;
+        }
+
         public void RefreshLocalWnd()
         {
             pictureBoxRemoteVideo.Refresh();
@@ -298,23 +307,6 @@ namespace RSI_X_Desktop
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (ImageSender.IsEnable)
-            {
-                ImageSender.configImageToSend(null);
-                ImageSender.EnableImageSender(false);
-
-                // wtf?
-                AgoraObject.StopScreenCapture();
-                Devices.ResetVideoDevice();
-            }
-            else
-            {
-                var fd = new OpenFileDialog();
-                fd.ShowDialog();
-
-                ImageSender.configImageToSend(new Bitmap(fd.FileName), 5);
-                ImageSender.EnableImageSender(true);
-            }
         }
     }
 }

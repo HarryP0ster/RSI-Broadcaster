@@ -42,35 +42,33 @@ namespace RSI_X_Desktop
             }
             fps = fps_;
 
-            var size = forms.Devices.resolutionsSize[
-                    forms.Devices.oldResolution].dimensions;
+            var size = new Size(1920, 1080);
             var s =  Math.Min(
-                (double)size.height / img_.Height, 
-                (double)size.width / img_.Width);
+                (double)size.Height / img_.Height, 
+                (double)size.Width / img_.Width);
 
             frame = new Bitmap(img_, 
                 Convert.ToInt32(img_.Width * s),
                 Convert.ToInt32(img_.Height * s));
 
             VideoFrame = new();
-            VideoFrame.height = size.height;
-            VideoFrame.stride = size.width;
+            VideoFrame.height = size.Height;
+            VideoFrame.stride = size.Width;
             VideoFrame.type   = VIDEO_BUFFER_TYPE.VIDEO_BUFFER_RAW_DATA;
             VideoFrame.format = VIDEO_PIXEL_FORMAT.VIDEO_PIXEL_ARGB;
             VideoFrame.timestamp = 0;
 
             int index = -1;
 
-            int offsetW = (size.width - frame.Width) / 2;
-            int offsetH = (size.height - frame.Height) / 2;
-            VideoFrame.buffer = new byte[size.height * size.width * 4];
+            int offsetW = (size.Width - frame.Width) / 2;
+            int offsetH = (size.Height - frame.Height) / 2;
+            VideoFrame.buffer = new byte[size.Height * size.Width * 4];
 
-            for (int h = 0; h < size.height; h++) 
+            for (int h = 0; h < size.Height; h++) 
             {
-                var pixel = Color.Black;
-                for (int w = 0; w < size.width; w++)
+                for (int w = 0; w < size.Width; w++)
                 {
-                    pixel = Color.Black;
+                    var pixel = Color.Black;
                     if (h < offsetH + frame.Height && h >= offsetH &&
                         w < offsetW + frame.Width && w >= offsetW)
                         pixel = frame.GetPixel(
@@ -134,9 +132,12 @@ namespace RSI_X_Desktop
             //DebugLogger.Write(e.SignalTime.ToString("ss:ff"));
         }
 
-        internal static void SetLocalFrame()
+        internal static void SetLocalFrame(bool clear=false)
         {
-            WorkForm.InvokeSetLocalFrame(frame);
+            if (false == clear)
+                WorkForm.InvokeSetLocalFrame(frame);
+            else
+                WorkForm.InvokeSetLocalFrame(null);
         }
     }
 }

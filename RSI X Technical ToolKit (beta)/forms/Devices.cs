@@ -17,6 +17,10 @@ namespace RSI_X_Desktop.forms
 {
     public partial class Devices : Form
     {
+        private static Devices _instance;
+        private static readonly Color InactiveColor = Color.White;
+        private static readonly Color PushColor     = Color.BurlyWood;
+
         public static readonly Dictionary<string, VIDEO_PROFILE_TYPE> resolutions = new()
         {
             [" 160 * 120 "] = VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_120P,
@@ -51,6 +55,7 @@ namespace RSI_X_Desktop.forms
         public static string oldResolution { get; private set; }
         private static int oldIndexResolution = 6; //1080p
 
+        private static bool ImageSend = false;
         public Devices()
         {
             InitializeComponent();
@@ -80,7 +85,7 @@ namespace RSI_X_Desktop.forms
         }
         private void NewDevices_Load(object sender, EventArgs e)
         {
-
+            _instance = this;
             oldVolumeIn = RecordersManager.GetDeviceVolume();
             trackBarSoundIn.Value = oldVolumeIn;
 
@@ -94,6 +99,9 @@ namespace RSI_X_Desktop.forms
 
             ComboBoxRes.DataSource = new List<string>(resolutions.Keys);
             ComboBoxRes.SelectedIndex = oldIndexResolution;
+
+            button2.ForeColor = ImageSender.IsEnable ? 
+                PushColor : InactiveColor;
         }
         private void UpdateComboBoxRecorder()
         {
@@ -269,7 +277,6 @@ namespace RSI_X_Desktop.forms
             RecordersManager.GetDeviceInfoByIndex(ind, out name, out id);
             RecordersManager.SetCurrentDevice(id);
         }
-
         private void comboBoxAudioOutput_SelectedIndexChanged(object sender, EventArgs e)
         {
             int ind = ((ComboBox)sender).SelectedIndex;
@@ -278,7 +285,6 @@ namespace RSI_X_Desktop.forms
             SpeakersManager.GetDeviceInfoByIndex(ind, out name, out id);
             SpeakersManager.SetCurrentDevice(id);
         }
-
         private void comboBoxVideo_SelectedIndexChanged(object sender, EventArgs e)
         {
             int ind = ((ComboBox)sender).SelectedIndex;
@@ -311,9 +317,9 @@ namespace RSI_X_Desktop.forms
         {
             //AgoraObject.Rtc.EnableLocalVideo(false);
             workForm?.SetLocalVideoPreview();
+            _instance = null;
             Dispose();
         }
-
         private void trackBarSoundIn_ValueChanged()
         {
             var ret = RecordersManager.SetDeviceVolume(
@@ -353,6 +359,7 @@ namespace RSI_X_Desktop.forms
                 AcceptNewRecordDevice();
                 AcceptNewVideoRecDevice();
                 AcceptNewResolution();
+
             }
             catch (Exception ex)
             {
@@ -410,6 +417,44 @@ namespace RSI_X_Desktop.forms
             oldVideoOut = null;
             oldResolution = null;
             oldIndexResolution = 3; //360p        
+        }
+        private void buttonImgSend_Click(object sender, EventArgs e)
+        {
+            if (ImageSender.IsEnable)
+            {
+                ImageSender.configImageToSend(null);
+                ImageSender.EnableImageSender(false);
+
+                // wtf?
+                AgoraObject.StopScreenCapture();
+                ResetVideoDevice();
+                button2.ForeColor = InactiveColor;
+            }
+            else
+            {
+                var fd = new OpenFileDialog();
+                fd.ShowDialog();
+
+                if (fd.FileName != String.Empty) 
+                {
+                    ImageSender.configImageToSend(new Bitmap(fd.FileName), 5);
+                    ImageSender.EnableImageSender(true);
+                    button2.ForeColor = PushColor;
+                    SetImageSend(false);
+                }
+            }
+        }
+        public static void SetImageSend(bool block)
+        {
+            ImageSend = true;
+            if (_instance == null) return;
+
+            if (_instance.InvokeRequired)
+                _instance.Invoke((MethodInvoker)delegate
+                {
+                    _instance.button2.Enabled = block;
+                });
+            else { _instance.button2.Enabled = block; }
         }
     }
 }

@@ -57,6 +57,7 @@ namespace RSI_X_Desktop.forms
             this.BAcceptVideo = new ReaLTaiizor.Controls.Button();
             this.pictureBoxLocalVideoTest = new ReaLTaiizor.Controls.HopePictureBox();
             this.comboBoxVideo = new ReaLTaiizor.Controls.AloneComboBox();
+            this.button2 = new ReaLTaiizor.Controls.Button();
             this.button6 = new ReaLTaiizor.Controls.Button();
             this.button7 = new ReaLTaiizor.Controls.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
@@ -443,20 +444,22 @@ namespace RSI_X_Desktop.forms
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.ComboBoxRes, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 5);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 7);
             this.tableLayoutPanel3.Controls.Add(this.pictureBoxLocalVideoTest, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.comboBoxVideo, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.button2, 0, 5);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(2, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 6;
+            this.tableLayoutPanel3.RowCount = 8;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(348, 492);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
@@ -560,6 +563,27 @@ namespace RSI_X_Desktop.forms
             this.comboBoxVideo.Size = new System.Drawing.Size(344, 26);
             this.comboBoxVideo.TabIndex = 0;
             this.comboBoxVideo.SelectedIndexChanged += new System.EventHandler(this.comboBoxVideo_SelectedIndexChanged);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.button2.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button2.Image = null;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.button2.Location = new System.Drawing.Point(162, 304);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.button2.Name = "button2";
+            this.button2.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            this.button2.Size = new System.Drawing.Size(183, 35);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Custom image";
+            this.button2.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.button2.Click += new System.EventHandler(this.buttonImgSend_Click);
             // 
             // button6
             // 
@@ -716,5 +740,6 @@ namespace RSI_X_Desktop.forms
         private ReaLTaiizor.Controls.DungeonLabel dungeonLabel3;
         private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
         private ReaLTaiizor.Controls.AloneComboBox ComboBoxRes;
+        private ReaLTaiizor.Controls.Button button2;
     }
 }

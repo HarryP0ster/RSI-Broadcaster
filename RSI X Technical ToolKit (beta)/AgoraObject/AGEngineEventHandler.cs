@@ -400,12 +400,14 @@ namespace RSI_X_Desktop
             {
                 case LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_CAPTURING:
                 case LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_ENCODING:
-                    if (ImageSender.IsEnable)
+                    //DebugWriter.WriteTime($"{localVideoState}, {error}");
+                    if (ImageSender.IsEnable) 
                     {
                         ImageSender.SetLocalFrame();
-                        DebugWriter.WriteTime($"{localVideoState}, {error}");
+                        forms.Devices.SetImageSend(true);
                     }
-
+                    else 
+                        ImageSender.SetLocalFrame(clear:true);
                     break;
                 case LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_FAILED:
                 case LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_STOPPED:

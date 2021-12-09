@@ -40,10 +40,6 @@ namespace RSI_X_Desktop
         public static string RoomTarg { get; private set; } = ""; //Full name of the target room without 8 digits
         public static CurForm CurrentForm = CurForm.None;
 
-        //TODO: DELETE LATER
-        //private static Random rnd = new Random();
-        //DELETE LATER
-
         internal static AgoraRtcEngine Rtc;
 
         internal static Tokens room = new Tokens();
@@ -88,8 +84,7 @@ namespace RSI_X_Desktop
         private static void SetPublishProfile()
         {
             Rtc.SetAudioProfile(AUDIO_PROFILE_TYPE.AUDIO_PROFILE_MUSIC_HIGH_QUALITY, AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_CHATROOM_GAMING);
-            //Rtc.SetVideoProfile(VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_1080P_3, false);
-            Rtc.SetVideoProfile(VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_180P, false);
+            Rtc.SetVideoProfile(VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_1080P_3, false);
         }
         private static void SetDefaultAudioProfile()
         {
@@ -220,10 +215,14 @@ namespace RSI_X_Desktop
         {
             var rnd = new Random();
             ERROR_CODE res = Rtc.JoinChannelWithUserAccount(token, chName, NickCenter.ToHostNick(rnd.Next().ToString()));
+
             Rtc.CreateDataStream(out _hostStreamID, true, true);
 
             if (res == ERROR_CODE.ERR_OK)
                 IsJoin = true;
+
+            Rtc.MuteLocalAudioStream(IsLocalAudioMute);
+            Rtc.MuteLocalVideoStream(IsLocalVideoMute);
 
             Rtc.CreateDataStream(out _hostStreamID, true, true);
             Rtc.StartPreview();
