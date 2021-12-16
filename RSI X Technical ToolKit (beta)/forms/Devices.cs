@@ -437,10 +437,17 @@ namespace RSI_X_Desktop.forms
 
                 if (fd.FileName != String.Empty) 
                 {
-                    ImageSender.configImageToSend(new Bitmap(fd.FileName), 5);
-                    ImageSender.EnableImageSender(true);
-                    button2.ForeColor = PushColor;
-                    SetImageSend(false);
+                    try 
+                    {
+                        ImageSender.configImageToSend(new Bitmap(fd.FileName), 5);
+                        ImageSender.EnableImageSender(true);
+                        button2.ForeColor = PushColor;
+                        SetImageSend(false);
+                    }
+                    catch (Exception ex)
+                    { 
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
         }
