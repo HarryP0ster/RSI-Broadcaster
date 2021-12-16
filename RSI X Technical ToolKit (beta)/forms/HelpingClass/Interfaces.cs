@@ -8,7 +8,7 @@ namespace RSI_X_Desktop
         public void RefreshLocalWnd();
         public void SetLocalVideoPreview();
         public void DevicesClosed(System.Windows.Forms.Form Wnd);
-        public void SetTrackBarVolume(int volume);
+        //public void SetTrackBarVolume(int volume);
     }
     public enum EBroadcasterRoles
     {

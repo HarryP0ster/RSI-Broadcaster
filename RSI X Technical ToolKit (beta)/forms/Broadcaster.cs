@@ -13,8 +13,7 @@ namespace RSI_X_Desktop
         internal static IntPtr LocalWinId;
         public IntPtr RemoteWnd { get => LocalWinId; }
         private Devices devices;
-        private ScreenSharing sharingDig;
-        private ChatWnd chat = new ChatWnd();
+        private ChatWnd chat = new ();
 
         private bool IsSharingScreen = false;
 
@@ -203,19 +202,19 @@ namespace RSI_X_Desktop
             labelSettings.ForeColor = Color.White;
             GC.Collect();
         }
-        public void SetTrackBarVolume(int volume)
-        {
-            trackBar1.Value = volume;
-        }
+        //public void SetTrackBarVolume(int volume)
+        //{
+        //    trackBar1.Value = volume;
+        //}
 
-        private void labelVolume_Click(object sender, EventArgs e)
-        {
-            trackBar1.Visible = !trackBar1.Visible;
-            labelVolume.ForeColor = !trackBar1.Visible ?
-                Color.White :
-                Color.Red;
+        //private void labelVolume_Click(object sender, EventArgs e)
+        //{
+        //    trackBar1.Visible = !trackBar1.Visible;
+        //    labelVolume.ForeColor = !trackBar1.Visible ?
+        //        Color.White :
+        //        Color.Red;
             
-        }
+        //}
 
         private void labelMicrophone_Click(object sender, EventArgs e)
         {
