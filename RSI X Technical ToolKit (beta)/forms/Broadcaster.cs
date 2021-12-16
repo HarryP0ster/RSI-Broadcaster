@@ -52,6 +52,16 @@ namespace RSI_X_Desktop
                 chat.UpdateFireBase(GetFireBase);
                 GetFireBase.Connect();
             };
+
+            /*
+            * Chat initial loading, this way it'd load messages
+            * in the background from the very moment you enter a channel
+            */
+            chat.TopLevel = false;
+            chat.Dock = DockStyle.Fill;
+            panel1.Controls.Add(chat);
+            chat.Show();
+            chat.Hide(); //You need to hide it, otherwise Animator'd get confused
         }
         public void SetLocalVideoPreview()
         {
@@ -172,11 +182,13 @@ namespace RSI_X_Desktop
             if (chat != null && chat.IsHandleCreated)
                 chat.chat_NewMessageInvoke(message, nickname, channel);
         }
-        private void ChatClosed(Form Wnd) 
+        private void ChatClosed(Form Wnd)
         {
             Wnd.Hide();
-            Animator(panel1, 9, 0, 50, 1);
+            Wnd.SuspendLayout();
+            Animator(panel1, 18, 0, 25, 1);
             panel1.Hide();
+            labelChat.ForeColor = Color.White;
             GC.Collect();
         }
         public void RebuildChatPanel(Control panel)
@@ -230,14 +242,12 @@ namespace RSI_X_Desktop
         {
             labelSettings.ForeColor = Color.White;
             if (devices != null && !(devices.IsDisposed))
-            {
                 DevicesClosed(devices);
-                //Thread.Sleep(100);
-            }
             if (chat.Visible == false)
             {
-                CallSidePanel(chat);
+                chat.ResumeLayout();
                 chat.ButtonsVisibility(true);
+                CallSidePanel(chat);
                 labelChat.ForeColor = Color.Red;
             }
             else

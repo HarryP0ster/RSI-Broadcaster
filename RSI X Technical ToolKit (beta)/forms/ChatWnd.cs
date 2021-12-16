@@ -23,8 +23,10 @@ namespace RSI_X_Desktop.forms
         const int leters_limit = 35;
         int DefPanelWidth = 100;
         const int TAB_COUNT = 2;
-        int[] scroll_offset = new int[TAB_COUNT];
+        int[] scroll_offset = new int[TAB_COUNT * 2];
         List<Control>[] messages_list = new List<Control>[TAB_COUNT];
+        bool[] ScrollEnabled = new bool[2];
+        ReaLTaiizor.Controls.PoisonScrollBar[] chat_scrolls = new ReaLTaiizor.Controls.PoisonScrollBar[2];
 
         HelpingClass.FireBaseReader FireBase;
         public ChatWnd()
@@ -47,6 +49,8 @@ namespace RSI_X_Desktop.forms
                 messages_list[i] = new List<Control>();
                 scroll_offset[i] = 0;
             }
+            chat_scrolls[0] = GeneralScroll;
+            chat_scrolls[1] = SupportScroll;
             PGeneral.Resize += Chat_SizeChanged;
             PSupport.Resize += Chat_SizeChanged;
 
@@ -66,24 +70,27 @@ namespace RSI_X_Desktop.forms
         {
             if (e.Delta > 0)
             {
-                if (scroll_offset[materialShowTabControl1.SelectedIndex] + 1 < messages_list[materialShowTabControl1.SelectedIndex].Count)
+                if (scroll_offset[materialShowTabControl1.SelectedIndex] + 1 <= chat_scrolls[materialShowTabControl1.SelectedIndex].Maximum && ScrollEnabled[materialShowTabControl1.SelectedIndex])
                     scroll_offset[materialShowTabControl1.SelectedIndex]++;
                 else
                     return;
             }
             else
             {
-                if (scroll_offset[materialShowTabControl1.SelectedIndex] - 1 >= 0)
+                if (scroll_offset[materialShowTabControl1.SelectedIndex] - 1 >= 0 && ScrollEnabled[materialShowTabControl1.SelectedIndex])
                     scroll_offset[materialShowTabControl1.SelectedIndex]--;
                 else
                     return;
             }
+
             switch (materialShowTabControl1.SelectedIndex)
             {
                 case (int)PANEL.GENERAL:
+                    chat_scrolls[(int)PANEL.GENERAL].Value = chat_scrolls[(int)PANEL.GENERAL].Maximum - scroll_offset[(int)PANEL.GENERAL];
                     Chat_SizeChanged(PGeneral, new EventArgs());
                     break;
                 case (int)PANEL.SUPPORT:
+                    chat_scrolls[(int)PANEL.SUPPORT].Value = chat_scrolls[(int)PANEL.SUPPORT].Maximum - scroll_offset[(int)PANEL.SUPPORT];
                     Chat_SizeChanged(PSupport, new EventArgs());
                     break;
             }
@@ -159,11 +166,11 @@ namespace RSI_X_Desktop.forms
         {
             if (InvokeRequired)
                 Invoke((MethodInvoker)delegate
-                    { chat_NewMessage(message, nickname, channel); });
+                { chat_NewMessage(message, "Host", channel); });
             else
-                chat_NewMessage(message, nickname,channel);
+                chat_NewMessage(message, "Host", channel);
         }
-        private void chat_NewMessage(string message, string nickname, CHANNEL_TYPE channel) 
+        private void chat_NewMessage(string message, string nickname, CHANNEL_TYPE channel)
         {
             switch (channel)
             {
@@ -173,7 +180,7 @@ namespace RSI_X_Desktop.forms
             }
         }
 
-        public void chat_NewMessageSupInvoke(object sender, HelpingClass.FireBaseUpdateEventArgs arg) 
+        public void chat_NewMessageSupInvoke(object sender, HelpingClass.FireBaseUpdateEventArgs arg)
         {
             if (InvokeRequired)
                 Invoke((MethodInvoker)delegate
@@ -199,8 +206,14 @@ namespace RSI_X_Desktop.forms
 
         private void RelocateBubbles(Control new_ctr, Control panel, int index)
         {
-            panel.Controls.Add(new_ctr);
+            //panel.Controls.Add(new_ctr);
             messages_list[index].Add(new_ctr);
+            Chat_SizeChanged(panel, new EventArgs());
+            if (ScrollEnabled[index])
+            {
+                chat_scrolls[index].Maximum = messages_list[index].Count - scroll_offset[TAB_COUNT + index];
+                chat_scrolls[index].Value = chat_scrolls[index].Maximum - scroll_offset[index];
+            }
         }
 
         public void UpdateFireBase(HelpingClass.FireBaseReader FireBaseReader)
@@ -211,33 +224,44 @@ namespace RSI_X_Desktop.forms
 
         internal void Chat_SizeChanged(object sender, EventArgs e) //Actually Updates chat wnd
         {
-            Control prev_ctr = null;
-            
-            ((Control)sender).Controls.Clear();
-
-            int ind;
-            if (((Control)sender) == PGeneral)
-                ind = (int)PANEL.GENERAL;
-            else if (((Control)sender) == PSupport)
-                ind = (int)PANEL.SUPPORT;
-            else
-                return;
-
-            var controls = messages_list[ind].ToArray();
-            
-            for (int i = messages_list[ind].Count - 1 - scroll_offset[ind]; i >= 0; i--)
+            if (Visible)
             {
-                if (prev_ctr != null)
-                    controls[i].Location = new Point(controls[i].Location.X, prev_ctr.Location.Y - controls[i].Height);
+                Control prev_ctr = null;
+                ((Control)sender).Controls.Clear();
+                int ind;
+
+                if (((Control)sender) == PGeneral)
+                    ind = (int)PANEL.GENERAL;
+                else if (((Control)sender) == PSupport)
+                    ind = (int)PANEL.SUPPORT;
                 else
-                    controls[i].Location = new Point(controls[i].Location.X, ((Control)sender).Height - controls[i].Height);
-                prev_ctr = controls[i];
-                ((Control)sender).Controls.Add(controls[i]);
-                Region reg = new Region(new System.Drawing.Rectangle(0,controls[i].Location.Y, controls[i].Width, controls[i].Height));
-                if (reg != null)
+                    return;
+
+                var controls = messages_list[ind].ToArray();
+
+
+                for (int i = messages_list[ind].Count - 1 - scroll_offset[ind]; i >= 0; i--)
                 {
-                    Invalidate(reg);
-                    (((Control)sender)).Update();
+                    if (prev_ctr != null)
+                        controls[i].Location = new Point(controls[i].Location.X, prev_ctr.Location.Y - controls[i].Height);
+                    else
+                        controls[i].Location = new Point(controls[i].Location.X, ((Control)sender).Height - controls[i].Height - 5);
+
+                    prev_ctr = controls[i];
+
+                    ((Control)sender).Controls.Add(controls[i]);
+                    ((Control)sender).Controls[((Control)sender).Controls.Count - 1].Update();
+                    if (controls[i].Location.Y > ((Control)sender).Height || controls[i].Location.Y < 0)
+                    {
+                        if (!ScrollEnabled[ind])
+                        {
+                            scroll_offset[TAB_COUNT + ind] = ((Control)sender).Controls.Count - 1;
+                            ScrollEnabled[ind] = true;
+                            chat_scrolls[ind].Maximum = messages_list[ind].Count - scroll_offset[TAB_COUNT + ind];
+                            chat_scrolls[ind].Value = chat_scrolls[ind].Maximum - scroll_offset[ind];
+                        }
+                        return;
+                    }
                 }
             }
         }
@@ -250,39 +274,38 @@ namespace RSI_X_Desktop.forms
             chatButtonRight3.Visible = state;
         }
 
-        private void toTheESP_Click(object sender, EventArgs e)
+        private void materialShowTabControl1_VisibleChanged(object sender, EventArgs e)
         {
-            if (scroll_offset[1] != 0)
-            {
-                scroll_offset[1] = 0;
-                Chat_SizeChanged(PSupport, new EventArgs());
-            }
+            if (!Visible)
+                (sender as Control).SuspendLayout();
+            else
+                (sender as Control).ResumeLayout();
         }
 
-        private void toTheBSP_Click(object sender, EventArgs e)
+        private void SupportScroll_ValueChanged(object sender, int newValue)
         {
-            if (scroll_offset[1] != messages_list[1].Count - 1)
-            {
-                scroll_offset[1] = messages_list[1].Count - 1;
-                Chat_SizeChanged(PSupport, new EventArgs());
-            }
+            scroll_offset[1] = SupportScroll.Maximum - newValue;
+            Chat_SizeChanged(PSupport, new EventArgs());
         }
 
-        private void skyButton1_Click(object sender, EventArgs e)
+        private void GeneralScroll_ValueChanged(object sender, int newValue)
         {
-            if (scroll_offset[0] != messages_list[0].Count - 1)
-            {
-                scroll_offset[0] = messages_list[0].Count - 1;
-                Chat_SizeChanged(PGeneral, new EventArgs());
-            }
+            scroll_offset[0] = GeneralScroll.Maximum - newValue;
+            Chat_SizeChanged(PGeneral, new EventArgs());
         }
 
-        private void skyButton2_Click(object sender, EventArgs e)
+        private void materialShowTabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (scroll_offset[0] != 0)
+            switch (materialShowTabControl1.SelectedIndex)
             {
-                scroll_offset[0] = 0;
-                Chat_SizeChanged(PGeneral, new EventArgs());
+                case (int)PANEL.GENERAL:
+                    Chat_SizeChanged(PGeneral, new EventArgs());
+                    GC.Collect();
+                    break;
+                case (int)PANEL.SUPPORT:
+                    Chat_SizeChanged(PSupport, new EventArgs());
+                    GC.Collect();
+                    break;
             }
         }
     }

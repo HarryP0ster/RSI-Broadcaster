@@ -30,36 +30,48 @@ namespace RSI_X_Desktop.forms.HelpingClass
         {
             Owner = owner;
             this.AutoSize = true;
-            Width = 10;
+            Width = ((Control)owner).Width;
             Height = 65;
             Sender = new Label();
 
             Sender.Text = sender;
             Sender.AutoSize = true;
             Sender.TextAlign = ContentAlignment.BottomLeft;
+            BackColor = Color.FromArgb(240, 240, 240);
+            RowStyles.Add(new RowStyle(SizeType.Absolute, 25));
+            RowStyles.Add(new RowStyle(SizeType.AutoSize, 100));
 
-            Date = new Label();
+            //Date = new Label();
 
             if (sender == MyOwn)
             {
+                ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+                ColumnStyles[0].SizeType = SizeType.Percent;
+                ColumnStyles[0].Width = 100;
                 labelR = new ChatBubbleRight();
                 labelR.SizeAuto = true;
                 labelR.SizeAutoW = true;
                 labelR.SizeAutoH = true;
                 labelR.SizeChanged += Bubble_SizeChanged;
+                labelR.Margin = new Padding(0, 0, 13, 0);
+                Sender.TextAlign = ContentAlignment.BottomRight;
 
                 if (text.Length > 0) labelR.Text += text[0];
 
                 labelR.Text = text;
 
-                for (int i = maxSymbol-1; i < text.Length; i += maxSymbol)
+                for (int i = maxSymbol - 1; i < text.Length; i += maxSymbol)
                 {
                     labelR.Text = labelR.Text.Insert(i, " \n");
                 }
 
                 labelR.Show();
                 Name = "Right";
-                Controls.Add(labelR, 0, 1);
+                Controls.Add(labelR, 1, 1);
+                Controls.Add(Sender, 1, 0);
+                labelR.SuspendLayout();
+                labelR.Enabled = false;
+                Sender.SuspendLayout();
             }
             else
             {
@@ -73,41 +85,24 @@ namespace RSI_X_Desktop.forms.HelpingClass
 
                 labelL.Text = text + " ";
 
-                for (int i = maxSymbol-1; i < text.Length; i += maxSymbol)
+                for (int i = maxSymbol - 1; i < text.Length; i += maxSymbol)
                 {
                     labelL.Text = labelL.Text.Insert(i, " \n");
                 }
                 labelL.Show();
                 Name = "Left";
                 Controls.Add(labelL, 0, 1);
+                Controls.Add(Sender, 0, 0);
+                labelL.SuspendLayout();
+                labelL.Enabled = false;
+                Sender.SuspendLayout();
             }
-            Controls.Add(Sender, 0, 0);
         }
 
         public void Bubble_SizeChanged(object sender, EventArgs e)
         {
-            //foreach (Control ctr in Owner.Controls)
-            //{
-            //    if (this == ctr)
-            //        ctr.Location = new Point(Owner.Width - ActualWidth, ctr.Location.Y);
-            //}
-
-            //Owner.Controls.Add(this);
-
             actual_width = ((Control)sender).Width + 25;
-
-            //foreach (Control ctr in Owner.Controls)
-            //{
-            //    if (ctr.Name == "Right")
-            //        ctr.Location = new Point(ctr.Location.X, ctr.Location.Y - ((Control)sender).Height);
-            //    else
-            //        ctr.Location = new Point(5, ctr.Location.Y - ((Control)sender).Height);
-            //}
-            if (Name == "Left")
-                Location = new Point(5, Owner.Height - Height);
-            else
-                Location = new Point(Owner.Width - ActualWidth, Owner.Height - Height);
-
+            Location = new Point(5, Owner.Height - Height);
             (AgoraObject.GetWorkForm as Broadcaster).RebuildChatPanel(Owner);
         }
     }
