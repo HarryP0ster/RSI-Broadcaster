@@ -333,8 +333,12 @@ namespace RSI_X_Desktop.forms
 
         private void AcceptButton_Click(object sender, EventArgs e)
         {
-            oldRecorder = Recorders[comboBoxAudioInput.SelectedIndex];
-            oldVideoOut = VideoOut[comboBoxVideo.SelectedIndex];
+            var ain = comboBoxAudioInput.SelectedIndex;
+            var video = comboBoxVideo.SelectedIndex;
+
+            if (Recorders.Count < ain) oldRecorder = Recorders[ain];
+            if (VideoOut.Count < video) oldVideoOut = VideoOut[video];
+
             oldVolumeIn = trackBarSoundIn.Value;
             oldResolution = ComboBoxRes.SelectedValue.ToString();
             oldIndexResolution = ComboBoxRes.SelectedIndex;
