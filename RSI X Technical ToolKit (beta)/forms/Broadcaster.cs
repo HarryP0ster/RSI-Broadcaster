@@ -26,6 +26,7 @@ namespace RSI_X_Desktop
 
         private void Conference_Load(object sender, EventArgs e)
         {
+            SignOffToCenter();
             AgoraObject.Rtc.EnableVideo();
             AgoraObject.Rtc.EnableAudio();
             AgoraObject.Rtc.SetChannelProfile(CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING);
@@ -145,6 +146,13 @@ namespace RSI_X_Desktop
         private void SettingButton_Click(object sender, EventArgs e)
         {
             labelSettings_Click(SettingButton, e);
+        }
+
+        private void SignOffToCenter()
+        {
+            float width_left = labelSettings.Width + labelMicrophone.Width + labelVideo.Width;
+            float width_right = labelScreenShare.Width + labelChat.Width;
+            tableLayoutPanel2.ColumnStyles[6].Width = width_left - width_right;
         }
         private void CallSidePanel(Form Wnd) 
         {

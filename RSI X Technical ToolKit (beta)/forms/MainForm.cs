@@ -46,10 +46,12 @@ namespace RSI_X_Desktop.forms
             if (AgoraObject.JoinRoom(code))
             {
                 Hide();
-                Broadcaster broadcaster= new();
+                Broadcaster broadcaster = new();
                 AgoraObject.CurrentForm = CurForm.FormBroadcaster;
                 broadcaster.Show(this);
             }
+            else
+                NewTextBox.Clear();
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -112,6 +114,11 @@ namespace RSI_X_Desktop.forms
         {
             if (e.KeyCode == Keys.Enter)
                 JoinButton_Click(JoinButton, new());
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            NewTextBox.Focus();
         }
     }
 }

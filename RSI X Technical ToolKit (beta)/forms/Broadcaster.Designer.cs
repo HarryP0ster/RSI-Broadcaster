@@ -34,7 +34,6 @@ namespace RSI_X_Desktop
             this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.PanelBot = new ReaLTaiizor.Controls.LostPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button3 = new ReaLTaiizor.Controls.Button();
             this.labelChat = new System.Windows.Forms.Label();
             this.labelSettings = new System.Windows.Forms.Label();
@@ -57,7 +56,6 @@ namespace RSI_X_Desktop
             this.MainLayout.SuspendLayout();
             this.PanelBot.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.PanelTop.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -121,23 +119,22 @@ namespace RSI_X_Desktop
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 6;
+            this.tableLayoutPanel2.ColumnCount = 9;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel1, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.labelChat, 5, 0);
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.button3, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.labelChat, 8, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelSettings, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelMicrophone, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelVideo, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.labelScreenShare, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.labelScreenShare, 7, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
@@ -148,37 +145,21 @@ namespace RSI_X_Desktop
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1272, 71);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.86047F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.13953F));
-            this.tableLayoutPanel1.Controls.Add(this.button3, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(382, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(649, 65);
-            this.tableLayoutPanel1.TabIndex = 22;
-            // 
             // button3
             // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.BackColor = System.Drawing.Color.Transparent;
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button3.EnteredColor = System.Drawing.Color.DarkRed;
             this.button3.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button3.Image = null;
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.button3.Location = new System.Drawing.Point(230, 3);
+            this.button3.Location = new System.Drawing.Point(624, 4);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.button3.Name = "button3";
             this.button3.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.button3.Size = new System.Drawing.Size(100, 52);
+            this.button3.Size = new System.Drawing.Size(110, 55);
             this.button3.TabIndex = 24;
             this.button3.Text = "SIGN OFF";
             this.button3.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -186,28 +167,29 @@ namespace RSI_X_Desktop
             // 
             // labelChat
             // 
-            this.labelChat.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelChat.AutoSize = true;
             this.labelChat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelChat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelChat.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelChat.Location = new System.Drawing.Point(1205, 17);
-            this.labelChat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelChat.Location = new System.Drawing.Point(1220, 0);
+            this.labelChat.Margin = new System.Windows.Forms.Padding(0);
             this.labelChat.Name = "labelChat";
-            this.labelChat.Size = new System.Drawing.Size(63, 36);
+            this.labelChat.Size = new System.Drawing.Size(52, 71);
             this.labelChat.TabIndex = 15;
             this.labelChat.Text = "CHAT";
+            this.labelChat.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelChat.Click += new System.EventHandler(this.labelChat_Click);
             // 
             // labelSettings
             // 
-            this.labelSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labelSettings.AutoSize = true;
             this.labelSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelSettings.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelSettings.Location = new System.Drawing.Point(4, 17);
-            this.labelSettings.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelSettings.Location = new System.Drawing.Point(0, 0);
+            this.labelSettings.Margin = new System.Windows.Forms.Padding(0);
             this.labelSettings.Name = "labelSettings";
-            this.labelSettings.Size = new System.Drawing.Size(107, 36);
+            this.labelSettings.Size = new System.Drawing.Size(87, 71);
             this.labelSettings.TabIndex = 16;
             this.labelSettings.Text = "SETTINGS";
             this.labelSettings.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -215,14 +197,14 @@ namespace RSI_X_Desktop
             // 
             // labelMicrophone
             // 
-            this.labelMicrophone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labelMicrophone.AutoSize = true;
             this.labelMicrophone.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelMicrophone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelMicrophone.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelMicrophone.Location = new System.Drawing.Point(119, 17);
-            this.labelMicrophone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelMicrophone.Location = new System.Drawing.Point(87, 0);
+            this.labelMicrophone.Margin = new System.Windows.Forms.Padding(0);
             this.labelMicrophone.Name = "labelMicrophone";
-            this.labelMicrophone.Size = new System.Drawing.Size(142, 36);
+            this.labelMicrophone.Size = new System.Drawing.Size(114, 71);
             this.labelMicrophone.TabIndex = 17;
             this.labelMicrophone.Text = "MICROPHONE";
             this.labelMicrophone.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -230,14 +212,14 @@ namespace RSI_X_Desktop
             // 
             // labelVideo
             // 
-            this.labelVideo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labelVideo.AutoSize = true;
             this.labelVideo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelVideo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelVideo.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelVideo.Location = new System.Drawing.Point(269, 17);
-            this.labelVideo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelVideo.Location = new System.Drawing.Point(201, 0);
+            this.labelVideo.Margin = new System.Windows.Forms.Padding(0);
             this.labelVideo.Name = "labelVideo";
-            this.labelVideo.Size = new System.Drawing.Size(106, 36);
+            this.labelVideo.Size = new System.Drawing.Size(86, 71);
             this.labelVideo.TabIndex = 18;
             this.labelVideo.Text = "  CAMERA";
             this.labelVideo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -245,16 +227,17 @@ namespace RSI_X_Desktop
             // 
             // labelScreenShare
             // 
-            this.labelScreenShare.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelScreenShare.AutoSize = true;
             this.labelScreenShare.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelScreenShare.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelScreenShare.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelScreenShare.Location = new System.Drawing.Point(1038, 17);
-            this.labelScreenShare.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelScreenShare.Location = new System.Drawing.Point(1091, 0);
+            this.labelScreenShare.Margin = new System.Windows.Forms.Padding(0);
             this.labelScreenShare.Name = "labelScreenShare";
-            this.labelScreenShare.Size = new System.Drawing.Size(159, 36);
+            this.labelScreenShare.Size = new System.Drawing.Size(129, 71);
             this.labelScreenShare.TabIndex = 20;
             this.labelScreenShare.Text = "SCREEN SHARE";
+            this.labelScreenShare.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelScreenShare.Click += new System.EventHandler(this.btnScreenShare_Click);
             // 
             // PanelTop
@@ -380,7 +363,7 @@ namespace RSI_X_Desktop
             this.RoomNameLabel.Location = new System.Drawing.Point(140, 0);
             this.RoomNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.RoomNameLabel.Name = "RoomNameLabel";
-            this.RoomNameLabel.Size = new System.Drawing.Size(167, 69);
+            this.RoomNameLabel.Size = new System.Drawing.Size(134, 69);
             this.RoomNameLabel.TabIndex = 3;
             this.RoomNameLabel.Text = "RoomName";
             this.RoomNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -485,7 +468,6 @@ namespace RSI_X_Desktop
             this.PanelBot.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.PanelTop.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
@@ -519,7 +501,6 @@ namespace RSI_X_Desktop
         private System.Windows.Forms.PictureBox pictureBox1;
         private ReaLTaiizor.Controls.NightControlBox nightControlBox1;
         private System.Windows.Forms.Label labelScreenShare;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private ReaLTaiizor.Controls.Button button3;
         private System.Windows.Forms.Label labelVideo;
     }
