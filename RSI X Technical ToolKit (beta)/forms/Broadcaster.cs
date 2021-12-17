@@ -32,7 +32,6 @@ namespace RSI_X_Desktop
             AgoraObject.Rtc.SetChannelProfile(CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING);
             AgoraObject.Rtc.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
             AgoraObject.Rtc.EnableLocalVideo(true);
-            pictureBoxRemoteVideo.BackgroundImage = null;
             RoomNameLabel.Text = AgoraObject.GetComplexToken().GetRoomName;
 
             this.DoubleBuffered = true;
@@ -74,7 +73,6 @@ namespace RSI_X_Desktop
 
             AgoraObject.Rtc.SetupLocalVideo(canv);
             AgoraObject.Rtc.StartPreview();
-            pictureBoxRemoteVideo.BackgroundImage = null;
         }
         public void InvokeSetLocalFrame(Bitmap bmp) 
         {
@@ -90,7 +88,7 @@ namespace RSI_X_Desktop
         private void SetLocalFrame(Bitmap bmp)
         {
             pictureBoxRemoteVideo.BackColor = bmp != null ?
-                Color.Silver : Color.FromArgb(85, 85, 85);
+                Color.Black : Color.Silver;
 
             //pictureBoxRemoteVideo.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxRemoteVideo.Image = bmp;
@@ -156,65 +154,61 @@ namespace RSI_X_Desktop
             float width_right = labelScreenShare.Width + labelChat.Width;
             tableLayoutPanel2.ColumnStyles[6].Width = width_left - width_right;
         }
-        private void CallSidePanel(Form Wnd) 
+        private void CallSidePanel(Form Wnd)
         {
-            panel1.SuspendLayout();
-            Wnd.Size = panel1.Size;
-            Wnd.Location = panel1.Location;
             Wnd.TopLevel = false;
             Wnd.Dock = DockStyle.Fill;
             panel1.Controls.Add(Wnd);
             panel1.BringToFront();
             if (panel1.Visible == false || Wnd.Visible == false)
             {
-                panel1.ResumeLayout();
                 panel1.Location = new Point(Size.Width, panel1.Location.Y);
                 panel1.Show();
-                Animator(panel1, -18, 0, 25, 1);
+                Animator(panel1, -5, 0, 90, 1);
                 Wnd.Show();
             }
         }
 
         public void Animator(System.Windows.Forms.Panel panel, int offset_x, int offset_y, int itterations, int delay)
         {
-            //pictureBoxRemoteVideo.Refresh();
             Thread.Sleep(delay);
-            //pictureBoxRemoteVideo.SuspendLayout();
+            panel.SuspendLayout();
             for (int ind = 0; ind < itterations; ind++)
             {
                 StreamLayout.ColumnStyles[1].Width = StreamLayout.ColumnStyles[1].Width - offset_x;
-                StreamLayout.Update();
-                //pictureBoxRemoteVideo.Size = new Size(pictureBoxRemoteVideo.Size.Width - offset_x, pictureBoxRemoteVideo.Size.Height);
-                //Thread.Sleep(1);
             }
-            //pictureBoxRemoteVideo.ResumeLayout();
+            panel.ResumeLayout();
         }
+
+        private void ChatClosed(Form Wnd)
+        {
+            Animator(panel1, 5, 0, 90, 1);
+            panel1.Hide();
+            labelChat.ForeColor = Color.White;
+            Wnd.Hide();
+            Wnd.SuspendLayout();
+            GC.Collect();
+        }
+        public void DevicesClosed(Form Wnd)
+        {
+            Animator(panel1, 5, 0, 90, 1);
+            panel1.Hide();
+            labelSettings.ForeColor = Color.White;
+            Wnd.Close();
+            GC.Collect();
+        }
+
         public void GetMessage(string message, string nickname, CHANNEL_TYPE channel)
         {
             if (chat != null && chat.IsHandleCreated)
                 chat.chat_NewMessageInvoke(message, nickname, channel);
         }
-        private void ChatClosed(Form Wnd)
-        {
-            Wnd.Hide();
-            Wnd.SuspendLayout();
-            Animator(panel1, 18, 0, 25, 1);
-            panel1.Hide();
-            labelChat.ForeColor = Color.White;
-            GC.Collect();
-        }
+
         public void RebuildChatPanel(Control panel)
         {
             chat.Chat_SizeChanged(panel, new EventArgs());
         }
-        public void DevicesClosed(Form Wnd) 
-        {
-            Wnd.Close();
-            Animator(panel1, 18, 0, 25, 1);
-            panel1.Hide();
-            labelSettings.ForeColor = Color.White;
-            GC.Collect();
-        }
+
         //public void SetTrackBarVolume(int volume)
         //{
         //    trackBar1.Value = volume;
