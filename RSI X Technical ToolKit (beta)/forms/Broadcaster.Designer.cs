@@ -412,7 +412,7 @@ namespace RSI_X_Desktop
             // pictureBoxRemoteVideo
             // 
             this.pictureBoxRemoteVideo.BackColor = System.Drawing.Color.Silver;
-            this.pictureBoxRemoteVideo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxRemoteVideo.BackgroundImage")));
+            this.pictureBoxRemoteVideo.BackgroundImage = global::RSI_X_Desktop.Properties.Resources.logotype_black;
             this.pictureBoxRemoteVideo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBoxRemoteVideo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxRemoteVideo.Location = new System.Drawing.Point(0, 0);

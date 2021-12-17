@@ -17,6 +17,13 @@ namespace RSI_X_Desktop.forms
 {
     public partial class Devices : Form
     {
+        enum TabPages
+        {
+            GENERAL = 0,
+            AUDIO = 1,
+            VIDEO = 2
+        }
+
         private static Devices _instance;
         private static readonly Color InactiveColor = Color.White;
         private static readonly Color PushColor     = Color.BurlyWood;
@@ -48,6 +55,7 @@ namespace RSI_X_Desktop.forms
         static private AgoraVideoDeviceManager videoDeviceManager;
         static List<string> Recorders;
         static List<string> VideoOut;
+        bool Init = false;
 
         private static int oldVolumeIn;
         private static string oldRecorder;
@@ -102,6 +110,8 @@ namespace RSI_X_Desktop.forms
 
             button2.ForeColor = ImageSender.IsEnable ? 
                 PushColor : InactiveColor;
+
+            Init = true;
         }
         private void UpdateComboBoxRecorder()
         {
@@ -271,29 +281,38 @@ namespace RSI_X_Desktop.forms
         #region ComboBoxEventHandlers
         private void comboBoxAudioInput_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int ind = ((ComboBox)sender).SelectedIndex;
-            string name, id;
+            if (Init)
+            {
+                int ind = ((ComboBox)sender).SelectedIndex;
+                string name, id;
 
-            RecordersManager.GetDeviceInfoByIndex(ind, out name, out id);
-            RecordersManager.SetCurrentDevice(id);
+                RecordersManager.GetDeviceInfoByIndex(ind, out name, out id);
+                RecordersManager.SetCurrentDevice(id);
+            }
         }
         private void comboBoxAudioOutput_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int ind = ((ComboBox)sender).SelectedIndex;
-            string name, id;
+            if (Init)
+            {
+                int ind = ((ComboBox)sender).SelectedIndex;
+                string name, id;
 
-            SpeakersManager.GetDeviceInfoByIndex(ind, out name, out id);
-            SpeakersManager.SetCurrentDevice(id);
+                SpeakersManager.GetDeviceInfoByIndex(ind, out name, out id);
+                SpeakersManager.SetCurrentDevice(id);
+            }
         }
         private void comboBoxVideo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int ind = ((ComboBox)sender).SelectedIndex;
-            string name, id;
+            if (Init)
+            {
+                int ind = ((ComboBox)sender).SelectedIndex;
+                string name, id;
 
-            videoDeviceManager.GetDeviceInfoByIndex(ind, out name, out id);
-            videoDeviceManager.SetCurrentDevice(id);
+                videoDeviceManager.GetDeviceInfoByIndex(ind, out name, out id);
+                videoDeviceManager.SetCurrentDevice(id);
 
-            workForm.RefreshLocalWnd();
+                workForm.RefreshLocalWnd();
+            }
         }
         private void ComboBoxRes_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -316,7 +335,8 @@ namespace RSI_X_Desktop.forms
         private void NewDevices_FormClosed(object sender, FormClosedEventArgs e)
         {
             //AgoraObject.Rtc.EnableLocalVideo(false);
-            workForm?.SetLocalVideoPreview();
+            if (materialShowTabControl1.SelectedIndex == (int)TabPages.VIDEO)
+                workForm?.SetLocalVideoPreview();
             _instance = null;
             Dispose();
         }

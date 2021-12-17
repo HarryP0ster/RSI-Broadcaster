@@ -32,6 +32,7 @@ namespace RSI_X_Desktop
             AgoraObject.Rtc.SetChannelProfile(CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING);
             AgoraObject.Rtc.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
             AgoraObject.Rtc.EnableLocalVideo(true);
+            pictureBoxRemoteVideo.BackgroundImage = null;
             RoomNameLabel.Text = AgoraObject.GetComplexToken().GetRoomName;
 
             this.DoubleBuffered = true;
@@ -73,6 +74,7 @@ namespace RSI_X_Desktop
 
             AgoraObject.Rtc.SetupLocalVideo(canv);
             AgoraObject.Rtc.StartPreview();
+            pictureBoxRemoteVideo.BackgroundImage = null;
         }
         public void InvokeSetLocalFrame(Bitmap bmp) 
         {
@@ -88,7 +90,7 @@ namespace RSI_X_Desktop
         private void SetLocalFrame(Bitmap bmp)
         {
             pictureBoxRemoteVideo.BackColor = bmp != null ?
-                Color.Black : Color.Silver;
+                Color.Silver : Color.FromArgb(85, 85, 85);
 
             //pictureBoxRemoteVideo.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxRemoteVideo.Image = bmp;
@@ -168,7 +170,7 @@ namespace RSI_X_Desktop
                 panel1.ResumeLayout();
                 panel1.Location = new Point(Size.Width, panel1.Location.Y);
                 panel1.Show();
-                Animator(panel1, -9, 0, 50, 1);
+                Animator(panel1, -18, 0, 25, 1);
                 Wnd.Show();
             }
         }
@@ -177,14 +179,15 @@ namespace RSI_X_Desktop
         {
             //pictureBoxRemoteVideo.Refresh();
             Thread.Sleep(delay);
-            pictureBoxRemoteVideo.SuspendLayout();
+            //pictureBoxRemoteVideo.SuspendLayout();
             for (int ind = 0; ind < itterations; ind++)
             {
                 StreamLayout.ColumnStyles[1].Width = StreamLayout.ColumnStyles[1].Width - offset_x;
-                pictureBoxRemoteVideo.Size = new Size(pictureBoxRemoteVideo.Size.Width - offset_x, pictureBoxRemoteVideo.Size.Height);
+                StreamLayout.Update();
+                //pictureBoxRemoteVideo.Size = new Size(pictureBoxRemoteVideo.Size.Width - offset_x, pictureBoxRemoteVideo.Size.Height);
                 //Thread.Sleep(1);
             }
-            pictureBoxRemoteVideo.ResumeLayout();
+            //pictureBoxRemoteVideo.ResumeLayout();
         }
         public void GetMessage(string message, string nickname, CHANNEL_TYPE channel)
         {
@@ -207,7 +210,7 @@ namespace RSI_X_Desktop
         public void DevicesClosed(Form Wnd) 
         {
             Wnd.Close();
-            Animator(panel1, 9, 0, 50, 1);
+            Animator(panel1, 18, 0, 25, 1);
             panel1.Hide();
             labelSettings.ForeColor = Color.White;
             GC.Collect();
