@@ -73,6 +73,8 @@ namespace RSI_X_Desktop
 
             AgoraObject.Rtc.SetupLocalVideo(canv);
             AgoraObject.Rtc.StartPreview();
+
+            pictureBoxRemoteVideo.BackgroundImage = null;
         }
         public void InvokeSetLocalFrame(Bitmap bmp) 
         {
@@ -88,7 +90,7 @@ namespace RSI_X_Desktop
         private void SetLocalFrame(Bitmap bmp)
         {
             pictureBoxRemoteVideo.BackColor = bmp != null ?
-                Color.Black : Color.Silver;
+                Color.Silver : Color.FromArgb(85, 85, 85);
 
             //pictureBoxRemoteVideo.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxRemoteVideo.Image = bmp;
