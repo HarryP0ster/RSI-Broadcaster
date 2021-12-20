@@ -164,7 +164,7 @@ namespace RSI_X_Desktop
             {
                 panel1.Location = new Point(Size.Width, panel1.Location.Y);
                 panel1.Show();
-                Animator(panel1, -5, 0, 90, 1);
+                Animator(panel1, -45, 0, 10, 1);
                 Wnd.Show();
             }
         }
@@ -176,13 +176,14 @@ namespace RSI_X_Desktop
             for (int ind = 0; ind < itterations; ind++)
             {
                 StreamLayout.ColumnStyles[1].Width = StreamLayout.ColumnStyles[1].Width - offset_x;
+                Update();
             }
             panel.ResumeLayout();
         }
 
         private void ChatClosed(Form Wnd)
         {
-            Animator(panel1, 5, 0, 90, 1);
+            Animator(panel1, 45, 0, 10, 1);
             panel1.Hide();
             labelChat.ForeColor = Color.White;
             Wnd.Hide();
@@ -191,7 +192,7 @@ namespace RSI_X_Desktop
         }
         public void DevicesClosed(Form Wnd)
         {
-            Animator(panel1, 5, 0, 90, 1);
+            Animator(panel1, 45, 0, 10, 1);
             panel1.Hide();
             labelSettings.ForeColor = Color.White;
             Wnd.Close();
