@@ -26,7 +26,7 @@ namespace RSI_X_Desktop
         public static bool IsJoin { get; private set; }
         public static bool IsLocalAudioMute { get; private set; }
         public static bool IsLocalVideoMute { get; private set; }
-        public static bool IsScreenCapture { get; private set; } = false;
+        public static bool IsScreenCapture { get { return ScreenCapture.IsScreenCapture; } }
         public static bool IsAllRemoteAudioMute { get; private set; }
         public static bool IsAllRemoteVideoMute { get; private set; }
 
@@ -180,29 +180,13 @@ namespace RSI_X_Desktop
             Rtc.StartScreenCaptureByWindowId((ulong)index, region, capParam);
             return true;
         }
-        public static bool EnableScreenCapture(ScreenCaptureParameters capParam = new())
+        public static void EnableScreenCapture(ScreenCaptureParameters capParam = new())
         {
-            StopScreenCapture();
-            if (capParam.bitrate == 0)
-                capParam = forms.Devices.resolutionsSize[
-                    forms.Devices.oldResolution];
-            Rectangle region = new Rectangle();
-
-            region.width = Screen.PrimaryScreen.Bounds.Width;
-            region.height = Screen.PrimaryScreen.Bounds.Height;
-            capParam.bitrate = 1200;
-            capParam.frameRate = 15;
-
-            IsScreenCapture =
-                ERROR_CODE.ERR_OK == Rtc.StartScreenCaptureByScreenRect(region, region, capParam);
-
-            System.Diagnostics.Debug.WriteLine($"{DateTime.Now.ToString("HH:mm:ss")}: screen sharing enable ({IsScreenCapture})");
-            return IsScreenCapture;
+            ScreenCapture.StartScreenCapture(capParam);
         }
         public static void StopScreenCapture()
         {
-            Rtc.StopScreenCapture();
-            IsScreenCapture = false;
+            ScreenCapture.StopScreenCapture();
         }
         #endregion
 

@@ -74,8 +74,9 @@ namespace RSI_X_Desktop
             AgoraObject.Rtc.SetupLocalVideo(canv);
             AgoraObject.Rtc.StartPreview();
         }
-        public void InvokeSetLocalFrame(Bitmap bmp) 
+        public void InvokeSetLocalFrame(Bitmap bmp)
         {
+            if (IsDisposed || Disposing) return;
             if (InvokeRequired)
                 Invoke((MethodInvoker)delegate
                 {
@@ -313,6 +314,9 @@ namespace RSI_X_Desktop
                 ImageSender.configImageToSend(null);
                 ImageSender.EnableImageSender(false);
             }
+
+            if (ScreenCapture.IsScreenCapture) 
+                ScreenCapture.StopScreenCapture();
 
             AgoraObject.LeaveChannel();
             AgoraObject.Rtc.EnableLocalVideo(false);
