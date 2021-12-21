@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSI X Technical ToolKit (be
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "agorartc", "agorartc\agorartc\agorartc\agorartc.csproj", "{E8DA8D25-6D32-42CE-9578-3CCB1155DBB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesctopAudioRecorder", "DesctopAudioRecorder\DesctopAudioRecorder.csproj", "{351A2E21-F8AB-4073-8870-61B08CDA2D46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "appInDesctop", "DesctopAudioRecorder\appInDesctop.csproj", "{351A2E21-F8AB-4073-8870-61B08CDA2D46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

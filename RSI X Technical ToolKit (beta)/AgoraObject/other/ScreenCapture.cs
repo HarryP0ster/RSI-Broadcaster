@@ -11,19 +11,35 @@ namespace RSI_X_Desktop
 {
     internal static class ScreenCapture
     {
-        private static bool isJoin;
         public static bool IsScreenCapture { get; private set; }
-        private static WaveFormat waveFormat;
-        private static WaveFileWriter writer;
-        private static IWaveIn CaptureInstance = null;
+        static System.Diagnostics.Process proc;
+
         internal static void StartScreenCapture(ScreenCaptureParameters capParam)
         {
             StopScreenCapture();
-            isJoin = AgoraObject.IsJoin;
-            AgoraObject.LeaveChannel();
+            proc = new System.Diagnostics.Process();
 
-            CaptureInstance = new WasapiLoopbackCapture();
-            CaptureInstance.DataAvailable += DataAvaible;
+            List<string> args = new()
+            {
+                AgoraObject.GetHostToken(),
+                AgoraObject.GetHostName(),
+                System.Diagnostics.Process.GetCurrentProcess().Id.ToString(),
+            };
+
+            string arguments = "";
+            foreach (var a in args)
+                arguments += $"\"{a}\" ";
+
+            proc = new();
+            proc.StartInfo.Arguments = arguments;
+            proc.StartInfo.RedirectStandardOutput = true;
+            proc.StartInfo.RedirectStandardInput = true;
+            proc.StartInfo.FileName = "appInDesctop.exe";
+            proc.OutputDataReceived += proc_OutputDataReceived;
+            proc.StartInfo.CreateNoWindow = true;
+
+            proc.Start();
+            proc.BeginOutputReadLine();
 
             if (capParam.bitrate == 0)
                 capParam = forms.Devices.resolutionsSize[
@@ -38,65 +54,26 @@ namespace RSI_X_Desktop
             IsScreenCapture =
                 ERROR_CODE.ERR_OK == AgoraObject.Rtc.StartScreenCaptureByScreenRect(region, region, capParam);
             System.Diagnostics.Debug.WriteLine($"{DateTime.Now:HH:mm:ss:fff}: screen sharing enable ({IsScreenCapture})");
-
-            if (IsScreenCapture) 
-            {
-                AgoraObject.Rtc.SetExternalAudioSource(true, 44100, 1);
-                CaptureInstance.StartRecording();
-            }
-
-            if (isJoin) AgoraObject.JoinChannel();
         }
-        private static void DataAvaible(object sender, WaveInEventArgs e) 
+        private static void proc_OutputDataReceived(object sender, System.Diagnostics.DataReceivedEventArgs e)
         {
-            int samples = e.Buffer.Length / 4;
-            byte[] buff = new byte[samples / 2];
+            DebugWriter.Write(e.Data);
 
-            for (int i = 0; i < samples / 2; i += 2)
-            {
-                float t = BitConverter.ToSingle(e.Buffer, i * 4);
-                t += BitConverter.ToSingle(e.Buffer, (i + 1) * 4);
+            if (e.Data == null ||
+                e.Data.StartsWith("uid:") == false) return;
 
-                t /= 2;
-                short g = Convert.ToInt16(t * short.MaxValue);
-                var b = BitConverter.GetBytes(g);
+            uint selfSpeakerUid = Convert.ToUInt32(
+                e.Data.Split(':')[1]);
 
-                buff[i + 0] = b[0];
-                buff[i + 1] = b[1];
-            }
-            
-            AudioFrame af = new()
-            {
-                bytesPerSample = 2,
-                channels = 1,
-                buffer = buff,
-                type = AUDIO_FRAME_TYPE.FRAME_TYPE_PCM16,
-                avsync_type = (int)AUDIO_FRAME_TYPE.FRAME_TYPE_PCM16,
-                renderTimeMs = 160,
-                samplesPerSec = 44100,
-                samples = buff.Length / 2,
-            };
-
-            AgoraObject.Rtc.PushAudioFrame(
-                MEDIA_SOURCE_TYPE.AUDIO_RECORDING_SOURCE,
-                af, false);
+            if (selfSpeakerUid != 0)
+                AgoraObject.Rtc.SetRemoteVoicePosition(selfSpeakerUid, 0, 0);
         }
 
         internal static void StopScreenCapture()
         {
-            isJoin = AgoraObject.IsJoin;
-            AgoraObject.LeaveChannel();
-
-            AgoraObject.Rtc.SetExternalAudioSource(false, 0, 0);
             AgoraObject.Rtc.StopScreenCapture();
-
-            CaptureInstance?.StopRecording();
-            CaptureInstance?.Dispose();
-            CaptureInstance = null;
-            writer?.Dispose();
-            writer = null;
-
-            if (isJoin) AgoraObject.JoinChannel();
+            proc?.Kill();
+            proc = null;
             IsScreenCapture = false;
         }
     }
