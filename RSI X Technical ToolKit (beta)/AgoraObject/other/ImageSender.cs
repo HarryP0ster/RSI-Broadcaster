@@ -16,6 +16,9 @@ namespace RSI_X_Desktop
         private static int fps = 15;
         private static Bitmap frame = null;
         private static Broadcaster WorkForm;
+
+        private static bool isJoin = false;
+        private static bool Callback = false;
         public static bool IsEnable { get { return isEnable; } }
         public static Bitmap GetFrame { get { return frame; } }
         static ImageSender() 
@@ -87,8 +90,6 @@ namespace RSI_X_Desktop
             
             DebugWriter.WriteTime("load complete");
         }
-        private static bool isJoin = false;
-        private static bool Callback = false;
         public static void EnableImageSender(bool enable) 
         {
             Callback = true;

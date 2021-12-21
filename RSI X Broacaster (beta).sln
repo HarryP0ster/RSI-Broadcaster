@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSI X Technical ToolKit (be
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "agorartc", "agorartc\agorartc\agorartc\agorartc.csproj", "{E8DA8D25-6D32-42CE-9578-3CCB1155DBB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesctopAudioRecorder", "DesctopAudioRecorder\DesctopAudioRecorder.csproj", "{351A2E21-F8AB-4073-8870-61B08CDA2D46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,22 @@ Global
 		{E8DA8D25-6D32-42CE-9578-3CCB1155DBB3}.Release|ARM64.Build.0 = Release|Any CPU
 		{E8DA8D25-6D32-42CE-9578-3CCB1155DBB3}.Release|x64.ActiveCfg = Release|x64
 		{E8DA8D25-6D32-42CE-9578-3CCB1155DBB3}.Release|x64.Build.0 = Release|x64
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Debug|ARM32.ActiveCfg = Debug|Any CPU
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Debug|ARM32.Build.0 = Debug|Any CPU
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Debug|x64.Build.0 = Debug|Any CPU
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Release|ARM32.ActiveCfg = Release|Any CPU
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Release|ARM32.Build.0 = Release|Any CPU
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Release|ARM64.Build.0 = Release|Any CPU
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Release|x64.ActiveCfg = Release|Any CPU
+		{351A2E21-F8AB-4073-8870-61B08CDA2D46}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -23,7 +23,6 @@ namespace RSI_X_Desktop
             AgoraObject.LeaveChannel();
 
             CaptureInstance = new WasapiLoopbackCapture();
-            waveFormat = CaptureInstance.WaveFormat;
             CaptureInstance.DataAvailable += DataAvaible;
 
             if (capParam.bitrate == 0)
@@ -43,7 +42,6 @@ namespace RSI_X_Desktop
             if (IsScreenCapture) 
             {
                 AgoraObject.Rtc.SetExternalAudioSource(true, 44100, 1);
-                writer = new WaveFileWriter("test.wav", new WaveFormat(38400, 1));
                 CaptureInstance.StartRecording();
             }
 
@@ -66,20 +64,6 @@ namespace RSI_X_Desktop
                 buff[i + 0] = b[0];
                 buff[i + 1] = b[1];
             }
-
-            //for (int i = 0; i < e.Buffer.Length / 2; i++)
-            //{
-            //    float t = BitConverter.ToSingle(e.Buffer, i * 4);
-            //    t += BitConverter.ToSingle(e.Buffer, (i + 1) * 4);
-
-            //    t /= 2;
-            //    short g = Convert.ToInt16(t * short.MaxValue);
-            //    var b = BitConverter.GetBytes(g);
-                
-            //    buff[i / 4 + 0] = b[1];
-            //    buff[i / 4 + 1] = b[0];
-            //}
-            //writer.Write(buff);
             
             AudioFrame af = new()
             {
@@ -88,13 +72,12 @@ namespace RSI_X_Desktop
                 buffer = buff,
                 type = AUDIO_FRAME_TYPE.FRAME_TYPE_PCM16,
                 avsync_type = (int)AUDIO_FRAME_TYPE.FRAME_TYPE_PCM16,
-                renderTimeMs = 1000,
+                renderTimeMs = 160,
                 samplesPerSec = 44100,
                 samples = buff.Length / 2,
             };
 
-
-            var ret = AgoraObject.Rtc.PushAudioFrame(
+            AgoraObject.Rtc.PushAudioFrame(
                 MEDIA_SOURCE_TYPE.AUDIO_RECORDING_SOURCE,
                 af, false);
         }
