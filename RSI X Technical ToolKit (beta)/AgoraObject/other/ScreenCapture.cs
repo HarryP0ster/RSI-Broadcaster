@@ -14,6 +14,7 @@ namespace RSI_X_Desktop
         private static bool isJoin;
         public static bool IsScreenCapture { get; private set; }
         private static WaveFormat waveFormat;
+        private static WaveFileWriter writer;
         private static IWaveIn CaptureInstance = null;
         internal static void StartScreenCapture(ScreenCaptureParameters capParam)
         {
@@ -42,29 +43,44 @@ namespace RSI_X_Desktop
             if (IsScreenCapture) 
             {
                 AgoraObject.Rtc.SetExternalAudioSource(true, 44100, 1);
+                writer = new WaveFileWriter("test.wav", new WaveFormat(38400, 1));
                 CaptureInstance.StartRecording();
             }
 
             if (isJoin) AgoraObject.JoinChannel();
         }
-
         private static void DataAvaible(object sender, WaveInEventArgs e) 
         {
-            byte[] buff = new byte[e.Buffer.Length / (2 * 2)];
-            int indexOut = 0;
+            int samples = e.Buffer.Length / 4;
+            byte[] buff = new byte[samples / 2];
 
-            for (int i = 0; i < e.Buffer.Length; i += 4 * 2)
+            for (int i = 0; i < samples / 2; i += 2)
             {
-                float t = BitConverter.ToSingle(e.Buffer, i);
-                t += BitConverter.ToSingle(e.Buffer, i+4);
+                float t = BitConverter.ToSingle(e.Buffer, i * 4);
+                t += BitConverter.ToSingle(e.Buffer, (i + 1) * 4);
+
                 t /= 2;
-                short g = Convert.ToInt16( t * short.MaxValue);
+                short g = Convert.ToInt16(t * short.MaxValue);
                 var b = BitConverter.GetBytes(g);
-                buff[i / 4 + 0] = b[1];
-                buff[i / 4 + 1] = b[0];
-                //DebugWriter.Write($"{g}");
+
+                buff[i + 0] = b[0];
+                buff[i + 1] = b[1];
             }
 
+            //for (int i = 0; i < e.Buffer.Length / 2; i++)
+            //{
+            //    float t = BitConverter.ToSingle(e.Buffer, i * 4);
+            //    t += BitConverter.ToSingle(e.Buffer, (i + 1) * 4);
+
+            //    t /= 2;
+            //    short g = Convert.ToInt16(t * short.MaxValue);
+            //    var b = BitConverter.GetBytes(g);
+                
+            //    buff[i / 4 + 0] = b[1];
+            //    buff[i / 4 + 1] = b[0];
+            //}
+            //writer.Write(buff);
+            
             AudioFrame af = new()
             {
                 bytesPerSample = 2,
@@ -72,11 +88,11 @@ namespace RSI_X_Desktop
                 buffer = buff,
                 type = AUDIO_FRAME_TYPE.FRAME_TYPE_PCM16,
                 avsync_type = (int)AUDIO_FRAME_TYPE.FRAME_TYPE_PCM16,
-                renderTimeMs = 1,
+                renderTimeMs = 1000,
                 samplesPerSec = 44100,
                 samples = buff.Length / 2,
             };
-            
+
 
             var ret = AgoraObject.Rtc.PushAudioFrame(
                 MEDIA_SOURCE_TYPE.AUDIO_RECORDING_SOURCE,
@@ -90,9 +106,12 @@ namespace RSI_X_Desktop
 
             AgoraObject.Rtc.SetExternalAudioSource(false, 0, 0);
             AgoraObject.Rtc.StopScreenCapture();
+
             CaptureInstance?.StopRecording();
             CaptureInstance?.Dispose();
             CaptureInstance = null;
+            writer?.Dispose();
+            writer = null;
 
             if (isJoin) AgoraObject.JoinChannel();
             IsScreenCapture = false;
