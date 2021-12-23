@@ -50,20 +50,14 @@ namespace RSI_X_Desktop.forms
         };
 
         private IFormHostHolder workForm = AgoraObject.GetWorkForm;
-<<<<<<< Updated upstream
-        static private AgoraAudioRecordingDeviceManager RecordersManager;
-        static private AgoraAudioPlaybackDeviceManager SpeakersManager;
-        static private AgoraVideoDeviceManager videoDeviceManager;
-        static List<string> Recorders;
-        static List<string> VideoOut;
-        bool Init = false;
-=======
+
         static private IAgoraRtcAudioRecordingDeviceManager RecordersManager;
         static private IAgoraRtcAudioPlaybackDeviceManager SpeakersManager;
         static private IAgoraRtcVideoDeviceManager VideoManager;
         static List<DeviceInfo> Recorders;
         static List<DeviceInfo> VideoOut;
->>>>>>> Stashed changes
+
+        bool Init = false;
 
         #region old/new device
         private static int oldVolumeIn;
@@ -304,40 +298,8 @@ namespace RSI_X_Desktop.forms
         #region ComboBoxEventHandlers
         private void comboBoxAudioInput_SelectedIndexChanged(object sender, EventArgs e)
         {
-<<<<<<< Updated upstream
-            if (Init)
-            {
-                int ind = ((ComboBox)sender).SelectedIndex;
-                string name, id;
+            if (!Init) return;
 
-                RecordersManager.GetDeviceInfoByIndex(ind, out name, out id);
-                RecordersManager.SetCurrentDevice(id);
-            }
-        }
-        private void comboBoxAudioOutput_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (Init)
-            {
-                int ind = ((ComboBox)sender).SelectedIndex;
-                string name, id;
-
-                SpeakersManager.GetDeviceInfoByIndex(ind, out name, out id);
-                SpeakersManager.SetCurrentDevice(id);
-            }
-        }
-        private void comboBoxVideo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (Init)
-            {
-                int ind = ((ComboBox)sender).SelectedIndex;
-                string name, id;
-
-                videoDeviceManager.GetDeviceInfoByIndex(ind, out name, out id);
-                videoDeviceManager.SetCurrentDevice(id);
-
-                workForm.RefreshLocalWnd();
-            }
-=======
             DeviceInfo dev;
             int ind = ((ComboBox)sender).SelectedIndex;
             var RecorderList = RecordersManager.EnumerateRecordingDevices();
@@ -350,6 +312,8 @@ namespace RSI_X_Desktop.forms
         }
         private void comboBoxAudioOutput_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!Init) return;
+
             DeviceInfo dev;
             int ind = ((ComboBox)sender).SelectedIndex;
             var SpeakerList = SpeakersManager.EnumeratePlaybackDevices();
@@ -362,6 +326,8 @@ namespace RSI_X_Desktop.forms
         }
         private void comboBoxVideo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!Init) return;
+
             DeviceInfo dev;
             int ind = ((ComboBox)sender).SelectedIndex;
             var VideoList = VideoManager.EnumerateVideoDevices();
@@ -372,7 +338,6 @@ namespace RSI_X_Desktop.forms
             SelectedVideoOut = dev;
             VideoManager.SetDevice(dev.deviceId);
             workForm.RefreshLocalWnd();
->>>>>>> Stashed changes
         }
         private void ComboBoxRes_SelectedIndexChanged(object sender, EventArgs e)
         {
