@@ -9,6 +9,7 @@ namespace RSI_X_Desktop
         public void SetLocalVideoPreview();
         public void DevicesClosed(System.Windows.Forms.Form Wnd);
         //public void SetTrackBarVolume(int volume);
+        public void InvokeSetLocalFrame(System.Drawing.Bitmap bmp);
     }
     public enum EBroadcasterRoles
     {

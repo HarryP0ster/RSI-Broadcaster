@@ -113,13 +113,7 @@ namespace RSI_X_Desktop
             AgoraObject.Rtc.SetExternalVideoSource(isEnable, true);
             if (isJoin) AgoraObject.JoinChannel();
         }
-        public static void Rejoin() 
-        {
-            if (!Callback) return;
 
-
-            Callback = true;
-        }
         public static void SendOneFrame()
         {
             VideoFrame.timestamp += 1;

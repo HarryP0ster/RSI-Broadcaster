@@ -50,7 +50,7 @@ namespace RSI_X_Desktop.forms
             ["1920 * 1080"] = new(1920, 1080, 15, BITRATE.STANDARD_BITRATE, false, false) { bitrate = 2080 },
         };
 
-        private IFormHostHolder workForm = AgoraObject.GetWorkForm;
+        private static IFormHostHolder workForm = AgoraObject.GetWorkForm;
 
         static private IAgoraRtcAudioRecordingDeviceManager RecordersManager;
         static private IAgoraRtcAudioPlaybackDeviceManager SpeakersManager;
@@ -83,7 +83,10 @@ namespace RSI_X_Desktop.forms
             RecordersManager = AgoraObject.Rtc.GetAgoraRtcAudioRecordingDeviceManager();
             SpeakersManager = AgoraObject.Rtc.GetAgoraRtcAudioPlaybackDeviceManager();
             VideoManager = AgoraObject.Rtc.GetAgoraRtcVideoDeviceManager();
+        }
 
+        public static void SetupOldDevices()
+        {
             VideoOut = getListVideoDevices();
             Recorders = getListAudioInputDevices();
 
@@ -93,15 +96,16 @@ namespace RSI_X_Desktop.forms
                 Recorders.FindLastIndex((s) => s.deviceId == oldRecorder.deviceId) :
                 index = getActiveAudioInputDevice();
 
-            
+
             oldRecorder = Recorders[index];
-            
+
             if (VideoOut.Count > 0 && index > 0)
                 oldVideoOut = VideoOut[0];
 
             oldResolution = resolutions.Keys.ToArray()[oldIndexResolution];
             UpdateResolution(oldResolution);
         }
+
         private void NewDevices_Load(object sender, EventArgs e)
         {
             _instance = this;
@@ -199,7 +203,14 @@ namespace RSI_X_Desktop.forms
             try 
             {
                 VideoOut = getListVideoDevices();
-                int index = VideoOut.FindLastIndex((s) => s.deviceId == oldVideoOut.deviceId);
+
+                if (VideoOut.Count == 0) 
+                {
+                    workForm?.InvokeSetLocalFrame(Properties.Resources.logotype_black);
+                    return;
+                }
+
+                    int index = VideoOut.FindLastIndex((s) => s.deviceId == oldVideoOut.deviceId);
                 index = index == -1 ? 0 : index;
 
                 var device = VideoManager.EnumerateVideoDevices()[index];
@@ -436,6 +447,8 @@ namespace RSI_X_Desktop.forms
         }
         private static void AcceptNewVideoRecDevice()
         {
+            if (oldVideoOut.deviceId == null) return;
+
             try
             {
                 VideoManager.SetDevice(oldVideoOut.deviceId);
@@ -447,9 +460,11 @@ namespace RSI_X_Desktop.forms
         }
         private static void AcceptNewRecordDevice()
         {
+            if (oldVideoOut.deviceId == null) return;
+            
             try
             {
-                RecordersManager.SetRecordingDevice(oldVideoOut.deviceId);
+                RecordersManager.SetRecordingDevice(oldRecorder.deviceId);
             }
             catch (Exception ex)
             {
@@ -486,7 +501,7 @@ namespace RSI_X_Desktop.forms
             oldRecorder = new();
             oldVideoOut = new();
             oldResolution = null;
-            oldIndexResolution = HDresolution; //360p        
+            oldIndexResolution = HDresolution;       
         }
         private void buttonImgSend_Click(object sender, EventArgs e)
         {
@@ -522,7 +537,6 @@ namespace RSI_X_Desktop.forms
         }
         public static void SetImageSend(bool block)
         {
-            ImageSend = true;
             if (_instance == null) return;
 
             if (_instance.InvokeRequired)
@@ -530,7 +544,10 @@ namespace RSI_X_Desktop.forms
                 {
                     _instance.button2.Enabled = block;
                 });
-            else { _instance.button2.Enabled = block; }
+            else 
+            { 
+                _instance.button2.Enabled = block; 
+            }
         }
     }
 }

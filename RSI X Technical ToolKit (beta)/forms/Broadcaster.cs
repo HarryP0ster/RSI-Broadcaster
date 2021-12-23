@@ -22,6 +22,8 @@ namespace RSI_X_Desktop
             InitializeComponent();
             AgoraObject.SetWndEventHandler(this);
             LocalWinId = pictureBoxRemoteVideo.Handle;
+            Devices.SetupOldDevices();
+
         }
 
         private void Conference_Load(object sender, EventArgs e)
@@ -322,10 +324,6 @@ namespace RSI_X_Desktop
 
             Devices.Clear();
             GC.Collect();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
         }
     }
 }

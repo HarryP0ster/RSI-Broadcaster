@@ -12,13 +12,12 @@ namespace RSI_X_Desktop
     internal static class ScreenCapture
     {
         public static bool IsScreenCapture { get; private set; }
-        static System.Diagnostics.Process proc;
+        static System.Diagnostics.Process proc = null;
 
         internal static void StartScreenCapture(ScreenCaptureParameters capParam)
         {
             StopScreenCapture();
-            proc = new System.Diagnostics.Process();
-
+            
             List<string> args = new()
             {
                 AgoraObject.GetHostToken(),

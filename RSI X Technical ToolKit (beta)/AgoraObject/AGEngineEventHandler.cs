@@ -30,11 +30,11 @@ namespace RSI_X_Desktop
         {
             Console.WriteLine("OnLocalVideoStateChanged");
 
+            DebugWriter.WriteTime($"{localVideoState}, {error}");
             switch (localVideoState)
             {
                 case LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_CAPTURING:
                 case LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_ENCODING:
-                    //DebugWriter.WriteTime($"{localVideoState}, {error}");
                     if (ImageSender.IsEnable) 
                     {
                         ImageSender.SetLocalFrame();
@@ -46,6 +46,15 @@ namespace RSI_X_Desktop
                 case LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_FAILED:
                 case LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_STOPPED:
                 default:
+                    break;
+            }
+
+            switch (error) 
+            {
+                case LOCAL_VIDEO_STREAM_ERROR.LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE:
+                case LOCAL_VIDEO_STREAM_ERROR.LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND:
+                    if (ImageSender.IsEnable == false)
+                        ImageSender.SetLocalFrame(clear: true);
                     break;
             }
         }
