@@ -45,7 +45,6 @@ namespace RSI_X_Desktop
         internal static Tokens room = new Tokens();
 
         internal static IAgoraRtcChannel m_channelHost;
-        internal static Dictionary<string, AgoraRtcChannel> m_listChannels = new();
 
         private static int _hostStreamID;
         internal static int hostStreamID { get => _hostStreamID; }
@@ -196,7 +195,7 @@ namespace RSI_X_Desktop
         #endregion
 
         #region Engine channel
-        static public void JoinChannel() 
+        static public void JoinChannel()
         {
             JoinChannel(room.GetHostName, room.GetHostToken);
         }
@@ -272,6 +271,17 @@ namespace RSI_X_Desktop
         public static void SendMessageToHost(string msg)
         {
             Rtc.SendStreamMessage(_hostStreamID, utf8enc.GetBytes(msg));
+        }
+
+        public static void Release()
+        {
+            m_channelHost?.LeaveChannel();
+            m_channelHost?.Dispose();
+            m_channelHost = null;
+
+            Rtc.LeaveChannel();
+            Rtc.Dispose();
+            Rtc = null;
         }
     }
 }

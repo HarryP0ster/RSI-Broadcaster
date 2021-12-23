@@ -127,6 +127,7 @@ namespace RSI_X_Desktop.forms
         private void UpdateComboBoxRecorder()
         {
             Recorders = getListAudioInputDevices();
+            List<string> listRecorders = new();
             bool hasOldRecorder = Recorders.Any((s) => s.deviceId == oldRecorder.deviceId);
 
             int index = (oldRecorder.deviceId != "" && hasOldRecorder) ?
@@ -142,14 +143,19 @@ namespace RSI_X_Desktop.forms
                 return;
             }
 
-            oldRecorder = Recorders[index];
+            foreach(var rec in Recorders)
+                listRecorders.Add(rec.deviceName);
 
-            comboBoxAudioInput.DataSource = Recorders;
+            oldRecorder = Recorders[index];
+            SelectedRecorder = Recorders[index];
+
+            comboBoxAudioInput.DataSource = listRecorders;
             comboBoxAudioInput.SelectedIndex = index;
         }
         private void UpdateComboBoxVideoOut()
         {
             VideoOut = getListVideoDevices();
+            List<string> listVideo = new();
             bool hasoldVideoOut = VideoOut.Any((s) => s.deviceId == oldVideoOut.deviceId);
 
             int index = (oldVideoOut.deviceId != "") ?
@@ -165,9 +171,13 @@ namespace RSI_X_Desktop.forms
                 return;
             }
 
+            foreach (var rec in VideoOut)
+                listVideo.Add(rec.deviceName);
 
             oldVideoOut = VideoOut[index];
-            comboBoxVideo.DataSource = VideoOut;
+            SelectedVideoOut = VideoOut[index];
+
+            comboBoxVideo.DataSource = listVideo;
             comboBoxVideo.SelectedIndex = index;
         }
 
@@ -304,7 +314,7 @@ namespace RSI_X_Desktop.forms
             int ind = ((ComboBox)sender).SelectedIndex;
             var RecorderList = RecordersManager.EnumerateRecordingDevices();
 
-            if (RecorderList.Length < ind)
+            if (RecorderList.Length > ind)
                 dev = RecorderList[ind];
 
             SelectedRecorder = dev;
@@ -318,7 +328,7 @@ namespace RSI_X_Desktop.forms
             int ind = ((ComboBox)sender).SelectedIndex;
             var SpeakerList = SpeakersManager.EnumeratePlaybackDevices();
 
-            if (SpeakerList.Length < ind)
+            if (SpeakerList.Length > ind)
                 dev = SpeakerList[ind];
 
             SelectedRecorder = dev;
@@ -332,7 +342,7 @@ namespace RSI_X_Desktop.forms
             int ind = ((ComboBox)sender).SelectedIndex;
             var VideoList = VideoManager.EnumerateVideoDevices();
 
-            if (VideoList.Length < ind)
+            if (VideoList.Length > ind)
                 dev = VideoList[ind];
 
             SelectedVideoOut = dev;
@@ -382,8 +392,8 @@ namespace RSI_X_Desktop.forms
             var ain = comboBoxAudioInput.SelectedIndex;
             var video = comboBoxVideo.SelectedIndex;
 
-            if (Recorders.Count < ain) oldRecorder = Recorders[ain];
-            if (VideoOut.Count < video) oldVideoOut = VideoOut[video];
+            if (Recorders.Count > ain) oldRecorder = Recorders[ain];
+            if (VideoOut.Count > video) oldVideoOut = VideoOut[video];
 
             oldVolumeIn = trackBarSoundIn.Value;
             oldResolution = ComboBoxRes.SelectedValue.ToString();
@@ -404,17 +414,9 @@ namespace RSI_X_Desktop.forms
         }
         public static void AcceptAllOldDevices()
         {
-            try
-            {
-                AcceptNewRecordDevice();
-                AcceptNewVideoRecDevice();
-                AcceptNewResolution();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            AcceptNewRecordDevice();
+            AcceptNewVideoRecDevice();
+            AcceptNewResolution();
         }
 
         private static void AcceptNewResolution()
@@ -425,23 +427,22 @@ namespace RSI_X_Desktop.forms
         {
             try
             {
-                VideoManager.SetDevice(SelectedVideoOut.deviceId);
+                VideoManager.SetDevice(oldVideoOut.deviceId);
             }
             catch (Exception ex) 
             {
                 MessageBox.Show("Failed video.\n" + ex.Message);
             }
         }
-
         private static void AcceptNewRecordDevice()
         {
             try
             {
-                RecordersManager.SetRecordingDevice(SelectedRecorder.deviceId);
+                RecordersManager.SetRecordingDevice(oldVideoOut.deviceId);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed video.\n" + ex.Message);
+                MessageBox.Show("Failed recorders.\n" + ex.Message);
             }
         }
         public void typeOfAlligment(bool sign)
