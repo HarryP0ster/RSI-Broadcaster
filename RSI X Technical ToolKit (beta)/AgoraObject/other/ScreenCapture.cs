@@ -30,13 +30,13 @@ namespace RSI_X_Desktop
             foreach (var a in args)
                 arguments += $"\"{a}\" ";
 
-            proc = new();
-            proc.StartInfo.Arguments = arguments;
-            proc.StartInfo.CreateNoWindow = true;
-            proc.StartInfo.RedirectStandardOutput = true;
-            proc.StartInfo.RedirectStandardInput = true;
-            proc.StartInfo.FileName = "appInDesctop.exe";
-            proc.OutputDataReceived += proc_OutputDataReceived;
+            //proc = new();
+            //proc.StartInfo.Arguments = arguments;
+            //proc.StartInfo.CreateNoWindow = true;
+            //proc.StartInfo.RedirectStandardOutput = true;
+            //proc.StartInfo.RedirectStandardInput = true;
+            //proc.StartInfo.FileName = "appInDesctop.exe";
+            //proc.OutputDataReceived += proc_OutputDataReceived;
 
             //proc.Start();
             //proc.BeginOutputReadLine();

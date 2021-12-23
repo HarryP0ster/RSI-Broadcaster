@@ -24,6 +24,7 @@ namespace RSI_X_Desktop.forms
             VIDEO = 2
         }
 
+        private const int HDresolution = 6;
         private static Devices _instance;
         private static readonly Color InactiveColor = Color.White;
         private static readonly Color PushColor     = Color.BurlyWood;
@@ -64,16 +65,15 @@ namespace RSI_X_Desktop.forms
         private static DeviceInfo oldRecorder;
         private static DeviceInfo oldVideoOut;
         public static string oldResolution { get; private set; }
-        private static int oldIndexResolution = 6; //1080p
+        private static int oldIndexResolution = HDresolution; //1080p
 
         private static int SelectedVolumeIn;
         private static DeviceInfo SelectedRecorder;
         private static DeviceInfo SelectedVideoOut;
         public static string SelectedResolution { get; private set; }
-        private static int SelectedIndexResolution = 6; //1080p
+        private static int SelectedIndexResolution = HDresolution; //1080p
         #endregion
 
-        private static bool ImageSend = false;
         public Devices()
         {
             InitializeComponent();
@@ -366,7 +366,16 @@ namespace RSI_X_Desktop.forms
 
         private static void UpdateResolution(string res)
         {
-            AgoraObject.Rtc.SetVideoProfile(resolutions[res], false);
+            //AgoraObject.Rtc.SetVideoProfile(resolutions[res], false);
+            if (res == null) return;
+
+            AgoraObject.Rtc.SetVideoEncoderConfiguration(new() 
+            {
+                dimensions = resolutionsSize[res].dimensions,
+                bitrate = resolutionsSize[res].bitrate,
+                frameRate = FRAME_RATE.FRAME_RATE_FPS_24,
+                orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_FIXED_LANDSCAPE
+            });
             System.Diagnostics.Debug.WriteLine($"{DateTime.Now.ToString("HH:mm:ss")}: select resolution: {res}");
 
             if (AgoraObject.IsScreenCapture)
@@ -375,16 +384,20 @@ namespace RSI_X_Desktop.forms
         }
         private void NewDevices_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //AgoraObject.Rtc.EnableLocalVideo(false);
+            AcceptAllOldDevices();
+
             if (materialShowTabControl1.SelectedIndex == (int)TabPages.VIDEO)
                 workForm?.SetLocalVideoPreview();
             _instance = null;
+
             Dispose();
         }
         private void trackBarSoundIn_ValueChanged()
         {
-            var ret = RecordersManager.SetRecordingDeviceVolume(
-                trackBarSoundIn.Value);
+            SelectedVolumeIn = trackBarSoundIn.Value;
+            
+            RecordersManager.
+                SetRecordingDeviceVolume(SelectedVolumeIn);
         }
 
         private void AcceptButton_Click(object sender, EventArgs e)
@@ -406,8 +419,6 @@ namespace RSI_X_Desktop.forms
         {
             trackBarSoundIn.Value = oldVolumeIn;
             trackBarSoundIn_ValueChanged();
-
-            AcceptAllOldDevices();
 
             AgoraObject.GetWorkForm?.DevicesClosed(this);
             Close();
@@ -475,7 +486,7 @@ namespace RSI_X_Desktop.forms
             oldRecorder = new();
             oldVideoOut = new();
             oldResolution = null;
-            oldIndexResolution = 3; //360p        
+            oldIndexResolution = HDresolution; //360p        
         }
         private void buttonImgSend_Click(object sender, EventArgs e)
         {
@@ -494,19 +505,18 @@ namespace RSI_X_Desktop.forms
                 var fd = new OpenFileDialog();
                 fd.ShowDialog();
 
-                if (fd.FileName != String.Empty) 
+                if (fd.FileName == String.Empty) return;
+
+                try 
                 {
-                    try 
-                    {
-                        ImageSender.configImageToSend(new Bitmap(fd.FileName), 5);
-                        ImageSender.EnableImageSender(true);
-                        button2.ForeColor = PushColor;
-                        SetImageSend(false);
-                    }
-                    catch (Exception ex)
-                    { 
-                        MessageBox.Show(ex.Message);
-                    }
+                    ImageSender.configImageToSend(new Bitmap(fd.FileName), 5);
+                    ImageSender.EnableImageSender(true);
+                    button2.ForeColor = PushColor;
+                    SetImageSend(false);
+                }
+                catch (Exception ex)
+                { 
+                    MessageBox.Show(ex.Message);
                 }
             }
         }

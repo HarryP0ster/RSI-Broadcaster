@@ -185,7 +185,7 @@ namespace RSI_X_Desktop.forms
 
         public void chat_NewMessageSupInvoke(object sender, HelpingClass.FireBaseUpdateEventArgs arg)
         {
-            if (instance_ == null || instance_.IsDisposed)
+            if (instance_ == null || instance_.IsDisposed || instance_.Disposing)
                 return;
             if (instance_.InvokeRequired)
                 instance_.Invoke((MethodInvoker)delegate
