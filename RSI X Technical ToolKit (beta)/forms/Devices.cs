@@ -181,6 +181,11 @@ namespace RSI_X_Desktop.forms
             comboBoxVideo.SelectedIndex = index;
         }
 
+        public static ScreenCaptureParameters GetVideoParam()
+        {
+            return resolutionsSize[oldResolution];
+        }
+
         private void getComputerDescription()
         {
             dungeonLabel1.Text = "Версия ОС - " + OSVersion.VersionString;
@@ -380,11 +385,6 @@ namespace RSI_X_Desktop.forms
         {
             var ret = RecordersManager.SetRecordingDeviceVolume(
                 trackBarSoundIn.Value);
-        }
-
-        public void SetAudienceSettings()
-        {
-            materialShowTabControl1.SelectTab(1);
         }
 
         private void AcceptButton_Click(object sender, EventArgs e)

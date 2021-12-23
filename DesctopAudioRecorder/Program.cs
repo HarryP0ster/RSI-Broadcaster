@@ -24,6 +24,8 @@ namespace DesctopAudioRecorder
         //args [token] [channelId] [pid]
         static void Main(string[] args)
         {
+            Console.ReadLine();
+
             parentID = System.Convert.ToInt32(args[(int)ARGS.PID]);
             token = args[(int)ARGS.TOKEN];
             chname = args[(int)ARGS.CHANNEL_ID];

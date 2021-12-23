@@ -109,8 +109,7 @@ namespace RSI_X_Desktop
         {
             if (enable)
             {
-                ///TODO: ScreenCAptureParam
-                AgoraObject.EnableScreenCapture(new());
+                AgoraObject.EnableScreenCapture();
                 labelScreenShare.ForeColor = Color.Red;
             }
             else

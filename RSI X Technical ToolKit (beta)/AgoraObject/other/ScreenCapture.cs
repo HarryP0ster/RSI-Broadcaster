@@ -32,14 +32,14 @@ namespace RSI_X_Desktop
 
             proc = new();
             proc.StartInfo.Arguments = arguments;
+            proc.StartInfo.CreateNoWindow = true;
             proc.StartInfo.RedirectStandardOutput = true;
             proc.StartInfo.RedirectStandardInput = true;
             proc.StartInfo.FileName = "appInDesctop.exe";
             proc.OutputDataReceived += proc_OutputDataReceived;
-            proc.StartInfo.CreateNoWindow = true;
 
-            proc.Start();
-            proc.BeginOutputReadLine();
+            //proc.Start();
+            //proc.BeginOutputReadLine();
 
             if (capParam.bitrate == 0)
                 capParam = forms.Devices.resolutionsSize[
@@ -74,6 +74,7 @@ namespace RSI_X_Desktop
             AgoraObject.Rtc.StopScreenCapture();
             proc?.Kill();
             proc = null;
+
             IsScreenCapture = false;
         }
     }

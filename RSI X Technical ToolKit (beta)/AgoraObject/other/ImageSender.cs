@@ -91,7 +91,6 @@ namespace RSI_X_Desktop
         private static bool Callback = false;
         public static void EnableImageSender(bool enable) 
         {
-            Callback = true;
             isJoin = AgoraObject.IsJoin;
 
             AgoraObject.LeaveChannel();
@@ -110,13 +109,14 @@ namespace RSI_X_Desktop
                 timer.Dispose();
                 GC.Collect();
             }
+
+            AgoraObject.Rtc.SetExternalVideoSource(isEnable, true);
+            if (isJoin) AgoraObject.JoinChannel();
         }
         public static void Rejoin() 
         {
             if (!Callback) return;
 
-            AgoraObject.Rtc.SetExternalVideoSource(isEnable, true);
-            if (isJoin) AgoraObject.JoinChannel();
 
             Callback = true;
         }

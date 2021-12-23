@@ -17,18 +17,29 @@ namespace DesctopAudioRecorder
         static XAgoraObject()
         {
             Rtc = AgoraRtcEngine.CreateAgoraRtcEngine();
-            Rtc.InitEventHandler(new AEngineEventHandler());
             Rtc.Initialize(new RtcEngineContext(AppID));
+
+            Rtc.InitEventHandler(new AEngineEventHandler());
+            System.Diagnostics.Debugger.Break();
+
+            Rtc.EnableAudio();
+            Rtc.SetExternalAudioSource(true, 44100, 1);
         }
 
         internal static void JoinChannel(string token, string chName)
         {
-            StartScreenCapture();
-            int res = Rtc.JoinChannel(token, chName, "", 0);
+            int res = Rtc.JoinChannel(token, chName, "", 0, 
+                new ()
+                {
+                    autoSubscribeAudio = true,
+                    autoSubscribeVideo = false,
+                    publishLocalAudio = true,
+                    publishLocalVideo = false,
+                });
 
-            Rtc.MuteLocalVideoStream(true);
-            Rtc.MuteAllRemoteAudioStreams(true);
-            Rtc.MuteAllRemoteVideoStreams(true);
+            Console.WriteLine($"join succ: {res}");
+
+            StartScreenCapture();
         }
         internal static void LeaveChannel()
         {
@@ -37,7 +48,6 @@ namespace DesctopAudioRecorder
 
         internal static void StartScreenCapture()
         {
-            Rtc.SetExternalAudioSource(true, 44100, 1);
 
             CaptureInstance = new WasapiLoopbackCapture();
             CaptureInstance.DataAvailable += DataAvaible;
@@ -77,12 +87,17 @@ namespace DesctopAudioRecorder
             Rtc.PushAudioFrame(
                 MEDIA_SOURCE_TYPE.AUDIO_RECORDING_SOURCE,
                 af, false);
+
+            System.Diagnostics.Debugger.Break();
         }
 
         internal static void StopScreenCapture()
         {
             LeaveChannel();
             Rtc.SetExternalAudioSource(false, 0, 0);
+            Rtc.Dispose();
+            Rtc = null;
+
             CaptureInstance?.StopRecording();
             CaptureInstance?.Dispose();
             CaptureInstance = null;

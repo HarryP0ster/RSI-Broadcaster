@@ -26,7 +26,7 @@ namespace RSI_X_Desktop
         public static bool IsJoin { get; private set; }
         public static bool IsLocalAudioMute { get; private set; }
         public static bool IsLocalVideoMute { get; private set; }
-        public static bool IsScreenCapture { get; private set; } = false;
+        public static bool IsScreenCapture { get { return ScreenCapture.IsScreenCapture; } }
         public static bool IsAllRemoteAudioMute { get; private set; }
         public static bool IsAllRemoteVideoMute { get; private set; }
 
@@ -183,14 +183,16 @@ namespace RSI_X_Desktop
             //Rtc.StartScreenCaptureByWindowId((ulong)index, region, capParam);
             return true;
         }
-        public static void EnableScreenCapture(ScreenCaptureParameters capParam)
+        public static void EnableScreenCapture(ScreenCaptureParameters capParam = null)
         {
-            //ScreenCapture.StartScreenCapture(capParam);
+            if (capParam == null)
+                
+                capParam = forms.Devices.GetVideoParam();
+            ScreenCapture.StartScreenCapture(capParam);
         }
         public static void StopScreenCapture()
         {
-            Rtc.StopScreenCapture();
-            IsScreenCapture = false;
+            ScreenCapture.StopScreenCapture();
         }
         #endregion
 
@@ -210,7 +212,12 @@ namespace RSI_X_Desktop
             Rtc.MuteLocalAudioStream(IsLocalAudioMute);
             Rtc.MuteLocalVideoStream(IsLocalVideoMute);
 
-            //Rtc.CreateDataStream(out _hostStreamID, true, true);
+            _hostStreamID = Rtc.CreateDataStream(new() 
+            { 
+                ordered=true,
+                syncWithAudio=true,
+            });
+            
             Rtc.StartPreview();
             return res;
         }
