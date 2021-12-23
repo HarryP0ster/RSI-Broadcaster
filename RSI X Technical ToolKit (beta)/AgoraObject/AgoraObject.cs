@@ -280,11 +280,18 @@ namespace RSI_X_Desktop
             Rtc.SendStreamMessage(_hostStreamID, utf8enc.GetBytes(msg));
         }
 
-        public static void Release()
+        public static void SoftRelease() 
         {
+            m_channelHost?.InitEventHandler(null);
             m_channelHost?.LeaveChannel();
             m_channelHost?.Dispose();
             m_channelHost = null;
+
+            Rtc.InitEventHandler(null);
+        }
+        public static void Release()
+        {
+            SoftRelease();
 
             Rtc.LeaveChannel();
             Rtc.Dispose();

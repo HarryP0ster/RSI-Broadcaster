@@ -80,6 +80,7 @@ namespace RSI_X_Desktop
         }
         public void InvokeSetLocalFrame(Bitmap bmp) 
         {
+            if (IsDisposed || Disposing) return;
             if (InvokeRequired)
                 Invoke((MethodInvoker)delegate
                 {
@@ -120,7 +121,7 @@ namespace RSI_X_Desktop
                 labelScreenShare.ForeColor = Color.White;
             }
             
-            pictureBoxRemoteVideo.Refresh();
+            pictureBoxRemoteVideo.Update();
             IsSharingScreen = !IsSharingScreen;
         }
 
@@ -314,15 +315,18 @@ namespace RSI_X_Desktop
             {
                 ImageSender.configImageToSend(null);
                 ImageSender.EnableImageSender(false);
+                ImageSender.Dispose();
             }
+
+            AgoraObject.SoftRelease();
 
             AgoraObject.LeaveChannel();
             AgoraObject.Rtc.EnableLocalVideo(false);
             AgoraObject.Rtc.DisableVideo();
             AgoraObject.Rtc.DisableAudio();
-            if (!Owner.Visible) Application.Exit();
-
             Devices.Clear();
+
+            if (!Owner.Visible) Application.Exit();
             GC.Collect();
         }
     }

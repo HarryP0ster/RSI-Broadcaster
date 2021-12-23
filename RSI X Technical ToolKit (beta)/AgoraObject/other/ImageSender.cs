@@ -107,6 +107,7 @@ namespace RSI_X_Desktop
             {
                 DebugWriter.WriteTime("Image sender has stop");
                 timer.Dispose();
+                timer = null;
                 GC.Collect();
             }
 
@@ -129,9 +130,22 @@ namespace RSI_X_Desktop
         internal static void SetLocalFrame(bool clear=false)
         {
             if (false == clear)
-                WorkForm.InvokeSetLocalFrame(frame);
+                WorkForm?.InvokeSetLocalFrame(frame);
             else
-                WorkForm.InvokeSetLocalFrame(null);
+                WorkForm?.InvokeSetLocalFrame(null);
+        }
+
+        internal static void Dispose()
+        {
+            timer?.Dispose();
+            timer = null;
+
+            VideoFrame = null;
+
+            frame?.Dispose();
+            frame = null;
+
+            WorkForm = null;
         }
     }
 }
