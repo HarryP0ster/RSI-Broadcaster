@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-using agorartc;
+using agora.rtc;
 using HWND = System.IntPtr;
 
 namespace RSI_X_Desktop
@@ -40,16 +40,16 @@ namespace RSI_X_Desktop
         public static string RoomTarg { get; private set; } = ""; //Full name of the target room without 8 digits
         public static CurForm CurrentForm = CurForm.None;
 
-        internal static AgoraRtcEngine Rtc;
+        internal static IAgoraRtcEngine Rtc;
 
         internal static Tokens room = new Tokens();
 
-        internal static AgoraRtcChannel m_channelHost;
+        internal static IAgoraRtcChannel m_channelHost;
         internal static Dictionary<string, AgoraRtcChannel> m_listChannels = new();
 
         private static int _hostStreamID;
         internal static int hostStreamID { get => _hostStreamID; }
-        internal static AGChannelEventHandler hostHandler;
+        internal static IAgoraRtcChannelEventHandler hostHandler;
         private static IFormHostHolder workForm;
 
         public static IFormHostHolder GetWorkForm
@@ -74,8 +74,9 @@ namespace RSI_X_Desktop
 
         static AgoraObject()
         {
-            Rtc = AgoraRtcEngine.CreateRtcEngine();
+            Rtc = AgoraRtcEngine.CreateAgoraRtcEngine();
             Rtc.Initialize(new RtcEngineContext(AppID));
+            Rtc.EnableVideo();
             forms.Devices.InitManager();
 
             SetPublishProfile();
@@ -112,25 +113,25 @@ namespace RSI_X_Desktop
         #endregion
 
         #region Mute local audio/video
-        static public ERROR_CODE MuteLocalAudioStream(bool mute)
+        static public int MuteLocalAudioStream(bool mute)
         {
-            ERROR_CODE res;
+            int res;
 
             res = Rtc.MuteLocalAudioStream(mute);
 
-            if (res == ERROR_CODE.ERR_OK)
+            if (res == (int)ERROR_CODE_TYPE.ERR_OK)
                 IsLocalAudioMute = mute;
 
             return res;
         }
 
-        static public ERROR_CODE MuteLocalVideoStream(bool mute)
+        static public int MuteLocalVideoStream(bool mute)
         {
-            ERROR_CODE res;
+            int res;
 
             res = Rtc.MuteLocalVideoStream(mute);
 
-            if (res == ERROR_CODE.ERR_OK)
+            if (res == (int)ERROR_CODE_TYPE.ERR_OK)
                 IsLocalVideoMute = mute;
 
             return res;
@@ -165,21 +166,25 @@ namespace RSI_X_Desktop
         #region Screen/Window capture
         public static bool EnableWindowCapture(HWND index)
         {
-            Rectangle region = new Rectangle();
-            System.Drawing.Rectangle Rectangle2 = new();
-            GetWindowRect((System.IntPtr)index, out Rectangle2);
-            int wdth = Rectangle2.Width;
-            int hgt = Rectangle2.Height;
-            ScreenCaptureParameters capParam = new ScreenCaptureParameters(wdth, hgt);
-            region.x = 0;
-            region.y = 0;
-            region.width = wdth;
-            region.height = hgt;
-            capParam.bitrate = 1200;
-            capParam.frameRate = 30;
-            Rtc.StartScreenCaptureByWindowId((ulong)index, region, capParam);
+            //Rectangle region = new Rectangle();
+            //System.Drawing.Rectangle Rectangle2 = new();
+            //GetWindowRect((System.IntPtr)index, out Rectangle2);
+            //int wdth = Rectangle2.Width;
+            //int hgt = Rectangle2.Height;
+            //ScreenCaptureParameters capParam = new ScreenCaptureParameters(wdth, hgt)
+            //{
+
+            //};
+            //region.x = 0;
+            //region.y = 0;
+            //region.width = wdth;
+            //region.height = hgt;
+            //capParam.bitrate = 1200;
+            //capParam.frameRate = 30;
+            //Rtc.StartScreenCaptureByWindowId((ulong)index, region, capParam);
             return true;
         }
+<<<<<<< Updated upstream
         public static bool EnableScreenCapture(ScreenCaptureParameters capParam = new())
         {
             StopScreenCapture();
@@ -198,6 +203,11 @@ namespace RSI_X_Desktop
 
             System.Diagnostics.Debug.WriteLine($"{DateTime.Now.ToString("HH:mm:ss")}: screen sharing enable ({IsScreenCapture})");
             return IsScreenCapture;
+=======
+        public static void EnableScreenCapture(ScreenCaptureParameters capParam)
+        {
+            //ScreenCapture.StartScreenCapture(capParam);
+>>>>>>> Stashed changes
         }
         public static void StopScreenCapture()
         {
@@ -211,28 +221,26 @@ namespace RSI_X_Desktop
         {
             JoinChannel(room.GetHostName, room.GetHostToken);
         }
-        static public ERROR_CODE JoinChannel(string chName, string token)
+        static public int JoinChannel(string chName, string token)
         {
             var rnd = new Random();
-            ERROR_CODE res = Rtc.JoinChannelWithUserAccount(token, chName, NickCenter.ToHostNick(rnd.Next().ToString()));
+            int res = Rtc.JoinChannelWithUserAccount(token, chName, NickCenter.ToHostNick(rnd.Next().ToString()));
 
-            Rtc.CreateDataStream(out _hostStreamID, true, true);
-
-            if (res == ERROR_CODE.ERR_OK)
+            if (res == (int)ERROR_CODE_TYPE.ERR_OK)
                 IsJoin = true;
 
             Rtc.MuteLocalAudioStream(IsLocalAudioMute);
             Rtc.MuteLocalVideoStream(IsLocalVideoMute);
 
-            Rtc.CreateDataStream(out _hostStreamID, true, true);
+            //Rtc.CreateDataStream(out _hostStreamID, true, true);
             Rtc.StartPreview();
             return res;
         }
-        static public ERROR_CODE LeaveChannel()
+        static public int LeaveChannel()
         {
-            ERROR_CODE res = Rtc.LeaveChannel();
+            int res = Rtc.LeaveChannel();
 
-            if (res == ERROR_CODE.ERR_OK)
+            if (res == (int)ERROR_CODE_TYPE.ERR_OK)
                 IsJoin = false;
 
             return res;
@@ -246,11 +254,11 @@ namespace RSI_X_Desktop
         }
         public static bool JoinChannelHost(string lpChannelName, string token, uint nUID, string info)
         {
-            ERROR_CODE ret;
+            int ret;
             LeaveHostChannel();
 
             m_channelHost = Rtc.CreateChannel(lpChannelName);
-            m_channelHost.InitChannelEventHandler(hostHandler);
+            m_channelHost.InitEventHandler(hostHandler);
             m_channelHost.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
             m_channelHost.SetDefaultMuteAllRemoteVideoStreams(false);
 
@@ -259,10 +267,10 @@ namespace RSI_X_Desktop
             options.autoSubscribeVideo = true;
 
             ret = m_channelHost.JoinChannelWithUserAccount(token, NickName, options);
-            //ERROR_CODE ret = m_channelHost.JoinChannel(token, info, nUID, options);
+            //ERROR_CODE_TYPE ret = m_channelHost.JoinChannel(token, info, nUID, options);
 
             m_channelHostJoin = (0 == ret);
-            var code = m_channelHost.CreateDataStream(out _hostStreamID, true, true);
+            //var code = m_channelHost.CreateDataStream(out _hostStreamID, true, true);
 
             return 0 == ret;
         }

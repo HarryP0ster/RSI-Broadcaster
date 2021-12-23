@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using agorartc;
+using agora.rtc;
 using RSI_X_Desktop;
 using System.Threading;
 

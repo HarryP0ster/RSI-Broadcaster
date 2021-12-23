@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Drawing;
-using agorartc;
+using agora.rtc;
 
 namespace RSI_X_Desktop
 {

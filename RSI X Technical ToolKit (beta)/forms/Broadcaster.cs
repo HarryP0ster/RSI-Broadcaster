@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Threading;
 using RSI_X_Desktop.forms;
-using agorartc;
+using agora.rtc;
 
 namespace RSI_X_Desktop
 {
@@ -109,7 +109,8 @@ namespace RSI_X_Desktop
         {
             if (enable)
             {
-                AgoraObject.EnableScreenCapture();
+                ///TODO: ScreenCAptureParam
+                AgoraObject.EnableScreenCapture(new());
                 labelScreenShare.ForeColor = Color.Red;
             }
             else
