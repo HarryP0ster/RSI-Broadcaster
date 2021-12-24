@@ -118,7 +118,7 @@ namespace RSI_X_Desktop.forms
             UpdateComboBoxRecorder();
             UpdateComboBoxVideoOut();
             
-            getComputerDescription();
+            setupComputerDescription();
 
             ComboBoxRes.DataSource = new List<string>(resolutions.Keys);
             ComboBoxRes.SelectedIndex = oldIndexResolution;
@@ -130,6 +130,7 @@ namespace RSI_X_Desktop.forms
          
             Init = true;
         }
+
         private void UpdateComboBoxRecorder()
         {
             Recorders = getListAudioInputDevices();
@@ -191,15 +192,6 @@ namespace RSI_X_Desktop.forms
         {
             return resolutionsSize[oldResolution];
         }
-
-        private void getComputerDescription()
-        {
-            dungeonLabel1.Text = "Версия ОС - " + OSVersion.VersionString;
-            dungeonLabel2.Text = Is64BitOperatingSystem ?
-                "64 Bit операционная система" : 
-                "32 Bit операционная система";
-            dungeonLabel3.Text = "Пользователь - " + UserName;
-        }
         public static void ResetVideoDevice() 
         {
             try 
@@ -225,6 +217,15 @@ namespace RSI_X_Desktop.forms
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void setupComputerDescription()
+        {
+            dungeonLabel1.Text = "Версия ОС - " + OSVersion.VersionString;
+            dungeonLabel2.Text = Is64BitOperatingSystem ?
+                "64 Bit операционная система" : 
+                "32 Bit операционная система";
+            dungeonLabel3.Text = "Пользователь - " + UserName;
+        }
         private static int getActiveAudioInputDevice()
         {
             bool found = false;
@@ -243,7 +244,7 @@ namespace RSI_X_Desktop.forms
 
             return id;
         }
-        private int getActiveVideoDevice()
+        private static int getActiveVideoDevice()
         {
             bool found = false;
             int id = 0;
@@ -376,6 +377,14 @@ namespace RSI_X_Desktop.forms
             pictureBoxLocalVideoTest.Refresh();
         }
         #endregion
+        
+        private void trackBarSoundIn_ValueChanged()
+        {
+            SelectedVolumeIn = trackBarSoundIn.Value;
+            
+            RecordersManager.
+                SetRecordingDeviceVolume(SelectedVolumeIn);
+        }
 
         private static void UpdateResolution(string res)
         {
@@ -405,13 +414,6 @@ namespace RSI_X_Desktop.forms
 
             Dispose();
         }
-        private void trackBarSoundIn_ValueChanged()
-        {
-            SelectedVolumeIn = trackBarSoundIn.Value;
-            
-            RecordersManager.
-                SetRecordingDeviceVolume(SelectedVolumeIn);
-        }
 
         private void AcceptButton_Click(object sender, EventArgs e)
         {
@@ -427,8 +429,7 @@ namespace RSI_X_Desktop.forms
 
             CloseButton_Click(sender, e);
         }
-
-        internal void CloseButton_Click(object sender, EventArgs e)
+        private void CloseButton_Click(object sender, EventArgs e)
         {
             trackBarSoundIn.Value = oldVolumeIn;
             trackBarSoundIn_ValueChanged();
@@ -436,13 +437,67 @@ namespace RSI_X_Desktop.forms
             workForm?.DevicesClosed(this);
             Close();
         }
+        private void buttonImgSend_Click(object sender, EventArgs e)
+        {
+            if (ImageSender.IsEnable || IsImageSend)
+            {
+                ImageSender.configImageToSend(null);
+                ImageSender.EnableImageSender(false);
+
+                ResetVideoDevice();
+                btnCustomImage.ForeColor = InactiveColor;
+            }
+            else
+            {
+                var fd = new OpenFileDialog();
+                fd.ShowDialog();
+
+                if (fd.FileName == String.Empty) return;
+
+                try
+                {
+                    SetImageSend(false);
+                    btnCustomImage.ForeColor = PushColor;
+                    btnCustomImage.Cursor = Cursors.WaitCursor;
+
+                    ImageSender.configImageToSend(new Bitmap(fd.FileName), 5);
+                    ImageSender.EnableImageSender(true);
+
+                    btnCustomImage.Cursor = Cursors.Default;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            IsImageSend = ImageSender.IsEnable;
+            workForm?.InvokeUpdateColors();
+        }
+        public static void SetImageSend(bool block)
+        {
+            if (_instance == null) return;
+
+            if (_instance.InvokeRequired)
+                _instance.Invoke((MethodInvoker)delegate
+                {
+                   _instance.BlockImageSendBtn(block);
+                });
+            else 
+            {
+                _instance.BlockImageSendBtn(block);
+            }
+        }
+        private void BlockImageSendBtn(bool block)
+        {
+            btnCustomImage.Enabled = block;
+        }
+
         public static void AcceptAllOldDevices()
         {
             AcceptNewRecordDevice();
             AcceptNewVideoRecDevice();
             AcceptNewResolution();
         }
-
         private static void AcceptNewResolution()
         {
             UpdateResolution(oldResolution);
@@ -496,60 +551,6 @@ namespace RSI_X_Desktop.forms
         {
             if (e.TabPage == Video)
                 workForm?.SetLocalVideoPreview();
-        }
-        private void buttonImgSend_Click(object sender, EventArgs e)
-        {
-            if (ImageSender.IsEnable || IsImageSend)
-            {
-                ImageSender.configImageToSend(null);
-                ImageSender.EnableImageSender(false);
-
-                ResetVideoDevice();
-                btnCustomImage.ForeColor = InactiveColor;
-            }
-            else
-            {
-                var fd = new OpenFileDialog();
-                fd.ShowDialog();
-
-                if (fd.FileName == String.Empty) return;
-
-                try 
-                {
-                    SetImageSend(false);
-                    btnCustomImage.ForeColor = PushColor;
-                    btnCustomImage.Cursor = Cursors.WaitCursor;
-                    
-                    ImageSender.configImageToSend(new Bitmap(fd.FileName), 5);
-                    ImageSender.EnableImageSender(true);
-
-                    btnCustomImage.Cursor = Cursors.Default;
-                }
-                catch (Exception ex)
-                { 
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            IsImageSend = ImageSender.IsEnable;
-            workForm?.InvokeUpdateColors();
-        }
-        public static void SetImageSend(bool block)
-        {
-            if (_instance == null) return;
-
-            if (_instance.InvokeRequired)
-                _instance.Invoke((MethodInvoker)delegate
-                {
-                   _instance.BlockImageSendBtn(block);
-                });
-            else 
-            {
-                _instance.BlockImageSendBtn(block);
-            }
-        }
-        private void BlockImageSendBtn(bool block)
-        {
-            btnCustomImage.Enabled = block;
         }
         public static void Clear()
         {
