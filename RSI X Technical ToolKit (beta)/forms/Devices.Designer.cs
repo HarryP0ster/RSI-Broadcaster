@@ -57,7 +57,7 @@ namespace RSI_X_Desktop.forms
             this.BAcceptVideo = new ReaLTaiizor.Controls.Button();
             this.pictureBoxLocalVideoTest = new ReaLTaiizor.Controls.HopePictureBox();
             this.comboBoxVideo = new ReaLTaiizor.Controls.AloneComboBox();
-            this.button2 = new ReaLTaiizor.Controls.Button();
+            this.btnCustomImage = new ReaLTaiizor.Controls.Button();
             this.button6 = new ReaLTaiizor.Controls.Button();
             this.button7 = new ReaLTaiizor.Controls.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
@@ -447,7 +447,7 @@ namespace RSI_X_Desktop.forms
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 7);
             this.tableLayoutPanel3.Controls.Add(this.pictureBoxLocalVideoTest, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.comboBoxVideo, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.button2, 0, 5);
+            this.tableLayoutPanel3.Controls.Add(this.btnCustomImage, 0, 5);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(2, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -566,24 +566,24 @@ namespace RSI_X_Desktop.forms
             // 
             // button2
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btnCustomImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.button2.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button2.Image = null;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.button2.Location = new System.Drawing.Point(162, 304);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.button2.Name = "button2";
-            this.button2.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.button2.Size = new System.Drawing.Size(183, 35);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Custom image";
-            this.button2.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.button2.Click += new System.EventHandler(this.buttonImgSend_Click);
+            this.btnCustomImage.BackColor = System.Drawing.Color.Transparent;
+            this.btnCustomImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCustomImage.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.btnCustomImage.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCustomImage.Image = null;
+            this.btnCustomImage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCustomImage.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.btnCustomImage.Location = new System.Drawing.Point(162, 304);
+            this.btnCustomImage.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.btnCustomImage.Name = "button2";
+            this.btnCustomImage.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            this.btnCustomImage.Size = new System.Drawing.Size(183, 35);
+            this.btnCustomImage.TabIndex = 10;
+            this.btnCustomImage.Text = "Custom image";
+            this.btnCustomImage.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.btnCustomImage.Click += new System.EventHandler(this.buttonImgSend_Click);
             // 
             // button6
             // 
@@ -740,6 +740,6 @@ namespace RSI_X_Desktop.forms
         private ReaLTaiizor.Controls.DungeonLabel dungeonLabel3;
         private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
         private ReaLTaiizor.Controls.AloneComboBox ComboBoxRes;
-        private ReaLTaiizor.Controls.Button button2;
+        private ReaLTaiizor.Controls.Button btnCustomImage;
     }
 }

@@ -103,16 +103,22 @@ namespace RSI_X_Desktop
         {
             pictureBoxRemoteVideo.Refresh();
         }
+
         private void btnScreenShare_Click(object sender, EventArgs e)
         {
             if (AgoraObject.IsLocalVideoMute) return;
+
+            if (Devices.IsImageSend) 
+                ImageSender.EnableImageSender(IsSharingScreen);
+
             enableScreenShare(!IsSharingScreen);
         }
         public void enableScreenShare(bool enable)
         {
             if (enable)
             {
-                AgoraObject.EnableScreenCapture();
+                AgoraObject.StartScreenCapture();
+                SetLocalVideoPreview();
                 labelScreenShare.ForeColor = Color.Red;
             }
             else
@@ -124,7 +130,22 @@ namespace RSI_X_Desktop
             pictureBoxRemoteVideo.Update();
             IsSharingScreen = !IsSharingScreen;
         }
-
+        public void InvokeUpdateColors() 
+        {
+            if (InvokeRequired)
+                Invoke((MethodInvoker)delegate
+                {
+                    UpdateColors();
+                });
+            else
+            {
+                UpdateColors();
+            }
+        }
+        private void UpdateColors() 
+        {
+            labelScreenShare.ForeColor = ScreenCapture.IsCapture ? Color.Red : Color.White; ;
+        }
         private void labelSettings_Click(object sender, EventArgs e)
         {
             if (chat.Visible == true)

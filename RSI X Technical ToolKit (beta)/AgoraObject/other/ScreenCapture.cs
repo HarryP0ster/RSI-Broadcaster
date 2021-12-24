@@ -11,7 +11,7 @@ namespace RSI_X_Desktop
 {
     internal static class ScreenCapture
     {
-        public static bool IsScreenCapture { get; private set; }
+        public static bool IsCapture { get; private set; }
         static System.Diagnostics.Process proc = null;
 
         internal static void StartScreenCapture(ScreenCaptureParameters capParam)
@@ -50,9 +50,9 @@ namespace RSI_X_Desktop
             capParam.bitrate = 1200;
             capParam.frameRate = 15;
 
-            IsScreenCapture =
+            IsCapture =
                 (int)ERROR_CODE_TYPE.ERR_OK == AgoraObject.Rtc.StartScreenCaptureByScreenRect(region, region, capParam);
-            System.Diagnostics.Debug.WriteLine($"{DateTime.Now:HH:mm:ss:fff}: screen sharing enable ({IsScreenCapture})");
+            System.Diagnostics.Debug.WriteLine($"{DateTime.Now:HH:mm:ss:fff}: screen sharing enable ({IsCapture})");
         }
         private static void proc_OutputDataReceived(object sender, System.Diagnostics.DataReceivedEventArgs e)
         {
@@ -74,7 +74,7 @@ namespace RSI_X_Desktop
             proc?.Kill();
             proc = null;
 
-            IsScreenCapture = false;
+            IsCapture = false;
         }
     }
 }

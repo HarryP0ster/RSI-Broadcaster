@@ -28,7 +28,7 @@ namespace RSI_X_Desktop.forms
         private static Devices _instance;
         private static readonly Color InactiveColor = Color.White;
         private static readonly Color PushColor     = Color.BurlyWood;
-
+        public static bool IsImageSend { get; private set; }
         public static readonly Dictionary<string, VIDEO_PROFILE_TYPE> resolutions = new()
         {
             [" 160 * 120 "] = VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_120P,
@@ -123,9 +123,11 @@ namespace RSI_X_Desktop.forms
             ComboBoxRes.DataSource = new List<string>(resolutions.Keys);
             ComboBoxRes.SelectedIndex = oldIndexResolution;
 
-            button2.ForeColor = ImageSender.IsEnable ? 
+            btnCustomImage.ForeColor = IsImageSend ? 
                 PushColor : InactiveColor;
 
+            workForm = AgoraObject.GetWorkForm;
+         
             Init = true;
         }
         private void UpdateComboBoxRecorder()
@@ -390,7 +392,7 @@ namespace RSI_X_Desktop.forms
             System.Diagnostics.Debug.WriteLine($"{DateTime.Now.ToString("HH:mm:ss")}: select resolution: {res}");
 
             if (AgoraObject.IsScreenCapture)
-                AgoraObject.EnableScreenCapture(resolutionsSize[res]);
+                AgoraObject.StartScreenCapture(resolutionsSize[res]);
 
         }
         private void NewDevices_FormClosed(object sender, FormClosedEventArgs e)
@@ -431,7 +433,7 @@ namespace RSI_X_Desktop.forms
             trackBarSoundIn.Value = oldVolumeIn;
             trackBarSoundIn_ValueChanged();
 
-            AgoraObject.GetWorkForm?.DevicesClosed(this);
+            workForm?.DevicesClosed(this);
             Close();
         }
         public static void AcceptAllOldDevices()
@@ -495,25 +497,15 @@ namespace RSI_X_Desktop.forms
             if (e.TabPage == Video)
                 workForm?.SetLocalVideoPreview();
         }
-        public static void Clear()
-        {
-            oldVolumeIn = 100;
-            oldRecorder = new();
-            oldVideoOut = new();
-            oldResolution = null;
-            oldIndexResolution = HDresolution;       
-        }
         private void buttonImgSend_Click(object sender, EventArgs e)
         {
-            if (ImageSender.IsEnable)
+            if (ImageSender.IsEnable || IsImageSend)
             {
                 ImageSender.configImageToSend(null);
                 ImageSender.EnableImageSender(false);
 
-                // wtf?
-                AgoraObject.StopScreenCapture();
                 ResetVideoDevice();
-                button2.ForeColor = InactiveColor;
+                btnCustomImage.ForeColor = InactiveColor;
             }
             else
             {
@@ -524,16 +516,22 @@ namespace RSI_X_Desktop.forms
 
                 try 
                 {
+                    SetImageSend(false);
+                    btnCustomImage.ForeColor = PushColor;
+                    btnCustomImage.Cursor = Cursors.WaitCursor;
+                    
                     ImageSender.configImageToSend(new Bitmap(fd.FileName), 5);
                     ImageSender.EnableImageSender(true);
-                    button2.ForeColor = PushColor;
-                    SetImageSend(false);
+
+                    btnCustomImage.Cursor = Cursors.Default;
                 }
                 catch (Exception ex)
                 { 
                     MessageBox.Show(ex.Message);
                 }
             }
+            IsImageSend = ImageSender.IsEnable;
+            workForm?.InvokeUpdateColors();
         }
         public static void SetImageSend(bool block)
         {
@@ -542,12 +540,24 @@ namespace RSI_X_Desktop.forms
             if (_instance.InvokeRequired)
                 _instance.Invoke((MethodInvoker)delegate
                 {
-                    _instance.button2.Enabled = block;
+                   _instance.BlockImageSendBtn(block);
                 });
             else 
-            { 
-                _instance.button2.Enabled = block; 
+            {
+                _instance.BlockImageSendBtn(block);
             }
+        }
+        private void BlockImageSendBtn(bool block)
+        {
+            btnCustomImage.Enabled = block;
+        }
+        public static void Clear()
+        {
+            oldVolumeIn = 100;
+            oldRecorder = new();
+            oldVideoOut = new();
+            oldResolution = null;
+            oldIndexResolution = HDresolution;       
         }
     }
 }

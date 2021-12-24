@@ -88,7 +88,6 @@ namespace RSI_X_Desktop
             DebugWriter.WriteTime("load complete");
         }
         private static bool isJoin = false;
-        private static bool Callback = false;
         public static void EnableImageSender(bool enable) 
         {
             isJoin = AgoraObject.IsJoin;
@@ -106,13 +105,19 @@ namespace RSI_X_Desktop
             else 
             {
                 DebugWriter.WriteTime("Image sender has stop");
-                timer.Dispose();
+                timer?.Dispose();
                 timer = null;
                 GC.Collect();
             }
 
             AgoraObject.Rtc.SetExternalVideoSource(isEnable, true);
             if (isJoin) AgoraObject.JoinChannel();
+
+            if (isEnable == false)
+                if (ScreenCapture.IsCapture)
+                    AgoraObject.StartScreenCapture();
+                else
+                    AgoraObject.StopScreenCapture();
         }
 
         public static void SendOneFrame()
