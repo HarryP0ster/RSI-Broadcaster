@@ -1,0 +1,202 @@
+﻿using DevExpress.XtraEditors;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using DevExpress.Utils.Svg;
+
+namespace RSI_X_Desktop.forms
+{
+    public partial class Designer : DevExpress.XtraEditors.XtraForm
+    {
+        bool canSelect = true;
+        private bool IsSharingScreen = false;
+
+        public Rectangle HomeBtnRect
+        {
+            get => new Rectangle(
+                signOff.PointToScreen(Point.Empty).X,
+                signOff.PointToScreen(Point.Empty).Y,
+                signOff.Width,
+                signOff.Height);
+        }
+        public Rectangle ChatRect
+        {
+            get => new Rectangle(
+                Chat.PointToScreen(Point.Empty).X,
+                Chat.PointToScreen(Point.Empty).Y,
+                Chat.Width,
+                Chat.Height);
+        }
+        public Rectangle DevicesLblRect
+        {
+            get => new Rectangle(
+                devicesLabel.PointToScreen(Point.Empty).X,
+                devicesLabel.PointToScreen(Point.Empty).Y,
+                devicesLabel.Width,
+                devicesLabel.Height);
+        }
+        public Rectangle ScreenShareRectangle
+        {
+            get => new Rectangle(
+                ScreenShare.PointToScreen(Point.Empty).X,
+                ScreenShare.PointToScreen(Point.Empty).Y,
+                ScreenShare.Width,
+                ScreenShare.Height);
+        }
+        public Rectangle LabelVideoRect
+        {
+            get => new Rectangle(
+            videoLabel.PointToScreen(Point.Empty).X,
+            videoLabel.PointToScreen(Point.Empty).Y,
+            videoLabel.Width,
+            videoLabel.Height);
+        }
+        public Designer()
+        {
+            InitializeComponent();
+        }
+
+        private void Designer_Load(object sender, EventArgs e)
+        {
+            Owner.SizeChanged += delegate {
+                MaximumSize = Owner.Size;
+                MinimumSize = Owner.Size;
+                Size = Owner.Size;
+                SetLeftSidePanelRegion();
+                SighnOffToCenter();
+            };
+            Owner.LocationChanged += (s, e) => { Location = new Point(Owner.Location.X, Owner.Location.Y); };
+            RoomNameLabel.Text = AgoraObject.GetComplexToken().GetRoomName;
+            SetLeftSidePanelRegion();
+            AudioColorUpdate();
+            VideoColorUpdate();
+            SighnOffToCenter();
+        }
+
+        private void SetLeftSidePanelRegion()
+        {
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            int d = 30;
+            System.Drawing.Rectangle r = new System.Drawing.Rectangle(-20, 0, LeftSidePanel.Width, LeftSidePanel.Height);
+            path.AddArc(r.X, r.Y, d, d, 180, 90);
+            path.AddArc(r.X + r.Width, r.Y, d - 10, d - 15, 270, -90);
+            path.AddArc(r.X + r.Width - d, r.Y + r.Height - d, d, d, 0, 90);
+            path.AddArc(r.X, r.Y + r.Height - d, d, d, 90, 90);
+            LeftSidePanel.Region = new Region(path);
+        }
+
+        private void SighnOffToCenter()
+        {
+            int leftSide = audioLabel.Width + videoLabel.Width + ScreenShare.Width;
+            int rightSide = devicesLabel.Width + Chat.Width;
+            if (leftSide > rightSide)
+            {
+                IconsPanel.Columns[7].Width = leftSide - rightSide;
+                IconsPanel.Columns[3].Width = 0;
+            }
+            else
+            {
+                IconsPanel.Columns[3].Width = rightSide - leftSide;
+                IconsPanel.Columns[7].Width = 0;
+            }
+        }
+        private void AudioColorUpdate()
+        {
+            audioLabel.ItemAppearance.Normal.BorderColor = AgoraObject.IsLocalAudioMute ?
+                Color.WhiteSmoke :
+                Color.White;
+
+            audioLabel.ItemAppearance.Normal.FillColor = AgoraObject.IsLocalAudioMute ?
+                Color.Empty :
+                Color.White;
+
+            audioLabel.SvgImage = AgoraObject.IsLocalAudioMute ?
+                SvgImage.FromFile("Resources\\Muted.svg") :
+                SvgImage.FromFile("Resources\\mute.svg");
+        }
+        private void VideoColorUpdate()
+        {
+            videoLabel.ItemAppearance.Normal.BorderColor = AgoraObject.IsLocalVideoMute ?
+                Color.WhiteSmoke :
+                Color.White;
+
+            videoLabel.ItemAppearance.Normal.FillColor = AgoraObject.IsLocalVideoMute ?
+                Color.Empty :
+                Color.White;
+
+            videoLabel.SvgImage = AgoraObject.IsLocalVideoMute ?
+                SvgImage.FromFile("Resources\\Hidden.svg") :
+                SvgImage.FromFile("Resources\\video.svg");
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Point oldPos = Cursor.Position;
+            timer1.Stop();
+            Cursor.Position = PointToScreen(new Point(Width / 2, Height / 2));
+            AudioColorUpdate();
+            VideoColorUpdate();
+            Cursor.Position = oldPos;
+            System.Threading.Thread.Sleep(100);
+            canSelect = true;
+        }
+        internal void labelMicrophone_Click(object sender, EventArgs e)
+        {
+            if (canSelect)
+            {
+                canSelect = false;
+                AgoraObject.MuteLocalAudioStream(!AgoraObject.IsLocalAudioMute);
+                timer1.Start();
+            }
+        }
+        internal void labelVideo_Click(object sender, EventArgs e)
+        {
+            if (canSelect)
+            {
+                canSelect = false;
+                AgoraObject.MuteLocalVideoStream(!AgoraObject.IsLocalVideoMute);
+                (Owner as Broadcaster).pictureBoxRemoteVideo.Visible = !AgoraObject.IsLocalVideoMute;
+                timer1.Start();
+
+                if (AgoraObject.IsLocalVideoMute)
+                    enableScreenShare(false);
+            }
+        }
+        public void HomeBtn_Click(object sender, EventArgs e)
+        {
+            AgoraObject.GetWorkForm?.ExitApp();
+        }
+        private void btnScreenShare_Click(object sender, EventArgs e)
+        {
+            if (AgoraObject.IsLocalVideoMute) return;
+
+            if (Devices.IsImageSend)
+                ImageSender.EnableImageSender(IsSharingScreen);
+
+            enableScreenShare(!IsSharingScreen);
+        }
+        public void enableScreenShare(bool enable)
+        {
+            if (enable)
+            {
+                AgoraObject.StartScreenCapture();
+                (Owner as Broadcaster).SetLocalVideoPreview();
+                //labelScreenShare.ForeColor = Color.Red;
+            }
+            else
+            {
+                AgoraObject.StopScreenCapture();
+                //labelScreenShare.ForeColor = Color.White;
+            }
+
+            (Owner as Broadcaster).pictureBoxRemoteVideo.Update();
+            IsSharingScreen = !IsSharingScreen;
+        }
+    }
+}

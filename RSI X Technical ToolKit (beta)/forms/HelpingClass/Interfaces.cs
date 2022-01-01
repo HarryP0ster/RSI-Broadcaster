@@ -11,6 +11,7 @@ namespace RSI_X_Desktop
         //public void SetTrackBarVolume(int volume);
         public void InvokeSetLocalFrame(System.Drawing.Bitmap bmp);
         public void InvokeUpdateColors();
+        public void ExitApp();
     }
     public enum EBroadcasterRoles
     {

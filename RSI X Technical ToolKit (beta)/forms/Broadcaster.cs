@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Threading;
 using RSI_X_Desktop.forms;
+using RSI_X_Desktop.forms.HelpingClass;
 using agora.rtc;
 
 namespace RSI_X_Desktop
@@ -14,6 +15,8 @@ namespace RSI_X_Desktop
         public IntPtr RemoteWnd { get => LocalWinId; }
         private Devices devices;
         private ChatWnd chat = new ();
+        internal Designer ExternWnd = new();
+        BottomPanelWnd bottomPanel = new();
 
         private bool IsSharingScreen = false;
 
@@ -64,6 +67,13 @@ namespace RSI_X_Desktop
             panel1.Controls.Add(chat);
             chat.Show();
             chat.Hide(); //You need to hide it, otherwise Animator'd get confused
+
+            bottomPanel.Width = Width;
+            bottomPanel.Height = Height / 7;
+            bottomPanel.Location = new Point(Location.X, Location.Y + Height);
+            bottomPanel.Show(this);
+            bottomPanel.Enabled = false;
+            ExternWnd.Show(this);
         }
 
         public void SetLocalVideoPreview()
@@ -135,6 +145,21 @@ namespace RSI_X_Desktop
         private void UpdateColors() 
         {
             labelScreenShare.ForeColor = ScreenCapture.IsCapture ? Color.Red : Color.White; ;
+        }
+        public void ExitApp()
+        {
+            ExternWnd.Hide();
+            bottomPanel.Hide();
+            Hide();
+
+            AgoraObject.LeaveHostChannel();
+            AgoraObject.MuteAllRemoteAudioStream(false);
+            AgoraObject.MuteAllRemoteVideoStream(false);
+
+            //PopUpForm.waveOutSetVolume(IntPtr.Zero, uint.MaxValue);
+
+            Owner.Show();
+            Owner.Refresh();
         }
 
         private void SignOffToCenter()

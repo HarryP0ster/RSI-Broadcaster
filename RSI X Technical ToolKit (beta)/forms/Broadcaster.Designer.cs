@@ -75,7 +75,7 @@ namespace RSI_X_Desktop
             this.formTheme1.Location = new System.Drawing.Point(0, 0);
             this.formTheme1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.formTheme1.Name = "formTheme1";
-            this.formTheme1.Padding = new System.Windows.Forms.Padding(0, 22, 0, 22);
+            this.formTheme1.Padding = new System.Windows.Forms.Padding(0, 22, 0, 0);
             this.formTheme1.Sizable = false;
             this.formTheme1.Size = new System.Drawing.Size(1280, 800);
             this.formTheme1.SmartBounds = false;
@@ -99,7 +99,7 @@ namespace RSI_X_Desktop
             this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.MainLayout.Size = new System.Drawing.Size(1280, 756);
+            this.MainLayout.Size = new System.Drawing.Size(1280, 778);
             this.MainLayout.TabIndex = 93;
             // 
             // PanelBot
@@ -109,12 +109,12 @@ namespace RSI_X_Desktop
             this.PanelBot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelBot.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.PanelBot.ForeColor = System.Drawing.Color.White;
-            this.PanelBot.Location = new System.Drawing.Point(4, 682);
+            this.PanelBot.Location = new System.Drawing.Point(4, 702);
             this.PanelBot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PanelBot.Name = "PanelBot";
             this.PanelBot.Padding = new System.Windows.Forms.Padding(5);
             this.PanelBot.ShowText = true;
-            this.PanelBot.Size = new System.Drawing.Size(1272, 71);
+            this.PanelBot.Size = new System.Drawing.Size(1272, 73);
             this.PanelBot.TabIndex = 2;
             // 
             // tableLayoutPanel2
@@ -142,7 +142,7 @@ namespace RSI_X_Desktop
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1272, 71);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1272, 73);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
             // button3
@@ -155,7 +155,7 @@ namespace RSI_X_Desktop
             this.button3.Image = null;
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.button3.Location = new System.Drawing.Point(637, 4);
+            this.button3.Location = new System.Drawing.Point(624, 5);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.button3.Name = "button3";
             this.button3.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
@@ -171,10 +171,10 @@ namespace RSI_X_Desktop
             this.labelChat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.labelChat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelChat.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelChat.Location = new System.Drawing.Point(1208, 0);
+            this.labelChat.Location = new System.Drawing.Point(1220, 0);
             this.labelChat.Margin = new System.Windows.Forms.Padding(0);
             this.labelChat.Name = "labelChat";
-            this.labelChat.Size = new System.Drawing.Size(64, 71);
+            this.labelChat.Size = new System.Drawing.Size(52, 73);
             this.labelChat.TabIndex = 15;
             this.labelChat.Text = "CHAT";
             this.labelChat.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -189,7 +189,7 @@ namespace RSI_X_Desktop
             this.labelSettings.Location = new System.Drawing.Point(0, 0);
             this.labelSettings.Margin = new System.Windows.Forms.Padding(0);
             this.labelSettings.Name = "labelSettings";
-            this.labelSettings.Size = new System.Drawing.Size(107, 71);
+            this.labelSettings.Size = new System.Drawing.Size(87, 73);
             this.labelSettings.TabIndex = 16;
             this.labelSettings.Text = "SETTINGS";
             this.labelSettings.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -201,10 +201,10 @@ namespace RSI_X_Desktop
             this.labelMicrophone.Cursor = System.Windows.Forms.Cursors.Hand;
             this.labelMicrophone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelMicrophone.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelMicrophone.Location = new System.Drawing.Point(107, 0);
+            this.labelMicrophone.Location = new System.Drawing.Point(87, 0);
             this.labelMicrophone.Margin = new System.Windows.Forms.Padding(0);
             this.labelMicrophone.Name = "labelMicrophone";
-            this.labelMicrophone.Size = new System.Drawing.Size(142, 71);
+            this.labelMicrophone.Size = new System.Drawing.Size(114, 73);
             this.labelMicrophone.TabIndex = 17;
             this.labelMicrophone.Text = "MICROPHONE";
             this.labelMicrophone.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -216,10 +216,10 @@ namespace RSI_X_Desktop
             this.labelVideo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.labelVideo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelVideo.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelVideo.Location = new System.Drawing.Point(249, 0);
+            this.labelVideo.Location = new System.Drawing.Point(201, 0);
             this.labelVideo.Margin = new System.Windows.Forms.Padding(0);
             this.labelVideo.Name = "labelVideo";
-            this.labelVideo.Size = new System.Drawing.Size(106, 71);
+            this.labelVideo.Size = new System.Drawing.Size(86, 73);
             this.labelVideo.TabIndex = 18;
             this.labelVideo.Text = "  CAMERA";
             this.labelVideo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -231,10 +231,10 @@ namespace RSI_X_Desktop
             this.labelScreenShare.Cursor = System.Windows.Forms.Cursors.Hand;
             this.labelScreenShare.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelScreenShare.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelScreenShare.Location = new System.Drawing.Point(1049, 0);
+            this.labelScreenShare.Location = new System.Drawing.Point(1091, 0);
             this.labelScreenShare.Margin = new System.Windows.Forms.Padding(0);
             this.labelScreenShare.Name = "labelScreenShare";
-            this.labelScreenShare.Size = new System.Drawing.Size(159, 71);
+            this.labelScreenShare.Size = new System.Drawing.Size(129, 73);
             this.labelScreenShare.TabIndex = 20;
             this.labelScreenShare.Text = "SCREEN SHARE";
             this.labelScreenShare.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -252,7 +252,7 @@ namespace RSI_X_Desktop
             this.PanelTop.Name = "PanelTop";
             this.PanelTop.Padding = new System.Windows.Forms.Padding(5);
             this.PanelTop.ShowText = true;
-            this.PanelTop.Size = new System.Drawing.Size(1272, 69);
+            this.PanelTop.Size = new System.Drawing.Size(1272, 71);
             this.PanelTop.TabIndex = 1;
             // 
             // tableLayoutPanel3
@@ -277,7 +277,7 @@ namespace RSI_X_Desktop
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1272, 69);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1272, 71);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // CloseButton
@@ -292,7 +292,7 @@ namespace RSI_X_Desktop
             this.CloseButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseButton.Image")));
             this.CloseButton.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CloseButton.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.CloseButton.Location = new System.Drawing.Point(1211, 14);
+            this.CloseButton.Location = new System.Drawing.Point(1211, 15);
             this.CloseButton.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.PressedColor = System.Drawing.Color.Firebrick;
@@ -313,7 +313,7 @@ namespace RSI_X_Desktop
             this.SettingButton.Image = ((System.Drawing.Image)(resources.GetObject("SettingButton.Image")));
             this.SettingButton.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SettingButton.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.SettingButton.Location = new System.Drawing.Point(1145, 14);
+            this.SettingButton.Location = new System.Drawing.Point(1145, 15);
             this.SettingButton.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.SettingButton.Name = "SettingButton";
             this.SettingButton.PressedColor = System.Drawing.Color.Firebrick;
@@ -334,7 +334,7 @@ namespace RSI_X_Desktop
             this.ResetButton.Image = ((System.Drawing.Image)(resources.GetObject("ResetButton.Image")));
             this.ResetButton.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ResetButton.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.ResetButton.Location = new System.Drawing.Point(1079, 14);
+            this.ResetButton.Location = new System.Drawing.Point(1079, 15);
             this.ResetButton.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.ResetButton.Name = "ResetButton";
             this.ResetButton.PressedColor = System.Drawing.Color.Firebrick;
@@ -350,7 +350,7 @@ namespace RSI_X_Desktop
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(130, 63);
+            this.pictureBox1.Size = new System.Drawing.Size(130, 65);
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
@@ -363,7 +363,7 @@ namespace RSI_X_Desktop
             this.RoomNameLabel.Location = new System.Drawing.Point(140, 0);
             this.RoomNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.RoomNameLabel.Name = "RoomNameLabel";
-            this.RoomNameLabel.Size = new System.Drawing.Size(167, 69);
+            this.RoomNameLabel.Size = new System.Drawing.Size(134, 71);
             this.RoomNameLabel.TabIndex = 3;
             this.RoomNameLabel.Text = "RoomName";
             this.RoomNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -377,12 +377,12 @@ namespace RSI_X_Desktop
             this.StreamLayout.Controls.Add(this.panel1, 1, 0);
             this.StreamLayout.Controls.Add(this.PanelNothing, 0, 0);
             this.StreamLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StreamLayout.Location = new System.Drawing.Point(4, 78);
+            this.StreamLayout.Location = new System.Drawing.Point(4, 80);
             this.StreamLayout.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.StreamLayout.Name = "StreamLayout";
             this.StreamLayout.RowCount = 1;
             this.StreamLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.StreamLayout.Size = new System.Drawing.Size(1272, 598);
+            this.StreamLayout.Size = new System.Drawing.Size(1272, 616);
             this.StreamLayout.TabIndex = 3;
             // 
             // panel1
@@ -393,7 +393,7 @@ namespace RSI_X_Desktop
             this.panel1.Location = new System.Drawing.Point(1064, 3);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(204, 592);
+            this.panel1.Size = new System.Drawing.Size(204, 610);
             this.panel1.TabIndex = 4;
             // 
             // PanelNothing
@@ -406,7 +406,7 @@ namespace RSI_X_Desktop
             this.PanelNothing.Location = new System.Drawing.Point(4, 3);
             this.PanelNothing.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PanelNothing.Name = "PanelNothing";
-            this.PanelNothing.Size = new System.Drawing.Size(1052, 592);
+            this.PanelNothing.Size = new System.Drawing.Size(1052, 610);
             this.PanelNothing.TabIndex = 5;
             // 
             // pictureBoxRemoteVideo
@@ -418,7 +418,7 @@ namespace RSI_X_Desktop
             this.pictureBoxRemoteVideo.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxRemoteVideo.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.pictureBoxRemoteVideo.Name = "pictureBoxRemoteVideo";
-            this.pictureBoxRemoteVideo.Size = new System.Drawing.Size(1052, 592);
+            this.pictureBoxRemoteVideo.Size = new System.Drawing.Size(1052, 610);
             this.pictureBoxRemoteVideo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxRemoteVideo.TabIndex = 3;
             this.pictureBoxRemoteVideo.TabStop = false;
@@ -493,7 +493,6 @@ namespace RSI_X_Desktop
         private System.Windows.Forms.TableLayoutPanel StreamLayout;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel PanelNothing;
-        private System.Windows.Forms.PictureBox pictureBoxRemoteVideo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label labelChat;
         private System.Windows.Forms.Label labelSettings;
@@ -503,5 +502,6 @@ namespace RSI_X_Desktop
         private System.Windows.Forms.Label labelScreenShare;
         private ReaLTaiizor.Controls.Button button3;
         private System.Windows.Forms.Label labelVideo;
+        internal System.Windows.Forms.PictureBox pictureBoxRemoteVideo;
     }
 }
