@@ -74,6 +74,11 @@ namespace RSI_X_Desktop
             bottomPanel.Show(this);
             bottomPanel.Enabled = false;
             ExternWnd.Show(this);
+
+            pictureBoxRemoteVideo.Click += Mouse_Click;
+            pictureBoxRemoteVideo.MouseMove += Mouse_MouseMove;
+            PanelNothing.Click += Mouse_Click;
+            PanelNothing.MouseMove += Mouse_MouseMove;
         }
 
         public void SetLocalVideoPreview()
@@ -292,7 +297,7 @@ namespace RSI_X_Desktop
                 labelSettings.ForeColor = Color.White;
             }
         }
-        private void SettingButton_Click(object sender, EventArgs e)
+        internal void SettingButton_Click(object sender, EventArgs e)
         {
             labelSettings_Click(SettingButton, e);
         }
@@ -356,6 +361,55 @@ namespace RSI_X_Desktop
             target.MaximumSize = size;
             target.MinimumSize = size;
             target.Size = size;
+        }
+
+        private void Mouse_Click(object sender, EventArgs e)
+        {
+            if (ExternWnd.LabelAudioRect.Contains(Cursor.Position))
+                ExternWnd.labelMicrophone_Click(sender, e);
+            else if (ExternWnd.LabelVideoRect.Contains(Cursor.Position))
+                ExternWnd.labelVideo_Click(sender, e);
+            else if (ExternWnd.DevicesLblRect.Contains(Cursor.Position))
+                SettingButton_Click(sender, e);
+
+            if (ExternWnd.HomeBtnRect.Contains(Cursor.Position))
+                ExternWnd.HomeBtn_Click(null, null);
+        }
+        private void Mouse_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Disposing || IsDisposed ||
+                ExternWnd.Disposing || ExternWnd.IsDisposed)
+            {
+                Close();
+                return;
+            }
+
+            bool cursorUpd = false;
+            if (ExternWnd.LabelAudioRect.Contains(Cursor.Position))
+            {
+                ExternWnd.audioLabel_MouseMove(sender, e);
+                cursorUpd = true;
+            }
+            else
+                ExternWnd.audioLabel_MouseLeave(sender, e);
+
+            if (ExternWnd.LabelVideoRect.Contains(Cursor.Position))
+            {
+                ExternWnd.videoLabel_MouseMove(sender, e);
+                cursorUpd = true;
+            }
+            else
+                ExternWnd.videoLabel_MouseLeave(sender, e);
+
+            if (ExternWnd.DevicesLblRect.Contains(Cursor.Position))
+            {
+                ExternWnd.devicesLabel_MouseMove(sender, e);
+                cursorUpd = true;
+            }
+            else
+                ExternWnd.devicesLabel_MouseLeave(sender, e);
+
+            Cursor.Current = cursorUpd ? Cursors.Hand : Cursors.Default;
         }
     }
 }

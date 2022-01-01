@@ -57,6 +57,14 @@ namespace RSI_X_Desktop.forms
             videoLabel.Width,
             videoLabel.Height);
         }
+        public Rectangle LabelAudioRect
+        {
+            get => new Rectangle(
+            audioLabel.PointToScreen(Point.Empty).X,
+            audioLabel.PointToScreen(Point.Empty).Y,
+            audioLabel.Width,
+            audioLabel.Height);
+        }
         public Designer()
         {
             InitializeComponent();
@@ -171,6 +179,41 @@ namespace RSI_X_Desktop.forms
         public void HomeBtn_Click(object sender, EventArgs e)
         {
             AgoraObject.GetWorkForm?.ExitApp();
+        }
+
+        internal void audioLabel_MouseLeave(object sender, EventArgs e)
+        {
+            audioLabel.ItemAppearance.Normal.BorderThickness = 0;
+        }
+
+        internal void audioLabel_MouseMove(object sender, MouseEventArgs e)
+        {
+            audioLabel.ItemAppearance.Normal.BorderThickness = 1;
+        }
+
+        internal void videoLabel_MouseMove(object sender, MouseEventArgs e)
+        {
+            videoLabel.ItemAppearance.Normal.BorderThickness = 1;
+        }
+
+        internal void videoLabel_MouseLeave(object sender, EventArgs e)
+        {
+            videoLabel.ItemAppearance.Normal.BorderThickness = 0;
+        }
+
+        private void devicesLabel_Click(object sender, EventArgs e)
+        {
+            (Owner as Broadcaster).SettingButton_Click(sender, e);
+        }
+
+        internal void devicesLabel_MouseMove(object sender, MouseEventArgs e)
+        {
+            devicesLabel.ItemAppearance.Normal.BorderThickness = 1;
+        }
+
+        internal void devicesLabel_MouseLeave(object sender, EventArgs e)
+        {
+            devicesLabel.ItemAppearance.Normal.BorderThickness = 0;
         }
         private void btnScreenShare_Click(object sender, EventArgs e)
         {

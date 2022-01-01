@@ -155,6 +155,7 @@ namespace RSI_X_Desktop.forms
             this.devicesLabel.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("devicesLabel.SvgImage")));
             this.devicesLabel.TabIndex = 4;
             this.devicesLabel.Text = "devicesLabel";
+            this.devicesLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.videoLabel_MouseMove);
             // 
             // signOff
             // 
@@ -202,6 +203,7 @@ namespace RSI_X_Desktop.forms
             this.videoLabel.TabIndex = 1;
             this.videoLabel.Text = "videoLabel";
             this.videoLabel.Click += new System.EventHandler(this.labelVideo_Click);
+            this.videoLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.videoLabel_MouseMove);
             // 
             // audioLabel
             // 
@@ -218,6 +220,7 @@ namespace RSI_X_Desktop.forms
             this.audioLabel.TabIndex = 0;
             this.audioLabel.Text = "audioLabel";
             this.audioLabel.Click += new System.EventHandler(this.labelMicrophone_Click);
+            this.audioLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.audioLabel_MouseMove);
             // 
             // tablePanel1
             // 
