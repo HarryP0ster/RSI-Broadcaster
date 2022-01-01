@@ -18,8 +18,6 @@ namespace RSI_X_Desktop
         internal Designer ExternWnd = new();
         BottomPanelWnd bottomPanel = new();
 
-        private bool IsSharingScreen = false;
-
         public Broadcaster()
         {
             InitializeComponent();
@@ -31,21 +29,18 @@ namespace RSI_X_Desktop
 
         private void Conference_Load(object sender, EventArgs e)
         {
-            SignOffToCenter();
             AgoraObject.Rtc.EnableVideo();
             AgoraObject.Rtc.EnableAudio();
             AgoraObject.Rtc.SetChannelProfile(CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING);
             AgoraObject.Rtc.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
             AgoraObject.Rtc.EnableLocalVideo(true);
-            RoomNameLabel.Text = AgoraObject.GetComplexToken().GetRoomName;
 
             this.DoubleBuffered = true;
             AgoraObject.JoinChannel();
 
             AgoraObject.MuteLocalAudioStream(false);
             AgoraObject.MuteLocalVideoStream(false);
-            labelMicrophone.ForeColor = Color.Red;
-            labelVideo.ForeColor = Color.Red;
+
             SetLocalVideoPreview();
             StreamLayout.ColumnStyles[1].SizeType = SizeType.Absolute;
             StreamLayout.ColumnStyles[0].Width = 100;
@@ -118,23 +113,6 @@ namespace RSI_X_Desktop
             pictureBoxRemoteVideo.Image = bmp;
         }
 
-        public void enableScreenShare(bool enable)
-        {
-            if (enable)
-            {
-                AgoraObject.StartScreenCapture();
-                SetLocalVideoPreview();
-                labelScreenShare.ForeColor = Color.Red;
-            }
-            else
-            {
-                AgoraObject.StopScreenCapture();
-                labelScreenShare.ForeColor = Color.White;
-            }
-            
-            pictureBoxRemoteVideo.Update();
-            IsSharingScreen = !IsSharingScreen;
-        }
         public void InvokeUpdateColors() 
         {
             if (InvokeRequired)
@@ -149,7 +127,7 @@ namespace RSI_X_Desktop
         }
         private void UpdateColors() 
         {
-            labelScreenShare.ForeColor = ScreenCapture.IsCapture ? Color.Red : Color.White; ;
+            //labelScreenShare.ForeColor = ScreenCapture.IsCapture ? Color.Red : Color.White; ;
         }
         public void ExitApp()
         {
@@ -167,12 +145,6 @@ namespace RSI_X_Desktop
             Owner.Refresh();
         }
 
-        private void SignOffToCenter()
-        {
-            float width_left = labelSettings.Width + labelMicrophone.Width + labelVideo.Width;
-            float width_right = labelScreenShare.Width + labelChat.Width;
-            tableLayoutPanel2.ColumnStyles[6].Width = width_left - width_right;
-        }
         private void CallSidePanel(Form Wnd)
         {
             Wnd.TopLevel = false;
@@ -208,7 +180,6 @@ namespace RSI_X_Desktop
         {
             Animator(panel1, 45, 0, 10, 1);
             panel1.Hide();
-            labelChat.ForeColor = Color.White;
             Wnd.Hide();
             Wnd.SuspendLayout();
             GC.Collect();
@@ -217,7 +188,6 @@ namespace RSI_X_Desktop
         {
             Animator(panel1, 45, 0, 10, 1);
             panel1.Hide();
-            labelSettings.ForeColor = Color.White;
             Wnd.Close();
             GC.Collect();
         }
@@ -228,37 +198,8 @@ namespace RSI_X_Desktop
                 chat.chat_NewMessageInvoke(message, nickname, channel);
         }
 
-        private void btnScreenShare_Click(object sender, EventArgs e)
-        {
-            if (AgoraObject.IsLocalVideoMute) return;
-
-            if (Devices.IsImageSend) 
-                ImageSender.EnableImageSender(IsSharingScreen);
-
-            enableScreenShare(!IsSharingScreen);
-        }
-        private void labelMicrophone_Click(object sender, EventArgs e)
-        {
-            AgoraObject.MuteLocalAudioStream(!AgoraObject.IsLocalAudioMute);
-            labelMicrophone.ForeColor = AgoraObject.IsLocalAudioMute ?
-                Color.White :
-                Color.Red;
-        }
-        private void labelVideo_Click(object sender, EventArgs e)
-        {
-            AgoraObject.MuteLocalVideoStream(!AgoraObject.IsLocalVideoMute);
-            pictureBoxRemoteVideo.Visible = !AgoraObject.IsLocalVideoMute;
-
-            labelVideo.ForeColor = AgoraObject.IsLocalVideoMute ?
-                Color.White :
-                Color.Red;
-
-            if (AgoraObject.IsLocalVideoMute)
-                enableScreenShare(false);
-        }
         private void labelChat_Click(object sender, EventArgs e)
         {
-            labelSettings.ForeColor = Color.White;
             if (devices != null && !(devices.IsDisposed))
                 DevicesClosed(devices);
             if (chat.Visible == false)
@@ -266,13 +207,11 @@ namespace RSI_X_Desktop
                 chat.ResumeLayout();
                 chat.ButtonsVisibility(true);
                 CallSidePanel(chat);
-                labelChat.ForeColor = Color.Red;
             }
             else
             {
                 chat.ButtonsVisibility(false);
                 ChatClosed(chat);
-                labelChat.ForeColor = Color.White;
             }
         }
         private void labelSettings_Click(object sender, EventArgs e)
@@ -288,18 +227,15 @@ namespace RSI_X_Desktop
                 devices.Location = new Point(150, 0);
                 CallSidePanel(devices);
                 devices.typeOfAlligment(true);
-                //devices.SetAudienceSettings();
-                labelSettings.ForeColor = Color.Red;
             }
             else
             {
                 DevicesClosed(devices);
-                labelSettings.ForeColor = Color.White;
             }
         }
         internal void SettingButton_Click(object sender, EventArgs e)
         {
-            labelSettings_Click(SettingButton, e);
+            labelSettings_Click(sender, e);
         }
         private void nightControlBox1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -317,19 +253,10 @@ namespace RSI_X_Desktop
                 ResizeForm(new Size(1280, 800), formTheme1);
             }
         }
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            Owner.Close();
-        }
-        private void ResetButton_Click(object sender, EventArgs e)
-        {
-            Owner.Show();
-            Close();
-        }
         
         private void Broadcaster_FormClosed(object sender, FormClosedEventArgs e)
         {
-            enableScreenShare(false);
+            ExternWnd.enableScreenShare(false);
 
             if (ImageSender.IsEnable)
             {
@@ -355,12 +282,16 @@ namespace RSI_X_Desktop
             target.MaximumSize = size;
             target.MinimumSize = size;
             target.Size = size;
+
+            GC.Collect();
         }
         private void ResizeForm(Size size, ReaLTaiizor.Forms.FormTheme target)
         {
             target.MaximumSize = size;
             target.MinimumSize = size;
             target.Size = size;
+
+            GC.Collect();
         }
 
         private void Mouse_Click(object sender, EventArgs e)
@@ -410,6 +341,11 @@ namespace RSI_X_Desktop
                 ExternWnd.devicesLabel_MouseLeave(sender, e);
 
             Cursor.Current = cursorUpd ? Cursors.Hand : Cursors.Default;
+        }
+
+        private void nightControlBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            GC.Collect();
         }
     }
 }

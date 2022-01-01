@@ -16,7 +16,7 @@ namespace RSI_X_Desktop.forms
     {
         bool canSelect = true;
         private bool IsSharingScreen = false;
-
+        #region Rectangles
         public Rectangle HomeBtnRect
         {
             get => new Rectangle(
@@ -65,6 +65,7 @@ namespace RSI_X_Desktop.forms
             audioLabel.Width,
             audioLabel.Height);
         }
+        #endregion
         public Designer()
         {
             InitializeComponent();
@@ -87,6 +88,7 @@ namespace RSI_X_Desktop.forms
             SighnOffToCenter();
         }
 
+        #region RealtimeDesigner
         private void SetLeftSidePanelRegion()
         {
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
@@ -142,7 +144,9 @@ namespace RSI_X_Desktop.forms
                 SvgImage.FromFile("Resources\\Hidden.svg") :
                 SvgImage.FromFile("Resources\\video.svg");
         }
+        #endregion
 
+        #region EventHandlers
         private void timer1_Tick(object sender, EventArgs e)
         {
             Point oldPos = Cursor.Position;
@@ -241,5 +245,6 @@ namespace RSI_X_Desktop.forms
             (Owner as Broadcaster).pictureBoxRemoteVideo.Update();
             IsSharingScreen = !IsSharingScreen;
         }
+        #endregion
     }
 }
