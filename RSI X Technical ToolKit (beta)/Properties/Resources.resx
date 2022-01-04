@@ -151,6 +151,9 @@
   <data name="logotype_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logotype_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="logotype_compressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logotype_compressed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="mute" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mute.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -180,6 +183,9 @@
   </data>
   <data name="screen_sharing" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\screen_sharing.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="sharing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sharing.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="sign_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sign_off.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

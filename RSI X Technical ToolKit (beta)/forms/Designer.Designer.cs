@@ -68,7 +68,7 @@ namespace RSI_X_Desktop.forms
             this.MainLayout.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.MainLayout.Appearance.Options.UseBackColor = true;
             this.MainLayout.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 120F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 90F)});
             this.MainLayout.Controls.Add(this.CenterPanel);
             this.MainLayout.Controls.Add(this.LeftSidePanel);
@@ -89,14 +89,14 @@ namespace RSI_X_Desktop.forms
             this.CenterPanel.Controls.Add(this.IconsPanel);
             this.CenterPanel.Controls.Add(this.tablePanel1);
             this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CenterPanel.Location = new System.Drawing.Point(128, 22);
+            this.CenterPanel.Location = new System.Drawing.Point(120, 22);
             this.CenterPanel.Margin = new System.Windows.Forms.Padding(0);
             this.CenterPanel.Name = "CenterPanel";
             this.MainLayout.SetRow(this.CenterPanel, 1);
             this.CenterPanel.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 85F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 15F)});
-            this.CenterPanel.Size = new System.Drawing.Size(1152, 778);
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 120F)});
+            this.CenterPanel.Size = new System.Drawing.Size(1160, 778);
             this.CenterPanel.TabIndex = 2;
             // 
             // IconsPanel
@@ -120,13 +120,13 @@ namespace RSI_X_Desktop.forms
             this.IconsPanel.Controls.Add(this.videoLabel);
             this.IconsPanel.Controls.Add(this.audioLabel);
             this.IconsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.IconsPanel.Location = new System.Drawing.Point(0, 661);
+            this.IconsPanel.Location = new System.Drawing.Point(0, 658);
             this.IconsPanel.Margin = new System.Windows.Forms.Padding(0);
             this.IconsPanel.Name = "IconsPanel";
             this.CenterPanel.SetRow(this.IconsPanel, 1);
             this.IconsPanel.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F)});
-            this.IconsPanel.Size = new System.Drawing.Size(1152, 117);
+            this.IconsPanel.Size = new System.Drawing.Size(1160, 120);
             this.IconsPanel.TabIndex = 2;
             // 
             // Chat
@@ -134,11 +134,11 @@ namespace RSI_X_Desktop.forms
             this.IconsPanel.SetColumn(this.Chat, 9);
             this.Chat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Chat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Chat.Location = new System.Drawing.Point(1071, 0);
+            this.Chat.Location = new System.Drawing.Point(1079, 0);
             this.Chat.Margin = new System.Windows.Forms.Padding(0);
             this.Chat.Name = "Chat";
             this.IconsPanel.SetRow(this.Chat, 0);
-            this.Chat.Size = new System.Drawing.Size(81, 117);
+            this.Chat.Size = new System.Drawing.Size(81, 120);
             this.Chat.TabIndex = 5;
             this.Chat.Text = "svgImageBox6";
             // 
@@ -147,26 +147,29 @@ namespace RSI_X_Desktop.forms
             this.IconsPanel.SetColumn(this.devicesLabel, 8);
             this.devicesLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.devicesLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.devicesLabel.Location = new System.Drawing.Point(968, 0);
+            this.devicesLabel.ItemAppearance.Normal.BorderColor = System.Drawing.Color.White;
+            this.devicesLabel.ItemAppearance.Normal.BorderThickness = 0F;
+            this.devicesLabel.Location = new System.Drawing.Point(976, 0);
             this.devicesLabel.Margin = new System.Windows.Forms.Padding(0);
             this.devicesLabel.Name = "devicesLabel";
             this.IconsPanel.SetRow(this.devicesLabel, 0);
-            this.devicesLabel.Size = new System.Drawing.Size(103, 117);
+            this.devicesLabel.Size = new System.Drawing.Size(103, 120);
             this.devicesLabel.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("devicesLabel.SvgImage")));
             this.devicesLabel.TabIndex = 4;
             this.devicesLabel.Text = "devicesLabel";
-            this.devicesLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.videoLabel_MouseMove);
+            this.devicesLabel.Click += new System.EventHandler(this.devicesLabel_Click);
+            this.devicesLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.devicesLabel_MouseMove);
             // 
             // signOff
             // 
             this.IconsPanel.SetColumn(this.signOff, 5);
             this.signOff.Cursor = System.Windows.Forms.Cursors.Hand;
             this.signOff.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.signOff.Location = new System.Drawing.Point(524, 0);
+            this.signOff.Location = new System.Drawing.Point(528, 0);
             this.signOff.Margin = new System.Windows.Forms.Padding(0);
             this.signOff.Name = "signOff";
             this.IconsPanel.SetRow(this.signOff, 0);
-            this.signOff.Size = new System.Drawing.Size(241, 117);
+            this.signOff.Size = new System.Drawing.Size(241, 120);
             this.signOff.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
             this.signOff.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("signOff.SvgImage")));
             this.signOff.TabIndex = 3;
@@ -178,15 +181,18 @@ namespace RSI_X_Desktop.forms
             this.IconsPanel.SetColumn(this.ScreenShare, 2);
             this.ScreenShare.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ScreenShare.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ScreenShare.ItemAppearance.Normal.BorderColor = System.Drawing.Color.White;
+            this.ScreenShare.ItemAppearance.Normal.BorderThickness = 0F;
             this.ScreenShare.Location = new System.Drawing.Point(200, 0);
             this.ScreenShare.Margin = new System.Windows.Forms.Padding(0);
             this.ScreenShare.Name = "ScreenShare";
             this.IconsPanel.SetRow(this.ScreenShare, 0);
-            this.ScreenShare.Size = new System.Drawing.Size(120, 117);
+            this.ScreenShare.Size = new System.Drawing.Size(120, 120);
             this.ScreenShare.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ScreenShare.SvgImage")));
             this.ScreenShare.TabIndex = 2;
             this.ScreenShare.Text = "svgImageBox3";
             this.ScreenShare.Click += new System.EventHandler(this.btnScreenShare_Click);
+            this.ScreenShare.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ScreenShare_MouseMove);
             // 
             // videoLabel
             // 
@@ -198,7 +204,7 @@ namespace RSI_X_Desktop.forms
             this.videoLabel.Margin = new System.Windows.Forms.Padding(0);
             this.videoLabel.Name = "videoLabel";
             this.IconsPanel.SetRow(this.videoLabel, 0);
-            this.videoLabel.Size = new System.Drawing.Size(120, 117);
+            this.videoLabel.Size = new System.Drawing.Size(120, 120);
             this.videoLabel.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("videoLabel.SvgImage")));
             this.videoLabel.TabIndex = 1;
             this.videoLabel.Text = "videoLabel";
@@ -215,7 +221,7 @@ namespace RSI_X_Desktop.forms
             this.audioLabel.Margin = new System.Windows.Forms.Padding(0);
             this.audioLabel.Name = "audioLabel";
             this.IconsPanel.SetRow(this.audioLabel, 0);
-            this.audioLabel.Size = new System.Drawing.Size(80, 117);
+            this.audioLabel.Size = new System.Drawing.Size(80, 120);
             this.audioLabel.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("audioLabel.SvgImage")));
             this.audioLabel.TabIndex = 0;
             this.audioLabel.Text = "audioLabel";
@@ -236,7 +242,7 @@ namespace RSI_X_Desktop.forms
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 7F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 93F)});
-            this.tablePanel1.Size = new System.Drawing.Size(1146, 655);
+            this.tablePanel1.Size = new System.Drawing.Size(1154, 652);
             this.tablePanel1.TabIndex = 1;
             // 
             // RoomNameLabel
@@ -267,7 +273,7 @@ namespace RSI_X_Desktop.forms
             this.LeftSidePanel.Name = "LeftSidePanel";
             this.LeftSidePanel.Padding = new System.Windows.Forms.Padding(5, 35, 20, 0);
             this.MainLayout.SetRow(this.LeftSidePanel, 1);
-            this.LeftSidePanel.Size = new System.Drawing.Size(128, 778);
+            this.LeftSidePanel.Size = new System.Drawing.Size(120, 778);
             this.LeftSidePanel.TabIndex = 0;
             this.LeftSidePanel.Text = "sidePanel1";
             // 
@@ -280,7 +286,7 @@ namespace RSI_X_Desktop.forms
             this.Logo.Location = new System.Drawing.Point(5, 35);
             this.Logo.Margin = new System.Windows.Forms.Padding(0);
             this.Logo.Name = "Logo";
-            this.Logo.Size = new System.Drawing.Size(103, 68);
+            this.Logo.Size = new System.Drawing.Size(95, 68);
             this.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Logo.TabIndex = 1;
             this.Logo.TabStop = false;

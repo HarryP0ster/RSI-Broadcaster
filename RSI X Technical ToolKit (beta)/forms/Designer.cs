@@ -144,6 +144,12 @@ namespace RSI_X_Desktop.forms
                 SvgImage.FromFile("Resources\\Hidden.svg") :
                 SvgImage.FromFile("Resources\\video.svg");
         }
+        private void SShareColorUpdate()
+        {
+            ScreenShare.SvgImage = IsSharingScreen ?
+                SvgImage.FromFile("Resources\\sharing.svg") :
+                SvgImage.FromFile("Resources\\screen_sharing.svg");
+        }
         #endregion
 
         #region EventHandlers
@@ -154,6 +160,7 @@ namespace RSI_X_Desktop.forms
             Cursor.Position = PointToScreen(new Point(Width / 2, Height / 2));
             AudioColorUpdate();
             VideoColorUpdate();
+            SShareColorUpdate();
             Cursor.Position = oldPos;
             System.Threading.Thread.Sleep(100);
             canSelect = true;
@@ -219,7 +226,16 @@ namespace RSI_X_Desktop.forms
         {
             devicesLabel.ItemAppearance.Normal.BorderThickness = 0;
         }
-        private void btnScreenShare_Click(object sender, EventArgs e)
+        internal void ScreenShare_MouseMove(object sender, MouseEventArgs e)
+        {
+            ScreenShare.ItemAppearance.Normal.BorderThickness = 1;
+        }
+
+        internal void ScreenShare_MouseLeave(object sender, EventArgs e)
+        {
+            ScreenShare.ItemAppearance.Normal.BorderThickness = 0;
+        }
+        internal void btnScreenShare_Click(object sender, EventArgs e)
         {
             if (AgoraObject.IsLocalVideoMute) return;
 
@@ -227,6 +243,7 @@ namespace RSI_X_Desktop.forms
                 ImageSender.EnableImageSender(IsSharingScreen);
 
             enableScreenShare(!IsSharingScreen);
+            timer1.Start();
         }
         public void enableScreenShare(bool enable)
         {
@@ -234,16 +251,14 @@ namespace RSI_X_Desktop.forms
             {
                 AgoraObject.StartScreenCapture();
                 (Owner as Broadcaster).SetLocalVideoPreview();
-                //labelScreenShare.ForeColor = Color.Red;
             }
             else
             {
                 AgoraObject.StopScreenCapture();
-                //labelScreenShare.ForeColor = Color.White;
             }
 
             (Owner as Broadcaster).pictureBoxRemoteVideo.Update();
-            IsSharingScreen = !IsSharingScreen;
+            IsSharingScreen = enable;
         }
         #endregion
     }

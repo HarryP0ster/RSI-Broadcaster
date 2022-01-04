@@ -171,6 +171,16 @@ namespace RSI_X_Desktop.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logotype_compressed {
+            get {
+                object obj = ResourceManager.GetObject("logotype_compressed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
         internal static byte[] mute {
@@ -266,6 +276,16 @@ namespace RSI_X_Desktop.Properties {
         internal static byte[] screen_sharing {
             get {
                 object obj = ResourceManager.GetObject("screen_sharing", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] sharing {
+            get {
+                object obj = ResourceManager.GetObject("sharing", resourceCulture);
                 return ((byte[])(obj));
             }
         }

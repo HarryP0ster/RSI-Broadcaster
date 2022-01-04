@@ -71,7 +71,6 @@
     <None Remove="Resources\LiveIcon.png" />
     <None Remove="Resources\LiveIcon1.png" />
     <None Remove="Resources\logotype.jpg" />
-    <None Remove="Resources\logotype_compressed.png" />
     <None Remove="Resources\logo_new_h.png" />
     <None Remove="Resources\logo_new_v.png" />
     <None Remove="Resources\megaphone.png" />
@@ -371,6 +370,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\screen_sharing.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\sharing.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\sign_off.svg">

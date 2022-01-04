@@ -13,7 +13,7 @@ namespace RSI_X_Desktop
         private readonly forms.HelpingClass.FireBaseReader GetFireBase = new();
         internal static IntPtr LocalWinId;
         public IntPtr RemoteWnd { get => LocalWinId; }
-        private Devices devices;
+        private PopUpForm devices;
         private ChatWnd chat = new ();
         internal Designer ExternWnd = new();
         BottomPanelWnd bottomPanel = new();
@@ -64,7 +64,7 @@ namespace RSI_X_Desktop
             chat.Hide(); //You need to hide it, otherwise Animator'd get confused
 
             bottomPanel.Width = Width;
-            bottomPanel.Height = Height / 7;
+            bottomPanel.Height = 125;
             bottomPanel.Location = new Point(Location.X, Location.Y + Height);
             bottomPanel.Show(this);
             bottomPanel.Enabled = false;
@@ -223,14 +223,16 @@ namespace RSI_X_Desktop
 
             if (devices == null || devices.IsDisposed)
             {
-                devices = new Devices();
-                devices.Location = new Point(150, 0);
-                CallSidePanel(devices);
-                devices.typeOfAlligment(true);
+                BlurWnd blur = new();
+                devices = new PopUpForm();
+                blur.Show(this);
+                devices.ShowDialog(this);
+                devices.Dispose();
+                blur.Dispose();
             }
             else
             {
-                DevicesClosed(devices);
+                devices.Dispose();
             }
         }
         internal void SettingButton_Click(object sender, EventArgs e)
@@ -302,6 +304,8 @@ namespace RSI_X_Desktop
                 ExternWnd.labelVideo_Click(sender, e);
             else if (ExternWnd.DevicesLblRect.Contains(Cursor.Position))
                 SettingButton_Click(sender, e);
+            else if (ExternWnd.ScreenShareRectangle.Contains(Cursor.Position))
+                ExternWnd.btnScreenShare_Click(sender, e);
 
             if (ExternWnd.HomeBtnRect.Contains(Cursor.Position))
                 ExternWnd.HomeBtn_Click(null, null);
@@ -339,6 +343,14 @@ namespace RSI_X_Desktop
             }
             else
                 ExternWnd.devicesLabel_MouseLeave(sender, e);
+
+            if (ExternWnd.ScreenShareRectangle.Contains(Cursor.Position))
+            {
+                ExternWnd.ScreenShare_MouseMove(sender, e);
+                cursorUpd = true;
+            }
+            else
+                ExternWnd.ScreenShare_MouseLeave(sender, e);
 
             Cursor.Current = cursorUpd ? Cursors.Hand : Cursors.Default;
         }

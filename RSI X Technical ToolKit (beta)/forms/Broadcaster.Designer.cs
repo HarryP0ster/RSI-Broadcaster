@@ -31,17 +31,17 @@ namespace RSI_X_Desktop
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Broadcaster));
             this.formTheme1 = new ReaLTaiizor.Forms.FormTheme();
+            this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.StreamLayout = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.PanelNothing = new System.Windows.Forms.Panel();
             this.pictureBoxRemoteVideo = new System.Windows.Forms.PictureBox();
             this.nightControlBox1 = new ReaLTaiizor.Controls.NightControlBox();
-            this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.formTheme1.SuspendLayout();
+            this.MainLayout.SuspendLayout();
             this.StreamLayout.SuspendLayout();
             this.PanelNothing.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRemoteVideo)).BeginInit();
-            this.MainLayout.SuspendLayout();
             this.SuspendLayout();
             // 
             // formTheme1
@@ -63,6 +63,23 @@ namespace RSI_X_Desktop
             this.formTheme1.TabIndex = 10;
             this.formTheme1.Text = "RSI X DESKTOP BROADCASTER";
             // 
+            // MainLayout
+            // 
+            this.MainLayout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.MainLayout.ColumnCount = 2;
+            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainLayout.Controls.Add(this.StreamLayout, 1, 0);
+            this.MainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainLayout.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
+            this.MainLayout.Location = new System.Drawing.Point(0, 22);
+            this.MainLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.MainLayout.Name = "MainLayout";
+            this.MainLayout.RowCount = 1;
+            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainLayout.Size = new System.Drawing.Size(1280, 778);
+            this.MainLayout.TabIndex = 93;
+            // 
             // StreamLayout
             // 
             this.StreamLayout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -73,12 +90,12 @@ namespace RSI_X_Desktop
             this.StreamLayout.Controls.Add(this.panel1, 1, 0);
             this.StreamLayout.Controls.Add(this.PanelNothing, 0, 0);
             this.StreamLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StreamLayout.Location = new System.Drawing.Point(102, 0);
+            this.StreamLayout.Location = new System.Drawing.Point(90, 0);
             this.StreamLayout.Margin = new System.Windows.Forms.Padding(0);
             this.StreamLayout.Name = "StreamLayout";
             this.StreamLayout.RowCount = 1;
             this.StreamLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.StreamLayout.Size = new System.Drawing.Size(1178, 778);
+            this.StreamLayout.Size = new System.Drawing.Size(1190, 778);
             this.StreamLayout.TabIndex = 3;
             // 
             // panel1
@@ -86,10 +103,10 @@ namespace RSI_X_Desktop
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(985, 3);
+            this.panel1.Location = new System.Drawing.Point(995, 3);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(189, 772);
+            this.panel1.Size = new System.Drawing.Size(191, 772);
             this.panel1.TabIndex = 4;
             // 
             // PanelNothing
@@ -102,7 +119,7 @@ namespace RSI_X_Desktop
             this.PanelNothing.Location = new System.Drawing.Point(0, 0);
             this.PanelNothing.Margin = new System.Windows.Forms.Padding(0);
             this.PanelNothing.Name = "PanelNothing";
-            this.PanelNothing.Size = new System.Drawing.Size(981, 778);
+            this.PanelNothing.Size = new System.Drawing.Size(991, 778);
             this.PanelNothing.TabIndex = 5;
             // 
             // pictureBoxRemoteVideo
@@ -114,7 +131,7 @@ namespace RSI_X_Desktop
             this.pictureBoxRemoteVideo.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxRemoteVideo.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxRemoteVideo.Name = "pictureBoxRemoteVideo";
-            this.pictureBoxRemoteVideo.Size = new System.Drawing.Size(981, 778);
+            this.pictureBoxRemoteVideo.Size = new System.Drawing.Size(991, 778);
             this.pictureBoxRemoteVideo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxRemoteVideo.TabIndex = 3;
             this.pictureBoxRemoteVideo.TabStop = false;
@@ -145,23 +162,6 @@ namespace RSI_X_Desktop
             this.nightControlBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.nightControlBox1_MouseClick);
             this.nightControlBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.nightControlBox1_MouseMove);
             // 
-            // MainLayout
-            // 
-            this.MainLayout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.MainLayout.ColumnCount = 2;
-            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 92F));
-            this.MainLayout.Controls.Add(this.StreamLayout, 1, 0);
-            this.MainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainLayout.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.MainLayout.Location = new System.Drawing.Point(0, 22);
-            this.MainLayout.Margin = new System.Windows.Forms.Padding(0);
-            this.MainLayout.Name = "MainLayout";
-            this.MainLayout.RowCount = 1;
-            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainLayout.Size = new System.Drawing.Size(1280, 778);
-            this.MainLayout.TabIndex = 93;
-            // 
             // Broadcaster
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -178,11 +178,11 @@ namespace RSI_X_Desktop
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Broadcaster_FormClosed);
             this.Load += new System.EventHandler(this.Conference_Load);
             this.formTheme1.ResumeLayout(false);
+            this.MainLayout.ResumeLayout(false);
             this.StreamLayout.ResumeLayout(false);
             this.StreamLayout.PerformLayout();
             this.PanelNothing.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRemoteVideo)).EndInit();
-            this.MainLayout.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
