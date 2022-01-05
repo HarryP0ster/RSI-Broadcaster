@@ -101,11 +101,11 @@ namespace RSI_X_Desktop.forms
             this.General.CausesValidation = false;
             this.General.Controls.Add(this.tableLayoutPanel5);
             this.General.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.General.Location = new System.Drawing.Point(4, 39);
+            this.General.Location = new System.Drawing.Point(4, 33);
             this.General.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.General.Name = "General";
             this.General.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.General.Size = new System.Drawing.Size(352, 498);
+            this.General.Size = new System.Drawing.Size(352, 504);
             this.General.TabIndex = 4;
             this.General.Text = "General";
             // 
@@ -131,7 +131,7 @@ namespace RSI_X_Desktop.forms
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(348, 492);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(348, 498);
             this.tableLayoutPanel5.TabIndex = 5;
             // 
             // tableLayoutPanel8
@@ -141,7 +141,7 @@ namespace RSI_X_Desktop.forms
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.Controls.Add(this.BCloseGeneral, 1, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(145, 435);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(145, 441);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -177,7 +177,7 @@ namespace RSI_X_Desktop.forms
             this.bigLabel1.Location = new System.Drawing.Point(2, 0);
             this.bigLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.bigLabel1.Name = "bigLabel1";
-            this.bigLabel1.Size = new System.Drawing.Size(135, 36);
+            this.bigLabel1.Size = new System.Drawing.Size(109, 29);
             this.bigLabel1.TabIndex = 0;
             this.bigLabel1.Text = "Your system";
             // 
@@ -187,10 +187,10 @@ namespace RSI_X_Desktop.forms
             this.dungeonLabel1.BackColor = System.Drawing.Color.Transparent;
             this.dungeonLabel1.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dungeonLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
-            this.dungeonLabel1.Location = new System.Drawing.Point(2, 41);
+            this.dungeonLabel1.Location = new System.Drawing.Point(2, 34);
             this.dungeonLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dungeonLabel1.Name = "dungeonLabel1";
-            this.dungeonLabel1.Size = new System.Drawing.Size(107, 24);
+            this.dungeonLabel1.Size = new System.Drawing.Size(87, 19);
             this.dungeonLabel1.TabIndex = 1;
             this.dungeonLabel1.Text = "dungeonLabel1";
             // 
@@ -200,10 +200,10 @@ namespace RSI_X_Desktop.forms
             this.dungeonLabel3.BackColor = System.Drawing.Color.Transparent;
             this.dungeonLabel3.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dungeonLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
-            this.dungeonLabel3.Location = new System.Drawing.Point(2, 99);
+            this.dungeonLabel3.Location = new System.Drawing.Point(2, 82);
             this.dungeonLabel3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dungeonLabel3.Name = "dungeonLabel3";
-            this.dungeonLabel3.Size = new System.Drawing.Size(110, 24);
+            this.dungeonLabel3.Size = new System.Drawing.Size(89, 19);
             this.dungeonLabel3.TabIndex = 3;
             this.dungeonLabel3.Text = "dungeonLabel3";
             // 
@@ -213,10 +213,10 @@ namespace RSI_X_Desktop.forms
             this.dungeonLabel2.BackColor = System.Drawing.Color.Transparent;
             this.dungeonLabel2.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dungeonLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
-            this.dungeonLabel2.Location = new System.Drawing.Point(2, 70);
+            this.dungeonLabel2.Location = new System.Drawing.Point(2, 58);
             this.dungeonLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dungeonLabel2.Name = "dungeonLabel2";
-            this.dungeonLabel2.Size = new System.Drawing.Size(110, 24);
+            this.dungeonLabel2.Size = new System.Drawing.Size(89, 19);
             this.dungeonLabel2.TabIndex = 2;
             this.dungeonLabel2.Text = "dungeonLabel2";
             // 
@@ -225,11 +225,11 @@ namespace RSI_X_Desktop.forms
             this.Sound.BackColor = System.Drawing.Color.White;
             this.Sound.Controls.Add(this.tableLayoutPanel1);
             this.Sound.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Sound.Location = new System.Drawing.Point(4, 39);
+            this.Sound.Location = new System.Drawing.Point(4, 33);
             this.Sound.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Sound.Name = "Sound";
             this.Sound.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Sound.Size = new System.Drawing.Size(352, 498);
+            this.Sound.Size = new System.Drawing.Size(352, 504);
             this.Sound.TabIndex = 7;
             this.Sound.Text = "Sound";
             // 
@@ -257,7 +257,7 @@ namespace RSI_X_Desktop.forms
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(348, 492);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(348, 498);
             this.tableLayoutPanel1.TabIndex = 8;
             // 
             // Microphone
@@ -269,7 +269,7 @@ namespace RSI_X_Desktop.forms
             this.Microphone.Location = new System.Drawing.Point(2, 0);
             this.Microphone.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Microphone.Name = "Microphone";
-            this.Microphone.Size = new System.Drawing.Size(83, 20);
+            this.Microphone.Size = new System.Drawing.Size(66, 18);
             this.Microphone.TabIndex = 4;
             this.Microphone.Text = "Microphone";
             // 
@@ -349,7 +349,7 @@ namespace RSI_X_Desktop.forms
             this.Dynamic.Location = new System.Drawing.Point(2, 110);
             this.Dynamic.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Dynamic.Name = "Dynamic";
-            this.Dynamic.Size = new System.Drawing.Size(62, 20);
+            this.Dynamic.Size = new System.Drawing.Size(49, 18);
             this.Dynamic.TabIndex = 5;
             this.Dynamic.Text = "Speaker";
             this.Dynamic.Visible = false;
@@ -379,7 +379,7 @@ namespace RSI_X_Desktop.forms
             this.tableLayoutPanel2.Controls.Add(this.BCloseSound, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.BAcceptSound, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(145, 435);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(145, 441);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -431,11 +431,11 @@ namespace RSI_X_Desktop.forms
             this.Video.BackColor = System.Drawing.Color.White;
             this.Video.Controls.Add(this.tableLayoutPanel3);
             this.Video.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Video.Location = new System.Drawing.Point(4, 39);
+            this.Video.Location = new System.Drawing.Point(4, 33);
             this.Video.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Video.Name = "Video";
             this.Video.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Video.Size = new System.Drawing.Size(352, 498);
+            this.Video.Size = new System.Drawing.Size(352, 504);
             this.Video.TabIndex = 6;
             this.Video.Text = "Video";
             // 
@@ -460,7 +460,7 @@ namespace RSI_X_Desktop.forms
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(348, 492);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(348, 498);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
             // ComboBoxRes
@@ -487,7 +487,7 @@ namespace RSI_X_Desktop.forms
             this.tableLayoutPanel4.Controls.Add(this.BCloseVideo, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.BAcceptVideo, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(145, 435);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(145, 441);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -564,7 +564,7 @@ namespace RSI_X_Desktop.forms
             this.comboBoxVideo.TabIndex = 0;
             this.comboBoxVideo.SelectedIndexChanged += new System.EventHandler(this.comboBoxVideo_SelectedIndexChanged);
             // 
-            // button2
+            // btnCustomImage
             // 
             this.btnCustomImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -577,7 +577,7 @@ namespace RSI_X_Desktop.forms
             this.btnCustomImage.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
             this.btnCustomImage.Location = new System.Drawing.Point(162, 304);
             this.btnCustomImage.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.btnCustomImage.Name = "button2";
+            this.btnCustomImage.Name = "btnCustomImage";
             this.btnCustomImage.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.btnCustomImage.Size = new System.Drawing.Size(183, 35);
             this.btnCustomImage.TabIndex = 10;
@@ -672,7 +672,7 @@ namespace RSI_X_Desktop.forms
             // 
             // Devices
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(360, 541);
             this.Controls.Add(this.materialShowTabControl1);

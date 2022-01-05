@@ -227,8 +227,10 @@ namespace RSI_X_Desktop
                 devices = new PopUpForm();
                 blur.Show(this);
                 devices.ShowDialog(this);
+                SetLocalVideoPreview();
                 devices.Dispose();
                 blur.Dispose();
+                Focus();
             }
             else
             {
@@ -306,6 +308,8 @@ namespace RSI_X_Desktop
                 SettingButton_Click(sender, e);
             else if (ExternWnd.ScreenShareRectangle.Contains(Cursor.Position))
                 ExternWnd.btnScreenShare_Click(sender, e);
+            else if (ExternWnd.ChatRect.Contains(Cursor.Position))
+                ExternWnd.Chat_Click(sender, e);
 
             if (ExternWnd.HomeBtnRect.Contains(Cursor.Position))
                 ExternWnd.HomeBtn_Click(null, null);
@@ -351,6 +355,14 @@ namespace RSI_X_Desktop
             }
             else
                 ExternWnd.ScreenShare_MouseLeave(sender, e);
+
+            if (ExternWnd.ChatRect.Contains(Cursor.Position))
+            {
+                ExternWnd.Chat_MouseMove(sender, e);
+                cursorUpd = true;
+            }
+            else
+                ExternWnd.Chat_MouseLeave(sender, e);
 
             Cursor.Current = cursorUpd ? Cursors.Hand : Cursors.Default;
         }

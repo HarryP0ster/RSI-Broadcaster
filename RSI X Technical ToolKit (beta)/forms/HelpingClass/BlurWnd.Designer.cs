@@ -39,6 +39,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "BlurWnd";
+            this.ShowInTaskbar = false;
             this.Text = "BlurWnd";
             this.TransparencyKey = System.Drawing.Color.Fuchsia;
             this.Load += new System.EventHandler(this.BlurWnd_Load);

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.Utils.Svg;
+using RSI_X_Desktop.forms.HelpingClass;
 
 namespace RSI_X_Desktop.forms
 {
@@ -16,6 +17,7 @@ namespace RSI_X_Desktop.forms
     {
         bool canSelect = true;
         private bool IsSharingScreen = false;
+        ChatForm chat = new();
         #region Rectangles
         public Rectangle HomeBtnRect
         {
@@ -78,10 +80,18 @@ namespace RSI_X_Desktop.forms
                 MinimumSize = Owner.Size;
                 Size = Owner.Size;
                 SetLeftSidePanelRegion();
+                ChatRgn();
                 SighnOffToCenter();
             };
+            chat.TopLevel = false;
+            panelChat.Controls.Add(chat);
+            chat.Dock = DockStyle.Fill;
+            chat.Show();
             Owner.LocationChanged += (s, e) => { Location = new Point(Owner.Location.X, Owner.Location.Y); };
             RoomNameLabel.Text = AgoraObject.GetComplexToken().GetRoomName;
+            CenterPanel.Columns[1].Width = 0;
+            //ChatRgn();
+            //CenterPanel.Columns[1].Width = 0;
             SetLeftSidePanelRegion();
             AudioColorUpdate();
             VideoColorUpdate();
@@ -89,6 +99,18 @@ namespace RSI_X_Desktop.forms
         }
 
         #region RealtimeDesigner
+
+        private void ChatRgn()
+        {
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            int d = 25;
+            System.Drawing.Rectangle r = new System.Drawing.Rectangle(0, 0, panelChat.Width + 25, panelChat.Height);
+            path.AddArc(r.X, r.Y, d, d, 180, 90);
+            path.AddArc(r.X + r.Width - d, r.Y, d, d, 270, 90);
+            path.AddArc(r.X + r.Width - d, r.Y + r.Height - d, d, d, 0, 90);
+            path.AddArc(r.X, r.Y + r.Height - d, d, d, 90, 90);
+            panelChat.Region = new Region(path);
+        }
         private void SetLeftSidePanelRegion()
         {
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
@@ -259,6 +281,25 @@ namespace RSI_X_Desktop.forms
 
             (Owner as Broadcaster).pictureBoxRemoteVideo.Update();
             IsSharingScreen = enable;
+        }
+
+        internal void Chat_Click(object sender, EventArgs e)
+        {
+            IconsPanel.Columns[3].Width = 0;
+            IconsPanel.Columns[7].Width = 0;
+            CenterPanel.Columns[1].Width = 450;
+            ChatRgn();
+        }
+        internal void Chat_MouseMove(object sender, MouseEventArgs e)
+        {
+            Chat.ItemAppearance.Normal.BorderThickness = 1;
+
+        }
+
+        internal void Chat_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Chat.ItemAppearance.Normal.BorderThickness = 0;
+
         }
         #endregion
     }

@@ -83,6 +83,16 @@ namespace RSI_X_Desktop.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
+        internal static byte[] ChatBtn {
+            get {
+                object obj = ResourceManager.GetObject("ChatBtn", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
         internal static byte[] Confirm {
             get {
                 object obj = ResourceManager.GetObject("Confirm", resourceCulture);
@@ -217,6 +227,15 @@ namespace RSI_X_Desktop.Properties {
             get {
                 object obj = ResourceManager.GetObject("NicknameTextBox", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.IO.UnmanagedMemoryStream, аналогичного System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream OutputBeep {
+            get {
+                return ResourceManager.GetStream("OutputBeep", resourceCulture);
             }
         }
         
