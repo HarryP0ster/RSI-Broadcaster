@@ -16,7 +16,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
         public const string MyOwn = "Me";
         const int maxSymbol = 25;
         ChatBubbleLeft labelL;
-        ChatBubbleRight labelR;
+        newRightBubble labelR;
         Label Sender;
         Control Owner;
 
@@ -47,7 +47,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
                 ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
                 ColumnStyles[0].SizeType = SizeType.Percent;
                 ColumnStyles[0].Width = 100;
-                labelR = new ChatBubbleRight();
+                labelR = new newRightBubble();
                 labelR.SizeAuto = true;
                 labelR.SizeAutoW = true;
                 labelR.SizeAutoH = true;

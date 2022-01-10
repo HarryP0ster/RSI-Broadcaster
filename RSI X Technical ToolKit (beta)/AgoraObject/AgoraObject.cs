@@ -78,6 +78,7 @@ namespace RSI_X_Desktop
             Rtc.EnableVideo();
             forms.Devices.InitManager();
 
+            UpdateNickName(NickCenter.ToHostNick("BROADCASTER"));
             SetPublishProfile();
         }
 
