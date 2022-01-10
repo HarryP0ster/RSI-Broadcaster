@@ -245,5 +245,17 @@ namespace RSI_X_Desktop.forms.HelpingClass
             scroll_offset[0] = GeneralScroll.Maximum - newValue;
             Chat_SizeChanged(PGeneral, new EventArgs());
         }
+
+        private void bigTextBox2_Enter(object sender, EventArgs e)
+        {
+            if (bigTextBox2.Text == "Type in your message")
+                bigTextBox2.Text = "";
+        }
+
+        private void bigTextBox2_Leave(object sender, EventArgs e)
+        {
+            if (bigTextBox2.Text == "")
+                bigTextBox2.Text = "Type in your message";
+        }
     }
 }

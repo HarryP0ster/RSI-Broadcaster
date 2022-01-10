@@ -139,6 +139,9 @@
   <data name="devices_form" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\devices_form.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="GeneralChat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GeneralChat.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Hidden" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Hidden.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -198,6 +201,9 @@
   </data>
   <data name="sign_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sign_off.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SupportChat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SupportChat.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="video" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\video.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

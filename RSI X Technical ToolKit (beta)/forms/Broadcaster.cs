@@ -221,11 +221,6 @@ namespace RSI_X_Desktop
         }
         private void labelSettings_Click(object sender, EventArgs e)
         {
-            if (chat.Visible == true)
-            {
-                ChatClosed(chat);
-            }
-
             if (devices == null || devices.IsDisposed)
             {
                 BlurWnd blur = new();
