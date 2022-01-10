@@ -29,8 +29,8 @@ namespace RSI_X_Desktop.forms.HelpingClass
         HelpingClass.FireBaseReader FireBase;
 
         PANEL CurPanel;
-        Padding MarginNormal = new Padding(25);
-        Padding Hovered = new Padding(23);
+        Padding MarginNormal = new Padding(10);
+        Padding Hovered = new Padding(8);
 
         public ChatForm()
         {
@@ -307,6 +307,21 @@ namespace RSI_X_Desktop.forms.HelpingClass
         private void SendMsgBtn_MouseLeave(object sender, EventArgs e)
         {
             SendMsgBtn.Margin = MarginNormal;
+        }
+
+        private void ChatClose_MouseEnter(object sender, EventArgs e)
+        {
+            ChatClose.ItemAppearance.Normal.FillColor = Color.FromArgb(200, 200, 200);
+        }
+
+        private void ChatClose_MouseLeave(object sender, EventArgs e)
+        {
+            ChatClose.ItemAppearance.Normal.FillColor = Color.Gray;
+        }
+
+        private void ChatClose_Click(object sender, EventArgs e)
+        {
+            AgoraObject.GetWorkForm?.CloseChat();
         }
     }
 }

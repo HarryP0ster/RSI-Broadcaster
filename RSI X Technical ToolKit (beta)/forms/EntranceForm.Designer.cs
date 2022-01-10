@@ -186,6 +186,7 @@ namespace RSI_X_Desktop.forms
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(120, 120);
             this.backButton.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
+            this.backButton.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("backButton.SvgImage")));
             this.backButton.TabIndex = 4;
             this.backButton.Text = "svgImageBox1";
             this.backButton.Visible = false;

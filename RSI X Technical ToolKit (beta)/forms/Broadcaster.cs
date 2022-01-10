@@ -359,6 +359,11 @@ namespace RSI_X_Desktop
             Cursor.Current = cursorUpd ? Cursors.Hand : Cursors.Default;
         }
 
+        public void CloseChat()
+        {
+            ExternWnd.Chat_Click(null, null);
+        }
+
         private void nightControlBox1_MouseMove(object sender, MouseEventArgs e)
         {
             GC.Collect();

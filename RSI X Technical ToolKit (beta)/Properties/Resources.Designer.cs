@@ -123,6 +123,16 @@ namespace RSI_X_Desktop.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
+        internal static byte[] ChatClose {
+            get {
+                object obj = ResourceManager.GetObject("ChatClose", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
         internal static byte[] Confirm {
             get {
                 object obj = ResourceManager.GetObject("Confirm", resourceCulture);

@@ -49,6 +49,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.panel2 = new System.Windows.Forms.Panel();
             this.bigTextBox2 = new ReaLTaiizor.Controls.HopeRichTextBox();
             this.tablePanel3 = new DevExpress.Utils.Layout.TablePanel();
+            this.ChatClose = new DevExpress.XtraEditors.SvgImageBox();
             this.SendMsgBtn = new DevExpress.XtraEditors.SvgImageBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).BeginInit();
@@ -67,6 +68,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.tablePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel3)).BeginInit();
             this.tablePanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ChatClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SendMsgBtn)).BeginInit();
             this.SuspendLayout();
             // 
@@ -353,8 +355,10 @@ namespace RSI_X_Desktop.forms.HelpingClass
             // 
             this.tablePanel2.SetColumn(this.tablePanel3, 0);
             this.tablePanel3.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 65F),
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 35F)});
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 60F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 25F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 15F)});
+            this.tablePanel3.Controls.Add(this.ChatClose);
             this.tablePanel3.Controls.Add(this.SendMsgBtn);
             this.tablePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tablePanel3.Location = new System.Drawing.Point(3, 81);
@@ -365,16 +369,35 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.tablePanel3.Size = new System.Drawing.Size(424, 86);
             this.tablePanel3.TabIndex = 2;
             // 
+            // ChatClose
+            // 
+            this.tablePanel3.SetColumn(this.ChatClose, 2);
+            this.ChatClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ChatClose.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChatClose.ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.ChatClose.ItemAppearance.Normal.FillColor = System.Drawing.Color.Gray;
+            this.ChatClose.Location = new System.Drawing.Point(370, 10);
+            this.ChatClose.Margin = new System.Windows.Forms.Padding(10);
+            this.ChatClose.Name = "ChatClose";
+            this.tablePanel3.SetRow(this.ChatClose, 0);
+            this.ChatClose.Size = new System.Drawing.Size(44, 66);
+            this.ChatClose.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
+            this.ChatClose.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ChatClose.SvgImage")));
+            this.ChatClose.TabIndex = 1;
+            this.ChatClose.Click += new System.EventHandler(this.ChatClose_Click);
+            this.ChatClose.MouseEnter += new System.EventHandler(this.ChatClose_MouseEnter);
+            this.ChatClose.MouseLeave += new System.EventHandler(this.ChatClose_MouseLeave);
+            // 
             // SendMsgBtn
             // 
             this.tablePanel3.SetColumn(this.SendMsgBtn, 1);
             this.SendMsgBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SendMsgBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SendMsgBtn.Location = new System.Drawing.Point(301, 25);
-            this.SendMsgBtn.Margin = new System.Windows.Forms.Padding(25);
+            this.SendMsgBtn.Location = new System.Drawing.Point(264, 10);
+            this.SendMsgBtn.Margin = new System.Windows.Forms.Padding(10);
             this.SendMsgBtn.Name = "SendMsgBtn";
             this.tablePanel3.SetRow(this.SendMsgBtn, 0);
-            this.SendMsgBtn.Size = new System.Drawing.Size(98, 36);
+            this.SendMsgBtn.Size = new System.Drawing.Size(86, 66);
             this.SendMsgBtn.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
             this.SendMsgBtn.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("SendMsgBtn.SvgImage")));
             this.SendMsgBtn.TabIndex = 0;
@@ -417,6 +440,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.tablePanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel3)).EndInit();
             this.tablePanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ChatClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SendMsgBtn)).EndInit();
             this.ResumeLayout(false);
 
@@ -444,5 +468,6 @@ namespace RSI_X_Desktop.forms.HelpingClass
         private ReaLTaiizor.Controls.HopeRichTextBox bigTextBox2;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel panel2;
+        private DevExpress.XtraEditors.SvgImageBox ChatClose;
     }
 }

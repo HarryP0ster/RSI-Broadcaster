@@ -297,6 +297,8 @@ namespace RSI_X_Desktop.forms
                 IconsPanel.Columns[7].Width = 0;
                 CenterPanel.Columns[1].Width = 450;
                 (Owner as Broadcaster).StreamLayout.ColumnStyles[1].Width = 450;
+                Chat.Hide();
+                devicesLabel.Hide();
                 ChatRgn();
                 SighnOffToCenter();
             }
@@ -304,6 +306,8 @@ namespace RSI_X_Desktop.forms
             {
                 CenterPanel.Columns[1].Width = 0;
                 (Owner as Broadcaster).StreamLayout.ColumnStyles[1].Width = 0;
+                Chat.Show();
+                devicesLabel.Show();
                 SighnOffToCenter();
             }
         }

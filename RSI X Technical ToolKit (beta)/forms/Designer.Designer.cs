@@ -140,7 +140,7 @@ namespace RSI_X_Desktop.forms
             this.IconsPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tablePanel2.SetColumn(this.IconsPanel, 0);
             this.IconsPanel.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 100F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 70F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 160F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 200F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 50F),
@@ -209,7 +209,7 @@ namespace RSI_X_Desktop.forms
             this.IconsPanel.SetColumn(this.signOff, 5);
             this.signOff.Cursor = System.Windows.Forms.Cursors.Hand;
             this.signOff.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.signOff.Location = new System.Drawing.Point(540, 0);
+            this.signOff.Location = new System.Drawing.Point(525, 0);
             this.signOff.Margin = new System.Windows.Forms.Padding(0);
             this.signOff.Name = "signOff";
             this.IconsPanel.SetRow(this.signOff, 0);
@@ -226,9 +226,10 @@ namespace RSI_X_Desktop.forms
             this.IconsPanel.SetColumn(this.ScreenShare, 2);
             this.ScreenShare.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ScreenShare.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ScreenShare.ImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.ScreenShare.ItemAppearance.Normal.BorderColor = System.Drawing.Color.White;
             this.ScreenShare.ItemAppearance.Normal.BorderThickness = 0F;
-            this.ScreenShare.Location = new System.Drawing.Point(260, 0);
+            this.ScreenShare.Location = new System.Drawing.Point(230, 0);
             this.ScreenShare.Margin = new System.Windows.Forms.Padding(0);
             this.ScreenShare.Name = "ScreenShare";
             this.IconsPanel.SetRow(this.ScreenShare, 0);
@@ -246,7 +247,7 @@ namespace RSI_X_Desktop.forms
             this.videoLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.videoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.videoLabel.ItemAppearance.Normal.BorderThickness = 0F;
-            this.videoLabel.Location = new System.Drawing.Point(100, 0);
+            this.videoLabel.Location = new System.Drawing.Point(70, 0);
             this.videoLabel.Margin = new System.Windows.Forms.Padding(0);
             this.videoLabel.Name = "videoLabel";
             this.IconsPanel.SetRow(this.videoLabel, 0);
@@ -263,12 +264,13 @@ namespace RSI_X_Desktop.forms
             this.IconsPanel.SetColumn(this.audioLabel, 0);
             this.audioLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.audioLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.audioLabel.ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.audioLabel.ItemAppearance.Normal.BorderThickness = 0F;
             this.audioLabel.Location = new System.Drawing.Point(0, 0);
             this.audioLabel.Margin = new System.Windows.Forms.Padding(0);
             this.audioLabel.Name = "audioLabel";
             this.IconsPanel.SetRow(this.audioLabel, 0);
-            this.audioLabel.Size = new System.Drawing.Size(100, 120);
+            this.audioLabel.Size = new System.Drawing.Size(70, 120);
             this.audioLabel.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("audioLabel.SvgImage")));
             this.audioLabel.TabIndex = 0;
             this.audioLabel.Text = "audioLabel";
@@ -300,11 +302,11 @@ namespace RSI_X_Desktop.forms
             this.RoomNameLabel.Dock = System.Windows.Forms.DockStyle.Left;
             this.RoomNameLabel.Font = new System.Drawing.Font("Bahnschrift SemiLight SemiConde", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.RoomNameLabel.ForeColor = System.Drawing.Color.White;
-            this.RoomNameLabel.Location = new System.Drawing.Point(35, 41);
+            this.RoomNameLabel.Location = new System.Drawing.Point(35, 43);
             this.RoomNameLabel.Margin = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.RoomNameLabel.Name = "RoomNameLabel";
             this.tablePanel1.SetRow(this.RoomNameLabel, 1);
-            this.RoomNameLabel.Size = new System.Drawing.Size(292, 68);
+            this.RoomNameLabel.Size = new System.Drawing.Size(168, 39);
             this.RoomNameLabel.TabIndex = 6;
             this.RoomNameLabel.Text = "Room Name";
             this.RoomNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
