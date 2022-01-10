@@ -75,8 +75,8 @@ namespace RSI_X_Desktop.forms
         private int input;
         private long prebuf;
 
-        Padding MarginNormal = new Padding(15);
-        Padding Hovered = new Padding(13);
+        Padding MarginNormal = new Padding(15, 5, 15, 25);
+        Padding Hovered = new Padding(13, 5, 13, 25);
 
         public PopUpForm()
         {

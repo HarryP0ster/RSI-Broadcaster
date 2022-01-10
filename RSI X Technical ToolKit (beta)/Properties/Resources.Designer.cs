@@ -71,6 +71,26 @@ namespace RSI_X_Desktop.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BckgFade {
+            get {
+                object obj = ResourceManager.GetObject("BckgFade", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ButtonShadow {
+            get {
+                object obj = ResourceManager.GetObject("ButtonShadow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
         internal static byte[] Cancel {
@@ -356,6 +376,16 @@ namespace RSI_X_Desktop.Properties {
             get {
                 object obj = ResourceManager.GetObject("SupportChat", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TextBoxShadow {
+            get {
+                object obj = ResourceManager.GetObject("TextBoxShadow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

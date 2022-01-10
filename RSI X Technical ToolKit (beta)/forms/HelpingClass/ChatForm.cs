@@ -29,8 +29,8 @@ namespace RSI_X_Desktop.forms.HelpingClass
         HelpingClass.FireBaseReader FireBase;
 
         PANEL CurPanel;
-        Padding MarginNormal = new Padding(22);
-        Padding Hovered = new Padding(20);
+        Padding MarginNormal = new Padding(25);
+        Padding Hovered = new Padding(23);
 
         public ChatForm()
         {
