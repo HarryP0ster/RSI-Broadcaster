@@ -189,6 +189,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.SendMsgBtn.Size = new System.Drawing.Size(149, 55);
             this.SendMsgBtn.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("SendMsgBtn.SvgImage")));
             this.SendMsgBtn.TabIndex = 0;
+            this.SendMsgBtn.Click += new System.EventHandler(this.chatButtonRight2_Click);
             // 
             // bigTextBox2
             // 
