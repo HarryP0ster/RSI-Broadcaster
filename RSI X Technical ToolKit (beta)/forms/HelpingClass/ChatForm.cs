@@ -6,7 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using DevExpress.Utils.Svg;
 using System.Windows.Forms;
 
 namespace RSI_X_Desktop.forms.HelpingClass
@@ -29,6 +29,8 @@ namespace RSI_X_Desktop.forms.HelpingClass
         HelpingClass.FireBaseReader FireBase;
 
         PANEL CurPanel;
+        Padding MarginNormal = new Padding(22);
+        Padding Hovered = new Padding(20);
 
         public ChatForm()
         {
@@ -106,7 +108,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
 
         private void chatButtonRight2_Click(object sender, EventArgs e)
         {
-            if (bigTextBox2.Text != "")
+            if (bigTextBox2.Text != "" && bigTextBox2.ForeColor != Color.FromArgb(185, 185, 185))
             {
                 if (CurPanel == PANEL.GENERAL)
                 {
@@ -186,14 +188,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             {
                 Control prev_ctr = null;
                 ((Control)sender).Controls.Clear();
-                int ind;
-
-                if (((Control)sender) == PGeneral)
-                    ind = (int)PANEL.GENERAL;
-                else if (((Control)sender) == PSupport)
-                    ind = (int)PANEL.SUPPORT;
-                else
-                    return;
+                int ind = (int)CurPanel;
 
                 var controls = messages_list[ind].ToArray();
 
@@ -221,6 +216,20 @@ namespace RSI_X_Desktop.forms.HelpingClass
                         return;
                     }
                 }
+            }
+        }
+
+        private void UpdateSelectedPanel()
+        {
+            if (CurPanel == PANEL.GENERAL)
+            {
+                General.SvgImage = SvgImage.FromFile("Resources\\GeneralChatSelected.svg");
+                Support.SvgImage = SvgImage.FromFile("Resources\\SupportChat.svg");
+            }
+            else
+            {
+                General.SvgImage = SvgImage.FromFile("Resources\\GeneralChat.svg");
+                Support.SvgImage = SvgImage.FromFile("Resources\\SupportChatSelected.svg");
             }
         }
 
@@ -263,6 +272,8 @@ namespace RSI_X_Desktop.forms.HelpingClass
             CurPanel = PANEL.GENERAL;
             TablePanels.Columns[1].Width = 0;
             TablePanels.Columns[0].Width = 100;
+            timer1.Start();
+            General.Enabled = false;
         }
 
         private void Support_Click(object sender, EventArgs e)
@@ -270,6 +281,32 @@ namespace RSI_X_Desktop.forms.HelpingClass
             CurPanel = PANEL.SUPPORT;
             TablePanels.Columns[0].Width = 0;
             TablePanels.Columns[1].Width = 100;
+            timer1.Start();
+            Support.Enabled = false;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Point oldPos = Cursor.Position;
+            timer1.Stop();
+            Cursor.Hide();
+            Cursor.Position = PointToScreen(new Point(Width / 2, Height / 2));
+            UpdateSelectedPanel();
+            Cursor.Show();
+            Cursor.Position = oldPos;
+            System.Threading.Thread.Sleep(100);
+            General.Enabled = true;
+            Support.Enabled = true;
+        }
+
+        private void SendMsgBtn_MouseHover(object sender, EventArgs e)
+        {
+            SendMsgBtn.Margin = Hovered;
+        }
+
+        private void SendMsgBtn_MouseLeave(object sender, EventArgs e)
+        {
+            SendMsgBtn.Margin = MarginNormal;
         }
     }
 }

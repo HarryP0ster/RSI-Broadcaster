@@ -29,6 +29,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             this.tablePanel1 = new DevExpress.Utils.Layout.TablePanel();
             this.TablePanels = new DevExpress.Utils.Layout.TablePanel();
@@ -45,9 +46,11 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.General = new DevExpress.XtraEditors.SvgImageBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tablePanel2 = new DevExpress.Utils.Layout.TablePanel();
-            this.bigTextBox2 = new ReaLTaiizor.Controls.RichTextBoxEdit();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.bigTextBox2 = new ReaLTaiizor.Controls.HopeRichTextBox();
             this.tablePanel3 = new DevExpress.Utils.Layout.TablePanel();
             this.SendMsgBtn = new DevExpress.XtraEditors.SvgImageBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).BeginInit();
             this.tablePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TablePanels)).BeginInit();
@@ -290,43 +293,59 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.tablePanel1.SetColumn(this.tablePanel2, 0);
             this.tablePanel2.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 55F)});
+            this.tablePanel2.Controls.Add(this.panel2);
             this.tablePanel2.Controls.Add(this.bigTextBox2);
             this.tablePanel2.Controls.Add(this.tablePanel3);
             this.tablePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tablePanel2.Location = new System.Drawing.Point(10, 625);
-            this.tablePanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.tablePanel2.Location = new System.Drawing.Point(10, 630);
+            this.tablePanel2.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.tablePanel2.Name = "tablePanel2";
             this.tablePanel1.SetRow(this.tablePanel2, 2);
             this.tablePanel2.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 3F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 45F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 55F)});
-            this.tablePanel2.Size = new System.Drawing.Size(430, 175);
+            this.tablePanel2.Size = new System.Drawing.Size(430, 170);
             this.tablePanel2.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.tablePanel2.SetColumn(this.panel2, 0);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0);
+            this.panel2.Name = "panel2";
+            this.tablePanel2.SetRow(this.panel2, 0);
+            this.panel2.Size = new System.Drawing.Size(430, 3);
+            this.panel2.TabIndex = 3;
             // 
             // bigTextBox2
             // 
-            this.bigTextBox2.AutoWordSelection = false;
-            this.bigTextBox2.BackColor = System.Drawing.Color.Transparent;
-            this.bigTextBox2.BaseColor = System.Drawing.Color.Transparent;
             this.bigTextBox2.BorderColor = System.Drawing.Color.White;
             this.tablePanel2.SetColumn(this.bigTextBox2, 0);
+            this.bigTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.bigTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bigTextBox2.EdgeColor = System.Drawing.Color.White;
             this.bigTextBox2.Font = new System.Drawing.Font("Leelawadee", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.bigTextBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(185)))), ((int)(((byte)(185)))));
-            this.bigTextBox2.Location = new System.Drawing.Point(10, 10);
-            this.bigTextBox2.Margin = new System.Windows.Forms.Padding(10);
+            this.bigTextBox2.Hint = "";
+            this.bigTextBox2.HoverBorderColor = System.Drawing.Color.White;
+            this.bigTextBox2.Location = new System.Drawing.Point(10, 18);
+            this.bigTextBox2.Margin = new System.Windows.Forms.Padding(10, 15, 3, 3);
+            this.bigTextBox2.MaxLength = 32767;
+            this.bigTextBox2.Multiline = false;
             this.bigTextBox2.Name = "bigTextBox2";
-            this.bigTextBox2.ReadOnly = false;
-            this.tablePanel2.SetRow(this.bigTextBox2, 0);
-            this.bigTextBox2.Size = new System.Drawing.Size(410, 59);
-            this.bigTextBox2.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            this.bigTextBox2.TabIndex = 3;
+            this.bigTextBox2.PasswordChar = '\0';
+            this.tablePanel2.SetRow(this.bigTextBox2, 1);
+            this.bigTextBox2.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.bigTextBox2.SelectedText = "";
+            this.bigTextBox2.SelectionLength = 0;
+            this.bigTextBox2.SelectionStart = 0;
+            this.bigTextBox2.Size = new System.Drawing.Size(417, 57);
+            this.bigTextBox2.TabIndex = 1;
+            this.bigTextBox2.TabStop = false;
             this.bigTextBox2.Text = "Type in your message";
-            this.bigTextBox2.TextBackColor = System.Drawing.Color.White;
-            this.bigTextBox2.TextBorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.bigTextBox2.TextFont = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.bigTextBox2.WordWrap = true;
+            this.bigTextBox2.UseSystemPasswordChar = false;
             this.bigTextBox2.Enter += new System.EventHandler(this.bigTextBox2_Enter);
             this.bigTextBox2.Leave += new System.EventHandler(this.bigTextBox2_Leave);
             // 
@@ -338,12 +357,12 @@ namespace RSI_X_Desktop.forms.HelpingClass
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 35F)});
             this.tablePanel3.Controls.Add(this.SendMsgBtn);
             this.tablePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tablePanel3.Location = new System.Drawing.Point(3, 82);
+            this.tablePanel3.Location = new System.Drawing.Point(3, 81);
             this.tablePanel3.Name = "tablePanel3";
-            this.tablePanel2.SetRow(this.tablePanel3, 1);
+            this.tablePanel2.SetRow(this.tablePanel3, 2);
             this.tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
-            this.tablePanel3.Size = new System.Drawing.Size(424, 90);
+            this.tablePanel3.Size = new System.Drawing.Size(424, 86);
             this.tablePanel3.TabIndex = 2;
             // 
             // SendMsgBtn
@@ -351,13 +370,22 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.tablePanel3.SetColumn(this.SendMsgBtn, 1);
             this.SendMsgBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SendMsgBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SendMsgBtn.Location = new System.Drawing.Point(279, 3);
+            this.SendMsgBtn.Location = new System.Drawing.Point(301, 25);
+            this.SendMsgBtn.Margin = new System.Windows.Forms.Padding(25);
             this.SendMsgBtn.Name = "SendMsgBtn";
             this.tablePanel3.SetRow(this.SendMsgBtn, 0);
-            this.SendMsgBtn.Size = new System.Drawing.Size(142, 84);
+            this.SendMsgBtn.Size = new System.Drawing.Size(98, 36);
+            this.SendMsgBtn.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
             this.SendMsgBtn.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("SendMsgBtn.SvgImage")));
             this.SendMsgBtn.TabIndex = 0;
             this.SendMsgBtn.Click += new System.EventHandler(this.chatButtonRight2_Click);
+            this.SendMsgBtn.MouseLeave += new System.EventHandler(this.SendMsgBtn_MouseLeave);
+            this.SendMsgBtn.MouseHover += new System.EventHandler(this.SendMsgBtn_MouseHover);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 10;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // ChatForm
             // 
@@ -405,7 +433,6 @@ namespace RSI_X_Desktop.forms.HelpingClass
         private ReaLTaiizor.Controls.Panel PSupport;
         private DevExpress.Utils.Layout.TablePanel tablePanel3;
         private DevExpress.XtraEditors.SvgImageBox SendMsgBtn;
-        private ReaLTaiizor.Controls.RichTextBoxEdit bigTextBox2;
         private DevExpress.Utils.Layout.TablePanel tablePanel4;
         private DevExpress.XtraEditors.SvgImageBox Support;
         private DevExpress.XtraEditors.SvgImageBox General;
@@ -414,5 +441,8 @@ namespace RSI_X_Desktop.forms.HelpingClass
         private ReaLTaiizor.Controls.Panel PGeneral;
         private System.Windows.Forms.Panel panel1;
         private ReaLTaiizor.Controls.PoisonScrollBar GeneralScroll;
+        private ReaLTaiizor.Controls.HopeRichTextBox bigTextBox2;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

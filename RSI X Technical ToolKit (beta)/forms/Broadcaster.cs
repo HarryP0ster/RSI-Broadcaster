@@ -14,7 +14,7 @@ namespace RSI_X_Desktop
         internal static IntPtr LocalWinId;
         public IntPtr RemoteWnd { get => LocalWinId; }
         private PopUpForm devices;
-        private ChatForm chat = new ();
+        private ChatForm chat = new();
         internal Designer ExternWnd = new();
         BottomPanelWnd bottomPanel = new();
 
@@ -58,15 +58,8 @@ namespace RSI_X_Desktop
                 GetFireBase.Connect();
             };
 
-            /*
-            * Chat initial loading, this way it'd load messages
-            * in the background from the very moment you enter a channel
-            */
             chat.TopLevel = false;
             chat.Dock = DockStyle.Fill;
-            panel1.Controls.Add(chat);
-            chat.Show();
-            chat.Hide(); //You need to hide it, otherwise Animator'd get confused
 
             bottomPanel.Width = Width;
             bottomPanel.Height = 125;

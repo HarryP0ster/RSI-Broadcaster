@@ -176,6 +176,7 @@ namespace RSI_X_Desktop.forms
         {
             Point oldPos = Cursor.Position;
             timer1.Stop();
+            Cursor.Hide();
             Cursor.Position = PointToScreen(new Point(Width / 2, Height / 2));
             AudioColorUpdate();
             VideoColorUpdate();
@@ -183,6 +184,7 @@ namespace RSI_X_Desktop.forms
             Cursor.Position = oldPos;
             System.Threading.Thread.Sleep(100);
             canSelect = true;
+            Cursor.Show();
         }
         internal void labelMicrophone_Click(object sender, EventArgs e)
         {

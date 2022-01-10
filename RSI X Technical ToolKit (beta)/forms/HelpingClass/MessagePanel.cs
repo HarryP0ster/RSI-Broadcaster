@@ -48,6 +48,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
                 ColumnStyles[0].SizeType = SizeType.Percent;
                 ColumnStyles[0].Width = 100;
                 labelR = new newRightBubble();
+                labelR.ForeColor = Color.White;
                 labelR.SizeAuto = true;
                 labelR.SizeAutoW = true;
                 labelR.SizeAutoH = true;
