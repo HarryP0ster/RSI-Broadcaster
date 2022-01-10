@@ -20,7 +20,7 @@ namespace RSI_X_Desktop.forms
     {
         private const int HDresolution = 6;
         private static PopUpForm _instance;
-        private static readonly Color InactiveColor = Color.White;
+        private static readonly Color InactiveColor = Color.FromArgb(254, 1, 243);
         private static readonly Color PushColor = Color.BurlyWood;
         public static bool IsImageSend { get; private set; }
         public static readonly Dictionary<string, VIDEO_PROFILE_TYPE> resolutions = new()
@@ -136,11 +136,11 @@ namespace RSI_X_Desktop.forms
             setupComputerDescription();
             MainTable.Rows[3].Visible = false;
             MainTable.Rows[4].Visible = false;
-            //ComboBoxRes.DataSource = new List<string>(resolutions.Keys);
-            //ComboBoxRes.SelectedIndex = oldIndexResolution;
+            ComboBoxRes.DataSource = new List<string>(resolutions.Keys);
+            ComboBoxRes.SelectedIndex = oldIndexResolution;
 
-            //btnCustomImage.ForeColor = IsImageSend ?
-            //    PushColor : InactiveColor;
+            btnCustomImage.ForeColor = IsImageSend ?
+                PushColor : InactiveColor;
 
             workForm = AgoraObject.GetWorkForm;
 
@@ -392,11 +392,11 @@ namespace RSI_X_Desktop.forms
         }
         private void ComboBoxRes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //var res = ComboBoxRes.SelectedValue;
-            //UpdateResolution(res.ToString());
+            var res = ComboBoxRes.SelectedValue;
+            UpdateResolution(res.ToString());
 
-            //SelectedResolution = res.ToString();
-            //pictureBoxLocalVideoTest.Refresh();
+            SelectedResolution = res.ToString();
+            pictureBoxLocalVideoTest.Refresh();
         }
         #endregion
 
@@ -445,8 +445,8 @@ namespace RSI_X_Desktop.forms
             if (VideoOut.Count > video) oldVideoOut = VideoOut[video];
 
             oldVolumeIn = trackBarSoundIn.Value;
-            //oldResolution = ComboBoxRes.SelectedValue.ToString();
-            //oldIndexResolution = ComboBoxRes.SelectedIndex;
+            oldResolution = ComboBoxRes.SelectedValue.ToString();
+            oldIndexResolution = ComboBoxRes.SelectedIndex;
 
             CloseButton_Click(sender, e);
         }
@@ -460,8 +460,8 @@ namespace RSI_X_Desktop.forms
             if (VideoOut.Count > video) oldVideoOut = VideoOut[video];
 
             oldVolumeIn = trackBarSoundIn.Value;
-            //oldResolution = ComboBoxRes.SelectedValue.ToString();
-            //oldIndexResolution = ComboBoxRes.SelectedIndex;
+            oldResolution = ComboBoxRes.SelectedValue.ToString();
+            oldIndexResolution = ComboBoxRes.SelectedIndex;
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -480,7 +480,7 @@ namespace RSI_X_Desktop.forms
                 ImageSender.EnableImageSender(false);
 
                 ResetVideoDevice();
-                //btnCustomImage.ForeColor = InactiveColor;
+                btnCustomImage.ForeColor = InactiveColor;
             }
             else
             {
@@ -492,7 +492,7 @@ namespace RSI_X_Desktop.forms
                 try
                 {
                     SetImageSend(false);
-                    //btnCustomImage.ForeColor = PushColor;
+                    btnCustomImage.ForeColor = PushColor;
                     //btnCustomImage.Cursor = Cursors.WaitCursor;
 
                     ImageSender.configImageToSend(new Bitmap(fd.FileName), 5);
@@ -683,7 +683,7 @@ namespace RSI_X_Desktop.forms
 
         private void CancelBtn_MouseLeave(object sender, EventArgs e)
         {
-            CancelBtn.Margin = DefaultMargin;
+            CancelBtn.Margin = MarginNormal;
         }
 
         private void ConfirmBtn_MouseHover(object sender, EventArgs e)
@@ -694,7 +694,7 @@ namespace RSI_X_Desktop.forms
 
         private void ConfirmBtn_MouseLeave(object sender, EventArgs e)
         {
-            ConfirmBtn.Margin = DefaultMargin;
+            ConfirmBtn.Margin = MarginNormal;
         }
 
         private void ApplyBtn_MouseHover(object sender, EventArgs e)
@@ -705,7 +705,7 @@ namespace RSI_X_Desktop.forms
 
         private void ApplyBtn_MouseLeave(object sender, EventArgs e)
         {
-            ApplyBtn.Margin = DefaultMargin;
+            ApplyBtn.Margin = MarginNormal;
         }
     }
 }
