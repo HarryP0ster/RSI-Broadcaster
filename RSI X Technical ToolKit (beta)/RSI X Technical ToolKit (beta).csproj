@@ -330,6 +330,9 @@
     <None Update="Resources\ChatBtn.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\chat_send.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Confirm.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

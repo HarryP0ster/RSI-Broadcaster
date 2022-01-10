@@ -17,7 +17,6 @@ namespace RSI_X_Desktop.forms
     {
         bool canSelect = true;
         private bool IsSharingScreen = false;
-        ChatForm chat = new();
         #region Rectangles
         public Rectangle HomeBtnRect
         {
@@ -83,10 +82,8 @@ namespace RSI_X_Desktop.forms
                 ChatRgn();
                 SighnOffToCenter();
             };
-            chat.TopLevel = false;
-            panelChat.Controls.Add(chat);
-            chat.Dock = DockStyle.Fill;
-            chat.Show();
+            panelChat.Controls.Add((Owner as Broadcaster).GetChat);
+            (Owner as Broadcaster).GetChat.Show();
             Owner.LocationChanged += (s, e) => { Location = new Point(Owner.Location.X, Owner.Location.Y); };
             RoomNameLabel.Text = AgoraObject.GetComplexToken().GetRoomName;
             CenterPanel.Columns[1].Width = 0;

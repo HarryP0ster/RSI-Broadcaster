@@ -14,7 +14,7 @@ namespace RSI_X_Desktop
         internal static IntPtr LocalWinId;
         public IntPtr RemoteWnd { get => LocalWinId; }
         private PopUpForm devices;
-        private ChatWnd chat = new ();
+        private ChatForm chat = new ();
         internal Designer ExternWnd = new();
         BottomPanelWnd bottomPanel = new();
 
@@ -25,6 +25,11 @@ namespace RSI_X_Desktop
             LocalWinId = pictureBoxRemoteVideo.Handle;
             Devices.SetupOldDevices();
 
+        }
+
+        internal ChatForm GetChat
+        {
+            get => chat;
         }
 
         private void Conference_Load(object sender, EventArgs e)

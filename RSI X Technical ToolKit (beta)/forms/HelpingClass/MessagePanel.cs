@@ -18,26 +18,25 @@ namespace RSI_X_Desktop.forms.HelpingClass
         ChatBubbleLeft labelL;
         ChatBubbleRight labelR;
         Label Sender;
-        Label Date;
-        int actual_width = 20;
         Control Owner;
 
-        public int ActualWidth
-        {
-            get => actual_width;
-        }
         public MessagePanelL(string text, string sender, Control owner)
         {
             Owner = owner;
+            Owner.SizeChanged += delegate
+            {
+                Width = Owner.Width;
+            };
             this.AutoSize = true;
-            Width = ((Control)owner).Width;
+            Width = Owner.Width;
             Height = 65;
             Sender = new Label();
 
             Sender.Text = sender;
             Sender.AutoSize = true;
             Sender.TextAlign = ContentAlignment.BottomLeft;
-            BackColor = Color.FromArgb(240, 240, 240);
+            Sender.Font = new Font("Bahnschrift Condensed", 14);
+            BackColor = Color.White;
             RowStyles.Add(new RowStyle(SizeType.Absolute, 25));
             RowStyles.Add(new RowStyle(SizeType.AutoSize, 100));
 
@@ -52,7 +51,6 @@ namespace RSI_X_Desktop.forms.HelpingClass
                 labelR.SizeAuto = true;
                 labelR.SizeAutoW = true;
                 labelR.SizeAutoH = true;
-                labelR.SizeChanged += Bubble_SizeChanged;
                 labelR.Margin = new Padding(0, 0, 13, 0);
                 Sender.TextAlign = ContentAlignment.BottomRight;
 
@@ -79,7 +77,6 @@ namespace RSI_X_Desktop.forms.HelpingClass
                 labelL.SizeAuto = true;
                 labelL.SizeAutoW = true;
                 labelL.SizeAutoH = true;
-                labelL.SizeChanged += Bubble_SizeChanged;
 
                 if (text.Length > 0) labelL.Text += text[0];
 
@@ -97,13 +94,6 @@ namespace RSI_X_Desktop.forms.HelpingClass
                 labelL.Enabled = false;
                 Sender.SuspendLayout();
             }
-        }
-
-        public void Bubble_SizeChanged(object sender, EventArgs e)
-        {
-            actual_width = ((Control)sender).Width + 25;
-            Location = new Point(5, Owner.Height - Height);
-            (AgoraObject.GetWorkForm as Broadcaster).RebuildChatPanel(Owner);
         }
     }
 }
