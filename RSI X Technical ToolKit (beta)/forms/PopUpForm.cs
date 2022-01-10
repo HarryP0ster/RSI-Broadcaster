@@ -85,6 +85,23 @@ namespace RSI_X_Desktop.forms
             RecordersManager = AgoraObject.Rtc.GetAgoraRtcAudioRecordingDeviceManager();
             SpeakersManager = AgoraObject.Rtc.GetAgoraRtcAudioPlaybackDeviceManager();
             VideoManager = AgoraObject.Rtc.GetAgoraRtcVideoDeviceManager();
+
+            int dpi = this.DeviceDpi;
+            Font font = Constants.Bahnschrift24;
+
+            if (dpi >= (int)Constants.DPI.P175)
+                font = Constants.Bahnschrift10;
+            else if (dpi >= (int)Constants.DPI.P150)
+                font = Constants.Bahnschrift12;
+            else if (dpi >= (int)Constants.DPI.P125)
+                font = Constants.Bahnschrift14;
+            else if (dpi >= (int)Constants.DPI.P100)
+                font = Constants.Bahnschrift16;
+            
+            comboBoxAudioInput.Font = font;
+            comboBoxAudioOutput.Font = font;
+            comboBoxVideo.Font = font;
+            ComboBoxRes.Font = font;
         }
 
         public static void SetupOldDevices()
@@ -438,30 +455,14 @@ namespace RSI_X_Desktop.forms
 
         private void AcceptButton_Click(object sender, EventArgs e)
         {
-            var ain = comboBoxAudioInput.SelectedIndex;
-            var video = comboBoxVideo.SelectedIndex;
-
-            if (Recorders.Count > ain) oldRecorder = Recorders[ain];
-            if (VideoOut.Count > video) oldVideoOut = VideoOut[video];
-
-            oldVolumeIn = trackBarSoundIn.Value;
-            oldResolution = ComboBoxRes.SelectedValue.ToString();
-            oldIndexResolution = ComboBoxRes.SelectedIndex;
+            SetupNewOldDevices();
 
             CloseButton_Click(sender, e);
         }
 
         private void ApplyBtn_Click(object sender, EventArgs e)
         {
-            var ain = comboBoxAudioInput.SelectedIndex;
-            var video = comboBoxVideo.SelectedIndex;
-
-            if (Recorders.Count > ain) oldRecorder = Recorders[ain];
-            if (VideoOut.Count > video) oldVideoOut = VideoOut[video];
-
-            oldVolumeIn = trackBarSoundIn.Value;
-            oldResolution = ComboBoxRes.SelectedValue.ToString();
-            oldIndexResolution = ComboBoxRes.SelectedIndex;
+            SetupNewOldDevices();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -470,6 +471,8 @@ namespace RSI_X_Desktop.forms
             trackBarSoundIn_ValueChanged();
 
             //workForm?.DevicesClosed(this);
+            AcceptAllOldDevices();
+
             Close();
         }
         private void buttonImgSend_Click(object sender, EventArgs e)
@@ -527,6 +530,18 @@ namespace RSI_X_Desktop.forms
            //btnCustomImage.Enabled = block;
         }
 
+        private void SetupNewOldDevices()
+        {
+            var ain = comboBoxAudioInput.SelectedIndex;
+            var video = comboBoxVideo.SelectedIndex;
+
+            if (Recorders.Count > ain) oldRecorder = Recorders[ain];
+            if (VideoOut.Count > video) oldVideoOut = VideoOut[video];
+
+            oldVolumeIn = trackBarSoundIn.Value;
+            oldResolution = ComboBoxRes.SelectedValue.ToString();
+            oldIndexResolution = ComboBoxRes.SelectedIndex;
+        }
         public static void AcceptAllOldDevices()
         {
             AcceptNewRecordDevice();
@@ -706,6 +721,11 @@ namespace RSI_X_Desktop.forms
         private void ApplyBtn_MouseLeave(object sender, EventArgs e)
         {
             ApplyBtn.Margin = MarginNormal;
+        }
+
+        private void MainTable_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
