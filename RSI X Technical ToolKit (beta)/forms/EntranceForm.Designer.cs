@@ -238,6 +238,7 @@ namespace RSI_X_Desktop.forms
             this.Controls.Add(this.formTheme1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("EntranceForm.IconOptions.Icon")));
             this.MinimumSize = new System.Drawing.Size(126, 50);
             this.Name = "EntranceForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

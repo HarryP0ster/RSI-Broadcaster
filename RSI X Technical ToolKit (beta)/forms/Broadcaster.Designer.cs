@@ -189,11 +189,11 @@ namespace RSI_X_Desktop
 
         #endregion
         private ReaLTaiizor.Forms.FormTheme formTheme1;
-        private System.Windows.Forms.TableLayoutPanel StreamLayout;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel PanelNothing;
         private ReaLTaiizor.Controls.NightControlBox nightControlBox1;
         internal System.Windows.Forms.PictureBox pictureBoxRemoteVideo;
         private System.Windows.Forms.TableLayoutPanel MainLayout;
+        internal System.Windows.Forms.TableLayoutPanel StreamLayout;
     }
 }
