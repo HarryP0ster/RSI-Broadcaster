@@ -17,11 +17,23 @@ namespace RSI_X_Desktop.forms.HelpingClass
         const int maxSymbol = 25;
         ChatBubbleLeft labelL;
         newRightBubble labelR;
+        Font font;
         Label Sender;
         Control Owner;
 
         public MessagePanelL(string text, string sender, Control owner)
         {
+            int dpi = this.DeviceDpi;
+
+            if (dpi >= (int)Constants.DPI.P175)
+                font = Constants.Bahnschrift10;
+            else if (dpi >= (int)Constants.DPI.P150)
+                font = Constants.Bahnschrift12;
+            else if (dpi >= (int)Constants.DPI.P125)
+                font = Constants.Bahnschrift14;
+            else if (dpi >= (int)Constants.DPI.P100)
+                font = Constants.Bahnschrift14;
+
             Owner = owner;
             Owner.SizeChanged += delegate
             {
@@ -35,7 +47,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             Sender.Text = sender;
             Sender.AutoSize = true;
             Sender.TextAlign = ContentAlignment.BottomLeft;
-            Sender.Font = new Font("Bahnschrift Condensed", 14);
+            Sender.Font = font;
             BackColor = Color.White;
             RowStyles.Add(new RowStyle(SizeType.Absolute, 25));
             RowStyles.Add(new RowStyle(SizeType.AutoSize, 100));

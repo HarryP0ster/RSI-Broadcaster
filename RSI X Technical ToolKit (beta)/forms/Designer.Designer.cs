@@ -141,8 +141,8 @@ namespace RSI_X_Desktop.forms
             this.tablePanel2.SetColumn(this.IconsPanel, 0);
             this.IconsPanel.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 100F),
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 100F),
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 120F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 160F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 200F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 50F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 10F),
@@ -209,7 +209,7 @@ namespace RSI_X_Desktop.forms
             this.IconsPanel.SetColumn(this.signOff, 5);
             this.signOff.Cursor = System.Windows.Forms.Cursors.Hand;
             this.signOff.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.signOff.Location = new System.Drawing.Point(470, 0);
+            this.signOff.Location = new System.Drawing.Point(540, 0);
             this.signOff.Margin = new System.Windows.Forms.Padding(0);
             this.signOff.Name = "signOff";
             this.IconsPanel.SetRow(this.signOff, 0);
@@ -228,11 +228,11 @@ namespace RSI_X_Desktop.forms
             this.ScreenShare.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ScreenShare.ItemAppearance.Normal.BorderColor = System.Drawing.Color.White;
             this.ScreenShare.ItemAppearance.Normal.BorderThickness = 0F;
-            this.ScreenShare.Location = new System.Drawing.Point(200, 0);
+            this.ScreenShare.Location = new System.Drawing.Point(260, 0);
             this.ScreenShare.Margin = new System.Windows.Forms.Padding(0);
             this.ScreenShare.Name = "ScreenShare";
             this.IconsPanel.SetRow(this.ScreenShare, 0);
-            this.ScreenShare.Size = new System.Drawing.Size(120, 120);
+            this.ScreenShare.Size = new System.Drawing.Size(200, 120);
             this.ScreenShare.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ScreenShare.SvgImage")));
             this.ScreenShare.TabIndex = 2;
             this.ScreenShare.Text = "svgImageBox3";
@@ -250,7 +250,7 @@ namespace RSI_X_Desktop.forms
             this.videoLabel.Margin = new System.Windows.Forms.Padding(0);
             this.videoLabel.Name = "videoLabel";
             this.IconsPanel.SetRow(this.videoLabel, 0);
-            this.videoLabel.Size = new System.Drawing.Size(100, 120);
+            this.videoLabel.Size = new System.Drawing.Size(160, 120);
             this.videoLabel.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("videoLabel.SvgImage")));
             this.videoLabel.TabIndex = 1;
             this.videoLabel.Text = "videoLabel";
@@ -300,11 +300,11 @@ namespace RSI_X_Desktop.forms
             this.RoomNameLabel.Dock = System.Windows.Forms.DockStyle.Left;
             this.RoomNameLabel.Font = new System.Drawing.Font("Bahnschrift SemiLight SemiConde", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.RoomNameLabel.ForeColor = System.Drawing.Color.White;
-            this.RoomNameLabel.Location = new System.Drawing.Point(35, 43);
+            this.RoomNameLabel.Location = new System.Drawing.Point(35, 41);
             this.RoomNameLabel.Margin = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.RoomNameLabel.Name = "RoomNameLabel";
             this.tablePanel1.SetRow(this.RoomNameLabel, 1);
-            this.RoomNameLabel.Size = new System.Drawing.Size(168, 39);
+            this.RoomNameLabel.Size = new System.Drawing.Size(292, 68);
             this.RoomNameLabel.TabIndex = 6;
             this.RoomNameLabel.Text = "Room Name";
             this.RoomNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
