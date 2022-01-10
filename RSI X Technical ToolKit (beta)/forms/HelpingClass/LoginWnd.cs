@@ -40,7 +40,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
                 Hide();
                 Broadcaster broadcaster = new();
                 AgoraObject.CurrentForm = CurForm.FormBroadcaster;
-                broadcaster.Show(this);
+                broadcaster.Show(Owner);
             }
             else
                 loginInput.NewTextBox.Clear();

@@ -303,8 +303,7 @@ namespace RSI_X_Desktop
                 ExternWnd.btnScreenShare_Click(sender, e);
             else if (ExternWnd.ChatRect.Contains(Cursor.Position))
                 ExternWnd.Chat_Click(sender, e);
-
-            if (ExternWnd.HomeBtnRect.Contains(Cursor.Position))
+            else if (ExternWnd.HomeBtnRect.Contains(Cursor.Position))
                 ExternWnd.HomeBtn_Click(null, null);
         }
         private void Mouse_MouseMove(object sender, MouseEventArgs e)

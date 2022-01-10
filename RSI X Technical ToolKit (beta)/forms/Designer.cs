@@ -16,6 +16,7 @@ namespace RSI_X_Desktop.forms
     public partial class Designer : DevExpress.XtraEditors.XtraForm
     {
         bool canSelect = true;
+        bool IsChatActive = false;
         private bool IsSharingScreen = false;
         #region Rectangles
         public Rectangle HomeBtnRect
@@ -123,16 +124,21 @@ namespace RSI_X_Desktop.forms
         private void SighnOffToCenter()
         {
             int leftSide = audioLabel.Width + videoLabel.Width + ScreenShare.Width;
+            IconsPanel.Columns[7].Width = 0;
+            IconsPanel.Columns[3].Width = 0;
             int rightSide = devicesLabel.Width + Chat.Width;
-            if (leftSide > rightSide)
+            if (leftSide + rightSide + signOff.Width < IconsPanel.Width)
             {
-                IconsPanel.Columns[7].Width = leftSide - rightSide;
-                IconsPanel.Columns[3].Width = 0;
-            }
-            else
-            {
-                IconsPanel.Columns[3].Width = rightSide - leftSide;
-                IconsPanel.Columns[7].Width = 0;
+                if (leftSide > rightSide)
+                {
+                    IconsPanel.Columns[7].Width = leftSide - rightSide;
+                    IconsPanel.Columns[3].Width = 0;
+                }
+                else
+                {
+                    IconsPanel.Columns[3].Width = rightSide - leftSide;
+                    IconsPanel.Columns[7].Width = 0;
+                }
             }
         }
         private void AudioColorUpdate()
@@ -284,10 +290,20 @@ namespace RSI_X_Desktop.forms
 
         internal void Chat_Click(object sender, EventArgs e)
         {
-            IconsPanel.Columns[3].Width = 0;
-            IconsPanel.Columns[7].Width = 0;
-            CenterPanel.Columns[1].Width = 450;
-            ChatRgn();
+            IsChatActive = !IsChatActive;
+            if (IsChatActive)
+            {
+                IconsPanel.Columns[3].Width = 0;
+                IconsPanel.Columns[7].Width = 0;
+                CenterPanel.Columns[1].Width = 450;
+                ChatRgn();
+                SighnOffToCenter();
+            }
+            else
+            {
+                CenterPanel.Columns[1].Width = 0;
+                SighnOffToCenter();
+            }
         }
         internal void Chat_MouseMove(object sender, MouseEventArgs e)
         {
