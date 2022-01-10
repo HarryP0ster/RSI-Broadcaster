@@ -33,24 +33,24 @@ namespace RSI_X_Desktop.forms
             this.tablePanel2 = new DevExpress.Utils.Layout.TablePanel();
             this.MainTable = new DevExpress.Utils.Layout.TablePanel();
             this.tablePanel3 = new DevExpress.Utils.Layout.TablePanel();
-            this.ComboBoxRes = new ReaLTaiizor.Controls.AloneComboBox();
+            this.ComboBoxRes = new RSI_X_Desktop.forms.HelpingClass.newAloneComboBox();
             this.dungeonLabel3 = new ReaLTaiizor.Controls.DungeonLabel();
             this.tablePanel7 = new DevExpress.Utils.Layout.TablePanel();
             this.btnCustomImage = new ReaLTaiizor.Controls.BigLabel();
             this.pictureBoxLocalVideoTest = new ReaLTaiizor.Controls.HopePictureBox();
             this.tablePanel6 = new DevExpress.Utils.Layout.TablePanel();
-            this.comboBoxVideo = new ReaLTaiizor.Controls.AloneComboBox();
+            this.comboBoxVideo = new RSI_X_Desktop.forms.HelpingClass.newAloneComboBox();
             this.dungeonLabel2 = new ReaLTaiizor.Controls.DungeonLabel();
             this.dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
             this.bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
             this.trackBarSoundOut = new ReaLTaiizor.Controls.DungeonTrackBar();
             this.tablePanel5 = new DevExpress.Utils.Layout.TablePanel();
             this.testSpeaker = new ReaLTaiizor.Controls.BigLabel();
-            this.comboBoxAudioOutput = new ReaLTaiizor.Controls.AloneComboBox();
+            this.comboBoxAudioOutput = new RSI_X_Desktop.forms.HelpingClass.newAloneComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tablePanel4 = new DevExpress.Utils.Layout.TablePanel();
             this.testMic = new ReaLTaiizor.Controls.BigLabel();
-            this.comboBoxAudioInput = new ReaLTaiizor.Controls.AloneComboBox();
+            this.comboBoxAudioInput = new RSI_X_Desktop.forms.HelpingClass.newAloneComboBox();
             this.VolumeLabel = new ReaLTaiizor.Controls.BigLabel();
             this.Microphone = new ReaLTaiizor.Controls.DungeonLabel();
             this.trackBarSoundIn = new ReaLTaiizor.Controls.DungeonTrackBar();
@@ -139,6 +139,7 @@ namespace RSI_X_Desktop.forms
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 30F)});
             this.MainTable.Size = new System.Drawing.Size(494, 504);
             this.MainTable.TabIndex = 1;
+            this.MainTable.Paint += new System.Windows.Forms.PaintEventHandler(this.MainTable_Paint);
             // 
             // tablePanel3
             // 
@@ -747,7 +748,7 @@ namespace RSI_X_Desktop.forms
         private DevExpress.XtraEditors.SvgImageBox ConfirmBtn;
         private DevExpress.XtraEditors.SvgImageBox ApplyBtn;
         private DevExpress.Utils.Layout.TablePanel MainTable;
-        private ReaLTaiizor.Controls.AloneComboBox comboBoxAudioInput;
+        private RSI_X_Desktop.forms.HelpingClass.newAloneComboBox comboBoxAudioInput;
         private ReaLTaiizor.Controls.DungeonTrackBar trackBarSoundIn;
         private ReaLTaiizor.Controls.DungeonLabel Microphone;
         private ReaLTaiizor.Controls.BigLabel VolumeLabel;
@@ -762,16 +763,16 @@ namespace RSI_X_Desktop.forms
         private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;
         private ReaLTaiizor.Controls.BigLabel bigLabel3;
         private ReaLTaiizor.Controls.DungeonTrackBar trackBarSoundOut;
-        private ReaLTaiizor.Controls.AloneComboBox comboBoxAudioOutput;
+        private RSI_X_Desktop.forms.HelpingClass.newAloneComboBox comboBoxAudioOutput;
         private ReaLTaiizor.Controls.BigLabel testSpeaker;
         private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
         private DevExpress.Utils.Layout.TablePanel tablePanel6;
-        private ReaLTaiizor.Controls.AloneComboBox comboBoxVideo;
+        private RSI_X_Desktop.forms.HelpingClass.newAloneComboBox comboBoxVideo;
         private DevExpress.Utils.Layout.TablePanel tablePanel7;
         private ReaLTaiizor.Controls.HopePictureBox pictureBoxLocalVideoTest;
         private ReaLTaiizor.Controls.DungeonLabel dungeonLabel3;
         private DevExpress.Utils.Layout.TablePanel tablePanel3;
-        private ReaLTaiizor.Controls.AloneComboBox ComboBoxRes;
+        private RSI_X_Desktop.forms.HelpingClass.newAloneComboBox ComboBoxRes;
         private ReaLTaiizor.Controls.BigLabel btnCustomImage;
     }
 }

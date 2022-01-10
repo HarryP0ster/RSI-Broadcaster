@@ -21,14 +21,19 @@ namespace RSI_X_Desktop.forms.HelpingClass
         {
             InitializeComponent();
 
-            if (NewTextBox.DeviceDpi >= (int)Constants.DPI.P175)
-                NewTextBox.Font = Constants.Bahnschrift16;
-            else if (NewTextBox.DeviceDpi >= (int)Constants.DPI.P150)
-                NewTextBox.Font = Constants.Bahnschrift18;
-            else if (NewTextBox.DeviceDpi >= (int)Constants.DPI.P125)
-                NewTextBox.Font = Constants.Bahnschrift20;
-            else if (NewTextBox.DeviceDpi >= (int)Constants.DPI.P100)
-                NewTextBox.Font = Constants.Bahnschrift24;
+            int dpi = NewTextBox.DeviceDpi;
+            Font font = Constants.Bahnschrift24;
+
+            if (dpi >= (int)Constants.DPI.P175)
+                font = Constants.Bahnschrift16;
+            else if (dpi >= (int)Constants.DPI.P150)
+                font = Constants.Bahnschrift18;
+            else if (dpi >= (int)Constants.DPI.P125)
+                font = Constants.Bahnschrift20;
+            else if (dpi >= (int)Constants.DPI.P100)
+                font = Constants.Bahnschrift24;
+            
+            NewTextBox.Font = font;
         }
 
         private void InputWnd_Load(object sender, EventArgs e)
