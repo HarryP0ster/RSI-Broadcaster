@@ -143,6 +143,16 @@ namespace RSI_X_Desktop.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
+        internal static byte[] GeneralChatSelected {
+            get {
+                object obj = ResourceManager.GetObject("GeneralChatSelected", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
         internal static byte[] Hidden {
             get {
                 object obj = ResourceManager.GetObject("Hidden", resourceCulture);

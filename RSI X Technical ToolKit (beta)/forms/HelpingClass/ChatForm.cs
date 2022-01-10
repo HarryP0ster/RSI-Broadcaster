@@ -28,10 +28,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
 
         HelpingClass.FireBaseReader FireBase;
 
-        System.Windows.Forms.Panel PGeneral = new();
-        ReaLTaiizor.Controls.PoisonScrollBar GeneralScroll = null;
-
-        PANEL CurPanel = PANEL.SUPPORT;
+        PANEL CurPanel;
 
         public ChatForm()
         {
@@ -63,6 +60,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
 
         private void ChatForm_Load(object sender, EventArgs e)
         {
+            General_Click(null, null);
         }
         private void ChatWnd_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -248,14 +246,30 @@ namespace RSI_X_Desktop.forms.HelpingClass
 
         private void bigTextBox2_Enter(object sender, EventArgs e)
         {
+            bigTextBox2.ForeColor = Color.Black;
             if (bigTextBox2.Text == "Type in your message")
                 bigTextBox2.Text = "";
         }
 
         private void bigTextBox2_Leave(object sender, EventArgs e)
         {
+            bigTextBox2.ForeColor = Color.FromArgb(185, 185, 185);
             if (bigTextBox2.Text == "")
                 bigTextBox2.Text = "Type in your message";
+        }
+
+        private void General_Click(object sender, EventArgs e)
+        {
+            CurPanel = PANEL.GENERAL;
+            TablePanels.Columns[1].Width = 0;
+            TablePanels.Columns[0].Width = 100;
+        }
+
+        private void Support_Click(object sender, EventArgs e)
+        {
+            CurPanel = PANEL.SUPPORT;
+            TablePanels.Columns[0].Width = 0;
+            TablePanels.Columns[1].Width = 100;
         }
     }
 }
