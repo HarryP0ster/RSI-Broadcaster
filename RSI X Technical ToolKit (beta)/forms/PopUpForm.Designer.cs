@@ -62,6 +62,7 @@ namespace RSI_X_Desktop.forms
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.BCloseGeneral = new ReaLTaiizor.Controls.Button();
             this.bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
+            this.PreviewPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel2)).BeginInit();
             this.tablePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainTable)).BeginInit();
@@ -85,6 +86,7 @@ namespace RSI_X_Desktop.forms
             ((System.ComponentModel.ISupportInitialize)(this.CancelBtn)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
+            this.PreviewPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tablePanel2
@@ -200,8 +202,8 @@ namespace RSI_X_Desktop.forms
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 55F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 30F)});
+            this.tablePanel7.Controls.Add(this.PreviewPanel);
             this.tablePanel7.Controls.Add(this.btnCustomImage);
-            this.tablePanel7.Controls.Add(this.pictureBoxLocalVideoTest);
             this.tablePanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tablePanel7.Location = new System.Drawing.Point(127, 363);
             this.tablePanel7.Name = "tablePanel7";
@@ -233,14 +235,12 @@ namespace RSI_X_Desktop.forms
             // pictureBoxLocalVideoTest
             // 
             this.pictureBoxLocalVideoTest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
-            this.tablePanel7.SetColumn(this.pictureBoxLocalVideoTest, 1);
             this.pictureBoxLocalVideoTest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxLocalVideoTest.Location = new System.Drawing.Point(40, 3);
+            this.pictureBoxLocalVideoTest.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxLocalVideoTest.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBoxLocalVideoTest.Name = "pictureBoxLocalVideoTest";
             this.pictureBoxLocalVideoTest.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            this.tablePanel7.SetRow(this.pictureBoxLocalVideoTest, 0);
-            this.pictureBoxLocalVideoTest.Size = new System.Drawing.Size(207, 98);
+            this.pictureBoxLocalVideoTest.Size = new System.Drawing.Size(211, 104);
             this.pictureBoxLocalVideoTest.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.pictureBoxLocalVideoTest.TabIndex = 2;
             this.pictureBoxLocalVideoTest.TabStop = false;
@@ -696,6 +696,19 @@ namespace RSI_X_Desktop.forms
             this.bigLabel2.TabIndex = 0;
             this.bigLabel2.Text = "Your system";
             // 
+            // PreviewPanel
+            // 
+            this.PreviewPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tablePanel7.SetColumn(this.PreviewPanel, 1);
+            this.PreviewPanel.Controls.Add(this.pictureBoxLocalVideoTest);
+            this.PreviewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PreviewPanel.Location = new System.Drawing.Point(38, 0);
+            this.PreviewPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.PreviewPanel.Name = "PreviewPanel";
+            this.tablePanel7.SetRow(this.PreviewPanel, 0);
+            this.PreviewPanel.Size = new System.Drawing.Size(211, 104);
+            this.PreviewPanel.TabIndex = 4;
+            // 
             // PopUpForm
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -737,6 +750,7 @@ namespace RSI_X_Desktop.forms
             ((System.ComponentModel.ISupportInitialize)(this.CancelBtn)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
+            this.PreviewPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -774,5 +788,6 @@ namespace RSI_X_Desktop.forms
         private DevExpress.Utils.Layout.TablePanel tablePanel3;
         private RSI_X_Desktop.forms.HelpingClass.newAloneComboBox ComboBoxRes;
         private ReaLTaiizor.Controls.BigLabel btnCustomImage;
+        private System.Windows.Forms.Panel PreviewPanel;
     }
 }

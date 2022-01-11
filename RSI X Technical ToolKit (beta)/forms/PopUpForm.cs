@@ -163,6 +163,9 @@ namespace RSI_X_Desktop.forms
 
             Init = true;
 
+            pictureBoxLocalVideoTest.Visible = !IsImageSend;
+            PreviewPanel.BackgroundImage = IsImageSend?
+                new Bitmap((Owner as Broadcaster).PreviewFilePath) : null;
             workForm?.RefreshLocalWnd();
             VideoCanvas vc = new((ulong)pictureBoxLocalVideoTest.Handle, 0);
             vc.renderMode = ((int)RENDER_MODE_TYPE.RENDER_MODE_FIT);
@@ -484,6 +487,9 @@ namespace RSI_X_Desktop.forms
 
                 ResetVideoDevice();
                 btnCustomImage.ForeColor = InactiveColor;
+                PreviewPanel.BackgroundImage = null;
+                (Owner as Broadcaster).PreviewFilePath = "";
+                pictureBoxLocalVideoTest.Show();
             }
             else
             {
@@ -498,9 +504,11 @@ namespace RSI_X_Desktop.forms
                     btnCustomImage.ForeColor = PushColor;
                     //btnCustomImage.Cursor = Cursors.WaitCursor;
 
+                    (Owner as Broadcaster).PreviewFilePath = fd.FileName;
                     ImageSender.configImageToSend(new Bitmap(fd.FileName), 5);
                     ImageSender.EnableImageSender(true);
-
+                    PreviewPanel.BackgroundImage = new Bitmap(fd.FileName);
+                    pictureBoxLocalVideoTest.Hide();
                     //btnCustomImage.Cursor = Cursors.Default;
                 }
                 catch (Exception ex)

@@ -17,6 +17,7 @@ namespace RSI_X_Desktop
         private ChatForm chat = new();
         internal Designer ExternWnd = new();
         BottomPanelWnd bottomPanel = new();
+        internal string PreviewFilePath = "";
 
         public Broadcaster()
         {
@@ -216,6 +217,7 @@ namespace RSI_X_Desktop
         {
             if (devices == null || devices.IsDisposed)
             {
+                AgoraObject.Rtc.DisableAudio();
                 BlurWnd blur = new();
                 devices = new PopUpForm();
                 blur.Show(this);
@@ -228,6 +230,7 @@ namespace RSI_X_Desktop
             else
             {
                 devices.Dispose();
+                AgoraObject.Rtc.EnableAudio();
             }
         }
         internal void SettingButton_Click(object sender, EventArgs e)
