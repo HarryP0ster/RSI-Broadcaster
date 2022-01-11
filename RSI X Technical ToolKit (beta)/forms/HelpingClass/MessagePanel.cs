@@ -14,9 +14,8 @@ namespace RSI_X_Desktop.forms.HelpingClass
     public partial class MessagePanelL : System.Windows.Forms.TableLayoutPanel
     {
         public const string MyOwn = "Me";
-        const int maxSymbol = 25;
-        ChatBubbleLeft labelL;
-        newRightBubble labelR;
+        readonly int maxSymbol;
+        newRightBubble buble;
         Font font;
         Label Sender;
         Control Owner;
@@ -25,14 +24,22 @@ namespace RSI_X_Desktop.forms.HelpingClass
         {
             int dpi = this.DeviceDpi;
 
-            if (dpi >= (int)Constants.DPI.P175)
+            if (dpi >= (int)Constants.DPI.P175){
                 font = Constants.Bahnschrift10;
-            else if (dpi >= (int)Constants.DPI.P150)
+                maxSymbol = 14;
+            }
+            else if (dpi >= (int)Constants.DPI.P150){
                 font = Constants.Bahnschrift12;
-            else if (dpi >= (int)Constants.DPI.P125)
+                maxSymbol = 15;
+            }
+            else if (dpi >= (int)Constants.DPI.P125){
                 font = Constants.Bahnschrift14;
-            else if (dpi >= (int)Constants.DPI.P100)
+                maxSymbol = 20;
+            }
+            else if (dpi >= (int)Constants.DPI.P100) {
                 font = Constants.Bahnschrift14;
+                maxSymbol = 25;
+            }
 
             Owner = owner;
             Owner.SizeChanged += delegate
@@ -54,59 +61,40 @@ namespace RSI_X_Desktop.forms.HelpingClass
 
             //Date = new Label();
 
+            for (int i = maxSymbol; i < text.Length; i += maxSymbol + 1)
+                text = text.Insert(i, "\n");
+
+            buble = new newRightBubble();
             if (sender == MyOwn)
             {
                 ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
                 ColumnStyles[0].SizeType = SizeType.Percent;
                 ColumnStyles[0].Width = 100;
-                labelR = new newRightBubble();
-                labelR.ForeColor = Color.White;
-                labelR.SizeAuto = true;
-                labelR.SizeAutoW = true;
-                labelR.SizeAutoH = true;
-                labelR.Margin = new Padding(0, 0, 13, 0);
+                buble.ForeColor = Color.White;
+                buble.ArrowRight = true;
+                buble.BubbleColor = Color.FromArgb(254, 1, 143);
+                buble.Margin = new Padding(0, 0, 13, 0);
                 Sender.TextAlign = ContentAlignment.BottomRight;
-
-                if (text.Length > 0) labelR.Text += text[0];
-
-                labelR.Text = text;
-
-                for (int i = maxSymbol - 1; i < text.Length; i += maxSymbol)
-                {
-                    labelR.Text = labelR.Text.Insert(i, " \n");
-                }
-
-                labelR.Show();
+                Sender.Dock = DockStyle.Right;
+                Sender.Text += "\t";
                 Name = "Right";
-                Controls.Add(labelR, 1, 1);
+                Controls.Add(buble, 1, 1);
                 Controls.Add(Sender, 1, 0);
-                labelR.SuspendLayout();
-                labelR.Enabled = false;
-                Sender.SuspendLayout();
             }
             else
             {
-                labelL = new ChatBubbleLeft();
-                labelL.SizeAuto = true;
-                labelL.SizeAutoW = true;
-                labelL.SizeAutoH = true;
+                buble.BubbleColor = Color.FromArgb(217, 217, 217);
+                buble.ArrowRight = false;
 
-                if (text.Length > 0) labelL.Text += text[0];
-
-                labelL.Text = text + " ";
-
-                for (int i = maxSymbol - 1; i < text.Length; i += maxSymbol)
-                {
-                    labelL.Text = labelL.Text.Insert(i, " \n");
-                }
-                labelL.Show();
                 Name = "Left";
-                Controls.Add(labelL, 0, 1);
+                Controls.Add(buble, 0, 1);
                 Controls.Add(Sender, 0, 0);
-                labelL.SuspendLayout();
-                labelL.Enabled = false;
-                Sender.SuspendLayout();
             }
+            buble.Text = text;
+            buble.Show();
+            buble.SuspendLayout();
+            buble.Enabled = false;
+            Sender.SuspendLayout();
         }
     }
 }

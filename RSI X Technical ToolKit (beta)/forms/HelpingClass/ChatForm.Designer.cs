@@ -47,7 +47,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.label1 = new System.Windows.Forms.Label();
             this.tablePanel2 = new DevExpress.Utils.Layout.TablePanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.bigTextBox2 = new ReaLTaiizor.Controls.HopeRichTextBox();
+            this.ChatTextBox = new ReaLTaiizor.Controls.HopeRichTextBox();
             this.tablePanel3 = new DevExpress.Utils.Layout.TablePanel();
             this.ChatClose = new DevExpress.XtraEditors.SvgImageBox();
             this.SendMsgBtn = new DevExpress.XtraEditors.SvgImageBox();
@@ -86,7 +86,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.tablePanel1.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 65F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 175F)});
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 218F)});
             this.tablePanel1.Size = new System.Drawing.Size(450, 800);
             this.tablePanel1.TabIndex = 0;
             // 
@@ -99,13 +99,13 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.TablePanels.Controls.Add(this.tableLayoutPanel8);
             this.TablePanels.Controls.Add(this.tableLayoutPanel7);
             this.TablePanels.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TablePanels.Location = new System.Drawing.Point(10, 83);
+            this.TablePanels.Location = new System.Drawing.Point(10, 78);
             this.TablePanels.Margin = new System.Windows.Forms.Padding(0);
             this.TablePanels.Name = "TablePanels";
             this.tablePanel1.SetRow(this.TablePanels, 1);
             this.TablePanels.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
-            this.TablePanels.Size = new System.Drawing.Size(430, 542);
+            this.TablePanels.Size = new System.Drawing.Size(430, 504);
             this.TablePanels.TabIndex = 5;
             // 
             // tableLayoutPanel8
@@ -124,7 +124,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.TablePanels.SetRow(this.tableLayoutPanel8, 0);
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(215, 542);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(215, 504);
             this.tableLayoutPanel8.TabIndex = 7;
             // 
             // PGeneral
@@ -137,7 +137,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.PGeneral.Margin = new System.Windows.Forms.Padding(25, 0, 10, 0);
             this.PGeneral.Name = "PGeneral";
             this.PGeneral.Padding = new System.Windows.Forms.Padding(5);
-            this.PGeneral.Size = new System.Drawing.Size(169, 542);
+            this.PGeneral.Size = new System.Drawing.Size(169, 504);
             this.PGeneral.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.PGeneral.TabIndex = 3;
             this.PGeneral.Text = "panel2";
@@ -150,7 +150,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.panel1.Location = new System.Drawing.Point(204, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(11, 542);
+            this.panel1.Size = new System.Drawing.Size(11, 504);
             this.panel1.TabIndex = 4;
             // 
             // GeneralScroll
@@ -165,7 +165,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.GeneralScroll.Name = "GeneralScroll";
             this.GeneralScroll.Orientation = ReaLTaiizor.Enum.Poison.ScrollOrientationType.Vertical;
             this.GeneralScroll.ScrollbarSize = 11;
-            this.GeneralScroll.Size = new System.Drawing.Size(11, 542);
+            this.GeneralScroll.Size = new System.Drawing.Size(11, 504);
             this.GeneralScroll.TabIndex = 0;
             this.GeneralScroll.UseSelectable = true;
             this.GeneralScroll.ValueChanged += new ReaLTaiizor.Controls.PoisonScrollBar.ScrollValueChangedDelegate(this.GeneralScroll_ValueChanged);
@@ -186,7 +186,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.TablePanels.SetRow(this.tableLayoutPanel7, 0);
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(215, 542);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(215, 504);
             this.tableLayoutPanel7.TabIndex = 3;
             // 
             // ScrollPanel
@@ -197,7 +197,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.ScrollPanel.Location = new System.Drawing.Point(204, 0);
             this.ScrollPanel.Margin = new System.Windows.Forms.Padding(0);
             this.ScrollPanel.Name = "ScrollPanel";
-            this.ScrollPanel.Size = new System.Drawing.Size(11, 542);
+            this.ScrollPanel.Size = new System.Drawing.Size(11, 504);
             this.ScrollPanel.TabIndex = 0;
             // 
             // SupportScroll
@@ -212,7 +212,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.SupportScroll.Name = "SupportScroll";
             this.SupportScroll.Orientation = ReaLTaiizor.Enum.Poison.ScrollOrientationType.Vertical;
             this.SupportScroll.ScrollbarSize = 11;
-            this.SupportScroll.Size = new System.Drawing.Size(11, 542);
+            this.SupportScroll.Size = new System.Drawing.Size(11, 504);
             this.SupportScroll.TabIndex = 0;
             this.SupportScroll.UseSelectable = true;
             this.SupportScroll.ValueChanged += new ReaLTaiizor.Controls.PoisonScrollBar.ScrollValueChangedDelegate(this.SupportScroll_ValueChanged);
@@ -227,7 +227,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.PSupport.Margin = new System.Windows.Forms.Padding(25, 0, 10, 0);
             this.PSupport.Name = "PSupport";
             this.PSupport.Padding = new System.Windows.Forms.Padding(5);
-            this.PSupport.Size = new System.Drawing.Size(169, 542);
+            this.PSupport.Size = new System.Drawing.Size(169, 504);
             this.PSupport.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.PSupport.TabIndex = 3;
             // 
@@ -247,7 +247,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.tablePanel1.SetRow(this.tablePanel4, 0);
             this.tablePanel4.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
-            this.tablePanel4.Size = new System.Drawing.Size(424, 77);
+            this.tablePanel4.Size = new System.Drawing.Size(424, 72);
             this.tablePanel4.TabIndex = 4;
             // 
             // Support
@@ -258,7 +258,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.Support.Location = new System.Drawing.Point(352, 3);
             this.Support.Name = "Support";
             this.tablePanel4.SetRow(this.Support, 0);
-            this.Support.Size = new System.Drawing.Size(69, 71);
+            this.Support.Size = new System.Drawing.Size(69, 66);
             this.Support.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("Support.SvgImage")));
             this.Support.TabIndex = 2;
             this.Support.Click += new System.EventHandler(this.Support_Click);
@@ -271,7 +271,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.General.Location = new System.Drawing.Point(277, 3);
             this.General.Name = "General";
             this.tablePanel4.SetRow(this.General, 0);
-            this.General.Size = new System.Drawing.Size(69, 71);
+            this.General.Size = new System.Drawing.Size(69, 66);
             this.General.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("General.SvgImage")));
             this.General.TabIndex = 1;
             this.General.Click += new System.EventHandler(this.General_Click);
@@ -285,7 +285,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
             this.tablePanel4.SetRow(this.label1, 0);
-            this.label1.Size = new System.Drawing.Size(268, 77);
+            this.label1.Size = new System.Drawing.Size(268, 72);
             this.label1.TabIndex = 0;
             this.label1.Text = "RSI X Chat";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -296,18 +296,18 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.tablePanel2.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 55F)});
             this.tablePanel2.Controls.Add(this.panel2);
-            this.tablePanel2.Controls.Add(this.bigTextBox2);
+            this.tablePanel2.Controls.Add(this.ChatTextBox);
             this.tablePanel2.Controls.Add(this.tablePanel3);
             this.tablePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tablePanel2.Location = new System.Drawing.Point(10, 630);
+            this.tablePanel2.Location = new System.Drawing.Point(10, 587);
             this.tablePanel2.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.tablePanel2.Name = "tablePanel2";
             this.tablePanel1.SetRow(this.tablePanel2, 2);
             this.tablePanel2.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 3F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 45F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 55F)});
-            this.tablePanel2.Size = new System.Drawing.Size(430, 170);
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 67.08F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 32.92F)});
+            this.tablePanel2.Size = new System.Drawing.Size(430, 213);
             this.tablePanel2.TabIndex = 1;
             // 
             // panel2
@@ -322,34 +322,36 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.panel2.Size = new System.Drawing.Size(430, 3);
             this.panel2.TabIndex = 3;
             // 
-            // bigTextBox2
+            // ChatTextBox
             // 
-            this.bigTextBox2.BorderColor = System.Drawing.Color.White;
-            this.tablePanel2.SetColumn(this.bigTextBox2, 0);
-            this.bigTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.bigTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bigTextBox2.Font = new System.Drawing.Font("Leelawadee", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.bigTextBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(185)))), ((int)(((byte)(185)))));
-            this.bigTextBox2.Hint = "";
-            this.bigTextBox2.HoverBorderColor = System.Drawing.Color.White;
-            this.bigTextBox2.Location = new System.Drawing.Point(10, 18);
-            this.bigTextBox2.Margin = new System.Windows.Forms.Padding(10, 15, 3, 3);
-            this.bigTextBox2.MaxLength = 32767;
-            this.bigTextBox2.Multiline = false;
-            this.bigTextBox2.Name = "bigTextBox2";
-            this.bigTextBox2.PasswordChar = '\0';
-            this.tablePanel2.SetRow(this.bigTextBox2, 1);
-            this.bigTextBox2.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.bigTextBox2.SelectedText = "";
-            this.bigTextBox2.SelectionLength = 0;
-            this.bigTextBox2.SelectionStart = 0;
-            this.bigTextBox2.Size = new System.Drawing.Size(417, 57);
-            this.bigTextBox2.TabIndex = 1;
-            this.bigTextBox2.TabStop = false;
-            this.bigTextBox2.Text = "Type in your message";
-            this.bigTextBox2.UseSystemPasswordChar = false;
-            this.bigTextBox2.Enter += new System.EventHandler(this.bigTextBox2_Enter);
-            this.bigTextBox2.Leave += new System.EventHandler(this.bigTextBox2_Leave);
+            this.ChatTextBox.BorderColor = System.Drawing.Color.White;
+            this.tablePanel2.SetColumn(this.ChatTextBox, 0);
+            this.ChatTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ChatTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChatTextBox.Font = new System.Drawing.Font("Leelawadee", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ChatTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(185)))), ((int)(((byte)(185)))));
+            this.ChatTextBox.Hint = "";
+            this.ChatTextBox.HoverBorderColor = System.Drawing.Color.White;
+            this.ChatTextBox.Location = new System.Drawing.Point(10, 18);
+            this.ChatTextBox.Margin = new System.Windows.Forms.Padding(10, 15, 3, 3);
+            this.ChatTextBox.MaxLength = 127;
+            this.ChatTextBox.Multiline = true;
+            this.ChatTextBox.Name = "ChatTextBox";
+            this.ChatTextBox.PasswordChar = '\0';
+            this.tablePanel2.SetRow(this.ChatTextBox, 1);
+            this.ChatTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ChatTextBox.SelectedText = "";
+            this.ChatTextBox.SelectionLength = 0;
+            this.ChatTextBox.SelectionStart = 0;
+            this.ChatTextBox.Size = new System.Drawing.Size(417, 123);
+            this.ChatTextBox.TabIndex = 1;
+            this.ChatTextBox.TabStop = false;
+            this.ChatTextBox.Text = "Type in your message";
+            this.ChatTextBox.UseSystemPasswordChar = false;
+            this.ChatTextBox.Enter += new System.EventHandler(this.bigTextBox2_Enter);
+            this.ChatTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_KeyDown);
+            this.ChatTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ChatTextBox_KeyUp);
+            this.ChatTextBox.Leave += new System.EventHandler(this.bigTextBox2_Leave);
             // 
             // tablePanel3
             // 
@@ -361,12 +363,12 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.tablePanel3.Controls.Add(this.ChatClose);
             this.tablePanel3.Controls.Add(this.SendMsgBtn);
             this.tablePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tablePanel3.Location = new System.Drawing.Point(3, 81);
+            this.tablePanel3.Location = new System.Drawing.Point(3, 147);
             this.tablePanel3.Name = "tablePanel3";
             this.tablePanel2.SetRow(this.tablePanel3, 2);
             this.tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
-            this.tablePanel3.Size = new System.Drawing.Size(424, 86);
+            this.tablePanel3.Size = new System.Drawing.Size(424, 63);
             this.tablePanel3.TabIndex = 2;
             // 
             // ChatClose
@@ -380,7 +382,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.ChatClose.Margin = new System.Windows.Forms.Padding(10);
             this.ChatClose.Name = "ChatClose";
             this.tablePanel3.SetRow(this.ChatClose, 0);
-            this.ChatClose.Size = new System.Drawing.Size(44, 66);
+            this.ChatClose.Size = new System.Drawing.Size(44, 43);
             this.ChatClose.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
             this.ChatClose.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ChatClose.SvgImage")));
             this.ChatClose.TabIndex = 1;
@@ -397,7 +399,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.SendMsgBtn.Margin = new System.Windows.Forms.Padding(10);
             this.SendMsgBtn.Name = "SendMsgBtn";
             this.tablePanel3.SetRow(this.SendMsgBtn, 0);
-            this.SendMsgBtn.Size = new System.Drawing.Size(86, 66);
+            this.SendMsgBtn.Size = new System.Drawing.Size(86, 43);
             this.SendMsgBtn.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
             this.SendMsgBtn.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("SendMsgBtn.SvgImage")));
             this.SendMsgBtn.TabIndex = 0;
@@ -465,7 +467,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
         private ReaLTaiizor.Controls.Panel PGeneral;
         private System.Windows.Forms.Panel panel1;
         private ReaLTaiizor.Controls.PoisonScrollBar GeneralScroll;
-        private ReaLTaiizor.Controls.HopeRichTextBox bigTextBox2;
+        private ReaLTaiizor.Controls.HopeRichTextBox ChatTextBox;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel panel2;
         private DevExpress.XtraEditors.SvgImageBox ChatClose;
