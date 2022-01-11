@@ -120,6 +120,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             if (ChatTextBox.Text != "" && e.KeyCode == Keys.Enter) 
             {
                 chatButtonRight2_Click(sender, null);
+                ChatTextBox.Text = "";
             }
         }
 

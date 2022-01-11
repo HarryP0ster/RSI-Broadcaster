@@ -18,6 +18,9 @@ namespace RSI_X_Desktop.forms
 {
     public partial class PopUpForm : DevExpress.XtraEditors.XtraForm
     {
+        private static readonly string GET_VIDEO_LIST_ERROR_MSG = "Bad video list";
+        private static readonly string GET_RECORDERS_LIST_ERROR_MSG = "Bad audioIn list";
+
         private const int HDresolution = 6;
         private static PopUpForm _instance;
         private static readonly Color InactiveColor = Color.FromArgb(254, 1, 243);
@@ -43,7 +46,6 @@ namespace RSI_X_Desktop.forms
             ["1280 * 720 "] = new(960, 720, 15, BITRATE.STANDARD_BITRATE, false, false) { bitrate = 1130 },
             ["1920 * 1080"] = new(1920, 1080, 15, BITRATE.STANDARD_BITRATE, false, false) { bitrate = 2080 },
         };
-
         private static IFormHostHolder workForm = AgoraObject.GetWorkForm;
 
         static private IAgoraRtcAudioRecordingDeviceManager RecordersManager;
@@ -82,10 +84,6 @@ namespace RSI_X_Desktop.forms
         {
             InitializeComponent();
 
-            RecordersManager = AgoraObject.Rtc.GetAgoraRtcAudioRecordingDeviceManager();
-            SpeakersManager = AgoraObject.Rtc.GetAgoraRtcAudioPlaybackDeviceManager();
-            VideoManager = AgoraObject.Rtc.GetAgoraRtcVideoDeviceManager();
-
             int dpi = this.DeviceDpi;
             Font font = Constants.Bahnschrift24;
 
@@ -102,6 +100,13 @@ namespace RSI_X_Desktop.forms
             comboBoxAudioOutput.Font = font;
             comboBoxVideo.Font = font;
             ComboBoxRes.Font = font;
+        }
+
+        static PopUpForm() 
+        {
+            RecordersManager = AgoraObject.Rtc.GetAgoraRtcAudioRecordingDeviceManager();
+            SpeakersManager = AgoraObject.Rtc.GetAgoraRtcAudioPlaybackDeviceManager();
+            VideoManager = AgoraObject.Rtc.GetAgoraRtcVideoDeviceManager();
         }
 
         public static void SetupOldDevices()
@@ -308,7 +313,14 @@ namespace RSI_X_Desktop.forms
         private static List<DeviceInfo> getListAudioInputDevices()
         {
             List<DeviceInfo> devicesOut = new();
-            devicesOut.AddRange(RecordersManager.EnumerateRecordingDevices());
+            try
+            {
+                devicesOut.AddRange(RecordersManager.EnumerateRecordingDevices());
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show($"{ex.Message}\n{GET_RECORDERS_LIST_ERROR_MSG}");
+            }
 
             return devicesOut;
         }
@@ -322,8 +334,15 @@ namespace RSI_X_Desktop.forms
         private static List<DeviceInfo> getListVideoDevices()
         {
             List<DeviceInfo> devicesOut = new();
-            var t = VideoManager.EnumerateVideoDevices();
-            devicesOut.AddRange(t);
+            try
+            {
+                var t = VideoManager.EnumerateVideoDevices();
+                devicesOut.AddRange(t);
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show($"{ex.Message}\n{GET_VIDEO_LIST_ERROR_MSG}");
+            }
 
             return devicesOut;
         }
