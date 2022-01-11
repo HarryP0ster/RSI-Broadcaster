@@ -148,6 +148,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
                 {
                     FireBase.SendMessage(msg);
                 }
+                ChatTextBox.Text = "";
             }
         }
 

@@ -339,7 +339,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.ChatTextBox.Name = "ChatTextBox";
             this.ChatTextBox.PasswordChar = '\0';
             this.tablePanel2.SetRow(this.ChatTextBox, 1);
-            this.ChatTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ChatTextBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.ChatTextBox.SelectedText = "";
             this.ChatTextBox.SelectionLength = 0;
             this.ChatTextBox.SelectionStart = 0;
