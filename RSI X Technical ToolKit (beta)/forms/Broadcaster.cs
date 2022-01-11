@@ -24,7 +24,7 @@ namespace RSI_X_Desktop
             InitializeComponent();
             AgoraObject.SetWndEventHandler(this);
             LocalWinId = pictureBoxRemoteVideo.Handle;
-            Devices.SetupOldDevices();
+            PopUpForm.SetupOldDevices();
 
         }
 
