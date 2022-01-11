@@ -266,7 +266,7 @@ namespace RSI_X_Desktop.forms
         {
             if (AgoraObject.IsLocalVideoMute) return;
 
-            if (Devices.IsImageSend)
+            if (PopUpForm.IsImageSend)
                 ImageSender.EnableImageSender(IsSharingScreen);
 
             enableScreenShare(!IsSharingScreen);
