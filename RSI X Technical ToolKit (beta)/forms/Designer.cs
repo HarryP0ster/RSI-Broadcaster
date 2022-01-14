@@ -296,7 +296,7 @@ namespace RSI_X_Desktop.forms
                 IconsPanel.Columns[3].Width = 0;
                 IconsPanel.Columns[7].Width = 0;
                 CenterPanel.Columns[1].Width = 450;
-                (Owner as Broadcaster).StreamLayout.ColumnStyles[1].Width = 450;
+                (Owner as Broadcaster).StreamLayout.ColumnStyles[1].Width = 430;
                 Chat.Hide();
                 devicesLabel.Hide();
                 ChatRgn();
