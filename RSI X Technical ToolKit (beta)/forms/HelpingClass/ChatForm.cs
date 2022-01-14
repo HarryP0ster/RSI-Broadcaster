@@ -156,9 +156,9 @@ namespace RSI_X_Desktop.forms.HelpingClass
         {
             if (InvokeRequired)
                 Invoke((MethodInvoker)delegate
-                { chat_NewMessage(message, "Host", channel); });
+                { chat_NewMessage(message, nickname, channel); });
             else
-                chat_NewMessage(message, "Host", channel);
+                chat_NewMessage(message, nickname, channel);
         }
         private void chat_NewMessage(string message, string nickname, CHANNEL_TYPE channel)
         {
