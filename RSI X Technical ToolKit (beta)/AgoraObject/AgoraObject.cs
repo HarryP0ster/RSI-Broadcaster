@@ -76,7 +76,6 @@ namespace RSI_X_Desktop
             Rtc = AgoraRtcEngine.CreateAgoraRtcEngine();
             Rtc.Initialize(new RtcEngineContext(AppID));
             Rtc.EnableVideo();
-            forms.Devices.InitManager();
 
             UpdateNickName(NickCenter.ToHostNick("BROADCASTER"));
             SetPublishProfile();
@@ -187,7 +186,7 @@ namespace RSI_X_Desktop
         public static void StartScreenCapture(ScreenCaptureParameters capParam = null)
         {
             if (capParam == null)
-                capParam = forms.Devices.GetVideoParam();
+                capParam = forms.PopUpForm.GetVideoParam();
             ScreenCapture.StartScreenCapture(capParam);
         }
         public static void StopScreenCapture()
