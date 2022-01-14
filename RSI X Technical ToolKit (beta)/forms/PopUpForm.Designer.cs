@@ -36,8 +36,9 @@ namespace RSI_X_Desktop.forms
             this.ComboBoxRes = new RSI_X_Desktop.forms.HelpingClass.newAloneComboBox();
             this.dungeonLabel3 = new ReaLTaiizor.Controls.DungeonLabel();
             this.tablePanel7 = new DevExpress.Utils.Layout.TablePanel();
-            this.btnCustomImage = new ReaLTaiizor.Controls.BigLabel();
+            this.PreviewPanel = new System.Windows.Forms.Panel();
             this.pictureBoxLocalVideoTest = new ReaLTaiizor.Controls.HopePictureBox();
+            this.btnCustomImage = new ReaLTaiizor.Controls.BigLabel();
             this.tablePanel6 = new DevExpress.Utils.Layout.TablePanel();
             this.comboBoxVideo = new RSI_X_Desktop.forms.HelpingClass.newAloneComboBox();
             this.dungeonLabel2 = new ReaLTaiizor.Controls.DungeonLabel();
@@ -62,7 +63,6 @@ namespace RSI_X_Desktop.forms
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.BCloseGeneral = new ReaLTaiizor.Controls.Button();
             this.bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
-            this.PreviewPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel2)).BeginInit();
             this.tablePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainTable)).BeginInit();
@@ -71,6 +71,7 @@ namespace RSI_X_Desktop.forms
             this.tablePanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel7)).BeginInit();
             this.tablePanel7.SuspendLayout();
+            this.PreviewPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLocalVideoTest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel6)).BeginInit();
             this.tablePanel6.SuspendLayout();
@@ -86,7 +87,6 @@ namespace RSI_X_Desktop.forms
             ((System.ComponentModel.ISupportInitialize)(this.CancelBtn)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
-            this.PreviewPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tablePanel2
@@ -214,6 +214,33 @@ namespace RSI_X_Desktop.forms
             this.tablePanel7.Size = new System.Drawing.Size(365, 138);
             this.tablePanel7.TabIndex = 16;
             // 
+            // PreviewPanel
+            // 
+            this.PreviewPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tablePanel7.SetColumn(this.PreviewPanel, 1);
+            this.PreviewPanel.Controls.Add(this.pictureBoxLocalVideoTest);
+            this.PreviewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PreviewPanel.Location = new System.Drawing.Point(38, 0);
+            this.PreviewPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.PreviewPanel.Name = "PreviewPanel";
+            this.tablePanel7.SetRow(this.PreviewPanel, 0);
+            this.PreviewPanel.Size = new System.Drawing.Size(211, 104);
+            this.PreviewPanel.TabIndex = 4;
+            // 
+            // pictureBoxLocalVideoTest
+            // 
+            this.pictureBoxLocalVideoTest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
+            this.pictureBoxLocalVideoTest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxLocalVideoTest.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxLocalVideoTest.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pictureBoxLocalVideoTest.Name = "pictureBoxLocalVideoTest";
+            this.pictureBoxLocalVideoTest.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+            this.pictureBoxLocalVideoTest.Size = new System.Drawing.Size(211, 104);
+            this.pictureBoxLocalVideoTest.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.pictureBoxLocalVideoTest.TabIndex = 2;
+            this.pictureBoxLocalVideoTest.TabStop = false;
+            this.pictureBoxLocalVideoTest.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            // 
             // btnCustomImage
             // 
             this.btnCustomImage.AutoSize = true;
@@ -231,20 +258,6 @@ namespace RSI_X_Desktop.forms
             this.btnCustomImage.Text = "Custom image";
             this.btnCustomImage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnCustomImage.Click += new System.EventHandler(this.buttonImgSend_Click);
-            // 
-            // pictureBoxLocalVideoTest
-            // 
-            this.pictureBoxLocalVideoTest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
-            this.pictureBoxLocalVideoTest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxLocalVideoTest.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxLocalVideoTest.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.pictureBoxLocalVideoTest.Name = "pictureBoxLocalVideoTest";
-            this.pictureBoxLocalVideoTest.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            this.pictureBoxLocalVideoTest.Size = new System.Drawing.Size(211, 104);
-            this.pictureBoxLocalVideoTest.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.pictureBoxLocalVideoTest.TabIndex = 2;
-            this.pictureBoxLocalVideoTest.TabStop = false;
-            this.pictureBoxLocalVideoTest.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             // 
             // tablePanel6
             // 
@@ -696,19 +709,6 @@ namespace RSI_X_Desktop.forms
             this.bigLabel2.TabIndex = 0;
             this.bigLabel2.Text = "Your system";
             // 
-            // PreviewPanel
-            // 
-            this.PreviewPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.tablePanel7.SetColumn(this.PreviewPanel, 1);
-            this.PreviewPanel.Controls.Add(this.pictureBoxLocalVideoTest);
-            this.PreviewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PreviewPanel.Location = new System.Drawing.Point(38, 0);
-            this.PreviewPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.PreviewPanel.Name = "PreviewPanel";
-            this.tablePanel7.SetRow(this.PreviewPanel, 0);
-            this.PreviewPanel.Size = new System.Drawing.Size(211, 104);
-            this.PreviewPanel.TabIndex = 4;
-            // 
             // PopUpForm
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -721,7 +721,7 @@ namespace RSI_X_Desktop.forms
             this.Name = "PopUpForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PopUpForm";
-            this.TransparencyKey = System.Drawing.Color.Silver;
+            this.TransparencyKey = System.Drawing.Color.Fuchsia;
             this.Load += new System.EventHandler(this.PopUpForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel2)).EndInit();
             this.tablePanel2.ResumeLayout(false);
@@ -733,6 +733,7 @@ namespace RSI_X_Desktop.forms
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel7)).EndInit();
             this.tablePanel7.ResumeLayout(false);
             this.tablePanel7.PerformLayout();
+            this.PreviewPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLocalVideoTest)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel6)).EndInit();
             this.tablePanel6.ResumeLayout(false);
@@ -750,7 +751,6 @@ namespace RSI_X_Desktop.forms
             ((System.ComponentModel.ISupportInitialize)(this.CancelBtn)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
-            this.PreviewPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
