@@ -44,8 +44,10 @@ namespace RSI_X_Desktop
             this.DoubleBuffered = true;
             AgoraObject.JoinChannel();
 
-            AgoraObject.MuteLocalAudioStream(false);
-            AgoraObject.MuteLocalVideoStream(false);
+            //AgoraObject.MuteLocalAudioStream(false);
+            //AgoraObject.MuteLocalVideoStream(false);
+
+            pictureBoxRemoteVideo.Visible = !AgoraObject.IsLocalVideoMute;
 
             SetLocalVideoPreview();
             StreamLayout.ColumnStyles[1].SizeType = SizeType.Absolute;

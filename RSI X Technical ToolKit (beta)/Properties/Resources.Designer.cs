@@ -93,6 +93,16 @@ namespace RSI_X_Desktop.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
+        internal static byte[] cameraRadio {
+            get {
+                object obj = ResourceManager.GetObject("cameraRadio", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
         internal static byte[] Cancel {
             get {
                 object obj = ResourceManager.GetObject("Cancel", resourceCulture);
@@ -247,6 +257,16 @@ namespace RSI_X_Desktop.Properties {
             get {
                 object obj = ResourceManager.GetObject("logotype_compressed", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] micRadio {
+            get {
+                object obj = ResourceManager.GetObject("micRadio", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

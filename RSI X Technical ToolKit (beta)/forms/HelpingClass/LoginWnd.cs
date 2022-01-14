@@ -14,6 +14,8 @@ namespace RSI_X_Desktop.forms.HelpingClass
     public partial class LoginWnd : DevExpress.XtraEditors.XtraForm
     {
         internal InputWnd loginInput;
+        bool EnableCam = true;
+        bool EnableMic = true;
         public LoginWnd()
         {
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -44,6 +46,22 @@ namespace RSI_X_Desktop.forms.HelpingClass
             }
             else
                 loginInput.NewTextBox.Clear();
+        }
+
+        private void camRadio_Click(object sender, EventArgs e)
+        {
+            EnableCam = !EnableCam;
+            AgoraObject.MuteLocalVideoStream(!EnableCam);
+
+            camRadio.ItemAppearance.Normal.FillColor = EnableCam ? Color.White : Color.Empty;
+        }
+
+        private void micRadio_Click(object sender, EventArgs e)
+        {
+            EnableMic = !EnableMic;
+            AgoraObject.MuteLocalAudioStream(!EnableMic);
+
+            micRadio.ItemAppearance.Normal.FillColor = EnableMic ? Color.White : Color.Empty;
         }
     }
 }
