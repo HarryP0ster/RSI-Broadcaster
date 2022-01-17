@@ -20,6 +20,22 @@ namespace RSI_X_Desktop.forms.HelpingClass
         {
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             InitializeComponent();
+
+            int dpi = HostRadio.DeviceDpi;
+            Font font = Constants.Bahnschrift12;
+
+            if (dpi >= (int)Constants.DPI.P175)
+                font = Constants.BahnschriftBold8;
+            else if (dpi >= (int)Constants.DPI.P150)
+                font = Constants.BahnschriftBold8;
+            else if (dpi >= (int)Constants.DPI.P125)
+                font = Constants.BahnschriftBold10;
+            else if (dpi >= (int)Constants.DPI.P100)
+                font = Constants.BahnschriftBold12;
+
+            HostRadio.Font = font;
+            PresidentRadio.Font = font;
+            SecretaryRadio.Font = font;
         }
 
         private void LoginWnd_Load(object sender, EventArgs e)
