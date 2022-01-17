@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Un4seen.Bass;
-using agora.rtc;
+using agorartc;
 using RSI_X_Desktop.forms;
 using static System.Environment;
 
@@ -18,6 +18,12 @@ namespace RSI_X_Desktop.forms
 {
     public partial class PopUpForm : DevExpress.XtraEditors.XtraForm
     {
+        internal struct DeviceInfo
+        {
+            public string Id;
+            public string Name;
+        }
+
         private static readonly string GET_VIDEO_LIST_ERROR_MSG = "Bad video list";
         private static readonly string GET_RECORDERS_LIST_ERROR_MSG = "Bad audioIn list";
 
@@ -38,19 +44,19 @@ namespace RSI_X_Desktop.forms
         };
         public static readonly Dictionary<string, ScreenCaptureParameters> resolutionsSize = new()
         {
-            [" 160 * 120 "] = new(120, 160, 15, BITRATE.STANDARD_BITRATE, false, false) { bitrate = 65 },
-            [" 320 * 180 "] = new(180, 320, 15, BITRATE.STANDARD_BITRATE, false, false) { bitrate = 140 },
-            [" 320 * 240 "] = new(240, 240, 15, BITRATE.STANDARD_BITRATE, false, false) { bitrate = 200 },
-            [" 640 * 360 "] = new(360, 360, 15, BITRATE.STANDARD_BITRATE, false, false) { bitrate = 400 },
-            [" 640 * 480 "] = new(480, 480, 15, BITRATE.STANDARD_BITRATE, false, false) { bitrate = 500 },
-            ["1280 * 720 "] = new(960, 720, 15, BITRATE.STANDARD_BITRATE, false, false) { bitrate = 1130 },
-            ["1920 * 1080"] = new(1920, 1080, 15, BITRATE.STANDARD_BITRATE, false, false) { bitrate = 2080 },
+            [" 160 * 120 "] = new(120, 160)  { frameRate = 15, bitrate = (int)BITRATE.STANDARD_BITRATE, captureMouseCursor = false, windowFocus = false},
+            [" 320 * 180 "] = new(180, 320)  { frameRate = 15, bitrate = (int)BITRATE.STANDARD_BITRATE, captureMouseCursor = false, windowFocus = false},
+            [" 320 * 240 "] = new(240, 240)  { frameRate = 15, bitrate = (int)BITRATE.STANDARD_BITRATE, captureMouseCursor = false, windowFocus = false},
+            [" 640 * 360 "] = new(360, 360)  { frameRate = 15, bitrate = (int)BITRATE.STANDARD_BITRATE, captureMouseCursor = false, windowFocus = false},
+            [" 640 * 480 "] = new(480, 480)  { frameRate = 15, bitrate = (int)BITRATE.STANDARD_BITRATE, captureMouseCursor = false, windowFocus = false},
+            ["1280 * 720 "] = new(960, 720)  { frameRate = 15, bitrate = (int)BITRATE.STANDARD_BITRATE, captureMouseCursor = false, windowFocus = false},
+            ["1920 * 1080"] = new(1920, 1080){ frameRate = 15, bitrate = (int)BITRATE.STANDARD_BITRATE, captureMouseCursor = false, windowFocus = false},
         };
         private static IFormHostHolder workForm = AgoraObject.GetWorkForm;
 
-        static private IAgoraRtcAudioRecordingDeviceManager RecordersManager;
-        static private IAgoraRtcAudioPlaybackDeviceManager SpeakersManager;
-        static private IAgoraRtcVideoDeviceManager VideoManager;
+        static private AgoraAudioRecordingDeviceManager RecordersManager;
+        static private AgoraAudioPlaybackDeviceManager SpeakersManager;
+        static private AgoraVideoDeviceManager VideoManager;
         static List<DeviceInfo> Recorders;
         static List<DeviceInfo> VideoOut;
 
@@ -104,9 +110,9 @@ namespace RSI_X_Desktop.forms
 
         static PopUpForm() 
         {
-            RecordersManager = AgoraObject.Rtc.GetAgoraRtcAudioRecordingDeviceManager();
-            SpeakersManager = AgoraObject.Rtc.GetAgoraRtcAudioPlaybackDeviceManager();
-            VideoManager = AgoraObject.Rtc.GetAgoraRtcVideoDeviceManager();
+            RecordersManager = AgoraObject.Rtc.CreateAudioRecordingDeviceManager();
+            SpeakersManager = AgoraObject.Rtc.CreateAudioPlaybackDeviceManager();
+            VideoManager = AgoraObject.Rtc.CreateVideoDeviceManager();
         }
 
         public static void SetupOldDevices()
@@ -114,10 +120,10 @@ namespace RSI_X_Desktop.forms
             VideoOut = getListVideoDevices();
             Recorders = getListAudioInputDevices();
 
-            bool hasOldRecorder = Recorders.Any((s) => s.deviceId == oldRecorder.deviceId);
+            bool hasOldRecorder = Recorders.Any((s) => s.Id == oldRecorder.Id);
 
-            int index = (oldRecorder.deviceId != null) ?
-                Recorders.FindLastIndex((s) => s.deviceId == oldRecorder.deviceId) :
+            int index = (oldRecorder.Id != null) ?
+                Recorders.FindLastIndex((s) => s.Id == oldRecorder.Id) :
                 index = getActiveAudioInputDevice();
 
 
@@ -146,7 +152,7 @@ namespace RSI_X_Desktop.forms
         {
             SetWndRegion();
             _instance = this;
-            oldVolumeIn = RecordersManager.GetRecordingDeviceVolume();
+            oldVolumeIn = RecordersManager.GetDeviceVolume();
             trackBarSoundIn.Value = oldVolumeIn;
 
             Recorders = getListAudioInputDevices();
@@ -182,10 +188,10 @@ namespace RSI_X_Desktop.forms
         {
             Recorders = getListAudioInputDevices();
             List<string> listRecorders = new();
-            bool hasOldRecorder = Recorders.Any((s) => s.deviceId == oldRecorder.deviceId);
+            bool hasOldRecorder = Recorders.Any((s) => s.Id == oldRecorder.Id);
 
-            int index = (oldRecorder.deviceId != "" && hasOldRecorder) ?
-                Recorders.FindLastIndex((s) => s.deviceId == oldRecorder.deviceId) :
+            int index = (oldRecorder.Id != "" && hasOldRecorder) ?
+                Recorders.FindLastIndex((s) => s.Id == oldRecorder.Id) :
                 getActiveAudioInputDevice();
 
             if (index == -1)
@@ -198,7 +204,7 @@ namespace RSI_X_Desktop.forms
             }
 
             foreach (var rec in Recorders)
-                listRecorders.Add(rec.deviceName);
+                listRecorders.Add(rec.Name);
 
             oldRecorder = Recorders[index];
             SelectedRecorder = Recorders[index];
@@ -210,11 +216,11 @@ namespace RSI_X_Desktop.forms
         {
             VideoOut = getListVideoDevices();
             List<string> listVideo = new();
-            bool hasoldVideoOut = VideoOut.Any((s) => s.deviceId == oldVideoOut.deviceId);
+            bool hasoldVideoOut = VideoOut.Any((s) => s.Id == oldVideoOut.Id);
 
-            int index = (oldVideoOut.deviceId != "") ?
-                VideoOut.FindLastIndex((s) => s.deviceId == oldVideoOut.deviceId) :
-                getActiveVideoDevice();
+            int index = (oldVideoOut.Id != "") ?
+                VideoOut.FindLastIndex((s) => s.Id == oldVideoOut.Id) :
+                getActiveVideoDeviceIndex();
 
             if (index == -1)
                 index = VideoOut.Count > 0 ? 0 : -1;
@@ -226,7 +232,7 @@ namespace RSI_X_Desktop.forms
             }
 
             foreach (var rec in VideoOut)
-                listVideo.Add(rec.deviceName);
+                listVideo.Add(rec.Name);
 
             oldVideoOut = VideoOut[index];
             SelectedVideoOut = VideoOut[index];
@@ -251,13 +257,14 @@ namespace RSI_X_Desktop.forms
                     return;
                 }
 
-                int index = VideoOut.FindLastIndex((s) => s.deviceId == oldVideoOut.deviceId);
+                int index = VideoOut.FindLastIndex((s) => s.Id == oldVideoOut.Id);
                 index = index == -1 ? 0 : index;
 
-                var device = VideoManager.EnumerateVideoDevices()[index];
+                var device = new DeviceInfo();
+                VideoManager.GetDeviceInfoByIndex(index, out device.Name, out device.Id);
 
                 DebugWriter.WriteTime("update video device");
-                VideoManager.SetDevice(device.deviceId);
+                VideoManager.SetCurrentDevice(device.Id);
             }
             catch (Exception ex)
             {
@@ -277,31 +284,47 @@ namespace RSI_X_Desktop.forms
         {
             bool found = false;
             int id = 0;
+            var deviceId = RecordersManager.GetCurrentDevice();
 
-            var device = RecordersManager.GetRecordingDeviceInfo();
-
-            foreach (var dev in RecordersManager.EnumerateRecordingDevices())
+            for (int i = 0; i < RecordersManager.GetDeviceCount(); i++)
             {
-                if (device.deviceId == dev.deviceId) { found = true; break; }
+                RecordersManager.GetDeviceInfoByIndex(i, out _, out string testDevice);
+
+                if (deviceId == testDevice) { found = true; break; };
                 id += 1;
             }
+            //var device = RecordersManager.GetRecordingDeviceInfo();
+
+            //foreach (var dev in RecordersManager.EnumerateRecordingDevices())
+            //{
+            //    if (device.deviceId == dev.deviceId) { found = true; break; }
+            //    id += 1;
+            //}
 
             if (!found)
                 id = -1;
 
             return id;
         }
-        private static int getActiveVideoDevice()
+        private static int getActiveVideoDeviceIndex()
         {
             bool found = false;
             int id = 0;
-            var device = VideoManager.GetDevice();
+            var deviceId = VideoManager.GetCurrentDevice();
 
-            foreach (var dev in VideoManager.EnumerateVideoDevices())
+            for (int i = 0; i < VideoManager.GetDeviceCount(); i++) 
             {
-                if (device == dev.deviceId) { found = true; break; };
+                VideoManager.GetDeviceInfoByIndex(i, out _, out string testDevice);
+
+                if (deviceId == testDevice) { found = true; break; };
                 id += 1;
             }
+
+            //foreach (var dev in VideoManager.EnumerateVideoDevices())
+            //{
+            //    if (device == dev.deviceId) { found = true; break; };
+            //    id += 1;
+            //}
 
             if (!found)
                 id = -1;
@@ -315,7 +338,13 @@ namespace RSI_X_Desktop.forms
             List<DeviceInfo> devicesOut = new();
             try
             {
-                devicesOut.AddRange(RecordersManager.EnumerateRecordingDevices());
+                //devicesOut.AddRange(RecordersManager.EnumerateRecordingDevices());
+                for (int i = 0; i < RecordersManager.GetDeviceCount(); i++)
+                {
+                    DeviceInfo device;
+                    var t = RecordersManager.GetDeviceInfoByIndex(i, out device.Name, out device.Id);
+                    devicesOut.Add(device);
+                }
             }
             catch (Exception ex) 
             {
@@ -327,7 +356,13 @@ namespace RSI_X_Desktop.forms
         private static List<DeviceInfo> getListAudioOutDevices()
         {
             List<DeviceInfo> devicesOut = new();
-            devicesOut.AddRange(SpeakersManager.EnumeratePlaybackDevices());
+            //devicesOut.AddRange(SpeakersManager.EnumeratePlaybackDevices());
+            for (int i = 0; i < SpeakersManager.GetDeviceCount(); i++)
+            {
+                DeviceInfo device;
+                var t = SpeakersManager.GetDeviceInfoByIndex(i, out device.Name, out device.Id);
+                devicesOut.Add(device);
+            }
 
             return devicesOut;
         }
@@ -336,8 +371,13 @@ namespace RSI_X_Desktop.forms
             List<DeviceInfo> devicesOut = new();
             try
             {
-                var t = VideoManager.EnumerateVideoDevices();
-                devicesOut.AddRange(t);
+                //devicesOut.AddRange(VideoManager.EnumerateVideoDevices());
+                for (int i = 0; i < VideoManager.GetDeviceCount(); i++) 
+                {
+                    DeviceInfo device;
+                    var t = VideoManager.GetDeviceInfoByIndex(i, out device.Name, out device.Id);
+                    devicesOut.Add(device);
+                }
             }
             catch (Exception ex) 
             {
@@ -347,42 +387,42 @@ namespace RSI_X_Desktop.forms
             return devicesOut;
         }
 
-        private static int GetIndexRecordingDevice(string deviceID)
-        {
-            int ind = -1;
+        //private static int GetIndexRecordingDevice(string deviceID)
+        //{
+        //    int ind = -1;
 
-            foreach (var device in RecordersManager.EnumerateRecordingDevices())
-            {
-                if (device.deviceId == deviceID) break;
-                ind++;
-            }
+        //    foreach (var device in RecordersManager.EnumerateRecordingDevices())
+        //    {
+        //        if (device.deviceId == deviceID) break;
+        //        ind++;
+        //    }
 
-            return ind;
-        }
-        private static int GetIndexSpekerDevice(string deviceID)
-        {
-            int ind = -1;
+        //    return ind;
+        //}
+        //private static int GetIndexSpekerDevice(string deviceID)
+        //{
+        //    int ind = -1;
 
-            foreach (var device in SpeakersManager.EnumeratePlaybackDevices())
-            {
-                if (device.deviceId == deviceID) break;
-                ind++;
-            }
+        //    foreach (var device in SpeakersManager.EnumeratePlaybackDevices())
+        //    {
+        //        if (device.deviceId == deviceID) break;
+        //        ind++;
+        //    }
 
-            return ind;
-        }
-        private static int GetIndexVideoDevice(string deviceID)
-        {
-            int ind = -1;
+        //    return ind;
+        //}
+        //private static int GetIndexVideoDevice(string deviceID)
+        //{
+        //    int ind = -1;
 
-            foreach (var device in VideoManager.EnumerateVideoDevices())
-            {
-                if (device.deviceId == deviceID) break;
-                ind++;
-            }
+        //    foreach (var device in VideoManager.EnumerateVideoDevices())
+        //    {
+        //        if (device.deviceId == deviceID) break;
+        //        ind++;
+        //    }
 
-            return ind;
-        }
+        //    return ind;
+        //}
         #endregion
 
         #region ComboBoxEventHandlers
@@ -392,13 +432,17 @@ namespace RSI_X_Desktop.forms
 
             DeviceInfo dev;
             int ind = ((System.Windows.Forms.ComboBox)sender).SelectedIndex;
-            var RecorderList = RecordersManager.EnumerateRecordingDevices();
+            var ret = RecordersManager.GetDeviceInfoByIndex(ind, out dev.Name, out dev.Id);
 
-            if (RecorderList.Length > ind)
-                dev = RecorderList[ind];
+            if (ret == ERROR_CODE.ERR_OK)
+                RecordersManager.SetCurrentDevice(dev.Id);
+            //var RecorderList = RecordersManager.EnumerateRecordingDevices();
 
-            SelectedRecorder = dev;
-            RecordersManager.SetRecordingDevice(dev.deviceId);
+                //if (RecorderList.Length > ind)
+                //    dev = RecorderList[ind];
+
+                //SelectedRecorder = dev;
+                //RecordersManager.SetRecordingDevice(dev.Id);
         }
         private void comboBoxAudioOutput_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -406,13 +450,17 @@ namespace RSI_X_Desktop.forms
 
             DeviceInfo dev;
             int ind = ((System.Windows.Forms.ComboBox)sender).SelectedIndex;
-            var SpeakerList = SpeakersManager.EnumeratePlaybackDevices();
+            var ret = SpeakersManager.GetDeviceInfoByIndex(ind, out dev.Name, out dev.Id);
 
-            if (SpeakerList.Length > ind)
-                dev = SpeakerList[ind];
+            if (ret == ERROR_CODE.ERR_OK)
+                SpeakersManager.SetCurrentDevice(dev.Id);
+            //var SpeakerList = SpeakersManager.EnumeratePlaybackDevices();
 
-            SelectedRecorder = dev;
-            RecordersManager.SetRecordingDevice(dev.deviceId);
+            //if (SpeakerList.Length > ind)
+            //    dev = SpeakerList[ind];
+
+            //SelectedRecorder = dev;
+            //RecordersManager.SetRecordingDevice(dev.Id);
         }
         private void comboBoxVideo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -420,13 +468,17 @@ namespace RSI_X_Desktop.forms
 
             DeviceInfo dev;
             int ind = ((System.Windows.Forms.ComboBox)sender).SelectedIndex;
-            var VideoList = VideoManager.EnumerateVideoDevices();
+            var ret = VideoManager.GetDeviceInfoByIndex(ind, out dev.Name, out dev.Id);
 
-            if (VideoList.Length > ind)
-                dev = VideoList[ind];
+            if (ret == ERROR_CODE.ERR_OK)
+                VideoManager.SetCurrentDevice(dev.Id);
+            //var VideoList = VideoManager.EnumerateVideoDevices();
 
-            SelectedVideoOut = dev;
-            VideoManager.SetDevice(dev.deviceId);
+            //if (VideoList.Length > ind)
+            //    dev = VideoList[ind];
+
+            //SelectedVideoOut = dev;
+            //VideoManager.SetDevice(dev.Id);
             workForm.RefreshLocalWnd();
         }
         private void ComboBoxRes_SelectedIndexChanged(object sender, EventArgs e)
@@ -444,7 +496,7 @@ namespace RSI_X_Desktop.forms
             SelectedVolumeIn = trackBarSoundIn.Value;
 
             RecordersManager.
-                SetRecordingDeviceVolume(SelectedVolumeIn);
+                SetDeviceVolume(SelectedVolumeIn);
         }
 
         private static void UpdateResolution(string res)
@@ -581,11 +633,11 @@ namespace RSI_X_Desktop.forms
         }
         private static void AcceptNewVideoRecDevice()
         {
-            if (oldVideoOut.deviceId == null) return;
+            if (oldVideoOut.Id == null) return;
 
             try
             {
-                VideoManager.SetDevice(oldVideoOut.deviceId);
+                VideoManager.SetCurrentDevice(oldVideoOut.Id);
             }
             catch (Exception ex)
             {
@@ -594,11 +646,11 @@ namespace RSI_X_Desktop.forms
         }
         private static void AcceptNewRecordDevice()
         {
-            if (oldVideoOut.deviceId == null) return;
+            if (oldVideoOut.Id == null) return;
 
             try
             {
-                RecordersManager.SetRecordingDevice(oldRecorder.deviceId);
+                RecordersManager.SetCurrentDevice(oldRecorder.Id);
             }
             catch (Exception ex)
             {

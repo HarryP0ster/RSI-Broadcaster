@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NAudio.Wave;
-using agora.rtc;
+using agorartc;
 
 namespace DesctopAudioRecorder
 {
     internal static class XAgoraObject
     {
         internal const string AppID = "31f0e571a89542b09049087e3283417f";
-        public static IAgoraRtcEngine Rtc { get; internal set; }
+        public static AgoraRtcEngine Rtc { get; internal set; }
         private static IWaveIn CaptureInstance = null;
 
         static XAgoraObject()
         {
-            Rtc = AgoraRtcEngine.CreateAgoraRtcEngine();
+            Rtc = AgoraRtcEngine.CreateRtcEngine();
             Rtc.Initialize(new RtcEngineContext(AppID));
 
             Rtc.InitEventHandler(new AEngineEventHandler());
@@ -28,14 +28,7 @@ namespace DesctopAudioRecorder
 
         internal static void JoinChannel(string token, string chName)
         {
-            int res = Rtc.JoinChannel(token, chName, "", 0, 
-                new ()
-                {
-                    autoSubscribeAudio = true,
-                    autoSubscribeVideo = false,
-                    publishLocalAudio = true,
-                    publishLocalVideo = false,
-                });
+            ERROR_CODE res = Rtc.JoinChannel(token, chName, "", 0);
 
             Console.WriteLine($"join succ: {res}");
 
@@ -103,7 +96,7 @@ namespace DesctopAudioRecorder
             CaptureInstance = null;
         }
     }
-    internal class AEngineEventHandler : IAgoraRtcEngineEventHandler
+    internal class AEngineEventHandler : IRtcEngineEventHandlerBase
     {
         public override void OnJoinChannelSuccess(string channel, uint uid, int elapsed)
         {

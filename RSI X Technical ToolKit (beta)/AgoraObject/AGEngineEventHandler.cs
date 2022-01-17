@@ -1,10 +1,10 @@
 ﻿using System;
 
-using agora.rtc;
+using agorartc;
 
 namespace RSI_X_Desktop
 {
-    internal class AGEngineEventHandler : IAgoraRtcEngineEventHandler
+    internal class AGEngineEventHandler : IRtcEngineEventHandlerBase
     {
         private IFormHostHolder form;
         public AGEngineEventHandler(IFormHostHolder form) 
@@ -52,7 +52,6 @@ namespace RSI_X_Desktop
             switch (error) 
             {
                 case LOCAL_VIDEO_STREAM_ERROR.LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE:
-                case LOCAL_VIDEO_STREAM_ERROR.LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND:
                     if (ImageSender.IsEnable == false)
                         ImageSender.SetLocalFrame(clear: true);
                     break;

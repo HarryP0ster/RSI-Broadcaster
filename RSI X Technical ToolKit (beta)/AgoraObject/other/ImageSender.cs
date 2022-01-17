@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Drawing;
-using agora.rtc;
+using agorartc;
 
 namespace RSI_X_Desktop
 {
@@ -145,7 +145,7 @@ namespace RSI_X_Desktop
             timer?.Dispose();
             timer = null;
 
-            VideoFrame = null;
+            VideoFrame = new ExternalVideoFrame();
 
             frame?.Dispose();
             frame = null;

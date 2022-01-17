@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NAudio.Wave;
-using agora.rtc;
+using agorartc;
 
 namespace RSI_X_Desktop
 {
@@ -51,7 +51,7 @@ namespace RSI_X_Desktop
             capParam.frameRate = 15;
 
             IsCapture =
-                (int)ERROR_CODE_TYPE.ERR_OK == AgoraObject.Rtc.StartScreenCaptureByScreenRect(region, region, capParam);
+                (int)ERROR_CODE.ERR_OK == AgoraObject.Rtc.StartScreenCaptureByScreenRect(region, region, capParam);
             System.Diagnostics.Debug.WriteLine($"{DateTime.Now:HH:mm:ss:fff}: screen sharing enable ({IsCapture})");
         }
         private static void proc_OutputDataReceived(object sender, System.Diagnostics.DataReceivedEventArgs e)

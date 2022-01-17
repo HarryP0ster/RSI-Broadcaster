@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using agora.rtc;
+using agorartc;
 using System.Windows.Forms;
 
 
@@ -16,7 +16,7 @@ namespace RSI_X_Desktop
         DEST,
         HOST,
     };
-    public class AGChannelEventHandler : IAgoraRtcChannelEventHandler
+    public class AGChannelEventHandler : IRtcChannelEventHandlerBase
     {
         internal List<uint> hostBroacsters = new();
         private IFormHostHolder form;
@@ -28,7 +28,7 @@ namespace RSI_X_Desktop
             chType = new_chType;
         }
 
-        public override void OnJoinChannelSuccess(string channelId, uint uid, int elapsed)
+        public override void OnChannelJoinChannelSuccess(string channelId, uint uid, int elapsed)
         {
             switch (chType)
             {
@@ -44,7 +44,7 @@ namespace RSI_X_Desktop
             }
         }
 
-        public override void OnRejoinChannelSuccess(string channelId, uint uid, int elapsed)
+        public override void OnChannelReJoinChannelSuccess(string channelId, uint uid, int elapsed)
         {
             switch (chType)
             {
@@ -61,7 +61,7 @@ namespace RSI_X_Desktop
         }
 
 
-        public override void OnLeaveChannel(string channelId, RtcStats stats)
+        public override void OnChannelLeaveChannel(string channelId, RtcStats stats)
         {
             switch (chType)
             {
@@ -74,12 +74,12 @@ namespace RSI_X_Desktop
             }
         }
 
-        public override void OnClientRoleChanged(string channelId, CLIENT_ROLE_TYPE oldRole,
+        public override void OnChannelClientRoleChanged(string channelId, CLIENT_ROLE_TYPE oldRole,
             CLIENT_ROLE_TYPE newRole)
         {
         }
 
-        public override void OnUserJoined(string channelId, uint uid, int elapsed)
+        public override void OnChannelUserJoined(string channelId, uint uid, int elapsed)
         {
             switch (chType) 
             {
@@ -92,7 +92,7 @@ namespace RSI_X_Desktop
             }
         }
 
-        public override void OnUserOffline(string channelId, uint uid, USER_OFFLINE_REASON_TYPE reason)
+        public override void OnChannelUserOffLine(string channelId, uint uid, USER_OFFLINE_REASON_TYPE reason)
         {
             switch (chType)
             {
@@ -105,7 +105,7 @@ namespace RSI_X_Desktop
             }
         }
         
-        public override void OnRemoteVideoStateChanged(string channelId, uint uid, REMOTE_VIDEO_STATE state,
+        public override void OnChannelRemoteVideoStateChanged(string channelId, uint uid, REMOTE_VIDEO_STATE state,
             REMOTE_VIDEO_STATE_REASON reason, int elapsed)
         {
             
@@ -169,7 +169,7 @@ namespace RSI_X_Desktop
         public string message = "";
 
         public override void
-            OnStreamMessage(string channelId, uint uid, int streamId, byte[] data, uint length)
+            OnChannelStreamMessage(string channelId, uint uid, int streamId, byte[] data, uint length)
         {
             UserInfo name;
             string Message = AgoraObject.utf8enc.GetString(data);

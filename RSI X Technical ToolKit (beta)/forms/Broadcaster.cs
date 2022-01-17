@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Threading;
 using RSI_X_Desktop.forms;
 using RSI_X_Desktop.forms.HelpingClass;
-using agora.rtc;
+using agorartc;
 
 namespace RSI_X_Desktop
 {
