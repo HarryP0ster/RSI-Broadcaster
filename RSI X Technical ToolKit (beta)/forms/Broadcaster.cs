@@ -199,22 +199,6 @@ namespace RSI_X_Desktop
                 chat.chat_NewMessageInvoke(message, nickname, channel);
         }
 
-        private void labelChat_Click(object sender, EventArgs e)
-        {
-            if (devices != null && !(devices.IsDisposed))
-                DevicesClosed(devices);
-            if (chat.Visible == false)
-            {
-                chat.ResumeLayout();
-                chat.ButtonsVisibility(true);
-                CallSidePanel(chat);
-            }
-            else
-            {
-                chat.ButtonsVisibility(false);
-                ChatClosed(chat);
-            }
-        }
         private void labelSettings_Click(object sender, EventArgs e)
         {
             if (devices == null || devices.IsDisposed)

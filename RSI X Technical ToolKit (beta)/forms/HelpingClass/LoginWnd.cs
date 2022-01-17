@@ -63,5 +63,23 @@ namespace RSI_X_Desktop.forms.HelpingClass
 
             micRadio.ItemAppearance.Normal.FillColor = EnableMic ? Color.White : Color.Empty;
         }
+
+        private void HostRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((RadioButton)sender).Checked)
+                AgoraObject.joinType = HostType.Broadcaster;
+        }
+
+        private void PresidentRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((RadioButton)sender).Checked)
+                AgoraObject.joinType = HostType.President;
+        }
+
+        private void SecretaryRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((RadioButton)sender).Checked)
+                AgoraObject.joinType = HostType.Secretary;
+        }
     }
 }

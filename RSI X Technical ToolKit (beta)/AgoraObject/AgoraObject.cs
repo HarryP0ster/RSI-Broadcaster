@@ -18,6 +18,13 @@ namespace RSI_X_Desktop
         FormEngineer2,
         None
     }
+
+    public enum HostType
+    {
+        Broadcaster,
+        President,
+        Secretary,
+    }
     static class AgoraObject
     {
 
@@ -29,6 +36,7 @@ namespace RSI_X_Desktop
         public static bool IsScreenCapture { get { return ScreenCapture.IsCapture; } }
         public static bool IsAllRemoteAudioMute { get; private set; }
         public static bool IsAllRemoteVideoMute { get; private set; }
+        public static HostType joinType = HostType.Broadcaster;
 
         public static bool IsAllTransLatersAudioMute { get; private set; }
 
@@ -50,6 +58,7 @@ namespace RSI_X_Desktop
         internal static int hostStreamID { get => _hostStreamID; }
         internal static AGChannelEventHandler hostHandler;
         private static IFormHostHolder workForm;
+        private static uint name;
 
         public static IFormHostHolder GetWorkForm
         {
@@ -203,7 +212,21 @@ namespace RSI_X_Desktop
         static public ERROR_CODE JoinChannel(string chName, string token)
         {
             var rnd = new Random();
-            var res = Rtc.JoinChannelWithUserAccount(token, chName, NickCenter.ToHostNick(rnd.Next().ToString()));
+            name = (uint)rnd.Next();
+            ERROR_CODE res;
+            switch (joinType)
+            {
+                case HostType.President:
+                    res = Rtc.JoinChannelWithUserAccount(token, chName, NickCenter.ToPresidentNick(name.ToString()));
+                    break;
+                case HostType.Secretary:
+                    res = Rtc.JoinChannelWithUserAccount(token, chName, NickCenter.ToSecretaryNick(name.ToString()));
+                    break;
+                default:
+                    res = Rtc.JoinChannelWithUserAccount(token, chName, NickCenter.ToHostNick(name.ToString()));
+                    break;
+            }
+            
 
             if (res == (int)ERROR_CODE.ERR_OK)
                 IsJoin = true;

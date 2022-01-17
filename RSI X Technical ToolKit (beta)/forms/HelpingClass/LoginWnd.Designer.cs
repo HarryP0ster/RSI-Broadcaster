@@ -32,6 +32,10 @@ namespace RSI_X_Desktop.forms.HelpingClass
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginWnd));
             this.LoginTextBox = new DevExpress.XtraEditors.SvgImageBox();
             this.tablePanel1 = new DevExpress.Utils.Layout.TablePanel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.HostRadio = new System.Windows.Forms.RadioButton();
+            this.PresidentRadio = new System.Windows.Forms.RadioButton();
+            this.SecretaryRadio = new System.Windows.Forms.RadioButton();
             this.micRadio = new DevExpress.XtraEditors.SvgImageBox();
             this.camRadio = new DevExpress.XtraEditors.SvgImageBox();
             this.svgImageBox2 = new DevExpress.XtraEditors.SvgImageBox();
@@ -40,6 +44,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             ((System.ComponentModel.ISupportInitialize)(this.LoginTextBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).BeginInit();
             this.tablePanel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.micRadio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.camRadio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox2)).BeginInit();
@@ -67,6 +72,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             // 
             this.tablePanel1.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 55F)});
+            this.tablePanel1.Controls.Add(this.tableLayoutPanel1);
             this.tablePanel1.Controls.Add(this.micRadio);
             this.tablePanel1.Controls.Add(this.camRadio);
             this.tablePanel1.Controls.Add(this.svgImageBox2);
@@ -86,6 +92,69 @@ namespace RSI_X_Desktop.forms.HelpingClass
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 20F)});
             this.tablePanel1.Size = new System.Drawing.Size(350, 400);
             this.tablePanel1.TabIndex = 2;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tablePanel1.SetColumn(this.tableLayoutPanel1, 0);
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Controls.Add(this.HostRadio, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.PresidentRadio, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.SecretaryRadio, 2, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 111);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tablePanel1.SetRow(this.tableLayoutPanel1, 2);
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(350, 22);
+            this.tableLayoutPanel1.TabIndex = 96;
+            // 
+            // HostRadio
+            // 
+            this.HostRadio.AutoSize = true;
+            this.HostRadio.Checked = true;
+            this.HostRadio.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HostRadio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.HostRadio.Location = new System.Drawing.Point(3, 3);
+            this.HostRadio.Name = "HostRadio";
+            this.HostRadio.Size = new System.Drawing.Size(110, 16);
+            this.HostRadio.TabIndex = 0;
+            this.HostRadio.TabStop = true;
+            this.HostRadio.Text = "Broadcaster";
+            this.HostRadio.UseVisualStyleBackColor = true;
+            this.HostRadio.CheckedChanged += new System.EventHandler(this.HostRadio_CheckedChanged);
+            // 
+            // PresidentRadio
+            // 
+            this.PresidentRadio.AutoSize = true;
+            this.PresidentRadio.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PresidentRadio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.PresidentRadio.Location = new System.Drawing.Point(119, 3);
+            this.PresidentRadio.Name = "PresidentRadio";
+            this.PresidentRadio.Size = new System.Drawing.Size(110, 16);
+            this.PresidentRadio.TabIndex = 1;
+            this.PresidentRadio.TabStop = true;
+            this.PresidentRadio.Text = "President";
+            this.PresidentRadio.UseVisualStyleBackColor = true;
+            this.PresidentRadio.CheckedChanged += new System.EventHandler(this.PresidentRadio_CheckedChanged);
+            // 
+            // SecretaryRadio
+            // 
+            this.SecretaryRadio.AutoSize = true;
+            this.SecretaryRadio.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SecretaryRadio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.SecretaryRadio.Location = new System.Drawing.Point(235, 3);
+            this.SecretaryRadio.Name = "SecretaryRadio";
+            this.SecretaryRadio.Size = new System.Drawing.Size(112, 16);
+            this.SecretaryRadio.TabIndex = 2;
+            this.SecretaryRadio.TabStop = true;
+            this.SecretaryRadio.Text = "Secretary";
+            this.SecretaryRadio.UseVisualStyleBackColor = true;
+            this.SecretaryRadio.CheckedChanged += new System.EventHandler(this.SecretaryRadio_CheckedChanged);
             // 
             // micRadio
             // 
@@ -187,6 +256,8 @@ namespace RSI_X_Desktop.forms.HelpingClass
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).EndInit();
             this.tablePanel1.ResumeLayout(false);
             this.tablePanel1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.micRadio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.camRadio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox2)).EndInit();
@@ -203,5 +274,9 @@ namespace RSI_X_Desktop.forms.HelpingClass
         internal DevExpress.XtraEditors.SvgImageBox LoginTextBox;
         private DevExpress.XtraEditors.SvgImageBox micRadio;
         private DevExpress.XtraEditors.SvgImageBox camRadio;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.RadioButton HostRadio;
+        private System.Windows.Forms.RadioButton PresidentRadio;
+        private System.Windows.Forms.RadioButton SecretaryRadio;
     }
 }
