@@ -59,11 +59,11 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.tablePanel1.SetColumn(this.LoginTextBox, 0);
             this.LoginTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LoginTextBox.ItemAppearance.Normal.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(67)))), ((int)(((byte)(80)))));
-            this.LoginTextBox.Location = new System.Drawing.Point(15, 138);
+            this.LoginTextBox.Location = new System.Drawing.Point(15, 180);
             this.LoginTextBox.Margin = new System.Windows.Forms.Padding(15, 5, 15, 5);
             this.LoginTextBox.Name = "LoginTextBox";
             this.tablePanel1.SetRow(this.LoginTextBox, 3);
-            this.LoginTextBox.Size = new System.Drawing.Size(320, 79);
+            this.LoginTextBox.Size = new System.Drawing.Size(320, 90);
             this.LoginTextBox.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
             this.LoginTextBox.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("LoginTextBox.SvgImage")));
             this.LoginTextBox.TabIndex = 1;
@@ -85,12 +85,12 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.tablePanel1.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 15F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 5F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 20F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 20F)});
-            this.tablePanel1.Size = new System.Drawing.Size(350, 400);
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 15F)});
+            this.tablePanel1.Size = new System.Drawing.Size(350, 450);
             this.tablePanel1.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -104,55 +104,67 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.tableLayoutPanel1.Controls.Add(this.PresidentRadio, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.SecretaryRadio, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 111);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 125);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tablePanel1.SetRow(this.tableLayoutPanel1, 2);
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(350, 22);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(350, 50);
             this.tableLayoutPanel1.TabIndex = 96;
             // 
             // HostRadio
             // 
             this.HostRadio.AutoSize = true;
+            this.HostRadio.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
             this.HostRadio.Checked = true;
+            this.HostRadio.Cursor = System.Windows.Forms.Cursors.Hand;
             this.HostRadio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.HostRadio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.HostRadio.Font = new System.Drawing.Font("Bahnschrift SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.HostRadio.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.HostRadio.Location = new System.Drawing.Point(3, 3);
             this.HostRadio.Name = "HostRadio";
-            this.HostRadio.Size = new System.Drawing.Size(110, 16);
+            this.HostRadio.Size = new System.Drawing.Size(110, 44);
             this.HostRadio.TabIndex = 0;
             this.HostRadio.TabStop = true;
             this.HostRadio.Text = "Broadcaster";
+            this.HostRadio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.HostRadio.UseVisualStyleBackColor = true;
             this.HostRadio.CheckedChanged += new System.EventHandler(this.HostRadio_CheckedChanged);
             // 
             // PresidentRadio
             // 
             this.PresidentRadio.AutoSize = true;
+            this.PresidentRadio.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.PresidentRadio.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PresidentRadio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PresidentRadio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.PresidentRadio.Font = new System.Drawing.Font("Bahnschrift SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.PresidentRadio.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.PresidentRadio.Location = new System.Drawing.Point(119, 3);
             this.PresidentRadio.Name = "PresidentRadio";
-            this.PresidentRadio.Size = new System.Drawing.Size(110, 16);
+            this.PresidentRadio.Size = new System.Drawing.Size(110, 44);
             this.PresidentRadio.TabIndex = 1;
             this.PresidentRadio.TabStop = true;
             this.PresidentRadio.Text = "President";
+            this.PresidentRadio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.PresidentRadio.UseVisualStyleBackColor = true;
             this.PresidentRadio.CheckedChanged += new System.EventHandler(this.PresidentRadio_CheckedChanged);
             // 
             // SecretaryRadio
             // 
             this.SecretaryRadio.AutoSize = true;
+            this.SecretaryRadio.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.SecretaryRadio.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SecretaryRadio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SecretaryRadio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.SecretaryRadio.Font = new System.Drawing.Font("Bahnschrift SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SecretaryRadio.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.SecretaryRadio.Location = new System.Drawing.Point(235, 3);
             this.SecretaryRadio.Name = "SecretaryRadio";
-            this.SecretaryRadio.Size = new System.Drawing.Size(112, 16);
+            this.SecretaryRadio.Size = new System.Drawing.Size(112, 44);
             this.SecretaryRadio.TabIndex = 2;
             this.SecretaryRadio.TabStop = true;
             this.SecretaryRadio.Text = "Secretary";
+            this.SecretaryRadio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SecretaryRadio.UseVisualStyleBackColor = true;
             this.SecretaryRadio.CheckedChanged += new System.EventHandler(this.SecretaryRadio_CheckedChanged);
             // 
@@ -163,11 +175,11 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.micRadio.Dock = System.Windows.Forms.DockStyle.Fill;
             this.micRadio.ImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.micRadio.ItemAppearance.Normal.FillColor = System.Drawing.Color.White;
-            this.micRadio.Location = new System.Drawing.Point(20, 269);
+            this.micRadio.Location = new System.Drawing.Point(20, 328);
             this.micRadio.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.micRadio.Name = "micRadio";
             this.tablePanel1.SetRow(this.micRadio, 5);
-            this.micRadio.Size = new System.Drawing.Size(327, 38);
+            this.micRadio.Size = new System.Drawing.Size(327, 44);
             this.micRadio.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("micRadio.SvgImage")));
             this.micRadio.TabIndex = 95;
             this.micRadio.Text = "svgImageBox3";
@@ -180,11 +192,11 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.camRadio.Dock = System.Windows.Forms.DockStyle.Fill;
             this.camRadio.ImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.camRadio.ItemAppearance.Normal.FillColor = System.Drawing.Color.White;
-            this.camRadio.Location = new System.Drawing.Point(20, 225);
+            this.camRadio.Location = new System.Drawing.Point(20, 278);
             this.camRadio.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.camRadio.Name = "camRadio";
             this.tablePanel1.SetRow(this.camRadio, 4);
-            this.camRadio.Size = new System.Drawing.Size(327, 38);
+            this.camRadio.Size = new System.Drawing.Size(327, 44);
             this.camRadio.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("camRadio.SvgImage")));
             this.camRadio.TabIndex = 94;
             this.camRadio.Text = "svgImageBox1";
@@ -198,11 +210,11 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.tablePanel1.SetColumn(this.svgImageBox2, 0);
             this.svgImageBox2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.svgImageBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.svgImageBox2.Location = new System.Drawing.Point(15, 315);
+            this.svgImageBox2.Location = new System.Drawing.Point(15, 380);
             this.svgImageBox2.Margin = new System.Windows.Forms.Padding(15, 5, 15, 5);
             this.svgImageBox2.Name = "svgImageBox2";
             this.tablePanel1.SetRow(this.svgImageBox2, 6);
-            this.svgImageBox2.Size = new System.Drawing.Size(320, 80);
+            this.svgImageBox2.Size = new System.Drawing.Size(320, 65);
             this.svgImageBox2.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
             this.svgImageBox2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageBox2.SvgImage")));
             this.svgImageBox2.TabIndex = 93;
@@ -217,7 +229,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox1.Name = "pictureBox1";
             this.tablePanel1.SetRow(this.pictureBox1, 0);
-            this.pictureBox1.Size = new System.Drawing.Size(340, 57);
+            this.pictureBox1.Size = new System.Drawing.Size(340, 65);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -229,10 +241,10 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.NameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NameLabel.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.NameLabel.ForeColor = System.Drawing.Color.White;
-            this.NameLabel.Location = new System.Drawing.Point(3, 67);
+            this.NameLabel.Location = new System.Drawing.Point(3, 75);
             this.NameLabel.Name = "NameLabel";
             this.tablePanel1.SetRow(this.NameLabel, 1);
-            this.NameLabel.Size = new System.Drawing.Size(344, 44);
+            this.NameLabel.Size = new System.Drawing.Size(344, 50);
             this.NameLabel.TabIndex = 3;
             this.NameLabel.Text = "RSI X BROADCASTER";
             this.NameLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -242,7 +254,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(46)))), ((int)(((byte)(62)))));
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(350, 400);
+            this.ClientSize = new System.Drawing.Size(350, 450);
             this.Controls.Add(this.tablePanel1);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
