@@ -25,7 +25,6 @@ namespace RSI_X_Desktop
             AgoraObject.SetWndEventHandler(this);
             LocalWinId = pictureBoxRemoteVideo.Handle;
             PopUpForm.SetupOldDevices();
-
         }
 
         internal ChatForm GetChat
@@ -137,6 +136,7 @@ namespace RSI_X_Desktop
             Hide();
 
             AgoraObject.LeaveHostChannel();
+            AgoraObject.LeaveChannel();
             AgoraObject.MuteAllRemoteAudioStream(false);
             AgoraObject.MuteAllRemoteVideoStream(false);
 
