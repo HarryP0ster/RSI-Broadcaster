@@ -28,6 +28,7 @@ namespace RSI_X_Desktop.forms
         private static readonly string GET_RECORDERS_LIST_ERROR_MSG = "Bad audioIn list";
 
         private const int HDresolution = 6;
+        private const int LDresolution = 2;
         private static PopUpForm _instance;
         private static readonly Color InactiveColor = Color.FromArgb(254, 1, 243);
         private static readonly Color PushColor = Color.BurlyWood;
@@ -66,13 +67,13 @@ namespace RSI_X_Desktop.forms
         private static DeviceInfo oldRecorder;
         private static DeviceInfo oldVideoOut;
         public static string oldResolution { get; private set; }
-        private static int oldIndexResolution = HDresolution; //1080p
+        private static int oldIndexResolution;
 
         private static int SelectedVolumeIn;
         private static DeviceInfo SelectedRecorder;
         private static DeviceInfo SelectedVideoOut;
         public static string SelectedResolution { get; private set; }
-        private static int SelectedIndexResolution = HDresolution; //1080p
+        //private static int SelectedIndexResolution = HDresolution; //1080p
 
         private int frames = 0;
         private string playback_device = "";
@@ -113,6 +114,9 @@ namespace RSI_X_Desktop.forms
             RecordersManager = AgoraObject.Rtc.CreateAudioRecordingDeviceManager();
             SpeakersManager = AgoraObject.Rtc.CreateAudioPlaybackDeviceManager();
             VideoManager = AgoraObject.Rtc.CreateVideoDeviceManager();
+
+            oldIndexResolution = AgoraObject.joinType == HostType.Broadcaster ? 
+                HDresolution : LDresolution;
         }
 
         public static void SetupOldDevices()
@@ -664,7 +668,8 @@ namespace RSI_X_Desktop.forms
             oldRecorder = new();
             oldVideoOut = new();
             oldResolution = null;
-            oldIndexResolution = HDresolution;
+            oldIndexResolution = AgoraObject.joinType == HostType.Broadcaster ?
+                HDresolution : LDresolution; ;
         }
 
         #region Bass
