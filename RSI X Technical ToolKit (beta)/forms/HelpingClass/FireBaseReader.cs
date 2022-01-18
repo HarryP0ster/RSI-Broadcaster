@@ -154,7 +154,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
         {
             return DateTime.Now.ToShortDateString().Replace('/', ':');
         }
-        public void Dispose() 
+        public void Dispose()
         {
             subscription.Dispose();
             this.Dispose();

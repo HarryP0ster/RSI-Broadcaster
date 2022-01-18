@@ -21,6 +21,7 @@ namespace RSI_X_Desktop
 
         public Broadcaster()
         {
+            other.Messager.SetPermission((byte)other.PERMISSIONS.GLOBAL);
             InitializeComponent();
             AgoraObject.SetWndEventHandler(this);
             LocalWinId = pictureBoxRemoteVideo.Handle;
@@ -39,6 +40,7 @@ namespace RSI_X_Desktop
             AgoraObject.Rtc.SetChannelProfile(CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING);
             AgoraObject.Rtc.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
             AgoraObject.Rtc.EnableLocalVideo(true);
+            AgoraObject.GenerateNickName();
 
             this.DoubleBuffered = true;
             AgoraObject.JoinChannel();
@@ -55,6 +57,7 @@ namespace RSI_X_Desktop
 
             GetFireBase.SetChannelName(
                 AgoraObject.GetComplexToken().GetHostName);
+
             chat.HandleCreated += (s, e) => {
                 chat.UpdateFireBase(GetFireBase);
                 GetFireBase.Connect();
@@ -141,6 +144,7 @@ namespace RSI_X_Desktop
             AgoraObject.MuteAllRemoteVideoStream(false);
 
             //PopUpForm.waveOutSetVolume(IntPtr.Zero, uint.MaxValue);
+            chat.DisconnectFireBase(GetFireBase);
 
             Owner.Show();
             Owner.Refresh();

@@ -45,6 +45,8 @@ namespace RSI_X_Desktop
         public static string ClientID { get; private set; } = "";
         public static string RoomLang { get => RoomName.Split('_')[0]; }
         public static string RoomName { get; private set; } = ""; //Full name of the interpreters room without 8 digits
+
+
         public static string RoomTarg { get; private set; } = ""; //Full name of the target room without 8 digits
         public static CurForm CurrentForm = CurForm.None;
 
@@ -86,7 +88,7 @@ namespace RSI_X_Desktop
             Rtc.Initialize(new RtcEngineContext(AppID));
             Rtc.EnableVideo();
 
-            UpdateNickName(NickCenter.ToHostNick("BROADCASTER"));
+            //UpdateNickName(NickCenter.ToHostNick("BROADCASTER"));
             SetPublishProfile();
         }
 
@@ -98,6 +100,24 @@ namespace RSI_X_Desktop
         private static void SetDefaultAudioProfile()
         {
             Rtc.SetAudioProfile(AUDIO_PROFILE_TYPE.AUDIO_PROFILE_MUSIC_STANDARD, AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_CHATROOM_GAMING);
+        }
+        internal static void GenerateNickName()
+        {
+            var rnd = new Random();
+            name = (uint)rnd.Next();
+
+            switch (joinType)
+            {
+                case HostType.President:
+                    UpdateNickName(NickCenter.ToPresidentNick(name.ToString()));
+                    break;
+                case HostType.Secretary:
+                    UpdateNickName(NickCenter.ToSecretaryNick(name.ToString()));
+                    break;
+                default:
+                    UpdateNickName(NickCenter.ToHostNick(name.ToString()));
+                    break;
+            }
         }
 
         static public void UpdateNickName(string nick)
@@ -211,22 +231,9 @@ namespace RSI_X_Desktop
         }
         static public ERROR_CODE JoinChannel(string chName, string token)
         {
-            var rnd = new Random();
-            name = (uint)rnd.Next();
             ERROR_CODE res;
-            switch (joinType)
-            {
-                case HostType.President:
-                    res = Rtc.JoinChannelWithUserAccount(token, chName, NickCenter.ToPresidentNick(name.ToString()));
-                    break;
-                case HostType.Secretary:
-                    res = Rtc.JoinChannelWithUserAccount(token, chName, NickCenter.ToSecretaryNick(name.ToString()));
-                    break;
-                default:
-                    res = Rtc.JoinChannelWithUserAccount(token, chName, NickCenter.ToHostNick(name.ToString()));
-                    break;
-            }
             
+            res = Rtc.JoinChannelWithUserAccount(token, chName, NickName);
 
             if (res == (int)ERROR_CODE.ERR_OK)
                 IsJoin = true;

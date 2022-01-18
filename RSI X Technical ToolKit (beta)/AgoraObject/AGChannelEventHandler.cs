@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using agorartc;
-using System.Windows.Forms;
+using RSI_X_Desktop.other;
 
 
 namespace RSI_X_Desktop
@@ -172,12 +172,20 @@ namespace RSI_X_Desktop
             OnChannelStreamMessage(string channelId, uint uid, int streamId, byte[] data, uint length)
         {
             UserInfo name;
+            string UserName = "";
             string Message = AgoraObject.utf8enc.GetString(data);
 
             AgoraObject.Rtc.GetUserInfoByUid(uid, out name);
-            string UserName = name.userAccount;
+
+            UserName = name.userAccount;
+
             var formInterpr = (form as Broadcaster);
-            formInterpr.GetMessage(Message, UserName, chType);
+
+            byte perm = Messager.CheckMsgPerm(Message);
+            if ((perm & (byte)PERMISSIONS.GLOBAL) > 0)
+                formInterpr.GetMessage(Message, UserName, chType);
+            //if ((perm & (byte)PERMISSIONS.CONFERENCE) > 0)
+            //    formInterpr.GetMessage(Message, UserName, CHANNEL_TYPE.CONFERENCE);
         }
     }
 

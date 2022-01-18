@@ -8,9 +8,15 @@ namespace RSI_X_Desktop
 {
     public static class NickCenter
     {
-        const string HostStartsWith = "HOST";
+        const string HostStartsWith = "HOST_BROADCASTER";
+        const string ConferenceStartsWith = "HOST_";
         const string PresidentStartsWith = "HOST_PRESIDENT";
         const string SecretaryStartsWith = "HOST_SECRETARY";
+
+        const string PRESIDENT = "PRESIDENT";
+        const string SECRETARY = "SECRETARY";
+        const string BROADCASTER = "BROADCASTER";
+        const string CONFERENCE = "CONFERENCE";
         const string AudienceStartsWith = "SPECTRATOR";
 
         public static string ToHostNick(string nick)
@@ -33,10 +39,25 @@ namespace RSI_X_Desktop
         {
             return nick.StartsWith(AudienceStartsWith);
         }
-        public static bool IsInterpreter(string nick)
+
+        //public static bool IsInterpreter(string nick)
+        //{
+        //    return nick.Split(' ')[0].Contains('(') &&
+        //           nick.Split(' ')[0].Contains(')');
+        //}
+
+        public static string GetNickHostFromMsg(string msg) 
         {
-            return nick.Split(' ')[0].Contains('(') &&
-                   nick.Split(' ')[0].Contains(')');
+            if (msg.StartsWith(PresidentStartsWith))
+                return PRESIDENT;
+            if (msg.StartsWith(SecretaryStartsWith))
+                return SECRETARY;
+            if (msg.StartsWith(HostStartsWith))
+                return BROADCASTER;
+            if (msg.StartsWith(ConferenceStartsWith))
+                return $"{CONFERENCE} {msg.Replace(ConferenceStartsWith, "")}";
+
+            return msg;
         }
     }
 }
