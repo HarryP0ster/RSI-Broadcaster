@@ -208,8 +208,8 @@ namespace RSI_X_Desktop.forms.HelpingClass
             if (ScrollEnabled[index])
             {
                 chat_scrolls[index].Maximum = messages_list[index].Count - scroll_offset[TAB_COUNT + index];
-                chat_scrolls[index].Value = chat_scrolls[index].Maximum - scroll_offset[index];
             }
+            chat_scrolls[index].Value = chat_scrolls[index].Maximum - scroll_offset[index];
             Chat_SizeChanged(panel, new EventArgs());
         }
 
