@@ -144,7 +144,7 @@ namespace RSI_X_Desktop
             AgoraObject.MuteAllRemoteVideoStream(false);
 
             //PopUpForm.waveOutSetVolume(IntPtr.Zero, uint.MaxValue);
-            chat.DisconnectFireBase(GetFireBase);
+            chat.DisconnectFireBase();
 
             Owner.Show();
             Owner.Refresh();
