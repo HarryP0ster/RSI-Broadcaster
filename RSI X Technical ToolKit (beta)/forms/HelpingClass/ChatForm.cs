@@ -25,6 +25,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
         List<Control>[] messages_list = new List<Control>[TAB_COUNT];
         bool[] ScrollEnabled = new bool[2] { false, false };
         ReaLTaiizor.Controls.PoisonScrollBar[] chat_scrolls = new ReaLTaiizor.Controls.PoisonScrollBar[2];
+        Control[] scrolls = new Control[TAB_COUNT];
 
         FireBaseReader FireBase;
 
@@ -38,6 +39,11 @@ namespace RSI_X_Desktop.forms.HelpingClass
         public ChatForm()
         {
             InitializeComponent();
+
+            scrolls[(int)PANEL.GENERAL] = GeneralScroll;
+            scrolls[(int)PANEL.SUPPORT] = SupportScroll;
+            GeneralScroll.Enabled = false;
+            SupportScroll.Enabled = false;
 
             GlobalTip.SetToolTip(General, "Global chat");
             SupportTip.SetToolTip(Support, "Technical chat");
@@ -257,6 +263,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
                             ScrollEnabled[ind] = true;
                             chat_scrolls[ind].Maximum = messages_list[ind].Count - scroll_offset[TAB_COUNT + ind];
                             chat_scrolls[ind].Value = chat_scrolls[ind].Maximum - scroll_offset[ind];
+                            scrolls[ind].Enabled = true;
                         }
                         return;
                     }
