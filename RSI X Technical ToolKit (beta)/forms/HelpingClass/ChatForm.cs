@@ -218,7 +218,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             FireBase = FireBaseReader;
             FireBase.OnNewMessage += chat_NewMessageSupInvoke;
         }
-        public void DisconnectFireBase(FireBaseReader FireBaseReader)
+        public void DisconnectFireBase()
         {
             if (FireBase != null)
                 FireBase.OnNewMessage -= chat_NewMessageSupInvoke;

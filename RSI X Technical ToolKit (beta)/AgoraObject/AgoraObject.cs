@@ -105,7 +105,6 @@ namespace RSI_X_Desktop
         {
             var rnd = new Random();
             name = (uint)rnd.Next();
-
             switch (joinType)
             {
                 case HostType.President:
@@ -121,7 +120,10 @@ namespace RSI_X_Desktop
         }
 
         static public void UpdateNickName(string nick)
-        { NickName = nick; }
+        { 
+            NickName = nick;
+            DebugWriter.WriteTime($"AgoraObject. New nickname {NickName}");
+        }
         static public void UpdateRoomName(string name)
         { RoomName = name; }
         static public void UpdateClientID(string uid)

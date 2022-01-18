@@ -33,7 +33,7 @@ namespace RSI_X_Desktop
         }
         public static bool IsHost(string nick) 
         {
-            return nick.StartsWith(HostStartsWith);
+            return nick.StartsWith(ConferenceStartsWith);
         }
         public static bool IsAudience(string nick)
         {
