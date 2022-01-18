@@ -23,7 +23,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
         const int TAB_COUNT = 2;
         int[] scroll_offset = new int[TAB_COUNT * 2];
         List<Control>[] messages_list = new List<Control>[TAB_COUNT];
-        bool[] ScrollEnabled = new bool[2] { true, true};
+        bool[] ScrollEnabled = new bool[2] { false, false };
         ReaLTaiizor.Controls.PoisonScrollBar[] chat_scrolls = new ReaLTaiizor.Controls.PoisonScrollBar[2];
 
         FireBaseReader FireBase;
@@ -227,6 +227,8 @@ namespace RSI_X_Desktop.forms.HelpingClass
 
         internal void Chat_SizeChanged(object sender, EventArgs e) //Actually Updates chat wnd
         {
+            if (sender == PGeneral && CurPanel != PANEL.GENERAL) return;
+            if (sender == PSupport && CurPanel != PANEL.SUPPORT) return;
             if (Visible)
             {
                 Control prev_ctr = null;
