@@ -605,14 +605,14 @@ namespace RSI_X_Desktop.forms
             this.TableMisc.Controls.Add(this.pictureBox2);
             this.TableMisc.Controls.Add(this.AudioQualityCmb);
             this.TableMisc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TableMisc.Location = new System.Drawing.Point(237, 0);
-            this.TableMisc.Margin = new System.Windows.Forms.Padding(0);
+            this.TableMisc.Location = new System.Drawing.Point(247, 0);
+            this.TableMisc.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.TableMisc.Name = "TableMisc";
             this.TableMisc.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 15F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 75F)});
-            this.TableMisc.Size = new System.Drawing.Size(238, 510);
+            this.TableMisc.Size = new System.Drawing.Size(228, 510);
             this.TableMisc.TabIndex = 2;
             // 
             // labelAudioQuality
@@ -627,7 +627,7 @@ namespace RSI_X_Desktop.forms
             this.labelAudioQuality.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAudioQuality.Name = "labelAudioQuality";
             this.TableMisc.SetRow(this.labelAudioQuality, 1);
-            this.labelAudioQuality.Size = new System.Drawing.Size(67, 51);
+            this.labelAudioQuality.Size = new System.Drawing.Size(64, 51);
             this.labelAudioQuality.TabIndex = 11;
             this.labelAudioQuality.Text = "Audio input quality";
             this.labelAudioQuality.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -641,7 +641,7 @@ namespace RSI_X_Desktop.forms
             this.pictureBox2.Location = new System.Drawing.Point(3, 3);
             this.pictureBox2.Name = "pictureBox2";
             this.TableMisc.SetRow(this.pictureBox2, 0);
-            this.pictureBox2.Size = new System.Drawing.Size(65, 71);
+            this.pictureBox2.Size = new System.Drawing.Size(62, 71);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 10;
             this.pictureBox2.TabStop = false;
@@ -655,10 +655,10 @@ namespace RSI_X_Desktop.forms
             this.AudioQualityCmb.EnabledCalc = true;
             this.AudioQualityCmb.FormattingEnabled = true;
             this.AudioQualityCmb.ItemHeight = 20;
-            this.AudioQualityCmb.Location = new System.Drawing.Point(74, 89);
+            this.AudioQualityCmb.Location = new System.Drawing.Point(71, 89);
             this.AudioQualityCmb.Name = "AudioQualityCmb";
             this.TableMisc.SetRow(this.AudioQualityCmb, 1);
-            this.AudioQualityCmb.Size = new System.Drawing.Size(137, 26);
+            this.AudioQualityCmb.Size = new System.Drawing.Size(131, 26);
             this.AudioQualityCmb.TabIndex = 0;
             this.AudioQualityCmb.SelectedIndexChanged += new System.EventHandler(this.AudioQualityCmb_SelectedIndexChanged);
             // 
