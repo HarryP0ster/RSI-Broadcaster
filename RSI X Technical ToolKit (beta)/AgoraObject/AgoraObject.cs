@@ -97,10 +97,6 @@ namespace RSI_X_Desktop
             UpdateAudioQualiti(AUDIO_QUALITY.Medium);
             Rtc.SetVideoProfile(VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_1080P_3, false);
         }
-        private static void SetDefaultAudioProfile()
-        {
-            Rtc.SetAudioProfile(AUDIO_PROFILE_TYPE.AUDIO_PROFILE_MUSIC_STANDARD, AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_CHATROOM_GAMING);
-        }
         internal static void GenerateNickName()
         {
             var rnd = new Random();
@@ -235,8 +231,9 @@ namespace RSI_X_Desktop
         {
             ERROR_CODE res;
             
-            res = Rtc.JoinChannelWithUserAccount(token, chName, NickName);
+            Rtc.SetDefaultMuteAllRemoteAudioStreams(false);
 
+            res = Rtc.JoinChannelWithUserAccount(token, chName, NickName);
             if (res == (int)ERROR_CODE.ERR_OK)
                 IsJoin = true;
 
@@ -338,7 +335,7 @@ namespace RSI_X_Desktop
 
         internal static void UpdateAudioQualiti(AUDIO_QUALITY quality)
         {
-            LeaveHostChannel();
+            LeaveChannel();
 
             switch (quality) 
             {
@@ -359,7 +356,7 @@ namespace RSI_X_Desktop
                     break;
             }
             DebugWriter.WriteTime($"AgoraObject. {quality}");
-            JoinChannelHost();
+            JoinChannel();
         }
     }
 }
