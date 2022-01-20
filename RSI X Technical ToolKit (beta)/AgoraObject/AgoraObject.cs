@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 using agorartc;
+using RSI_X_Desktop.forms;
 using HWND = System.IntPtr;
 
 namespace RSI_X_Desktop
@@ -87,14 +88,13 @@ namespace RSI_X_Desktop
             Rtc = AgoraRtcEngine.CreateRtcEngine();
             Rtc.Initialize(new RtcEngineContext(AppID));
             Rtc.EnableVideo();
-
             //UpdateNickName(NickCenter.ToHostNick("BROADCASTER"));
             SetPublishProfile();
         }
 
         private static void SetPublishProfile()
         {
-            Rtc.SetAudioProfile(AUDIO_PROFILE_TYPE.AUDIO_PROFILE_MUSIC_HIGH_QUALITY, AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_CHATROOM_GAMING);
+            UpdateAudioQualiti(AUDIO_QUALITY.Medium);
             Rtc.SetVideoProfile(VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_1080P_3, false);
         }
         private static void SetDefaultAudioProfile()
@@ -265,6 +265,12 @@ namespace RSI_X_Desktop
         #endregion
 
         #region Channel host
+        public static bool JoinChannelHost() 
+        {
+            if (room.GetHostName == "") return false;
+
+            return JoinChannelHost(room.GetHostName, room.GetHostToken, 0, "");
+        }
         public static bool JoinChannelHost(langHolder lh_holder)
         {
             return JoinChannelHost(lh_holder.langFull, lh_holder.token, 0, "");
@@ -328,6 +334,32 @@ namespace RSI_X_Desktop
             Rtc.LeaveChannel();
             Rtc.Dispose();
             Rtc = null;
+        }
+
+        internal static void UpdateAudioQualiti(AUDIO_QUALITY quality)
+        {
+            LeaveHostChannel();
+
+            switch (quality) 
+            {
+                case AUDIO_QUALITY.Low:
+                    Rtc.SetAudioProfile(
+                        AUDIO_PROFILE_TYPE.AUDIO_PROFILE_SPEECH_STANDARD,
+                        AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_DEFAULT);
+                    break;
+                case AUDIO_QUALITY.Medium:
+                    Rtc.SetAudioProfile(
+                        AUDIO_PROFILE_TYPE.AUDIO_PROFILE_MUSIC_STANDARD,
+                        AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_DEFAULT);
+                    break;
+                case AUDIO_QUALITY.High:
+                    Rtc.SetAudioProfile(
+                        AUDIO_PROFILE_TYPE.AUDIO_PROFILE_MUSIC_HIGH_QUALITY, 
+                        AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_DEFAULT);
+                    break;
+            }
+            DebugWriter.WriteTime($"AgoraObject. {quality}");
+            JoinChannelHost();
         }
     }
 }

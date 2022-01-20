@@ -16,6 +16,12 @@ using static System.Environment;
 
 namespace RSI_X_Desktop.forms
 {
+    public enum AUDIO_QUALITY
+    {
+        Low,
+        Medium,
+        High,
+    }
     public partial class PopUpForm : DevExpress.XtraEditors.XtraForm
     {
         internal struct DeviceInfo
@@ -23,7 +29,6 @@ namespace RSI_X_Desktop.forms
             public string Id;
             public string Name;
         }
-
         private static readonly string GET_VIDEO_LIST_ERROR_MSG = "Bad video list";
         private static readonly string GET_RECORDERS_LIST_ERROR_MSG = "Bad audioIn list";
 
@@ -65,12 +70,14 @@ namespace RSI_X_Desktop.forms
         bool Init = false;
 
         private static int oldVolumeIn;
+        private static AUDIO_QUALITY oldAudioQuality = AUDIO_QUALITY.Medium;
         private static DeviceInfo oldRecorder;
         private static DeviceInfo oldVideoOut;
         public static string oldResolution { get; private set; }
         private static int oldIndexResolution;
 
         private static int SelectedVolumeIn;
+        private static AUDIO_QUALITY SelectedAudioQuality;
         private static DeviceInfo SelectedRecorder;
         private static DeviceInfo SelectedVideoOut;
         public static string SelectedResolution { get; private set; }
@@ -108,6 +115,9 @@ namespace RSI_X_Desktop.forms
             comboBoxAudioOutput.Font = font;
             comboBoxVideo.Font = font;
             ComboBoxRes.Font = font;
+            AudioProfile.Font = font;
+
+            AudioProfile.DataSource = new List<string> {"Low", "Medium", "Hight" };
         }
 
         static PopUpForm() 
@@ -514,7 +524,6 @@ namespace RSI_X_Desktop.forms
             RecordersManager.
                 SetDeviceVolume(SelectedVolumeIn);
         }
-
         private static void UpdateResolution(string res)
         {
             //AgoraObject.Rtc.SetVideoProfile(resolutions[res], false);
@@ -684,6 +693,13 @@ namespace RSI_X_Desktop.forms
                 HDresolution : LDresolution; ;
         }
 
+        public static void ChangeAuidoQuality(AUDIO_QUALITY quality) 
+        {
+            if (quality == oldAudioQuality) return;
+
+            //AgoraObject.UpdateAudioQualiti(quality);
+        }
+
         #region Bass
         private void testMic_Click(object sender, EventArgs e)
         {
@@ -813,12 +829,10 @@ namespace RSI_X_Desktop.forms
             ApplyBtn.Margin = Hovered;
             ApplyBtn.Focus();
         }
-
         private void ApplyBtn_MouseLeave(object sender, EventArgs e)
         {
             ApplyBtn.Margin = MarginNormal;
         }
-
         private void MainTable_Paint(object sender, PaintEventArgs e)
         {
 
@@ -871,6 +885,14 @@ namespace RSI_X_Desktop.forms
             MainLayout.ColumnStyles[1].Width = 100;
             MainLayout.ColumnStyles[0].Width = 0;
             AudioQualityCmb.Refresh();
+        private void AudioProfile_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangeAuidoQuality((AUDIO_QUALITY)AudioProfile.SelectedIndex);
+        }
+
+        private void PopUpForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            AgoraObject.Rtc.EnableAudio();
         }
     }
 }
