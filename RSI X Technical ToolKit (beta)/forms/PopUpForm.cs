@@ -175,6 +175,8 @@ namespace RSI_X_Desktop.forms
         private void PopUpForm_Load(object sender, EventArgs e)
         {
             SetWndRegion();
+            LabelGeneral_Click(null, null);
+
             _instance = this;
             oldVolumeIn = RecordersManager.GetDeviceVolume();
             trackBarSoundIn.Value = oldVolumeIn;
