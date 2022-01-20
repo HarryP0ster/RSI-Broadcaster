@@ -232,6 +232,7 @@ namespace RSI_X_Desktop
             ERROR_CODE res;
             
             Rtc.SetDefaultMuteAllRemoteAudioStreams(true);
+            Rtc.SetDefaultMuteAllRemoteVideoStreams(true);
 
             res = Rtc.JoinChannelWithUserAccount(token, chName, NickName);
             if (res == (int)ERROR_CODE.ERR_OK)
@@ -262,38 +263,38 @@ namespace RSI_X_Desktop
         #endregion
 
         #region Channel host
-        public static bool JoinChannelHost() 
-        {
-            if (room.GetHostName == "") return false;
+        //public static bool JoinChannelHost() 
+        //{
+        //    if (room.GetHostName == "") return false;
 
-            return JoinChannelHost(room.GetHostName, room.GetHostToken, 0, "");
-        }
-        public static bool JoinChannelHost(langHolder lh_holder)
-        {
-            return JoinChannelHost(lh_holder.langFull, lh_holder.token, 0, "");
-        }
-        public static bool JoinChannelHost(string lpChannelName, string token, uint nUID, string info)
-        {
-            ERROR_CODE ret;
-            LeaveHostChannel();
+        //    return JoinChannelHost(room.GetHostName, room.GetHostToken, 0, "");
+        //}
+        //public static bool JoinChannelHost(langHolder lh_holder)
+        //{
+        //    return JoinChannelHost(lh_holder.langFull, lh_holder.token, 0, "");
+        //}
+        //public static bool JoinChannelHost(string lpChannelName, string token, uint nUID, string info)
+        //{
+        //    ERROR_CODE ret;
+        //    LeaveHostChannel();
 
-            m_channelHost = Rtc.CreateChannel(lpChannelName);
-            m_channelHost.InitChannelEventHandler(hostHandler);
-            m_channelHost.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
-            m_channelHost.SetDefaultMuteAllRemoteVideoStreams(false);
+        //    m_channelHost = Rtc.CreateChannel(lpChannelName);
+        //    m_channelHost.InitChannelEventHandler(hostHandler);
+        //    m_channelHost.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
+        //    m_channelHost.SetDefaultMuteAllRemoteVideoStreams(false);
 
-            ChannelMediaOptions options = new();
-            options.autoSubscribeAudio = true;
-            options.autoSubscribeVideo = true;
+        //    ChannelMediaOptions options = new();
+        //    options.autoSubscribeAudio = true;
+        //    options.autoSubscribeVideo = true;
 
-            ret = m_channelHost.JoinChannelWithUserAccount(token, NickName, options);
-            //ERROR_CODE_TYPE ret = m_channelHost.JoinChannel(token, info, nUID, options);
+        //    ret = m_channelHost.JoinChannelWithUserAccount(token, NickName, options);
+        //    //ERROR_CODE_TYPE ret = m_channelHost.JoinChannel(token, info, nUID, options);
 
-            m_channelHostJoin = (0 == ret);
-            //var code = m_channelHost.CreateDataStream(out _hostStreamID, true, true);
+        //    m_channelHostJoin = (0 == ret);
+        //    //var code = m_channelHost.CreateDataStream(out _hostStreamID, true, true);
 
-            return 0 == ret;
-        }
+        //    return 0 == ret;
+        //}
         public static void LeaveHostChannel()
         {
             if (m_channelHostJoin)

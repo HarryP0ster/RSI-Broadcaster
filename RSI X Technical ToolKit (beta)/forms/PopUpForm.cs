@@ -899,6 +899,7 @@ namespace RSI_X_Desktop.forms
         private void PopUpForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             AgoraObject.Rtc.EnableAudio();
+            AgoraObject.Rtc.SetDefaultMuteAllRemoteAudioStreams(true);
         }
     }
 }
