@@ -702,7 +702,7 @@ namespace RSI_X_Desktop.forms
         {
             if (quality == oldAudioQuality) return;
 
-            //AgoraObject.UpdateAudioQualiti(quality);
+            AgoraObject.UpdateAudioQualiti(quality);
         }
 
         #region Bass
