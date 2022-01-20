@@ -32,6 +32,7 @@ namespace RSI_X_Desktop.forms
         private static PopUpForm _instance;
         private static readonly Color InactiveColor = Color.FromArgb(254, 1, 243);
         private static readonly Color PushColor = Color.BurlyWood;
+        private Font CommonFont = Constants.Bahnschrift16;
         public static bool IsImageSend { get; private set; }
         public static readonly Dictionary<string, VIDEO_PROFILE_TYPE> resolutions = new()
         {
@@ -142,14 +143,25 @@ namespace RSI_X_Desktop.forms
 
         private void SetWndRegion()
         {
+            Region reg = new();
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
             int d = 45;
-            System.Drawing.Rectangle r = new System.Drawing.Rectangle(0, 0, Width, Height);
+            System.Drawing.Rectangle r = new System.Drawing.Rectangle(25, 0, Width - 25, Height);
             path.AddArc(r.X, r.Y, d, d, 180, 90);
             path.AddArc(r.X + r.Width - d, r.Y, d, d, 270, 90);
             path.AddArc(r.X + r.Width - d, r.Y + r.Height - d, d, d, 0, 90);
             path.AddArc(r.X, r.Y + r.Height - d, d, d, 90, 90);
-            this.Region = new Region(path);
+            reg = new Region(path);
+
+            path = new System.Drawing.Drawing2D.GraphicsPath();
+            r = new System.Drawing.Rectangle(0, 0, Width, 195);
+            path.AddArc(r.X, r.Y, d, d, 180, 90);
+            path.AddArc(r.X + r.Width - d, r.Y, d, d, 270, 90);
+            path.AddArc(r.X + r.Width - d, r.Y + r.Height - d, d, d, 0, 90);
+            path.AddArc(r.X, r.Y + r.Height, 5, 5, 90, 90);
+
+            reg.Union(new Region(path));
+            this.Region = reg;
         }
 
         private void PopUpForm_Load(object sender, EventArgs e)
@@ -166,8 +178,8 @@ namespace RSI_X_Desktop.forms
             UpdateComboBoxVideoOut();
 
             setupComputerDescription();
-            MainTable.Rows[3].Visible = false;
-            MainTable.Rows[4].Visible = false;
+            TableGeneral.Rows[3].Visible = false;
+            TableGeneral.Rows[4].Visible = false;
             ComboBoxRes.DataSource = new List<string>(resolutions.Keys);
             ComboBoxRes.SelectedIndex = oldIndexResolution;
 
@@ -810,6 +822,55 @@ namespace RSI_X_Desktop.forms
         private void MainTable_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void LabelGeneral_Paint(object sender, PaintEventArgs e)
+        {
+            Brush br = new SolidBrush(LabelGeneral.ForeColor);
+
+            e.Graphics.TranslateTransform(0, LabelGeneral.Height);
+            e.Graphics.RotateTransform(-90);
+
+            e.Graphics.DrawString("General", CommonFont, br, 15, 2);
+        }
+
+        private void LabelMisc_Paint(object sender, PaintEventArgs e)
+        {
+            Brush br = new SolidBrush(LabelMisc.ForeColor);
+
+            e.Graphics.TranslateTransform(0, LabelMisc.Height);
+            e.Graphics.RotateTransform(-90);
+
+            e.Graphics.DrawString("Misc", CommonFont, br, 30, 2);
+        }
+
+        private void LabelGeneral_Click(object sender, EventArgs e)
+        {
+            LabelGeneral.ForeColor = Color.FromArgb(40, 40, 40);
+            LabelGeneral.BackColor = Color.White;
+            LabelMisc.ForeColor = Color.FromArgb(240, 240, 240);
+            LabelMisc.BackColor = Color.Gray;
+            TableMisc.Hide();
+            TableGeneral.Show();
+            MainLayout.ColumnStyles[0].Width = 100;
+            MainLayout.ColumnStyles[1].Width = 0;
+            comboBoxAudioInput.Refresh();
+            comboBoxAudioOutput.Refresh();
+            comboBoxVideo.Refresh();
+            ComboBoxRes.Refresh();
+        }
+
+        private void LabelMisc_Click(object sender, EventArgs e)
+        {
+            LabelMisc.ForeColor = Color.FromArgb(40, 40, 40);
+            LabelMisc.BackColor = Color.White;
+            LabelGeneral.ForeColor = Color.FromArgb(240, 240, 240);
+            LabelGeneral.BackColor = Color.Gray;
+            TableMisc.Show();
+            TableGeneral.Hide();
+            MainLayout.ColumnStyles[1].Width = 100;
+            MainLayout.ColumnStyles[0].Width = 0;
+            AudioQualityCmb.Refresh();
         }
     }
 }
