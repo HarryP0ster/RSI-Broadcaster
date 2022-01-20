@@ -231,7 +231,7 @@ namespace RSI_X_Desktop
         {
             ERROR_CODE res;
             
-            Rtc.SetDefaultMuteAllRemoteAudioStreams(false);
+            Rtc.SetDefaultMuteAllRemoteAudioStreams(true);
 
             res = Rtc.JoinChannelWithUserAccount(token, chName, NickName);
             if (res == (int)ERROR_CODE.ERR_OK)
