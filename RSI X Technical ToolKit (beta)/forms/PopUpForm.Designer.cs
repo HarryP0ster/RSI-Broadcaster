@@ -620,6 +620,7 @@ namespace RSI_X_Desktop.forms
             this.TableMisc.SetRow(this.AudioQualityCmb, 0);
             this.AudioQualityCmb.Size = new System.Drawing.Size(232, 26);
             this.AudioQualityCmb.TabIndex = 0;
+            this.AudioQualityCmb.SelectedIndexChanged += new System.EventHandler(this.AudioQualityCmb_SelectedIndexChanged);
             // 
             // tableLayoutPanel1
             // 
@@ -828,6 +829,7 @@ namespace RSI_X_Desktop.forms
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PopUpForm";
             this.TransparencyKey = System.Drawing.Color.Fuchsia;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PopUpForm_FormClosing);
             this.Load += new System.EventHandler(this.PopUpForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel2)).EndInit();
             this.tablePanel2.ResumeLayout(false);

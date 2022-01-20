@@ -115,9 +115,7 @@ namespace RSI_X_Desktop.forms
             comboBoxAudioOutput.Font = font;
             comboBoxVideo.Font = font;
             ComboBoxRes.Font = font;
-            AudioProfile.Font = font;
-
-            AudioProfile.DataSource = new List<string> {"Low", "Medium", "Hight" };
+            AudioQualityCmb.Font = font;
         }
 
         static PopUpForm() 
@@ -199,6 +197,9 @@ namespace RSI_X_Desktop.forms
             workForm = AgoraObject.GetWorkForm;
 
             Init = true;
+
+            AudioQualityCmb.DataSource = new List<string> { "Low", "Medium", "Hight" };
+            AudioQualityCmb.SelectedIndex = (int)oldAudioQuality;
 
             pictureBoxLocalVideoTest.Visible = !IsImageSend;
             PreviewPanel.BackgroundImage = IsImageSend?
@@ -645,12 +646,14 @@ namespace RSI_X_Desktop.forms
             oldVolumeIn = trackBarSoundIn.Value;
             oldResolution = ComboBoxRes.SelectedValue.ToString();
             oldIndexResolution = ComboBoxRes.SelectedIndex;
+            oldAudioQuality = (AUDIO_QUALITY)AudioQualityCmb.SelectedIndex;
         }
         public static void AcceptAllOldDevices()
         {
             AcceptNewRecordDevice();
             AcceptNewVideoRecDevice();
             AcceptNewResolution();
+            ChangeAuidoQuality(oldAudioQuality);
         }
         private static void AcceptNewResolution()
         {
@@ -885,9 +888,10 @@ namespace RSI_X_Desktop.forms
             MainLayout.ColumnStyles[1].Width = 100;
             MainLayout.ColumnStyles[0].Width = 0;
             AudioQualityCmb.Refresh();
-        private void AudioProfile_SelectedIndexChanged(object sender, EventArgs e)
+        }
+        private void AudioQualityCmb_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ChangeAuidoQuality((AUDIO_QUALITY)AudioProfile.SelectedIndex);
+            ChangeAuidoQuality((AUDIO_QUALITY)AudioQualityCmb.SelectedIndex);
         }
 
         private void PopUpForm_FormClosing(object sender, FormClosingEventArgs e)
