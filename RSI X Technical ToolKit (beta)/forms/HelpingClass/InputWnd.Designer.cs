@@ -76,14 +76,12 @@ namespace RSI_X_Desktop.forms.HelpingClass
             // 
             // InputWnd
             // 
-            this.Appearance.BackColor = System.Drawing.Color.Fuchsia;
-            this.Appearance.Options.UseBackColor = true;
+            this.BackColor = System.Drawing.Color.Fuchsia;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(350, 450);
             this.Controls.Add(this.tablePanel1);
-            this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("InputWnd.IconOptions.Icon")));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "InputWnd";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

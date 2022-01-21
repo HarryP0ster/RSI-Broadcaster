@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace RSI_X_Desktop.forms.HelpingClass
 {
-    public partial class InputWnd : DevExpress.XtraEditors.XtraForm
+    public partial class InputWnd : Form
     {
         internal string RoomCode
         {

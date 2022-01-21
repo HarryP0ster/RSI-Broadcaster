@@ -26,11 +26,8 @@ namespace RSI_X_Desktop.forms
 
         private void ShowLogin()
         {
-            SendMessage(this.Handle, 11, false, 0);
             formTheme1.Controls.Remove(panel1);
             formTheme1.Controls.Add(LoginTable);
-            SendMessage(this.Handle, 11, true, 0);
-            Refresh();
             loginWnd.Show(this);
         }
 
@@ -41,6 +38,7 @@ namespace RSI_X_Desktop.forms
             timer1.Start();
             Controls.Remove(LoginBackground);
             InitLoginTable();
+            timer1_Tick(null, null);
         }
 
         private void EntranceForm_VisibleChanged(object sender, EventArgs e)

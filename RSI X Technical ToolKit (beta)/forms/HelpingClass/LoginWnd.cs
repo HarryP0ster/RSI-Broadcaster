@@ -58,6 +58,8 @@ namespace RSI_X_Desktop.forms.HelpingClass
                 Hide();
                 Broadcaster broadcaster = new();
                 AgoraObject.CurrentForm = CurForm.FormBroadcaster;
+                AgoraObject.MuteLocalVideoStream(!EnableCam);
+                AgoraObject.MuteLocalAudioStream(!EnableMic);
                 broadcaster.Show(Owner);
             }
             else
@@ -67,7 +69,6 @@ namespace RSI_X_Desktop.forms.HelpingClass
         private void camRadio_Click(object sender, EventArgs e)
         {
             EnableCam = !EnableCam;
-            AgoraObject.MuteLocalVideoStream(!EnableCam);
 
             camRadio.ItemAppearance.Normal.FillColor = EnableCam ? Color.White : Color.Empty;
         }
@@ -75,7 +76,6 @@ namespace RSI_X_Desktop.forms.HelpingClass
         private void micRadio_Click(object sender, EventArgs e)
         {
             EnableMic = !EnableMic;
-            AgoraObject.MuteLocalAudioStream(!EnableMic);
 
             micRadio.ItemAppearance.Normal.FillColor = EnableMic ? Color.White : Color.Empty;
         }
