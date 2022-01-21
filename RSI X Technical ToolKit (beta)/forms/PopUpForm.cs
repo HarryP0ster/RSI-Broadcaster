@@ -807,34 +807,34 @@ namespace RSI_X_Desktop.forms
 
         #endregion
 
-        private void CancelBtn_MouseHover(object sender, EventArgs e)
+        private void CancelBtn_MouseHover(object sender, MouseEventArgs e)
         {
             CancelBtn.Margin = Hovered;
             CancelBtn.Focus();
         }
 
-        private void CancelBtn_MouseLeave(object sender, EventArgs e)
+        private void CancelBtn_MouseLeave(object sender, MouseEventArgs e)
         {
             CancelBtn.Margin = MarginNormal;
         }
 
-        private void ConfirmBtn_MouseHover(object sender, EventArgs e)
+        private void ConfirmBtn_MouseHover(object sender, MouseEventArgs e)
         {
             ConfirmBtn.Margin = Hovered;
             ConfirmBtn.Focus();
         }
 
-        private void ConfirmBtn_MouseLeave(object sender, EventArgs e)
+        private void ConfirmBtn_MouseLeave(object sender, MouseEventArgs e)
         {
             ConfirmBtn.Margin = MarginNormal;
         }
 
-        private void ApplyBtn_MouseHover(object sender, EventArgs e)
+        private void ApplyBtn_MouseHover(object sender, MouseEventArgs e)
         {
             ApplyBtn.Margin = Hovered;
             ApplyBtn.Focus();
         }
-        private void ApplyBtn_MouseLeave(object sender, EventArgs e)
+        private void ApplyBtn_MouseLeave(object sender, MouseEventArgs e)
         {
             ApplyBtn.Margin = MarginNormal;
         }
