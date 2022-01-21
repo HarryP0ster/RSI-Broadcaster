@@ -616,7 +616,6 @@ namespace RSI_X_Desktop.forms
                 }
             }
             IsImageSend = ImageSender.IsEnable;
-            workForm?.InvokeUpdateColors();
         }
         public static void SetImageSend(bool block)
         {

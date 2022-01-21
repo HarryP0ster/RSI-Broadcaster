@@ -45,9 +45,6 @@ namespace RSI_X_Desktop
             this.DoubleBuffered = true;
             AgoraObject.JoinChannel();
 
-            //AgoraObject.MuteLocalAudioStream(false);
-            //AgoraObject.MuteLocalVideoStream(false);
-
             pictureBoxRemoteVideo.Visible = !AgoraObject.IsLocalVideoMute;
 
             SetLocalVideoPreview();
@@ -66,9 +63,6 @@ namespace RSI_X_Desktop
             chat.TopLevel = false;
             chat.Dock = DockStyle.Fill;
 
-            bottomPanel.Width = Width;
-            bottomPanel.Height = 125;
-            bottomPanel.Location = new Point(Location.X, Location.Y + Height);
             bottomPanel.Show(this);
             bottomPanel.Enabled = false;
             ExternWnd.Show(this);
@@ -115,23 +109,6 @@ namespace RSI_X_Desktop
             //pictureBoxRemoteVideo.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxRemoteVideo.Image = bmp;
         }
-
-        public void InvokeUpdateColors() 
-        {
-            if (InvokeRequired)
-                Invoke((MethodInvoker)delegate
-                {
-                    UpdateColors();
-                });
-            else
-            {
-                UpdateColors();
-            }
-        }
-        private void UpdateColors() 
-        {
-            //labelScreenShare.ForeColor = ScreenCapture.IsCapture ? Color.Red : Color.White; ;
-        }
         public void ExitApp()
         {
             ExternWnd.Hide();
@@ -148,53 +125,6 @@ namespace RSI_X_Desktop
 
             Owner.Show();
             Owner.Refresh();
-        }
-
-        private void CallSidePanel(Form Wnd)
-        {
-            Wnd.TopLevel = false;
-            Wnd.Dock = DockStyle.Fill;
-            panel1.Controls.Add(Wnd);
-            panel1.BringToFront();
-            if (panel1.Visible == false || Wnd.Visible == false)
-            {
-                panel1.Location = new Point(Size.Width, panel1.Location.Y);
-                panel1.Show();
-                Animator(panel1, -45, 0, 10, 1);
-                Wnd.Show();
-            }
-        }
-
-        public void Animator(System.Windows.Forms.Panel panel, int offset_x, int offset_y, int itterations, int delay)
-        {
-            Thread.Sleep(delay);
-            panel.SuspendLayout();
-            for (int ind = 0; ind < itterations; ind++)
-            {
-                StreamLayout.ColumnStyles[1].Width = StreamLayout.ColumnStyles[1].Width - offset_x;
-                Update();
-            }
-            panel.ResumeLayout();
-        }
-
-        public void RebuildChatPanel(Control panel)
-        {
-            chat.Chat_SizeChanged(panel, new EventArgs());
-        }
-        private void ChatClosed(Form Wnd)
-        {
-            Animator(panel1, 45, 0, 10, 1);
-            panel1.Hide();
-            Wnd.Hide();
-            Wnd.SuspendLayout();
-            GC.Collect();
-        }
-        public void DevicesClosed(Form Wnd)
-        {
-            Animator(panel1, 45, 0, 10, 1);
-            panel1.Hide();
-            Wnd.Close();
-            GC.Collect();
         }
 
         public void GetMessage(string message, string nickname, CHANNEL_TYPE channel)

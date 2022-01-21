@@ -7,10 +7,7 @@ namespace RSI_X_Desktop
         public IntPtr RemoteWnd { get; }
         public void RefreshLocalWnd();
         public void SetLocalVideoPreview();
-        public void DevicesClosed(System.Windows.Forms.Form Wnd);
-        //public void SetTrackBarVolume(int volume);
         public void InvokeSetLocalFrame(System.Drawing.Bitmap bmp);
-        public void InvokeUpdateColors();
         public void CloseChat();
         public void ExitApp();
     }
