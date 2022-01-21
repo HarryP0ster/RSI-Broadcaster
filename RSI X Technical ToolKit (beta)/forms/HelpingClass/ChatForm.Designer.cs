@@ -261,6 +261,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.Support.Size = new System.Drawing.Size(69, 66);
             this.Support.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("Support.SvgImage")));
             this.Support.TabIndex = 2;
+            this.Support.UseDirectXPaint = DevExpress.Utils.DefaultBoolean.True;
             this.Support.Click += new System.EventHandler(this.Support_Click);
             // 
             // General
@@ -274,6 +275,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.General.Size = new System.Drawing.Size(69, 66);
             this.General.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("General.SvgImage")));
             this.General.TabIndex = 1;
+            this.General.UseDirectXPaint = DevExpress.Utils.DefaultBoolean.True;
             this.General.Click += new System.EventHandler(this.General_Click);
             // 
             // label1
@@ -386,6 +388,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.ChatClose.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
             this.ChatClose.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ChatClose.SvgImage")));
             this.ChatClose.TabIndex = 1;
+            this.ChatClose.UseDirectXPaint = DevExpress.Utils.DefaultBoolean.True;
             this.ChatClose.Click += new System.EventHandler(this.ChatClose_Click);
             this.ChatClose.MouseEnter += new System.EventHandler(this.ChatClose_MouseEnter);
             this.ChatClose.MouseLeave += new System.EventHandler(this.ChatClose_MouseLeave);
@@ -403,6 +406,7 @@ namespace RSI_X_Desktop.forms.HelpingClass
             this.SendMsgBtn.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
             this.SendMsgBtn.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("SendMsgBtn.SvgImage")));
             this.SendMsgBtn.TabIndex = 0;
+            this.SendMsgBtn.UseDirectXPaint = DevExpress.Utils.DefaultBoolean.True;
             this.SendMsgBtn.Click += new System.EventHandler(this.chatButtonRight2_Click);
             this.SendMsgBtn.MouseLeave += new System.EventHandler(this.SendMsgBtn_MouseLeave);
             this.SendMsgBtn.MouseHover += new System.EventHandler(this.SendMsgBtn_MouseHover);
