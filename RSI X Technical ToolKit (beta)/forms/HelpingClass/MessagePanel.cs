@@ -11,6 +11,22 @@ using ReaLTaiizor.Controls;
 
 namespace RSI_X_Desktop.forms.HelpingClass
 {
+    public partial class ChatForm
+    {
+        public static void UpdateChat()
+        {
+            switch ((int)instance_.CurPanel)
+            {
+                case (int)PANEL.GENERAL:
+                    instance_.Chat_SizeChanged(instance_.PGeneral, null);
+                    break;
+                case (int)PANEL.SUPPORT:
+                    instance_.Chat_SizeChanged(instance_.PSupport, null);
+                    break;
+            }
+        }
+    }
+
     public partial class MessagePanelL : System.Windows.Forms.TableLayoutPanel
     {
         public const string MyOwn = "Me";
@@ -46,9 +62,9 @@ namespace RSI_X_Desktop.forms.HelpingClass
             {
                 Width = Owner.Width;
             };
+
             this.AutoSize = true;
             Width = Owner.Width;
-            Height = 65;
             Sender = new Label();
 
             Sender.Text = sender;
@@ -59,12 +75,9 @@ namespace RSI_X_Desktop.forms.HelpingClass
             RowStyles.Add(new RowStyle(SizeType.Absolute, 25));
             RowStyles.Add(new RowStyle(SizeType.AutoSize, 100));
 
-            //Date = new Label();
-
-            for (int i = maxSymbol; i < text.Length; i += maxSymbol + 1)
-                text = text.Insert(i, "\n");
-
             buble = new newRightBubble();
+            buble.Text = CutMessage(text, buble.Font, 300);
+
             if (sender == MyOwn)
             {
                 ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
@@ -90,11 +103,66 @@ namespace RSI_X_Desktop.forms.HelpingClass
                 Controls.Add(buble, 0, 1);
                 Controls.Add(Sender, 0, 0);
             }
-            buble.Text = text;
+
+            buble.Margin = new Padding(5,5,5,5);
+
             buble.Show();
             buble.SuspendLayout();
             buble.Enabled = false;
             Sender.SuspendLayout();
+            ChatForm.UpdateChat();
+        }
+
+        private string CutMessage(string _text, Font _font, int _width)
+        {
+            var _words = _text.Split(' ');
+            int _line = 0;
+            string output = "";
+
+            if (_words.Length > 0)
+            {
+                foreach (var word in _words)
+                {
+                    Size word_size = TextRenderer.MeasureText(word, _font);
+
+                    if (word_size.Width >= _width)
+                    {
+                        foreach (char _letter in word)
+                        {
+                            Size char_size = TextRenderer.MeasureText(_letter.ToString(), _font);
+
+                            if (_line + char_size.Width < _width)
+                            {
+                                _line += char_size.Width;
+                                output += _letter;
+                            }
+                            else
+                            {
+                                output += "\n" + _letter;
+                                _line = char_size.Width;
+                            }
+                        }
+                        output += " ";
+                    }
+                    else
+                    {
+                        if (_line + word_size.Width < _width)
+                        {
+                            _line += word_size.Width;
+                            output += word + " ";
+                        }
+                        else
+                        {
+                            output += "\n" + word + " ";
+                            _line = word_size.Width;
+                        }
+                    }
+                }
+
+                return output;
+            }
+
+            return _text;
         }
     }
 }
