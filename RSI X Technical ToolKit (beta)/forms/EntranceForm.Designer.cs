@@ -91,6 +91,7 @@ namespace RSI_X_Desktop.forms
             this.panel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.panel1.Size = new System.Drawing.Size(1000, 675);
             this.panel1.TabIndex = 95;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // LocalTimeLabel
             // 
