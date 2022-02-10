@@ -142,7 +142,7 @@ namespace RSI_X_Desktop.forms
 
             oldRecorder = Recorders[index];
 
-            if (VideoOut.Count > 0 && index > 0)
+            if (VideoOut.Count > 0)
                 oldVideoOut = VideoOut[0];
 
             oldResolution = resolutions.Keys.ToArray()[oldIndexResolution];
