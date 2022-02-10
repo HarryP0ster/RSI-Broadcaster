@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Reflection;
 using RSI_X_Desktop.forms.HelpingClass;
 
 //[assembly: AssemblyVersion("0.0.*")]
@@ -163,7 +162,7 @@ namespace RSI_X_Desktop.forms
 
         private static string GetBuildDate()
         {
-            var assembly = Assembly.GetExecutingAssembly();
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
             var version = assembly.GetName().Version;
 
             var dt = new DateTime(2000, 1, 1, 0, 0, 0);
