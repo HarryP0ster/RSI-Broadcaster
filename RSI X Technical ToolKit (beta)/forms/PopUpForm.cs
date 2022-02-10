@@ -188,8 +188,8 @@ namespace RSI_X_Desktop.forms
             UpdateComboBoxVideoOut();
 
             setupComputerDescription();
+            TableGeneral.Rows[2].Visible = false;
             TableGeneral.Rows[3].Visible = false;
-            TableGeneral.Rows[4].Visible = false;
             ComboBoxRes.DataSource = new List<string>(resolutions.Keys);
             ComboBoxRes.SelectedIndex = oldIndexResolution;
 
