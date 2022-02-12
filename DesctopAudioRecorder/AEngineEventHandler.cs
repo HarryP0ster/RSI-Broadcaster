@@ -29,6 +29,8 @@ namespace DesctopAudioRecorder
         internal static void JoinChannel(string token, string chName)
         {
             ERROR_CODE res = Rtc.JoinChannel(token, chName, "", 0);
+            Rtc.MuteAllRemoteAudioStreams(true);
+            Rtc.MuteAllRemoteVideoStreams(true);
 
             Console.WriteLine($"join succ: {res}");
 
