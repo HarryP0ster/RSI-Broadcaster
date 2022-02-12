@@ -34,7 +34,7 @@ namespace RSI_X_Desktop
         public static bool IsJoin { get; private set; }
         public static bool IsLocalAudioMute { get; private set; }
         public static bool IsLocalVideoMute { get; private set; }
-        public static bool IsScreenCapture { get { return ScreenCapture.IsCapture; } }
+        public static bool IsScreenCapture { get => ScreenCapture.IsCapture; }
         public static bool IsAllRemoteAudioMute { get; private set; }
         public static bool IsAllRemoteVideoMute { get; private set; }
         public static HostType joinType = HostType.Broadcaster;
@@ -148,6 +148,13 @@ namespace RSI_X_Desktop
             if (res == (int)ERROR_CODE.ERR_OK)
                 IsLocalAudioMute = mute;
 
+            if (IsScreenCapture)
+            {
+                if (IsLocalAudioMute)
+                    ScreenCapture.StopAudioCapture();
+                else
+                    ScreenCapture.StartAudioCapture();
+            }
             return res;
         }
 

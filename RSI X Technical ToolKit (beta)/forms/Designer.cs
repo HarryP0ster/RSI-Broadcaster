@@ -210,8 +210,8 @@ namespace RSI_X_Desktop.forms
                 (Owner as Broadcaster).pictureBoxRemoteVideo.Visible = !AgoraObject.IsLocalVideoMute;
                 timer1.Start();
 
-                if (AgoraObject.IsLocalVideoMute)
-                    enableScreenShare(false);
+                //if (AgoraObject.IsLocalVideoMute)
+                //    enableScreenShare(false);
             }
         }
         public void HomeBtn_Click(object sender, EventArgs e)

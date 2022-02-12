@@ -120,6 +120,9 @@ namespace RSI_X_Desktop
             AgoraObject.MuteAllRemoteAudioStream(false);
             AgoraObject.MuteAllRemoteVideoStream(false);
 
+            if (AgoraObject.IsScreenCapture)
+                AgoraObject.StopScreenCapture();
+
             //PopUpForm.waveOutSetVolume(IntPtr.Zero, uint.MaxValue);
             chat.DisconnectFireBase();
 

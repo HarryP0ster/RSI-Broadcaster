@@ -17,7 +17,26 @@ namespace RSI_X_Desktop
         internal static void StartScreenCapture(ScreenCaptureParameters capParam)
         {
             StopScreenCapture();
-            
+
+            if (AgoraObject.IsLocalAudioMute == false)
+                StartAudioCapture();
+
+            if (capParam.bitrate == 0)
+                capParam = forms.PopUpForm.resolutionsSize[
+                    forms.PopUpForm.oldResolution];
+            Rectangle region = new ();
+
+            region.width = Screen.PrimaryScreen.Bounds.Width;
+            region.height = Screen.PrimaryScreen.Bounds.Height;
+            capParam.bitrate = 1200;
+            capParam.frameRate = 15;
+
+            IsCapture =
+                (int)ERROR_CODE.ERR_OK == AgoraObject.Rtc.StartScreenCaptureByScreenRect(region, region, capParam);
+            System.Diagnostics.Debug.WriteLine($"{DateTime.Now:HH:mm:ss:fff}: screen sharing enable ({IsCapture})");
+        }
+        public static void StartAudioCapture()
+        {
             List<string> args = new()
             {
                 AgoraObject.GetHostToken(),
@@ -39,20 +58,12 @@ namespace RSI_X_Desktop
 
             proc.Start();
             proc.BeginOutputReadLine();
+        }
 
-            if (capParam.bitrate == 0)
-                capParam = forms.PopUpForm.resolutionsSize[
-                    forms.PopUpForm.oldResolution];
-            Rectangle region = new ();
-
-            region.width = Screen.PrimaryScreen.Bounds.Width;
-            region.height = Screen.PrimaryScreen.Bounds.Height;
-            capParam.bitrate = 1200;
-            capParam.frameRate = 15;
-
-            IsCapture =
-                (int)ERROR_CODE.ERR_OK == AgoraObject.Rtc.StartScreenCaptureByScreenRect(region, region, capParam);
-            System.Diagnostics.Debug.WriteLine($"{DateTime.Now:HH:mm:ss:fff}: screen sharing enable ({IsCapture})");
+        public static void StopAudioCapture()
+        {
+            proc?.Kill();
+            proc = null;
         }
         private static void proc_OutputDataReceived(object sender, System.Diagnostics.DataReceivedEventArgs e)
         {
@@ -71,8 +82,7 @@ namespace RSI_X_Desktop
         internal static void StopScreenCapture()
         {
             AgoraObject.Rtc.StopScreenCapture();
-            proc?.Kill();
-            proc = null;
+            StopAudioCapture();
 
             IsCapture = false;
         }
