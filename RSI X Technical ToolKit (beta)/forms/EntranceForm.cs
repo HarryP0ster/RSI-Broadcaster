@@ -20,8 +20,10 @@ namespace RSI_X_Desktop.forms
         TableLayoutPanel LoginTable = new();
         [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, Int32 wMsg, bool wParam, Int32 lParam);
+        public static SizeF wndScale;
         public EntranceForm()
         {
+            wndScale = new SizeF(Screen.PrimaryScreen.Bounds.Width / 1920f, Screen.PrimaryScreen.Bounds.Height / 1080f);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             InitializeComponent();
         }

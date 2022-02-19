@@ -82,6 +82,12 @@ namespace RSI_X_Desktop.forms
                 SetLeftSidePanelRegion();
                 ChatRgn();
                 SighnOffToCenter();
+
+                IconsPanel.Dock = DockStyle.None;
+                if (!IconsScroll.HorizontalScroll.Visible)
+                    IconsPanel.Dock = DockStyle.Fill;
+                else
+                    IconsPanel.Dock = DockStyle.Left;
             };
             panelChat.Controls.Add((Owner as Broadcaster).GetChat);
             (Owner as Broadcaster).GetChat.Show();

@@ -18,6 +18,8 @@ namespace RSI_X_Desktop
         internal Designer ExternWnd = new();
         BottomPanelWnd bottomPanel = new();
         internal string PreviewFilePath = "";
+        Size minimizedSize = new Size(1280, 800);
+        bool isMaximized = false;
 
         public Broadcaster()
         {
@@ -25,6 +27,7 @@ namespace RSI_X_Desktop
             InitializeComponent();
             AgoraObject.SetWndEventHandler(this);
             LocalWinId = pictureBoxRemoteVideo.Handle;
+            minimizedSize = new Size((int)(1280 * EntranceForm.wndScale.Width), (int)(800 * EntranceForm.wndScale.Height));
             PopUpForm.SetupOldDevices();
         }
 
@@ -71,6 +74,9 @@ namespace RSI_X_Desktop
             pictureBoxRemoteVideo.MouseMove += Mouse_MouseMove;
             PanelNothing.Click += Mouse_Click;
             PanelNothing.MouseMove += Mouse_MouseMove;
+
+            ResizeForm(minimizedSize, this);
+            ResizeForm(minimizedSize, formTheme1);
         }
 
         public void SetLocalVideoPreview()
@@ -165,16 +171,17 @@ namespace RSI_X_Desktop
             Point ptn = e.Location;
             if (!(ptn.X > 46 && ptn.X < 94)) return;
             this.BringToFront();
-            if (this.Size.Width == 1280)
+            if (!isMaximized)
             {
                 ResizeForm(Screen.PrimaryScreen.WorkingArea.Size, this);
                 ResizeForm(Screen.PrimaryScreen.WorkingArea.Size, formTheme1);
             }
             else
             {
-                ResizeForm(new Size(1280, 800), this);
-                ResizeForm(new Size(1280, 800), formTheme1);
+                ResizeForm(minimizedSize, this);
+                ResizeForm(minimizedSize, formTheme1);
             }
+            isMaximized = !isMaximized;
         }
         
         private void Broadcaster_FormClosed(object sender, FormClosedEventArgs e)
