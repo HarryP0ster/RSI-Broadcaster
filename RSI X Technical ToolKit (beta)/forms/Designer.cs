@@ -83,11 +83,7 @@ namespace RSI_X_Desktop.forms
                 ChatRgn();
                 SighnOffToCenter();
 
-                IconsPanel.Dock = DockStyle.None;
-                if (!IconsScroll.HorizontalScroll.Visible)
-                    IconsPanel.Dock = DockStyle.Fill;
-                else
-                    IconsPanel.Dock = DockStyle.Left;
+                PanelFill();
             };
             panelChat.Controls.Add((Owner as Broadcaster).GetChat);
             (Owner as Broadcaster).GetChat.Show();
@@ -100,6 +96,7 @@ namespace RSI_X_Desktop.forms
             AudioColorUpdate();
             VideoColorUpdate();
             SighnOffToCenter();
+            PanelFill();
         }
 
         #region RealtimeDesigner
@@ -330,5 +327,14 @@ namespace RSI_X_Desktop.forms
 
         }
         #endregion
+
+        void PanelFill()
+        {
+            IconsPanel.Dock = DockStyle.None;
+            if (!IconsScroll.HorizontalScroll.Visible)
+                IconsPanel.Dock = DockStyle.Fill;
+            else
+                IconsPanel.Dock = DockStyle.Left;
+        }
     }
 }
